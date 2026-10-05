@@ -845,6 +845,7 @@ function showLesson() {
   el.innerHTML = `<div class="lt"><div style="flex:1"><div class="lv">${course.levels[L.level]} · lesson ${n + 1} of ${course.lessons.length} · ${sub}</div><h2></h2></div>
     <button data-a="min" aria-label="Show or hide the lesson">▾</button><button data-a="list">All lessons</button></div>
     <div class="body"><p class="learn"></p><ul>${(L.tips || []).map(() => '<li></li>').join('')}</ul>
+    ${L.source ? `<p class="muted" style="font-size:13px">${L.composer.replace(/</g, '')} · ${L.license} · <a href="${L.source}" target="_blank" rel="noopener">Mutopia Project edition</a></p>` : ''}
     <div class="steps">${steps}${isDone(L, d) && nx ? '<button data-a="next" class="primary"><b>Next lesson →</b><small></small></button>' : ''}</div></div>`;
   el.querySelector('h2').textContent = L.title;
   el.querySelector('.learn').textContent = L.learn;
@@ -1350,7 +1351,7 @@ $('preset').onclick = e => {            // two taps, so progress is not wiped by
   store.set('progress:' + title, null); drawHeat(); openProgress();
 };
 
-osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay('score', {autoResize: true, backend: 'svg', drawTitle: true, drawPartNames: false, followCursor: false});
+osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay('score', {autoResize: true, autoBeam: true, backend: 'svg', drawTitle: true, drawPartNames: false, followCursor: false});
 window._pr = {get steps() { return steps; }, get pos() { return pos; }, get playing() { return playing; }, press};
 const saved = store.get('score', null);
 (saved?.lesson ? startLesson(saved.lesson).catch(() => false) : saved?.data ? loadScore(saved.data, saved.name.replace(/\.[^.]+$/, '')) : Promise.resolve(false))

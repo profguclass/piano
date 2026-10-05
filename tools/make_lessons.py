@@ -11,7 +11,10 @@ Bars are separated by |.  An empty hand gets whole-bar rests.
 A bar may start with [k=N] to change the key signature to N sharps (negative = flats).
 With pickup=True the first bar is a shorter opening (anacrusis) bar.
 """
-import json, os, re
+import json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from midi_to_musicxml import convert
+from repertoire import REPERTOIRE
 from xml.sax.saxutils import escape
 
 DIV = 4                                   # divisions per quarter note
@@ -289,13 +292,26 @@ LESSONS = [
              'E5s:5 D#5s:4 E5s:5 B4s:2 D5s:4 C5s:3 | A4e:1 rs C4s:1 E4s:2 A4s:4 | B4e:5 rs E4s:1 C5s:4 B4s:3 | A4q.:2'),
          lh=('re | | A2s:5 E3s:2 A3s:1 re. | E2s:5 E3s:2 G#3s:1 re. | A2s:5 E3s:2 A3s:1 re. | | A2s:5 E3s:2 A3s:1 re. | E2s:5 E3s:2 G#3s:1 re. | A2s:5 E3s:2 A3s:1 re.')),
 
+    # ---------- more folk tunes (Preparatory levels) ----------
+    dict(id='lightly-row', title='Lightly Row', hands='right', bpm=100, wait=70,
+         learn='A cheerful German folk tune ("Hänschen klein") that stays in C position from start to finish.',
+         tips=['The melody often steps down; keep each finger over its own key.', 'In the middle part, play the repeated notes evenly.'],
+         rh=('G4q:5 E4q:3 E4h:3 | F4q:4 D4q:2 D4h:2 | C4q:1 D4q:2 E4q:3 F4q:4 | G4q:5 G4q:5 G4h:5 | '
+             'G4q:5 E4q:3 E4h:3 | F4q:4 D4q:2 D4h:2 | C4q:1 E4q:3 G4q:5 G4q:5 | C4w:1 | '
+             'D4q:2 D4q:2 D4q:2 D4q:2 | D4q:2 E4q:3 F4h:4 | E4q:3 E4q:3 E4q:3 E4q:3 | E4q:3 F4q:4 G4h:5 | '
+             'G4q:5 E4q:3 E4h:3 | F4q:4 D4q:2 D4h:2 | C4q:1 E4q:3 G4q:5 G4q:5 | C4w:1'), lh=''),
+    dict(id='old-macdonald', title='Old MacDonald Had a Farm', hands='right', bpm=100, wait=70, fifths=-1,
+         learn='A song in F major. The thumb sits on C below F, and finger 3 plays F, so you skip the E.',
+         tips=['Right hand: C 1, D 2, F 3, G 4, A 5.', 'Hold the whole note for four full beats.'],
+         rh=('F4q:3 F4q:3 F4q:3 C4q:1 | D4q:2 D4q:2 C4h:1 | A4q:5 A4q:5 G4q:4 G4q:4 | F4w:3 | '
+             'F4q:3 F4q:3 F4q:3 C4q:1 | D4q:2 D4q:2 C4h:1 | A4q:5 A4q:5 G4q:4 G4q:4 | F4w:3'), lh=''),
+    dict(id='frere-jacques', title='Frère Jacques', hands='both', bpm=100, wait=60,
+         learn='The famous round, with the left hand holding a drone (C and G together) underneath: your first steady accompaniment.',
+         tips=['The left hand just holds; let the right hand lead.', 'In bars 7–8 the right hand dips down to the G below middle C.'],
+         rh=('C4q:1 D4q:2 E4q:3 C4q:1 | C4q:1 D4q:2 E4q:3 C4q:1 | E4q:3 F4q:4 G4h:5 | E4q:3 F4q:4 G4h:5 | '
+             'G4e:4 A4e:5 G4e:4 F4e:3 E4q:2 C4q:1 | G4e:4 A4e:5 G4e:4 F4e:3 E4q:2 C4q:1 | C4q:2 G3q:1 C4h:2 | C4q:2 G3q:1 C4h:2'),
+         lh='C3+G3w:5+1 | C3+G3w:5+1 | C3+G3w:5+1 | C3+G3w:5+1 | C3+G3w:5+1 | C3+G3w:5+1 | C3w:5 | C3w:5'),
     # ---------- Levels 3 and 4 ----------
-    dict(id='minuet-g', title='Minuet in G', hands='both', bpm=100, wait=60, time=(3, 4), fifths=1, composer='Christian Petzold, arranged',
-         learn='One of the most famous Baroque minuets (from the Notebook for Anna Magdalena Bach). The melody is as written; the left hand is simplified to one long note per bar.',
-         tips=['A minuet is a dance in 3: feel a gentle stress on beat 1.', 'Play the eighth notes evenly and lightly, slightly detached in Baroque style.'],
-         rh=MINUET_A + 'F#4q:1 G4e:2 A4e:3 B4e:4 G4e:2 | A4h.:3 | ' + MINUET_A + 'A4q:3 B4e:4 A4e:3 G4e:2 F#4e:1 | G4h.:2',
-         lh=('G3h.:4 | B3h.:2 | C4h.:1 | B3h.:2 | A3h.:3 | G3h.:4 | D3h.:5 | D3h.:5 | '
-             'G3h.:4 | B3h.:2 | C4h.:1 | B3h.:2 | A3h.:3 | G3h.:4 | D3h.:5 | G2h.:5')),
     dict(id='sonatina-c', title='Sonatina in C (Classical style)', hands='both', bpm=100, wait=60, composer='Piano Reader',
          learn='An original piece in the Classical style: a clear melody over an "Alberti bass", the broken-chord pattern (low, high, middle, high) used by Mozart and Clementi.',
          tips=['Keep the Alberti bass soft and even; the melody sings above it.', 'Left hand pattern: 5 1 3 1.'],
@@ -711,13 +727,13 @@ TECHNIQUE = [
 ]
 
 # Where each existing piece belongs in the syllabus levels.
-PLACE = {'middle-c': 0, 'five-fingers': 0, 'mary': 0, 'left-five': 0, 'hot-cross-buns': 0, 'au-clair': 0,
+PLACE = {'lightly-row': 0, 'old-macdonald': 0, 'frere-jacques': 1, 'middle-c': 0, 'five-fingers': 0, 'mary': 0, 'left-five': 0, 'hot-cross-buns': 0, 'au-clair': 0,
          'ode-together': 1, 'twinkle': 1, 'saints': 1, 'row-your-boat': 1, 'london-bridge': 1, 'jingle-bells': 1,
          'c-scale-rh': (1, 'technique'), 'c-scale-lh': (1, 'technique'), 'g-scale': (1, 'technique'),
          'scale-together': (1, 'technique'), 'contrary': (1, 'technique'),
          'three-chords': 2, 'broken-chords': 2, 'happy-birthday': 2, 'silent-night': 2, 'greensleeves': 2,
          'progression': 3, 'canon': 3, 'nachtmusik': 3, 'fur-elise': 3,
-         'minuet-g': 4, 'sonatina-c': 4, 'prelude-c': 5, 'waltz-am': 5}
+         'sonatina-c': 4, 'prelude-c': 5, 'waltz-am': 5}
 
 # Ear tests and sight reading run inside the app; these entries describe each level's requirements.
 MUSICIANSHIP = [
@@ -788,6 +804,7 @@ if __name__ == '__main__':
         level, kind = where if isinstance(where, tuple) else (where, 'piece')
         scored.append(L | {'level': level, 'kind': kind})
     scored += TECHNIQUE
+    scored += REPERTOIRE
     allx = scored + MUSICIANSHIP
     allx.sort(key=lambda L: (L['level'], KIND_ORDER[L['kind']]))  # stable: keeps the order written above
     course = {'syllabus': 'Structure follows the RCM Piano Syllabus, 2022 edition (rcmusic.com/syllabi)', 'levels': LEVELS, 'lessons': []}
@@ -798,11 +815,19 @@ if __name__ == '__main__':
             continue
         n += 1
         fname = f'{n:02d}-{L["id"]}.musicxml'
-        xml = score(L['title'], L['rh'], L['lh'], L['bpm'], time=L.get('time', (4, 4)), fifths=L.get('fifths', 0),
-                    composer=L.get('composer', 'Traditional'), pickup=L.get('pickup', False))
+        if 'src' in L:                    # a classical piece converted from its Mutopia MIDI file
+            src = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'sources', 'mutopia', L['src'])
+            xml, info = convert(src, L['title'], L['composer'], pickup=L['pickup'],
+                                rights=f"{L['license']}. Edition: Mutopia Project, {L['url']}")
+        else:
+            xml = score(L['title'], L['rh'], L['lh'], L['bpm'], time=L.get('time', (4, 4)), fifths=L.get('fifths', 0),
+                        composer=L.get('composer', 'Traditional'), pickup=L.get('pickup', False))
         with open(os.path.join(root, fname), 'w', encoding='utf-8', newline='\n') as f:
             f.write(xml)
-        course['lessons'].append({k: L[k] for k in ('id', 'level', 'kind', 'title', 'hands', 'bpm', 'wait', 'learn', 'tips')} | {'file': fname})
+        entry = {k: L[k] for k in ('id', 'level', 'kind', 'title', 'hands', 'bpm', 'wait', 'learn', 'tips')} | {'file': fname}
+        if 'src' in L:
+            entry |= {'composer': L['composer'], 'license': L['license'], 'source': L['url']}
+        course['lessons'].append(entry)
     with open(os.path.join(root, 'lessons.json'), 'w', encoding='utf-8', newline='\n') as f:
         json.dump(course, f, ensure_ascii=False, indent=1)
     print(f'{n} scored lessons and {len(MUSICIANSHIP)} musicianship lessons written to {os.path.normpath(root)}')

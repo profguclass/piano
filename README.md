@@ -16,7 +16,7 @@ After that the app reconnects by itself.
 The notes the app plays (the other hand, Listen mode) then sound **on the piano itself**. To use the tablet speaker instead: ⋯ → *Sound from: Tablet*.
 
 ## Lessons
-Tap **Lessons** for an 81-lesson course. Its levels and the parts of each level follow the
+Tap **Lessons** for a 109-lesson course. Its levels and the parts of each level follow the
 [RCM Piano Syllabus, 2022 edition](https://www.rcmusic.com/syllabi) (with its September 2026 errata), from **Preparatory A** to **Level 4**:
 
 | | Technique | Pieces | Ear tests | Sight reading |
@@ -38,6 +38,42 @@ Tap **Lessons** for an 81-lesson course. Its levels and the parts of each level 
   traditional or public-domain arrangements — the syllabus's own repertoire books are not reproduced.
 
 Lesson scores are in [`lessons/`](lessons/) and are built by [`tools/make_lessons.py`](tools/make_lessons.py) (`python tools/make_lessons.py`).
+
+## Classical repertoire and credits
+Besides the course's own arrangements, each level has classical pieces from the [Mutopia Project](https://www.mutopiaproject.org),
+converted from Mutopia's MIDI files ([`tools/sources/mutopia/`](tools/sources/mutopia/)) by [`tools/midi_to_musicxml.py`](tools/midi_to_musicxml.py).
+Ornaments shorter than a 32nd note are left out, repeats are played through once, and finger numbers are suggested by the app.
+The Schumann pieces are licensed CC BY-SA (2.5/3.0) by their Mutopia typesetters; our MusicXML versions of them are shared under the same licence.
+The others are public domain.
+
+| Level | Piece | Composer | Licence | Source |
+|---|---|---|---|---|
+| Level 1 | Minuet in F (BWV Anh. 113) | Notebook for Anna Magdalena Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=74) |
+| Level 1 | Minuet in A minor (BWV Anh. 120) | Notebook for Anna Magdalena Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1612) |
+| Level 2 | Minuet in G (BWV Anh. 114) | Christian Petzold (Notebook for Anna Magdalena Bach) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=75) |
+| Level 2 | Minuet in G minor (BWV Anh. 115) | Christian Petzold (Notebook for Anna Magdalena Bach) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=76) |
+| Level 2 | Aria in D minor (BWV 515) | Notebook for Anna Magdalena Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=78) |
+| Level 2 | Melody, Op. 68 No. 1 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=647) |
+| Level 2 | Soldier's March, Op. 68 No. 2 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=650) |
+| Level 3 | Minuet in G (BWV Anh. 116) | Notebook for Anna Magdalena Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=77) |
+| Level 3 | Minuet in B♭ (BWV Anh. 118) | Notebook for Anna Magdalena Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1014) |
+| Level 3 | Minuet in C minor (BWV Anh. 121) | Notebook for Anna Magdalena Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1613) |
+| Level 3 | Polonaise in F (BWV Anh. 117a) | Notebook for Anna Magdalena Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1013) |
+| Level 3 | Humming Song, Op. 68 No. 3 | Robert Schumann (Album for the Young) | CC BY-SA 3.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=651) |
+| Level 3 | Chorale, Op. 68 No. 4 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=782) |
+| Level 3 | Little Piece, Op. 68 No. 5 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=653) |
+| Level 3 | Morning Prayer, Op. 39 No. 1 | Pyotr Ilyich Tchaikovsky (Album for the Young) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2032) |
+| Level 4 | Poor Orphan Child, Op. 68 No. 6 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=687) |
+| Level 4 | The Wild Horseman, Op. 68 No. 8 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=655) |
+| Level 4 | The Happy Farmer, Op. 68 No. 10 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=659) |
+| Level 4 | Old French Song, Op. 39 No. 16 | Pyotr Ilyich Tchaikovsky (Album for the Young) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2080) |
+| Level 4 | Sonatina in B♭ (HWV 585) | George Frideric Handel | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=98) |
+| Level 4 | Candour (La Candeur), Op. 100 No. 1 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=202) |
+| Level 4 | Arabesque, Op. 100 No. 2 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=203) |
+| Level 4 | Pastorale, Op. 100 No. 3 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=218) |
+| Level 4 | Sonatina in C, Op. 36 No. 1: I. Spiritoso | Muzio Clementi | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=804) |
+| Level 4 | Sonatina in C, Op. 36 No. 1: II. Andante | Muzio Clementi | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=804) |
+| Level 4 | Sonatina in C, Op. 36 No. 1: III. Vivace | Muzio Clementi | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=804) |
 
 ## Finger numbers
 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger. The finger for the current note is shown above (right hand) and

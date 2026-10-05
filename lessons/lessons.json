@@ -163,6 +163,36 @@
    "file": "10-au-clair.musicxml"
   },
   {
+   "id": "lightly-row",
+   "level": 0,
+   "kind": "piece",
+   "title": "Lightly Row",
+   "hands": "right",
+   "bpm": 100,
+   "wait": 70,
+   "learn": "A cheerful German folk tune (\"Hänschen klein\") that stays in C position from start to finish.",
+   "tips": [
+    "The melody often steps down; keep each finger over its own key.",
+    "In the middle part, play the repeated notes evenly."
+   ],
+   "file": "11-lightly-row.musicxml"
+  },
+  {
+   "id": "old-macdonald",
+   "level": 0,
+   "kind": "piece",
+   "title": "Old MacDonald Had a Farm",
+   "hands": "right",
+   "bpm": 100,
+   "wait": 70,
+   "learn": "A song in F major. The thumb sits on C below F, and finger 3 plays F, so you skip the E.",
+   "tips": [
+    "Right hand: C 1, D 2, F 3, G 4, A 5.",
+    "Hold the whole note for four full beats."
+   ],
+   "file": "12-old-macdonald.musicxml"
+  },
+  {
    "id": "ear-a",
    "level": 0,
    "kind": "ear",
@@ -263,7 +293,7 @@
     "Keep the wrist level; do not twist it.",
     "Then try the eighth notes in bars 5-6."
    ],
-   "file": "11-c-scale-rh.musicxml"
+   "file": "13-c-scale-rh.musicxml"
   },
   {
    "id": "c-scale-lh",
@@ -278,7 +308,7 @@
     "Fingering up: 5 4 3 2 1, 3 2 1.",
     "Fingering down: 1 2 3, 1 2 3 4 5."
    ],
-   "file": "12-c-scale-lh.musicxml"
+   "file": "14-c-scale-lh.musicxml"
   },
   {
    "id": "g-scale",
@@ -293,7 +323,7 @@
     "Finger 4 plays F♯.",
     "Look at the key signature at the start of every new piece."
    ],
-   "file": "13-g-scale.musicxml"
+   "file": "15-g-scale.musicxml"
   },
   {
    "id": "scale-together",
@@ -308,7 +338,7 @@
     "Practise slowly with Wait for me.",
     "Right thumb crosses on F; left finger 3 crosses on A going up."
    ],
-   "file": "14-scale-together.musicxml"
+   "file": "16-scale-together.musicxml"
   },
   {
    "id": "contrary",
@@ -323,7 +353,7 @@
     "Both thumbs cross under at the same moment.",
     "Listen for the hands to sound exactly together."
    ],
-   "file": "15-contrary.musicxml"
+   "file": "17-contrary.musicxml"
   },
   {
    "id": "pentascales-b1",
@@ -339,7 +369,7 @@
     "Two notes per beat: count \"1 and 2 and\".",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "16-pentascales-b1.musicxml"
+   "file": "18-pentascales-b1.musicxml"
   },
   {
    "id": "pentascales-b2",
@@ -355,7 +385,7 @@
     "E minor has F♯; D minor uses only white keys in its first five notes.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "17-pentascales-b2.musicxml"
+   "file": "19-pentascales-b2.musicxml"
   },
   {
    "id": "octave-scales-b",
@@ -371,7 +401,7 @@
     "Right hand 1 2 3 1 2 3 4 5; left hand 5 4 3 2 1 3 2 1.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "18-octave-scales-b.musicxml"
+   "file": "20-octave-scales-b.musicxml"
   },
   {
    "id": "tonic-triads-b",
@@ -387,7 +417,7 @@
     "Right hand fingering: root 1 3 5, first inversion 1 2 5, second inversion 1 3 5.",
     "Left hand: root 5 3 1, first inversion 5 3 1, second inversion 5 2 1."
    ],
-   "file": "19-tonic-triads-b.musicxml"
+   "file": "21-tonic-triads-b.musicxml"
   },
   {
    "id": "ode-together",
@@ -403,7 +433,7 @@
     "The left hand only changes at the start of each bar.",
     "The dotted quarter is 1½ beats: \"1 2-and\"."
    ],
-   "file": "20-ode-together.musicxml"
+   "file": "22-ode-together.musicxml"
   },
   {
    "id": "twinkle",
@@ -418,7 +448,7 @@
     "Watch the finger numbers where the hand moves.",
     "The left hand plays C, F and G; keep it in place with the thumb on C."
    ],
-   "file": "21-twinkle.musicxml"
+   "file": "23-twinkle.musicxml"
   },
   {
    "id": "saints",
@@ -433,7 +463,7 @@
     "Count the rest out loud: \"(1) 2 3 4\".",
     "The left hand holds whole notes: C, then G or F where the harmony changes."
    ],
-   "file": "22-saints.musicxml"
+   "file": "24-saints.musicxml"
   },
   {
    "id": "row-your-boat",
@@ -448,7 +478,7 @@
     "Count \"1-2-3 4-5-6\" with the stress on 1 and 4.",
     "In bar 5 the hand opens to an octave: C (5), G (3), E (2), C (1)."
    ],
-   "file": "23-row-your-boat.musicxml"
+   "file": "25-row-your-boat.musicxml"
   },
   {
    "id": "london-bridge",
@@ -463,7 +493,7 @@
     "The dotted quarter and eighth sound \"long-short\".",
     "At the end the thumb moves down from D to C."
    ],
-   "file": "24-london-bridge.musicxml"
+   "file": "26-london-bridge.musicxml"
   },
   {
    "id": "jingle-bells",
@@ -478,7 +508,22 @@
     "Keep finger 3 on E for the opening \"jingle bells\".",
     "The left hand changes to F in bar 5 and G in bars 7–8."
    ],
-   "file": "25-jingle-bells.musicxml"
+   "file": "27-jingle-bells.musicxml"
+  },
+  {
+   "id": "frere-jacques",
+   "level": 1,
+   "kind": "piece",
+   "title": "Frère Jacques",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "The famous round, with the left hand holding a drone (C and G together) underneath: your first steady accompaniment.",
+   "tips": [
+    "The left hand just holds; let the right hand lead.",
+    "In bars 7–8 the right hand dips down to the G below middle C."
+   ],
+   "file": "28-frere-jacques.musicxml"
   },
   {
    "id": "ear-b",
@@ -588,7 +633,7 @@
     "All scales are legato.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "26-scales-1-major.musicxml"
+   "file": "29-scales-1-major.musicxml"
   },
   {
    "id": "scales-1-minor",
@@ -604,7 +649,7 @@
     "Listen for the raised 7th: it pulls strongly back to the tonic.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "27-scales-1-minor.musicxml"
+   "file": "30-scales-1-minor.musicxml"
   },
   {
    "id": "contrary-1",
@@ -619,7 +664,7 @@
     "Both thumbs pass under at the same moment.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "28-contrary-1.musicxml"
+   "file": "31-contrary-1.musicxml"
   },
   {
    "id": "chromatic-1",
@@ -634,7 +679,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "Keep the hand close to the black keys; the thumb and finger 3 do most of the work."
    ],
-   "file": "29-chromatic-1.musicxml"
+   "file": "32-chromatic-1.musicxml"
   },
   {
    "id": "tonic-triads-1",
@@ -649,7 +694,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "Keep the wrist level as the hand moves to each inversion."
    ],
-   "file": "30-tonic-triads-1.musicxml"
+   "file": "33-tonic-triads-1.musicxml"
   },
   {
    "id": "tonic-triads-1m",
@@ -664,7 +709,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "The minor triad has a minor third (3 half steps) at the bottom."
    ],
-   "file": "31-tonic-triads-1m.musicxml"
+   "file": "34-tonic-triads-1m.musicxml"
   },
   {
    "id": "solid-triads-1",
@@ -679,7 +724,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "Press the three notes exactly together and release them together on the rest."
    ],
-   "file": "32-solid-triads-1.musicxml"
+   "file": "35-solid-triads-1.musicxml"
   },
   {
    "id": "three-chords",
@@ -695,7 +740,7 @@
     "Move as few fingers as possible between chords.",
     "The left hand plays the chord name: C, F or G."
    ],
-   "file": "33-three-chords.musicxml"
+   "file": "36-three-chords.musicxml"
   },
   {
    "id": "broken-chords",
@@ -710,7 +755,7 @@
     "Learn the left-hand pattern alone first: 5 1 3 1.",
     "Keep the left hand quieter than the melody."
    ],
-   "file": "34-broken-chords.musicxml"
+   "file": "37-broken-chords.musicxml"
   },
   {
    "id": "happy-birthday",
@@ -725,7 +770,7 @@
     "Count \"3 | 1 2 3\": the two short opening notes come on beat 3.",
     "In bar 5 the hand leaps up to the high C with finger 5."
    ],
-   "file": "35-happy-birthday.musicxml"
+   "file": "38-happy-birthday.musicxml"
   },
   {
    "id": "silent-night",
@@ -740,7 +785,7 @@
     "Play smoothly, joining the notes (legato).",
     "The left hand plays just C, F and G."
    ],
-   "file": "36-silent-night.musicxml"
+   "file": "39-silent-night.musicxml"
   },
   {
    "id": "greensleeves",
@@ -755,7 +800,43 @@
     "The rhythm \"long-short-long\" (dotted quarter, eighth, quarter) repeats through the song.",
     "Finger 3 crosses over the thumb in bar 8."
    ],
-   "file": "37-greensleeves.musicxml"
+   "file": "40-greensleeves.musicxml"
+  },
+  {
+   "id": "anh113",
+   "level": 2,
+   "kind": "piece",
+   "title": "Minuet in F (BWV Anh. 113)",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "A short Baroque minuet from the notebook J. S. Bach kept for his wife, Anna Magdalena. Two independent lines: the left hand is a real bass melody, not just accompaniment.",
+   "tips": [
+    "Learn each hand alone first: both are melodies.",
+    "Feel the minuet in one gentle beat per bar."
+   ],
+   "file": "41-anh113.musicxml",
+   "composer": "Notebook for Anna Magdalena Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=74"
+  },
+  {
+   "id": "anh120",
+   "level": 2,
+   "kind": "piece",
+   "title": "Minuet in A minor (BWV Anh. 120)",
+   "hands": "both",
+   "bpm": 90,
+   "wait": 55,
+   "learn": "A minor-key minuet from the Anna Magdalena notebook. It begins with a pickup on beat 3.",
+   "tips": [
+    "Count \"3 | 1 2 3\" to start.",
+    "Keep the eighth notes even and light."
+   ],
+   "file": "42-anh120.musicxml",
+   "composer": "Notebook for Anna Magdalena Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1612"
   },
   {
    "id": "ear-1",
@@ -876,7 +957,7 @@
     "B♭ major, right hand: 4 1 2 3 1 2 3 4; left hand: 3 2 1 4 3 2 1 3.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "38-scales-2-major.musicxml"
+   "file": "43-scales-2-major.musicxml"
   },
   {
    "id": "scales-2-harmonic",
@@ -891,7 +972,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "39-scales-2-harmonic.musicxml"
+   "file": "44-scales-2-harmonic.musicxml"
   },
   {
    "id": "scales-2-melodic",
@@ -907,7 +988,7 @@
     "Going up it sounds almost like major; coming down it is minor again.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "40-scales-2-melodic.musicxml"
+   "file": "45-scales-2-melodic.musicxml"
   },
   {
    "id": "chromatic-2",
@@ -921,7 +1002,7 @@
    "tips": [
     "Hands separately: the right hand plays first, then the left hand."
    ],
-   "file": "41-chromatic-2.musicxml"
+   "file": "46-chromatic-2.musicxml"
   },
   {
    "id": "tonic-triads-2",
@@ -935,7 +1016,7 @@
    "tips": [
     "Hands separately: the right hand plays first, then the left hand."
    ],
-   "file": "42-tonic-triads-2.musicxml"
+   "file": "47-tonic-triads-2.musicxml"
   },
   {
    "id": "solid-triads-2",
@@ -949,7 +1030,7 @@
    "tips": [
     "Hands separately: the right hand plays first, then the left hand."
    ],
-   "file": "43-solid-triads-2.musicxml"
+   "file": "48-solid-triads-2.musicxml"
   },
   {
    "id": "progression",
@@ -964,7 +1045,7 @@
     "Each right-hand bar uses one chord shape: 1 2 3 5, back down.",
     "Say the chord names as you play: C, G, A minor, F."
    ],
-   "file": "44-progression.musicxml"
+   "file": "49-progression.musicxml"
   },
   {
    "id": "canon",
@@ -979,7 +1060,7 @@
     "Going down, finger 3 crosses over the thumb.",
     "Let each half note ring for its full two beats."
    ],
-   "file": "45-canon.musicxml"
+   "file": "50-canon.musicxml"
   },
   {
    "id": "nachtmusik",
@@ -994,7 +1075,7 @@
     "Lift the hand during the eighth rests.",
     "Play the quarter notes short and bright."
    ],
-   "file": "46-nachtmusik.musicxml"
+   "file": "51-nachtmusik.musicxml"
   },
   {
    "id": "fur-elise",
@@ -1010,7 +1091,97 @@
     "Practise the hand changes slowly with Wait for me.",
     "Use the pedal later; first make the notes even."
    ],
-   "file": "47-fur-elise.musicxml"
+   "file": "52-fur-elise.musicxml"
+  },
+  {
+   "id": "anh114",
+   "level": 3,
+   "kind": "piece",
+   "title": "Minuet in G (BWV Anh. 114)",
+   "hands": "both",
+   "bpm": 110,
+   "wait": 60,
+   "learn": "The famous Minuet in G, complete with its original left hand. Long a favourite first \"real\" classical piece.",
+   "tips": [
+    "The left hand moves in long notes under the dancing right hand.",
+    "Shape each four-bar phrase like a sentence."
+   ],
+   "file": "53-anh114.musicxml",
+   "composer": "Christian Petzold (Notebook for Anna Magdalena Bach)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=75"
+  },
+  {
+   "id": "anh115",
+   "level": 3,
+   "kind": "piece",
+   "title": "Minuet in G minor (BWV Anh. 115)",
+   "hands": "both",
+   "bpm": 110,
+   "wait": 60,
+   "learn": "The companion piece to the Minuet in G: the same dance in a darker minor key.",
+   "tips": [
+    "Watch for F♯, the raised 7th of G minor.",
+    "Play the quarter notes slightly detached, the eighth notes smoothly."
+   ],
+   "file": "54-anh115.musicxml",
+   "composer": "Christian Petzold (Notebook for Anna Magdalena Bach)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=76"
+  },
+  {
+   "id": "aria-515",
+   "level": 3,
+   "kind": "piece",
+   "title": "Aria in D minor (BWV 515)",
+   "hands": "both",
+   "bpm": 90,
+   "wait": 55,
+   "learn": "A short, songlike aria from the Anna Magdalena notebook.",
+   "tips": [
+    "Sing the melody in your head as you play it.",
+    "Let the bass support without covering the tune."
+   ],
+   "file": "55-aria-515.musicxml",
+   "composer": "Notebook for Anna Magdalena Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=78"
+  },
+  {
+   "id": "melody-68-1",
+   "level": 3,
+   "kind": "piece",
+   "title": "Melody, Op. 68 No. 1",
+   "hands": "both",
+   "bpm": 70,
+   "wait": 45,
+   "learn": "The first piece of Schumann's Album for the Young: a singing melody over a flowing left hand.",
+   "tips": [
+    "Bring out the top line; keep the accompaniment soft.",
+    "Join the melody notes smoothly (legato)."
+   ],
+   "file": "56-melody-68-1.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=647"
+  },
+  {
+   "id": "march-68-2",
+   "level": 3,
+   "kind": "piece",
+   "title": "Soldier's March, Op. 68 No. 2",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "A crisp little march with chords in both hands. A steady beat is everything here.",
+   "tips": [
+    "Play the chords short and bright, exactly together.",
+    "March: never rush."
+   ],
+   "file": "57-march-68-2.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=650"
   },
   {
    "id": "ear-2",
@@ -1137,7 +1308,7 @@
     "Watch where each thumb goes: in D major the right thumb plays D and G, the left thumb A and D.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "48-scales-3-major.musicxml"
+   "file": "58-scales-3-major.musicxml"
   },
   {
    "id": "scales-3-harmonic",
@@ -1152,7 +1323,7 @@
     "Left hand in B minor: 4 3 2 1, 4 3 2 1.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "49-scales-3-harmonic.musicxml"
+   "file": "59-scales-3-harmonic.musicxml"
   },
   {
    "id": "scales-3-melodic",
@@ -1166,7 +1337,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "50-scales-3-melodic.musicxml"
+   "file": "60-scales-3-melodic.musicxml"
   },
   {
    "id": "formula-3",
@@ -1181,7 +1352,7 @@
     "Check the exact shape with your syllabus book (Technical Requirements for Piano): this is one common form of the pattern.",
     "Keep the hands exactly together where they change direction."
    ],
-   "file": "51-formula-3.musicxml"
+   "file": "61-formula-3.musicxml"
   },
   {
    "id": "chromatic-3",
@@ -1196,7 +1367,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "Black keys 3, white keys 1, and 1–2 where two white keys meet."
    ],
-   "file": "52-chromatic-3.musicxml"
+   "file": "62-chromatic-3.musicxml"
   },
   {
    "id": "tonic-triads-3",
@@ -1211,7 +1382,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "Keep the same fingering pattern in the second octave."
    ],
-   "file": "53-tonic-triads-3.musicxml"
+   "file": "63-tonic-triads-3.musicxml"
   },
   {
    "id": "tonic-triads-3m",
@@ -1225,7 +1396,7 @@
    "tips": [
     "Hands separately: the right hand plays first, then the left hand."
    ],
-   "file": "54-tonic-triads-3m.musicxml"
+   "file": "64-tonic-triads-3m.musicxml"
   },
   {
    "id": "solid-triads-3",
@@ -1240,22 +1411,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "Move to each new position during the rest."
    ],
-   "file": "55-solid-triads-3.musicxml"
-  },
-  {
-   "id": "minuet-g",
-   "level": 4,
-   "kind": "piece",
-   "title": "Minuet in G",
-   "hands": "both",
-   "bpm": 100,
-   "wait": 60,
-   "learn": "One of the most famous Baroque minuets (from the Notebook for Anna Magdalena Bach). The melody is as written; the left hand is simplified to one long note per bar.",
-   "tips": [
-    "A minuet is a dance in 3: feel a gentle stress on beat 1.",
-    "Play the eighth notes evenly and lightly, slightly detached in Baroque style."
-   ],
-   "file": "56-minuet-g.musicxml"
+   "file": "65-solid-triads-3.musicxml"
   },
   {
    "id": "sonatina-c",
@@ -1270,7 +1426,148 @@
     "Keep the Alberti bass soft and even; the melody sings above it.",
     "Left hand pattern: 5 1 3 1."
    ],
-   "file": "57-sonatina-c.musicxml"
+   "file": "66-sonatina-c.musicxml"
+  },
+  {
+   "id": "anh116",
+   "level": 4,
+   "kind": "piece",
+   "title": "Minuet in G (BWV Anh. 116)",
+   "hands": "both",
+   "bpm": 110,
+   "wait": 60,
+   "learn": "Another minuet from the Anna Magdalena notebook, longer and more varied.",
+   "tips": [
+    "Practise the left hand alone until it is secure.",
+    "A few ornaments are left out; you can add them later."
+   ],
+   "file": "67-anh116.musicxml",
+   "composer": "Notebook for Anna Magdalena Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=77"
+  },
+  {
+   "id": "anh118",
+   "level": 4,
+   "kind": "piece",
+   "title": "Minuet in B♭ (BWV Anh. 118)",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "A minuet in B♭ major (two flats).",
+   "tips": [
+    "B♭ and E♭ throughout.",
+    "Keep both hands equally clear."
+   ],
+   "file": "68-anh118.musicxml",
+   "composer": "Notebook for Anna Magdalena Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1014"
+  },
+  {
+   "id": "anh121",
+   "level": 4,
+   "kind": "piece",
+   "title": "Minuet in C minor (BWV Anh. 121)",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "A serious, expressive minuet in C minor (three flats).",
+   "tips": [
+    "Watch for B♮, the raised 7th.",
+    "Let the bass line lead the harmony."
+   ],
+   "file": "69-anh121.musicxml",
+   "composer": "Notebook for Anna Magdalena Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1613"
+  },
+  {
+   "id": "polonaise-117a",
+   "level": 4,
+   "kind": "piece",
+   "title": "Polonaise in F (BWV Anh. 117a)",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "A stately Polish dance in 3/4. Short ornaments are left out.",
+   "tips": [
+    "A polonaise is proud and steady, not fast."
+   ],
+   "file": "70-polonaise-117a.musicxml",
+   "composer": "Notebook for Anna Magdalena Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1013"
+  },
+  {
+   "id": "humming-68-3",
+   "level": 4,
+   "kind": "piece",
+   "title": "Humming Song, Op. 68 No. 3",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "A gentle song in which the melody passes between the hands.",
+   "tips": [
+    "Follow the tune as it moves from hand to hand."
+   ],
+   "file": "71-humming-68-3.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 3.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=651"
+  },
+  {
+   "id": "chorale-68-4",
+   "level": 4,
+   "kind": "piece",
+   "title": "Chorale, Op. 68 No. 4",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "A hymn in four parts: practise playing full chords smoothly and evenly.",
+   "tips": [
+    "Listen for the top voice in every chord.",
+    "Connect the chords without blurring them."
+   ],
+   "file": "72-chorale-68-4.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=782"
+  },
+  {
+   "id": "little-piece-68-5",
+   "level": 4,
+   "kind": "piece",
+   "title": "Little Piece, Op. 68 No. 5",
+   "hands": "both",
+   "bpm": 68,
+   "wait": 45,
+   "learn": "A short, flowing piece with a melody over steady accompaniment.",
+   "tips": [
+    "It starts with a long pickup: count it carefully."
+   ],
+   "file": "73-little-piece-68-5.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=653"
+  },
+  {
+   "id": "morning-prayer",
+   "level": 4,
+   "kind": "piece",
+   "title": "Morning Prayer, Op. 39 No. 1",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "The opening piece of Tchaikovsky's Album for the Young: a quiet chorale in G major.",
+   "tips": [
+    "Play softly and very legato.",
+    "Hold every note its full length."
+   ],
+   "file": "74-morning-prayer.musicxml",
+   "composer": "Pyotr Ilyich Tchaikovsky (Album for the Young)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2032"
   },
   {
    "id": "ear-3",
@@ -1406,7 +1703,7 @@
     "E♭ major, right hand: 3 1 2 3 4 1 2 3; left hand: 3 2 1 4 3 2 1 3.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "58-scales-4-major.musicxml"
+   "file": "75-scales-4-major.musicxml"
   },
   {
    "id": "scales-4-harmonic",
@@ -1420,7 +1717,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "59-scales-4-harmonic.musicxml"
+   "file": "76-scales-4-harmonic.musicxml"
   },
   {
    "id": "scales-4-melodic",
@@ -1434,7 +1731,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "60-scales-4-melodic.musicxml"
+   "file": "77-scales-4-melodic.musicxml"
   },
   {
    "id": "formula-4",
@@ -1449,7 +1746,7 @@
     "Check the exact shape with your syllabus book: this is one common form of the pattern.",
     "Listen for the raised 7th (B♮) in both hands."
    ],
-   "file": "61-formula-4.musicxml"
+   "file": "78-formula-4.musicxml"
   },
   {
    "id": "chromatic-4",
@@ -1464,7 +1761,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "Keep the thumb light so the scale stays even."
    ],
-   "file": "62-chromatic-4.musicxml"
+   "file": "79-chromatic-4.musicxml"
   },
   {
    "id": "tonic-triads-4",
@@ -1478,7 +1775,7 @@
    "tips": [
     "Practise hands separately first; then together slowly."
    ],
-   "file": "63-tonic-triads-4.musicxml"
+   "file": "80-tonic-triads-4.musicxml"
   },
   {
    "id": "tonic-triads-4m",
@@ -1490,7 +1787,7 @@
    "wait": 40,
    "learn": "Minor tonic triads, broken, two octaves, hands together.",
    "tips": [],
-   "file": "64-tonic-triads-4m.musicxml"
+   "file": "81-tonic-triads-4m.musicxml"
   },
   {
    "id": "solid-triads-4",
@@ -1504,7 +1801,7 @@
    "tips": [
     "Both hands press and release together."
    ],
-   "file": "65-solid-triads-4.musicxml"
+   "file": "82-solid-triads-4.musicxml"
   },
   {
    "id": "arpeggios-4",
@@ -1520,7 +1817,7 @@
     "Let the wrist move sideways smoothly as the thumb passes under.",
     "In B♭ and E♭ the right hand starts with finger 2 so the thumb lands on a white key."
    ],
-   "file": "66-arpeggios-4.musicxml"
+   "file": "83-arpeggios-4.musicxml"
   },
   {
    "id": "arpeggios-4m",
@@ -1535,7 +1832,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "Fingering shown is one standard choice; your teacher may prefer another."
    ],
-   "file": "67-arpeggios-4m.musicxml"
+   "file": "84-arpeggios-4m.musicxml"
   },
   {
    "id": "prelude-c",
@@ -1550,7 +1847,7 @@
     "The left hand plays the two low notes; the right hand the three upper notes, twice.",
     "Play very evenly and let the harmony change be the expression."
    ],
-   "file": "68-prelude-c.musicxml"
+   "file": "85-prelude-c.musicxml"
   },
   {
    "id": "waltz-am",
@@ -1565,7 +1862,200 @@
     "Make beat 1 of the left hand a little deeper; keep the chords on 2 and 3 light.",
     "Shape the melody: grow toward bar 6 and relax at the end."
    ],
-   "file": "69-waltz-am.musicxml"
+   "file": "86-waltz-am.musicxml"
+  },
+  {
+   "id": "orphan-68-6",
+   "level": 5,
+   "kind": "piece",
+   "title": "Poor Orphan Child, Op. 68 No. 6",
+   "hands": "both",
+   "bpm": 50,
+   "wait": 35,
+   "learn": "A sad little melody in A minor over chords.",
+   "tips": [
+    "Make the melody sing above the chords."
+   ],
+   "file": "87-orphan-68-6.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=687"
+  },
+  {
+   "id": "horseman-68-8",
+   "level": 5,
+   "kind": "piece",
+   "title": "The Wild Horseman, Op. 68 No. 8",
+   "hands": "both",
+   "bpm": 130,
+   "wait": 70,
+   "learn": "A galloping piece in 6/8 where the melody jumps from the right hand to the left.",
+   "tips": [
+    "Keep the gallop steady: \"long-short\".",
+    "Play the accompanying chords lightly."
+   ],
+   "file": "88-horseman-68-8.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=655"
+  },
+  {
+   "id": "farmer-68-10",
+   "level": 5,
+   "kind": "piece",
+   "title": "The Happy Farmer, Op. 68 No. 10",
+   "hands": "both",
+   "bpm": 90,
+   "wait": 55,
+   "learn": "The melody is in the left hand while the right hand plays chords: a classic for training the left hand to sing.",
+   "tips": [
+    "Bring out the left-hand tune.",
+    "Keep the right-hand chords short and soft."
+   ],
+   "file": "89-farmer-68-10.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=659"
+  },
+  {
+   "id": "old-french-song",
+   "level": 5,
+   "kind": "piece",
+   "title": "Old French Song, Op. 39 No. 16",
+   "hands": "both",
+   "bpm": 70,
+   "wait": 45,
+   "learn": "A wistful melody in G minor over a smooth accompaniment.",
+   "tips": [
+    "Shape the long phrases.",
+    "Use the tied notes to let the melody breathe."
+   ],
+   "file": "90-old-french-song.musicxml",
+   "composer": "Pyotr Ilyich Tchaikovsky (Album for the Young)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2080"
+  },
+  {
+   "id": "handel-sonatina",
+   "level": 5,
+   "kind": "piece",
+   "title": "Sonatina in B♭ (HWV 585)",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "A lively Baroque sonatina with busy lines in both hands.",
+   "tips": [
+    "Practise slowly and hands separately first.",
+    "Aim for crisp, even sixteenths."
+   ],
+   "file": "91-handel-sonatina.musicxml",
+   "composer": "George Frideric Handel",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=98"
+  },
+  {
+   "id": "candeur",
+   "level": 5,
+   "kind": "piece",
+   "title": "Candour (La Candeur), Op. 100 No. 1",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "The first of Burgmüller's 25 Easy Studies: a smooth melody over gentle broken chords.",
+   "tips": [
+    "Keep the melody legato and singing."
+   ],
+   "file": "92-candeur.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=202"
+  },
+  {
+   "id": "arabesque",
+   "level": 5,
+   "kind": "piece",
+   "title": "Arabesque, Op. 100 No. 2",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "A favourite study with quick five-note runs in A minor.",
+   "tips": [
+    "Practise the runs slowly; keep the fingers close to the keys."
+   ],
+   "file": "93-arabesque.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=203"
+  },
+  {
+   "id": "pastorale",
+   "level": 5,
+   "kind": "piece",
+   "title": "Pastorale, Op. 100 No. 3",
+   "hands": "both",
+   "bpm": 90,
+   "wait": 55,
+   "learn": "A peaceful country scene in 6/8. Short ornaments are left out.",
+   "tips": [
+    "Rock gently in two beats per bar."
+   ],
+   "file": "94-pastorale.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=218"
+  },
+  {
+   "id": "clementi-36-1-i",
+   "level": 5,
+   "kind": "piece",
+   "title": "Sonatina in C, Op. 36 No. 1: I. Spiritoso",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "The first movement of perhaps the most famous sonatina of all: scales, broken chords and a bright, clear style.",
+   "tips": [
+    "Play the scales evenly and crisply.",
+    "Feel the music in two big beats per bar."
+   ],
+   "file": "95-clementi-36-1-i.musicxml",
+   "composer": "Muzio Clementi",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=804"
+  },
+  {
+   "id": "clementi-36-1-ii",
+   "level": 5,
+   "kind": "piece",
+   "title": "Sonatina in C, Op. 36 No. 1: II. Andante",
+   "hands": "both",
+   "bpm": 70,
+   "wait": 45,
+   "learn": "The slow middle movement, in F major: a gentle, singing melody. Short ornaments are left out.",
+   "tips": [
+    "Make the melody sing; keep the left hand quiet."
+   ],
+   "file": "96-clementi-36-1-ii.musicxml",
+   "composer": "Muzio Clementi",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=804"
+  },
+  {
+   "id": "clementi-36-1-iii",
+   "level": 5,
+   "kind": "piece",
+   "title": "Sonatina in C, Op. 36 No. 1: III. Vivace",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "The lively finale in 3/8.",
+   "tips": [
+    "Feel one beat per bar once it is secure.",
+    "Keep the repeated notes light."
+   ],
+   "file": "97-clementi-36-1-iii.musicxml",
+   "composer": "Muzio Clementi",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=804"
   },
   {
    "id": "ear-4",
