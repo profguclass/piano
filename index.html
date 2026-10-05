@@ -171,7 +171,7 @@ body.hide #score svg{opacity:.06}
 <footer><div id="status">Loading…</div><div id="kb"></div></footer>
 <div id="card" hidden role="status"></div>
 <div id="lessons" hidden role="dialog" aria-modal="true" aria-label="Lessons"><div class="sheet">
-  <div class="top"><h2>Lessons</h2><button id="lclose">Close</button></div>
+  <div class="top"><h2>Lessons</h2><span class="muted" id="lversion" style="font-size:13px"></span><button id="lclose">Close</button></div>
   <p class="muted">The levels and their parts (technique, pieces, ear tests and sight reading) follow the <a href="https://www.rcmusic.com/syllabi" target="_blank" rel="noopener">RCM Piano Syllabus</a> (2022 edition), from Preparatory A to Level 6. Technique and pieces have three steps: <b>listen</b>, <b>Wait for me</b>, then <b>Play along</b> at the target tempo. Finger numbers: 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger.</p>
   <div id="llist"></div>
 </div></div>
@@ -901,7 +901,10 @@ function lessonResult(s) {               // what this finished run means for the
 }
 async function openLessons() {
   const c = await getCourse(), done = lessonsDone(), list = $('llist');
-  const next = c.lessons.find(l => !isDone(l, done[l.id] || {}));
+  // the lesson to go on with: the one you are working on, or the first unfinished one after it
+  const curIdx = Math.max(0, c.lessons.findIndex(l => l.id === store.get('score', null)?.lesson));
+  const next = c.lessons.slice(curIdx).find(l => !isDone(l, done[l.id] || {})) || c.lessons.find(l => !isDone(l, done[l.id] || {}));
+  const cont = next && next === c.lessons[curIdx] && store.get('score', null)?.lesson === next.id;
   list.innerHTML = '';
   c.levels.forEach((lv, li) => {
     const mine = c.lessons.filter(L => L.level === li);
@@ -925,13 +928,15 @@ async function openLessons() {
       }
       row.innerHTML = `<span class="n">${i + 1}</span><span class="t"><b></b><small>${sub}</small></span>${status}`;
       row.querySelector('.t b').textContent = L.title;
-      const b = document.createElement('button'); b.textContent = L === next ? 'Start ▶' : isDone(L, d) ? 'Again' : 'Start';
+      const b = document.createElement('button'); b.textContent = L === next ? (cont ? 'Continue ▶' : 'Start ▶') : isDone(L, d) ? 'Again' : 'Start';
       if (L === next) b.className = 'primary';
       b.onclick = () => startLesson(L.id).catch(() => { $('status').textContent = 'Could not open this lesson. Check the internet connection.'; });
       row.append(b); list.append(row);
     }
   });
   $('card').hidden = true; $('prog').hidden = true; $('lessons').hidden = false;
+  $('lversion').textContent = `${c.lessons.length} lessons · ${$('version').textContent}`;
+  list.querySelector('.row.next')?.scrollIntoView({block: 'center'});   // show where you are
 }
 
 /* ---------- music helpers for generated exercises ---------- */
