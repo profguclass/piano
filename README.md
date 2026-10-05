@@ -15,6 +15,23 @@ Plug the piano's **USB to Host** port into the tablet (USB-B → USB-C cable, or
 After that the app reconnects by itself.
 The notes the app plays (the other hand, Listen mode) then sound **on the piano itself**. To use the tablet speaker instead: ⋯ → *Sound from: Tablet*.
 
+## Lessons
+Tap **Lessons** for a 17-lesson course from the first notes to chords and scales:
+
+1. **First steps** — middle C, five-finger position, *Mary Had a Little Lamb*
+2. **Left hand and rhythm** — left-hand position, *Hot Cross Buns* (eighth notes), *Au clair de la lune*
+3. **Hands together** — *Ode to Joy*, *Twinkle Twinkle Little Star*, *When the Saints Go Marching In*
+4. **Scales and the thumb** — C major (each hand), G major, hands together
+5. **Chords and accompaniment** — C/F/G chords, broken-chord bass, contrary motion, I–V–vi–IV arpeggio study
+
+Each lesson has three steps — **Listen**, **Wait for me**, **Play along** at the target tempo (90% correct, 70% on time) — and the app ticks them off as you go.
+Lesson scores are in [`lessons/`](lessons/) and are built by [`tools/make_lessons.py`](tools/make_lessons.py) (`python tools/make_lessons.py`).
+
+## Finger numbers
+1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger. The finger for the current note is shown above (right hand) and
+below (left hand) the cursor and on the on-screen keys. Fingering written in a MusicXML file is used; for scores without it the app
+suggests one (dashed circles). Turn them off in ⋯ → *Finger numbers*.
+
 ## Practise
 - **Listen** — the app plays both hands.
 - **Play along** — you play your hand at the set tempo; the app plays the other hand.

@@ -87,6 +87,42 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
 .w{flex:1;border:1px solid #9aa3b2;border-top:0;border-radius:0 0 5px 5px;background:#fff;margin-right:-1px}
 .b{position:absolute;top:0;height:62%;background:#1d2330;border-radius:0 0 4px 4px;z-index:1}
 .w.need,.b.need{background:var(--hint)}
+.w[data-f]::after,.b[data-f]::after{content:attr(data-f);position:absolute;bottom:6px;left:0;right:0;text-align:center;font:700 15px/1 system-ui,sans-serif;color:var(--ink)}
+.b[data-f]::after{color:#fff;bottom:4px;font-size:13px}
+.w{position:relative}
+#fing{position:absolute;inset:0;pointer-events:none}
+.fb{position:absolute;transform:translateX(-50%);display:flex;gap:3px;align-items:center;font:700 14px/1 system-ui,sans-serif;white-space:nowrap}
+.fb span{font-size:11px;color:var(--muted);margin-right:2px}
+.fb i{font-style:normal;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff}
+.fb.auto i{background:#fff;color:var(--ink);border:2px dashed var(--ink)}
+.fb.other{opacity:.4}
+#lesson{max-width:1600px;margin:4px auto 6px;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;user-select:text;-webkit-user-select:text}
+#lesson[hidden]{display:none}
+#lesson .lt{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#lesson h2{margin:0;font:600 19px/1.25 Georgia,"Times New Roman",serif}
+#lesson .lv{font-size:13px;color:var(--muted)}
+#lesson p{margin:8px 0}
+#lesson ul{margin:4px 0 8px;padding-left:20px;color:var(--muted);font-size:15px}
+#lesson .steps{display:flex;flex-wrap:wrap;gap:8px}
+#lesson .steps button{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;line-height:1.25;padding:6px 14px}
+#lesson .steps button small{color:var(--muted);font-size:13px}
+#lesson .steps button.primary small{color:#fff}
+#lesson .steps button.done{border-color:var(--accent);background:#eef6f3}
+#lesson .steps button.done b::before{content:"✓ ";color:var(--accent)}
+#lesson.min .body{display:none}
+#lessons{position:fixed;inset:0;z-index:6;background:#1d233066;display:flex;justify-content:center;align-items:flex-start;padding:24px 16px;overflow:auto}
+#lessons[hidden]{display:none}
+#lessons .sheet{width:100%;max-width:760px;background:#fff;border-radius:18px;padding:18px 20px 22px}
+#lessons .top{display:flex;align-items:center;gap:12px}
+#lessons h2{flex:1;margin:0;font:600 22px/1.2 Georgia,"Times New Roman",serif}
+#lessons h3{margin:20px 0 6px;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+#lessons .row{display:flex;align-items:center;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+#lessons .row .n{width:28px;color:var(--muted);font-variant-numeric:tabular-nums}
+#lessons .row .t{flex:1}
+#lessons .row .t small{display:block;color:var(--muted);font-size:13px}
+#lessons .row.next{background:#f4f1ea;border-radius:10px;padding-left:8px;padding-right:8px}
+.stars{font-size:15px;letter-spacing:2px;color:#9aa3b2;white-space:nowrap}
+.stars b{color:var(--accent);font-weight:400}
 .w.on,.b.on{background:var(--accent)}
 .w.bad,.b.bad{background:var(--bad)}
 @media (max-width:760px){button.primary{min-width:96px}.seg button{min-width:52px;padding:0 10px}.tempo small{display:none}}
@@ -103,6 +139,7 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
     <button data-v="left">Left</button><button data-v="both">Both</button><button data-v="right">Right</button></div>
   <div class="tempo"><button id="slower" aria-label="Slower">−</button><b id="bpmv">100</b><small>bpm</small><button id="faster" aria-label="Faster">+</button></div>
   <span class="grow"></span>
+  <button id="lessonsbtn">Lessons</button>
   <button id="progress">Progress</button>
   <button id="midi"><i></i><span>Connect piano</span></button>
   <button id="more" aria-label="More settings" aria-expanded="false">⋯</button>
@@ -116,12 +153,18 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
   <div class="grp"><span>Sound from</span><div class="seg" id="sound" role="group" aria-label="Sound from">
     <button data-v="piano">Piano</button><button data-v="tablet">Tablet</button></div></div>
   <div class="grp"><input id="showkb" type="checkbox" aria-label="Show keyboard"><span>Keyboard</span></div>
+  <div class="grp"><input id="showfing" type="checkbox" aria-label="Show finger numbers"><span>Finger numbers</span></div>
   <button id="full">Full screen</button>
   <button id="install" hidden>Install app</button>
 </div>
-<main id="scroll"><div id="wrap"><div id="score"></div><div id="heat"></div><div id="marks"></div></div></main>
+<main id="scroll"><div id="lesson" hidden></div><div id="wrap"><div id="score"></div><div id="heat"></div><div id="fing"></div><div id="marks"></div></div></main>
 <footer><div id="status">Loading…</div><div id="kb"></div></footer>
 <div id="card" hidden role="status"></div>
+<div id="lessons" hidden role="dialog" aria-modal="true" aria-label="Lessons"><div class="sheet">
+  <div class="top"><h2>Lessons</h2><button id="lclose">Close</button></div>
+  <p class="muted">Work through the lessons in order. Each one has three steps: <b>listen</b>, play it with <b>Wait for me</b>, then <b>Play along</b> at the target tempo. Finger numbers show which finger plays each note: 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger.</p>
+  <div id="llist"></div>
+</div></div>
 <div id="prog" hidden role="dialog" aria-modal="true" aria-labelledby="ptitle"><div class="sheet">
   <div class="top"><h2 id="ptitle">Progress</h2><button id="pclose">Close</button></div>
   <div class="tiles" id="ptiles"></div>
@@ -140,7 +183,7 @@ const store = {
   get(k, d) { try { const v = localStorage.getItem('pr.' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v) { try { localStorage.setItem('pr.' + k, JSON.stringify(v)); } catch {} },
 };
-const S = Object.assign({bpm: 100, hands: 'both', mode: 'listen', zoom: 1, loop: false, kb: true, sound: 'piano', heat: true}, store.get('settings', {}));
+const S = Object.assign({bpm: 100, hands: 'both', mode: 'listen', zoom: 1, loop: false, kb: true, sound: 'piano', heat: true, fingers: true}, store.get('settings', {}));
 const save = () => store.set('settings', S);
 let osmd, steps = [], pos = 0, bars = 1, playing = false, timer = null, target = 0;
 let actx = null, master = null, need = new Set(), lock = null, title = '';
@@ -214,13 +257,65 @@ function buildSteps() {
         const len = n.NoteTie ? n.NoteTie.Duration.RealValue : n.Length.RealValue;
         const midi = n.halfTone + 12, p = n.Pitch;
         const dia = p && FUND[p.FundamentalNote] !== undefined ? (p.Octave + 3) * 7 + FUND[p.FundamentalNote] : diatonic(midi);
-        notes.push({midi, len, staff, dia});
+        const fv = parseInt(n.Fingering?.value, 10);
+        notes.push({midi, len, staff, dia, finger: fv >= 1 && fv <= 5 ? fv : null});
       }
     }
     steps.push({ts: it.CurrentEnrolledTimestamp.RealValue, abs: it.CurrentSourceTimestamp.RealValue, bar: it.CurrentMeasureIndex, notes});
     c.next();
   }
   c.reset();
+  for (const left of [false, true]) {    // a hand with no written fingering gets a suggested one
+    const ns = steps.flatMap(st => st.notes.filter(n => (n.staff >= 1) === left));
+    if (ns.length && !ns.some(n => n.finger)) autoFinger(left);
+  }
+}
+
+/* ---------- suggested fingering (for scores without finger numbers) ---------- */
+// Dynamic programming over the notes of one hand: each choice of fingers is scored by how
+// comfortable the move from the previous notes is (stretch, crossings, thumb on black keys).
+function moveCost(p1, f1, p2, f2) {      // pitches mirrored for the left hand, so "up" always means towards finger 5
+  const d = p2 - p1, df = f2 - f1, ad = Math.abs(d);
+  if (d === 0) return f1 === f2 ? 0 : 1;
+  if (f1 === f2) return 6 + ad * 0.2;                        // same finger on a new key
+  if ((d > 0) === (df > 0)) {                                // natural direction
+    // about one key per finger keeps the hand in a steady position; beyond maxS it is a stretch
+    const thumb = f1 === 1 || f2 === 1, maxS = Math.abs(df) * 2 + (thumb ? 3 : 1), ideal = Math.abs(df) * 1.75 + (thumb ? 0.5 : 0);
+    return Math.max(0, ad - maxS) + Math.abs(ad - ideal) * 0.25;
+  }
+  if ((d > 0 && f2 === 1 && f1 <= 4) || (d < 0 && f1 === 1 && f2 <= 4)) return 1.5 + Math.max(0, ad - 5);   // thumb under / finger over
+  return 10;
+}
+function combos(k) { const out = []; const go = (st, a) => { if (a.length === k) return out.push(a); for (let f = st; f <= 5; f++) go(f + 1, [...a, f]); }; go(1, []); return out; }
+function autoFinger(left) {
+  const ev = [], P = n => left ? -n.midi : n.midi;
+  steps.forEach(st => {
+    const ns = st.notes.filter(n => (n.staff >= 1) === left);
+    if (ns.length && ns.length <= 5) ev.push({ts: st.ts, ns: ns.sort((a, b) => P(a) - P(b))});
+  });
+  if (!ev.length) return;
+  const inner = (e, fs) => {                                 // stretch inside a chord, thumb or 5th finger on black keys
+    let c = 0;
+    e.ns.forEach((n, j) => { if (isBlack(n.midi)) c += fs[j] === 1 ? 2 : fs[j] === 5 ? 0.5 : 0; });
+    for (let j = 1; j < fs.length; j++) c += Math.max(0, (P(e.ns[j]) - P(e.ns[j - 1])) - ((fs[j] - fs[j - 1]) * 2 + (fs[j - 1] === 1 ? 4 : 1)));
+    return c;
+  };
+  const between = (a, fa, b, fb, gap) => {
+    const k = gap > 0.5 ? 0.4 : 1;                           // a long note or rest gives time to move the hand
+    const lo = moveCost(P(a.ns[0]), fa[0], P(b.ns[0]), fb[0]);
+    const hi = moveCost(P(a.ns[a.ns.length - 1]), fa[fa.length - 1], P(b.ns[b.ns.length - 1]), fb[fb.length - 1]);
+    return k * (lo + hi) / 2;
+  };
+  let prev = combos(ev[0].ns.length).map(fs => ({fs, cost: inner(ev[0], fs), back: null}));
+  for (let i = 1; i < ev.length; i++) {
+    prev = combos(ev[i].ns.length).map(fs => {
+      let best = null;
+      for (const q of prev) { const c = q.cost + between(ev[i - 1], q.fs, ev[i], fs, ev[i].ts - ev[i - 1].ts); if (!best || c < best.cost) best = {cost: c, back: q}; }
+      return {fs, cost: best.cost + inner(ev[i], fs), back: best.back};
+    });
+  }
+  let node = prev.reduce((a, b) => b.cost < a.cost ? b : a);
+  for (let i = ev.length - 1; i >= 0; i--, node = node.back) ev[i].ns.forEach((n, j) => { n.finger = node.fs[j]; n.auto = true; });
 }
 function stepDur(i) {
   if (i < steps.length - 1 && steps[i + 1].ts > steps[i].ts) return steps[i + 1].ts - steps[i].ts;
@@ -241,7 +336,7 @@ function range() {
 function gotoStep(i, stay) {
   const c = osmd.cursor; c.hide(); c.reset();
   for (let k = 0; k < i; k++) c.next();
-  c.show(); pos = i; if (!stay) follow(true); info();
+  c.show(); pos = i; if (!stay) follow(true); info(); drawFingers();
 }
 function jumpTo(i, stay) {               // move the cursor; keep playing if the music was playing
   const was = playing; pause(!was); clearMarks();
@@ -272,7 +367,28 @@ function stepAt(cx, cy) {                // the step under a tap on the score
   });
   return pick >= 0 ? pick : steps.findIndex(st => st.bar === hit.b);
 }
-function advance() { osmd.cursor.next(); pos++; follow(); info(); }
+function advance() { osmd.cursor.next(); pos++; follow(); info(); drawFingers(); }
+function drawFingers() {                 // finger badges above (right hand) and below (left hand) the cursor, and on the keys
+  const layer = $('fing'); layer.innerHTML = '';
+  $('kb').querySelectorAll('[data-f]').forEach(k => delete k.dataset.f);
+  const st = steps[pos], cur = osmd?.cursor?.cursorElement, svg = $('score').querySelector('svg');
+  if (!S.fingers || !st || !cur || !svg || cur.style.display === 'none') return;
+  const ms = osmd.GraphicSheet.MeasureList[st.bar]; if (!ms?.[0]) return;
+  const u = 10 * osmd.zoom, W = $('wrap').getBoundingClientRect(), G = svg.getBoundingClientRect(), C = cur.getBoundingClientRect();
+  for (const left of [false, true]) {
+    const ns = st.notes.filter(n => (n.staff >= 1) === left && n.finger).sort((a, b) => a.midi - b.midi);
+    if (!ns.length) continue;
+    ns.forEach(n => { const k = key(n.midi); if (k) k.dataset.f = n.finger; });
+    const gm = left ? ms[ms.length - 1] : ms[0], y0 = G.top - W.top + gm.PositionAndShape.AbsolutePosition.y * u;
+    const b = document.createElement('div');
+    b.className = 'fb' + (ns.some(n => n.auto) ? ' auto' : '') + (S.mode !== 'listen' && !ns.some(mine) ? ' other' : '');
+    b.title = ns.some(n => n.auto) ? 'Suggested fingering' : 'Fingering from the score';
+    b.innerHTML = `<span>${left ? 'LH' : 'RH'}</span>` + ns.map(n => `<i>${n.finger}</i>`).join('');
+    b.style.left = (C.left + C.right) / 2 - W.left + 'px';
+    b.style.top = (left ? y0 + 4 * u + u * 2.6 : y0 - u * 2.6 - 24) + 'px';
+    layer.append(b);
+  }
+}
 function follow(force) {
   const el = osmd.cursor.cursorElement, sc = $('scroll'); if (!el) return;
   const r = el.getBoundingClientRect(), v = sc.getBoundingClientRect();
@@ -328,7 +444,7 @@ function mark(m, verdict, ref) {
   const stack = [...$('marks').querySelectorAll('.nm:not(.fade)')].length;
   const nm = document.createElement('div'); nm.className = 'mk nm';
   nm.style.left = (C.left + C.right) / 2 - W.left + 'px';
-  nm.style.top = Math.min(sysTop - u * 1.5, y - u * 1.2) - stack * 28 + 'px';
+  nm.style.top = Math.min(sysTop - u * 1.5 - (S.fingers ? u * 1.1 + 30 : 0), y - u * 1.2) - stack * 28 + 'px';
   nm.innerHTML = `<div class="lb" style="background:${col}"></div>`; nm.firstChild.textContent = noteName(m) + tag;
   $('marks').append(nm);
   for (const d of [el, nm]) { setTimeout(() => d.classList.add('fade'), 1100); setTimeout(() => d.remove(), 1600); }
@@ -377,6 +493,8 @@ function atEnd() {                       // returns true if playback should stop
   if (pos < e) { advance(); return false; }
   if (S.loop) { gotoStep(s); return false; }
   [...open].forEach(closeStep);
+  if (run) run.finished = true;
+  if (S.mode === 'listen') lessonStep('listen');
   pause(); gotoStep(0); info('Finished'); return true;
 }
 // All modes move at the set tempo. Play along never stops; Wait for me holds on a note of yours
@@ -501,15 +619,16 @@ function endRun() {
     p.bars[b] = Object.fromEntries(KEYS.map(k => [k, Math.round(((o[k] || 0) * 0.8 + c[k]) * 100) / 100]));
   }
   store.set('progress:' + title, p);
-  drawHeat(); showCard(s, r.bars);
+  drawHeat(); showCard(s, r.bars, r.finished ? lessonResult(s) : null);
 }
 function practiseBar(b) {
   $('from').value = $('to').value = +b + 1; $('loop').checked = S.loop = true; save();
   $('card').hidden = true; $('prog').hidden = true; pause(); gotoStep(range()[0]);
 }
-function showCard(s, bars) {
+function showCard(s, bars, lessonMsg) {
   const c = $('card'); c.innerHTML = ''; c.hidden = false;
   const add = (html, cls) => { const d = document.createElement('div'); if (cls) d.className = cls; d.innerHTML = html; c.append(d); return d; };
+  if (lessonMsg) add(lessonMsg).style.flexBasis = '100%';
   add(`<span class="big">${s.acc}%</span> <small>correct</small>`);
   if (s.ont !== null) add(`<span class="big">${s.ont}%</span> <small>on time</small>`);
   if (s.avg !== null && Math.abs(s.avg) > tol() / 2) add(`<small>${s.avg > 0 ? `You tend to play late (${s.avg} ms)` : `You tend to rush (${-s.avg} ms early)`}</small>`);
@@ -606,20 +725,111 @@ function drawChart(ss) {                 // correct % and on-time % per session,
 async function loadScore(data, name) {
   pause(); clearMarks(); $('status').textContent = 'Reading score…';
   try {
-    await osmd.load(data); osmd.zoom = S.zoom; osmd.render();
+    await osmd.load(data); osmd.zoom = S.zoom; osmd.EngravingRules.RenderFingerings = S.fingers; osmd.render();
     buildSteps();
     if (!steps.length) throw new Error('empty');
     bars = osmd.Sheet.SourceMeasures.length; title = osmd.Sheet.TitleString || name || '';
     const t = store.get('tempo:' + title, Math.round(osmd.Sheet.DefaultStartTempoInBpm || 0));
     if (t >= 30 && t <= 200) setBpm(t, false);
     $('from').max = $('to').max = bars; $('from').value = 1; $('to').value = Math.min(bars, 4);
-    buildKb(); osmd.cursor.show(); pos = 0; $('scroll').scrollTop = 0; info(); drawHeat();
+    buildKb(); osmd.cursor.show(); pos = 0; $('scroll').scrollTop = 0; info(); drawHeat(); drawFingers();
     return true;
   } catch (err) {
     console.error(err); steps = [];
     $('status').textContent = 'Could not read this file. Please choose a MusicXML score (.musicxml, .xml or .mxl).';
     return false;
   }
+}
+
+/* ---------- lessons ---------- */
+let course = null, lesson = null;
+const lessonsDone = () => store.get('lessons', null) || {};
+async function getCourse() {
+  if (!course) course = await fetch('lessons/lessons.json').then(r => r.json());
+  return course;
+}
+function setSeg(id, k, v) { S[k] = v; save(); $(id).querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === v)); dimHands(); }
+async function startLesson(id) {
+  const c = await getCourse(), L = c.lessons.find(l => l.id === id); if (!L) return false;
+  const xml = await fetch('lessons/' + L.file).then(r => { if (!r.ok) throw new Error(r.status); return r.text(); });
+  if (!await loadScore(xml, L.title)) return false;
+  lesson = L; store.set('score', {lesson: L.id});
+  setSeg('hands', 'hands', L.hands); setSeg('mode', 'mode', 'listen'); setBpm(L.bpm, false);
+  S.loop = $('loop').checked = false; save();
+  $('lessons').hidden = true; $('panel').hidden = true; $('lesson').classList.remove('min');
+  showLesson(); info(); drawFingers();
+  return true;
+}
+function lessonGoal(L, step) {
+  return {listen: 'Listen to the whole piece once',
+    wait: `Play it to the end with 90% correct${L.hands === 'both' ? ', both hands' : ''}`,
+    along: `At ${L.bpm} bpm: 90% correct and 70% on time`}[step];
+}
+function showLesson() {
+  const el = $('lesson'); el.hidden = !lesson; if (!lesson) return;
+  const L = lesson, n = course.lessons.indexOf(L), d = lessonsDone()[L.id] || {};
+  const handName = {right: 'right hand', left: 'left hand', both: 'both hands'}[L.hands];
+  el.innerHTML = `<div class="lt"><div style="flex:1"><div class="lv">Lesson ${n + 1} of ${course.lessons.length} · ${course.levels[L.level]} · ${handName}</div><h2></h2></div>
+    <button data-a="min" aria-label="Show or hide the lesson">▾</button><button data-a="list">All lessons</button></div>
+    <div class="body"><p class="learn"></p><ul>${L.tips.map(() => '<li></li>').join('')}</ul>
+    <div class="steps">
+      <button data-a="listen" class="${d.listen ? 'done' : ''}"><b>1 · Listen</b><small>${lessonGoal(L, 'listen')}</small></button>
+      <button data-a="wait" class="${d.wait ? 'done' : ''}"><b>2 · Wait for me</b><small>${lessonGoal(L, 'wait')} · ${L.wait} bpm</small></button>
+      <button data-a="along" class="${d.along ? 'done' : ''}"><b>3 · Play along</b><small>${lessonGoal(L, 'along')}</small></button>
+      ${d.along && course.lessons[n + 1] ? '<button data-a="next" class="primary"><b>Next lesson →</b><small></small></button>' : ''}
+    </div></div>`;
+  el.querySelector('h2').textContent = L.title;
+  el.querySelector('.learn').textContent = L.learn;
+  el.querySelectorAll('li').forEach((li, i) => { li.textContent = L.tips[i]; });
+  if (d.along && course.lessons[n + 1]) el.querySelector('[data-a=next] small').textContent = course.lessons[n + 1].title;
+  el.onclick = e => {
+    const a = e.target.closest('button')?.dataset.a; if (!a) return;
+    if (a === 'min') return el.classList.toggle('min');
+    if (a === 'list') return openLessons();
+    if (a === 'next') return startLesson(course.lessons[n + 1].id);
+    setSeg('mode', 'mode', a); setBpm(a === 'wait' ? L.wait : L.bpm, false);
+    if (a !== 'listen') setSeg('hands', 'hands', L.hands);
+    $('card').hidden = true; pause(); gotoStep(0); play();
+  };
+}
+function lessonStep(step) {              // mark a lesson step as done
+  if (!lesson) return;
+  const all = lessonsDone(), d = all[lesson.id] || {};
+  d[step] = true; all[lesson.id] = d; store.set('lessons', all); showLesson();
+}
+function lessonResult(s) {               // what this finished run means for the lesson
+  if (!lesson) return null;
+  const L = lesson, why = [];
+  if (s.hands !== L.hands) why.push(`play with ${L.hands === 'both' ? 'both hands' : `the ${L.hands} hand`}`);
+  if (s.acc < 90) why.push(`reach 90% correct (you had ${s.acc}%)`);
+  if (s.mode === 'along' && s.ont < 70) why.push(`reach 70% on time (you had ${s.ont}%)`);
+  if (s.mode === 'along' && s.bpm < L.bpm) why.push(`play at ${L.bpm} bpm`);
+  if (why.length) return `<small>To complete this lesson step: ${why.join(', ')}.</small>`;
+  lessonStep(s.mode);
+  if (s.mode === 'wait') return '<b>✓ Step 2 done!</b> <small>Now try step 3, Play along.</small>';
+  const next = course.lessons[course.lessons.indexOf(L) + 1];
+  return `<b>★ Lesson passed!</b> <small>${next ? 'Next: ' + next.title.replace(/</g, '') + '.' : 'You finished the whole course!'}</small>`;
+}
+async function openLessons() {
+  const c = await getCourse(), done = lessonsDone(), list = $('llist');
+  const next = c.lessons.find(l => !done[l.id]?.along);
+  list.innerHTML = '';
+  c.levels.forEach((lv, li) => {
+    const h = document.createElement('h3'); h.textContent = `Level ${li + 1} · ${lv}`; list.append(h);
+    c.lessons.forEach((L, i) => {
+      if (L.level !== li) return;
+      const d = done[L.id] || {}, row = document.createElement('div');
+      row.className = 'row' + (L === next ? ' next' : '');
+      row.innerHTML = `<span class="n">${i + 1}</span><span class="t"><b></b><small>${{right: 'Right hand', left: 'Left hand', both: 'Both hands'}[L.hands]} · ${L.bpm} bpm</small></span>` +
+        `<span class="stars" title="Listen · Wait for me · Play along" aria-label="${['listen', 'wait', 'along'].filter(k => d[k]).length} of 3 steps done">${['listen', 'wait', 'along'].map(k => d[k] ? '<b>●</b>' : '○').join('')}</span>`;
+      row.querySelector('.t b').textContent = L.title;
+      const b = document.createElement('button'); b.textContent = L === next ? 'Start ▶' : d.along ? 'Again' : 'Start';
+      if (L === next) b.className = 'primary';
+      b.onclick = () => startLesson(L.id).catch(() => { $('status').textContent = 'Could not open this lesson. Check the internet connection.'; });
+      row.append(b); list.append(row);
+    });
+  });
+  $('card').hidden = true; $('prog').hidden = true; $('lessons').hidden = false;
 }
 
 /* ---------- piano (MIDI) ---------- */
@@ -704,15 +914,15 @@ $('showkb').onchange = e => { S.kb = e.target.checked; $('kb').hidden = !S.kb; s
 function zoom(d) {
   S.zoom = Math.min(2.2, Math.max(0.5, +(S.zoom + d).toFixed(2))); save();
   if (!steps.length) return; const was = playing; pause(false); clearMarks();
-  osmd.zoom = S.zoom; osmd.render(); gotoStep(pos); drawHeat(); if (was) play(true);
+  osmd.zoom = S.zoom; osmd.render(); gotoStep(pos, true); drawHeat(); if (was) play(true);
 }
 $('zin').onclick = () => zoom(0.15); $('zout').onclick = () => zoom(-0.15);
-$('sample').onclick = () => { store.set('score', null); loadScore(SAMPLE); $('panel').hidden = true; };
+$('sample').onclick = () => { lesson = null; showLesson(); store.set('score', null); loadScore(SAMPLE); $('panel').hidden = true; };
 $('file').onchange = e => {
   const f = e.target.files[0]; if (!f) return;
   const r = new FileReader();
   r.onload = async () => {
-    if (await loadScore(r.result, f.name.replace(/\.[^.]+$/, ''))) { store.set('score', {name: f.name, data: r.result}); $('panel').hidden = true; }
+    if (await loadScore(r.result, f.name.replace(/\.[^.]+$/, ''))) { lesson = null; showLesson(); store.set('score', {name: f.name, data: r.result}); $('panel').hidden = true; }
   };
   /\.mxl$/i.test(f.name) ? r.readAsBinaryString(f) : r.readAsText(f);
   e.target.value = '';
@@ -720,7 +930,16 @@ $('file').onchange = e => {
 $('kb').addEventListener('pointerdown', e => { const m = e.target.dataset.m; if (m) { e.preventDefault(); press(+m, true, e.timeStamp); } });
 $('midi').onclick = () => connectMidi(false);
 let resizeT = 0;
-addEventListener('resize', () => { clearMarks(); clearTimeout(resizeT); resizeT = setTimeout(drawHeat, 700); });
+addEventListener('resize', () => { clearMarks(); clearTimeout(resizeT); resizeT = setTimeout(() => { drawHeat(); drawFingers(); }, 700); });
+$('showfing').checked = S.fingers;
+$('showfing').onchange = e => {
+  S.fingers = e.target.checked; save();
+  if (!steps.length) return;
+  const was = playing; pause(false); osmd.EngravingRules.RenderFingerings = S.fingers; osmd.render(); gotoStep(pos, true); drawHeat(); if (was) play(true);
+};
+$('lessonsbtn').onclick = openLessons;
+$('lclose').onclick = () => { $('lessons').hidden = true; };
+$('lessons').onclick = e => { if (e.target === $('lessons')) $('lessons').hidden = true; };
 $('progress').onclick = openProgress;
 $('pclose').onclick = () => { $('prog').hidden = true; };
 $('prog').onclick = e => { if (e.target === $('prog')) $('prog').hidden = true; };
@@ -734,7 +953,8 @@ $('preset').onclick = e => {            // two taps, so progress is not wiped by
 osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay('score', {autoResize: true, backend: 'svg', drawTitle: true, drawPartNames: false, followCursor: false});
 window._pr = {get steps() { return steps; }, get pos() { return pos; }, get playing() { return playing; }, press};
 const saved = store.get('score', null);
-(saved?.data ? loadScore(saved.data, saved.name.replace(/\.[^.]+$/, '')) : Promise.resolve(false)).then(ok => ok || loadScore(SAMPLE));
+(saved?.lesson ? startLesson(saved.lesson).catch(() => false) : saved?.data ? loadScore(saved.data, saved.name.replace(/\.[^.]+$/, '')) : Promise.resolve(false))
+  .then(ok => ok || loadScore(SAMPLE).then(() => { if (!store.get('lessons', null)) openLessons().catch(() => {}); }));
 keepAwake(); autoConnect();
 </script>
 </body>

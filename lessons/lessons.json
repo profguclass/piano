@@ -1,0 +1,253 @@
+{
+ "levels": [
+  "First steps",
+  "Left hand and rhythm",
+  "Hands together",
+  "Scales and the thumb",
+  "Chords and accompaniment"
+ ],
+ "lessons": [
+  {
+   "id": "middle-c",
+   "level": 0,
+   "title": "Middle C and friends",
+   "hands": "right",
+   "bpm": 80,
+   "wait": 60,
+   "learn": "Find middle C (the C nearest the middle of the keyboard, just left of the two black keys) and play C, D and E with fingers 1, 2 and 3 of your right hand.",
+   "tips": [
+    "Thumb = 1, pointer = 2, middle = 3, ring = 4, little finger = 5.",
+    "Curve your fingers as if holding a ball; play with the fingertips.",
+    "Keep your thumb resting on middle C between notes."
+   ],
+   "file": "01-middle-c.musicxml"
+  },
+  {
+   "id": "five-fingers",
+   "level": 0,
+   "title": "Five-finger position",
+   "hands": "right",
+   "bpm": 80,
+   "wait": 60,
+   "learn": "Put one finger on each key from C to G. This \"C position\" lets you play five notes without moving your hand.",
+   "tips": [
+    "Each finger stays over its own key: C=1, D=2, E=3, F=4, G=5.",
+    "Let the 4th and 5th fingers play as clearly as the others; go slowly."
+   ],
+   "file": "02-five-fingers.musicxml"
+  },
+  {
+   "id": "mary",
+   "level": 0,
+   "title": "Mary Had a Little Lamb",
+   "hands": "right",
+   "bpm": 90,
+   "wait": 70,
+   "learn": "Your first song, all in C position. Notice the half notes (2 beats) and the whole note at the end (4 beats).",
+   "tips": [
+    "Count \"1 2 3 4\" in every bar.",
+    "Hold half and whole notes for their full length."
+   ],
+   "file": "03-mary.musicxml"
+  },
+  {
+   "id": "left-five",
+   "level": 1,
+   "title": "Left hand five fingers",
+   "hands": "left",
+   "bpm": 80,
+   "wait": 60,
+   "learn": "The left hand uses the same numbers, but its thumb is on the right. In C position below middle C: C=5, D=4, E=3, F=2, G=1.",
+   "tips": [
+    "Read the bass clef: the line between the two dots is F.",
+    "Your left thumb sits on the G just below middle C."
+   ],
+   "file": "04-left-five.musicxml"
+  },
+  {
+   "id": "hot-cross-buns",
+   "level": 1,
+   "title": "Hot Cross Buns",
+   "hands": "left",
+   "bpm": 90,
+   "wait": 70,
+   "learn": "A left-hand song that introduces eighth notes: two of them fit in one beat.",
+   "tips": [
+    "Say \"1-and 2-and\" for the eighth notes.",
+    "Keep the eighth notes even, like a ticking clock."
+   ],
+   "file": "05-hot-cross-buns.musicxml"
+  },
+  {
+   "id": "au-clair",
+   "level": 1,
+   "title": "Au clair de la lune",
+   "hands": "right",
+   "bpm": 90,
+   "wait": 70,
+   "learn": "A French folk song with quarter, half and whole notes. Feel the long notes without rushing.",
+   "tips": [
+    "Hold the half notes for two full beats.",
+    "Try Play along to feel the steady beat."
+   ],
+   "file": "06-au-clair.musicxml"
+  },
+  {
+   "id": "ode-together",
+   "level": 2,
+   "title": "Ode to Joy, hands together",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "Play the melody with the right hand while the left hand holds long notes. Start with one hand at a time (choose Right or Left), then Both.",
+   "tips": [
+    "Practise each hand alone first.",
+    "The left hand only changes at the start of each bar.",
+    "The dotted quarter is 1½ beats: \"1 2-and\"."
+   ],
+   "file": "07-ode-together.musicxml"
+  },
+  {
+   "id": "twinkle",
+   "level": 2,
+   "title": "Twinkle Twinkle Little Star",
+   "hands": "both",
+   "bpm": 90,
+   "wait": 60,
+   "learn": "The melody goes beyond five notes, so the right hand shifts: after the first C, finger 4 takes G and 5 takes A.",
+   "tips": [
+    "Watch the finger numbers where the hand moves.",
+    "The left hand plays C, F and G; keep it in place with the thumb on C."
+   ],
+   "file": "08-twinkle.musicxml"
+  },
+  {
+   "id": "saints",
+   "level": 2,
+   "title": "When the Saints Go Marching In",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "Each phrase starts after a rest. Feel the rest on beat 1, then come in on beat 2.",
+   "tips": [
+    "Count the rest out loud: \"(1) 2 3 4\".",
+    "The left hand holds whole notes: C, then G or F where the harmony changes."
+   ],
+   "file": "09-saints.musicxml"
+  },
+  {
+   "id": "c-scale-rh",
+   "level": 3,
+   "title": "C major scale, right hand",
+   "hands": "right",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "Play eight notes in a row by passing the thumb under: after E (finger 3), the thumb plays F. Coming down, finger 3 crosses over the thumb onto E.",
+   "tips": [
+    "Move the thumb under early, while finger 3 plays.",
+    "Keep the wrist level; do not twist it.",
+    "Then try the eighth notes in bars 5-6."
+   ],
+   "file": "10-c-scale-rh.musicxml"
+  },
+  {
+   "id": "c-scale-lh",
+   "level": 3,
+   "title": "C major scale, left hand",
+   "hands": "left",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "For the left hand the crossing happens going up: after G (thumb), finger 3 crosses over onto A. Coming down, the thumb passes under after A.",
+   "tips": [
+    "Fingering up: 5 4 3 2 1, 3 2 1.",
+    "Fingering down: 1 2 3, 1 2 3 4 5."
+   ],
+   "file": "11-c-scale-lh.musicxml"
+  },
+  {
+   "id": "g-scale",
+   "level": 3,
+   "title": "G major scale: your first sharp",
+   "hands": "right",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "The key signature has one sharp (F♯), so every F is played on the black key just right of F. The fingering is the same as the C scale.",
+   "tips": [
+    "Finger 4 plays F♯.",
+    "Look at the key signature at the start of every new piece."
+   ],
+   "file": "12-g-scale.musicxml"
+  },
+  {
+   "id": "scale-together",
+   "level": 3,
+   "title": "C scale, hands together",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 40,
+   "learn": "Both hands play the C scale together, an octave apart. The thumbs cross at different moments, which is the real challenge.",
+   "tips": [
+    "Practise slowly with Wait for me.",
+    "Right thumb crosses on F; left finger 3 crosses on A going up."
+   ],
+   "file": "13-scale-together.musicxml"
+  },
+  {
+   "id": "three-chords",
+   "level": 4,
+   "title": "Three chords: C, F and G",
+   "hands": "both",
+   "bpm": 70,
+   "wait": 50,
+   "learn": "Most simple songs use three chords. Keep the right thumb on C: C chord = C E G (1 3 5), F chord = C F A (1 4 5), G chord = B D G (1 2 5).",
+   "tips": [
+    "Press all chord notes at exactly the same time.",
+    "Move as few fingers as possible between chords.",
+    "The left hand plays the chord name: C, F or G."
+   ],
+   "file": "14-three-chords.musicxml"
+  },
+  {
+   "id": "broken-chords",
+   "level": 4,
+   "title": "Ode to Joy with broken chords",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 40,
+   "learn": "The left hand now plays its chord one note at a time (a broken chord), which makes the music flow. This kind of pattern is used in lots of classical pieces.",
+   "tips": [
+    "Learn the left-hand pattern alone first: 5 1 3 1.",
+    "Keep the left hand quieter than the melody."
+   ],
+   "file": "15-broken-chords.musicxml"
+  },
+  {
+   "id": "contrary",
+   "level": 4,
+   "title": "Contrary motion scale",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 40,
+   "learn": "The hands move in opposite directions, mirroring each other. Both use the same fingers at the same time, which makes it easier than the parallel scale.",
+   "tips": [
+    "Both thumbs cross under at the same moment.",
+    "Listen for the hands to sound exactly together."
+   ],
+   "file": "16-contrary.musicxml"
+  },
+  {
+   "id": "progression",
+   "level": 4,
+   "title": "Chord progression study",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "The famous I–V–vi–IV progression (C, G, A minor, F) with flowing right-hand arpeggios. Hundreds of pop songs use these four chords.",
+   "tips": [
+    "Each right-hand bar uses one chord shape: 1 2 3 5, back down.",
+    "Say the chord names as you play: C, G, A minor, F."
+   ],
+   "file": "17-progression.musicxml"
+  }
+ ]
+}
