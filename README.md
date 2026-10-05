@@ -16,19 +16,24 @@ After that the app reconnects by itself.
 The notes the app plays (the other hand, Listen mode) then sound **on the piano itself**. To use the tablet speaker instead: ⋯ → *Sound from: Tablet*.
 
 ## Lessons
-Tap **Lessons** for a 26-lesson course from the first notes to famous pieces:
+Tap **Lessons** for a 55-lesson course. Its levels and the parts of each level follow the
+[RCM Piano Syllabus, 2022 edition](https://www.rcmusic.com/syllabi) (with its September 2026 errata), from **Preparatory A** to **Level 2**:
 
-1. **First steps** — middle C, five-finger position, *Mary Had a Little Lamb*
-2. **Left hand and rhythm** — left-hand position, *Hot Cross Buns* (eighth notes), *Au clair de la lune*
-3. **Hands together** — *Ode to Joy*, *Twinkle Twinkle Little Star*, *When the Saints Go Marching In*
-4. **Scales and the thumb** — C major (each hand), G major, hands together
-5. **Chords and accompaniment** — C/F/G chords, broken-chord bass, contrary motion, I–V–vi–IV arpeggio study
-6. **Popular songs** — *Row, Row, Row Your Boat*, *London Bridge*, *Jingle Bells*, *Happy Birthday*, *Silent Night*
-7. **Famous classics** — *Greensleeves*, Pachelbel's *Canon* (simplified), Mozart's *Eine kleine Nachtmusik*, Beethoven's *Für Elise* (opening)
+| | Technique | Pieces | Ear tests | Sight reading |
+|---|---|---|---|---|
+| **Preparatory A** | pentascales C, G, D, A minor (legato, staccato); triad sequence in C | Middle C, five-finger position, *Mary Had a Little Lamb*, left hand, *Hot Cross Buns*, *Au clair de la lune* | clapback, chords, playback | rhythm; two four-note melodies |
+| **Preparatory B** | pentascales D, A, F, E minor, D minor; one-octave scales C, G, A minor; contrary motion; tonic triads | *Ode to Joy*, *Twinkle Twinkle*, *When the Saints*, *Row Your Boat*, *London Bridge*, *Jingle Bells* | clapback, chords, playback | rhythm; melody shared between the hands |
+| **Level 1** | two-octave scales C, G, F; A, E, D minor (natural, harmonic); contrary motion 2 octaves; chromatic from C; tonic triads broken and solid | three chords, broken-chord *Ode to Joy*, *Happy Birthday*, *Silent Night*, *Greensleeves* | clapback, intervals (m3, M3), chords, playback | rhythm; four-bar melody in C, G, F, A minor |
+| **Level 2** | two-octave scales G, F, B♭; E, D, G minor (harmonic, melodic); chromatic from G; tonic triads broken and solid | chord progression study, Pachelbel's *Canon*, *Eine kleine Nachtmusik*, *Für Elise* (opening) | clapback, intervals (m3, M3, P5), chords, playback | rhythm with rests; four-bar melody beyond five-finger position |
 
-All songs are traditional or public domain, arranged here for learning.
+- **Technique and pieces**: three steps — **Listen**, **Wait for me**, **Play along** at the target tempo (90% correct, 70% on time).
+  Technique tempos are the syllabus metronome marks. In the exam technique is played from memory: practise with ⋯ → *Hide the notes*.
+- **Ear tests** (the app plays, you answer or play back on the piano): 10 questions per test, 8 correct passes it.
+  In the exam, Levels 1–4 weight playback (4 marks) above clapback (2 marks); here each test simply has to be passed.
+- **Sight reading**: every exercise is newly generated to the level's rules; pass 3 rhythm and 3 playing exercises (80% correct).
+- Technical exercises are generated exactly from the syllabus keys and patterns with standard fingering. The pieces are this course's own
+  traditional or public-domain arrangements — the syllabus's own repertoire books are not reproduced.
 
-Each lesson has three steps — **Listen**, **Wait for me**, **Play along** at the target tempo (90% correct, 70% on time) — and the app ticks them off as you go.
 Lesson scores are in [`lessons/`](lessons/) and are built by [`tools/make_lessons.py`](tools/make_lessons.py) (`python tools/make_lessons.py`).
 
 ## Finger numbers
@@ -49,7 +54,7 @@ suggests one (dashed circles). Turn them off in ⋯ → *Finger numbers*.
 - **Progress** is saved on the device for each piece: a summary after every run, and the **Progress** button shows
   your results over time, the bars that need practice (one tap repeats that bar) and recent sessions.
   Practised bars are colored on the score: ✓ green = good, ! yellow = some trouble, ✗ red = needs work.
-- ⋯ menu: open a score, note size, repeat bars, show/hide the on-screen keyboard, full screen.
+- ⋯ menu: open a score, note size, repeat bars, show/hide the on-screen keyboard, finger numbers, hide the notes (play from memory), full screen.
 
 Opens `.musicxml`, `.xml` and `.mxl` files. Try [`ode-to-joy-sample.musicxml`](ode-to-joy-sample.musicxml).
 Built on [OpenSheetMusicDisplay](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay) (BSD-3-Clause), included as `opensheetmusicdisplay.min.js`.

@@ -1,17 +1,78 @@
 {
+ "syllabus": "Structure follows the RCM Piano Syllabus, 2022 edition (rcmusic.com/syllabi)",
  "levels": [
-  "First steps",
-  "Left hand and rhythm",
-  "Hands together",
-  "Scales and the thumb",
-  "Chords and accompaniment",
-  "Popular songs",
-  "Famous classics"
+  "Preparatory A",
+  "Preparatory B",
+  "Level 1",
+  "Level 2"
  ],
  "lessons": [
   {
+   "id": "pentascales-a1",
+   "level": 0,
+   "kind": "technique",
+   "title": "Pentascales: C and G major",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 70,
+   "learn": "A pentascale is the first five notes of a scale, up and down, ending with the tonic triad played as a chord. Play legato: join each note smoothly to the next.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Right hand 1 2 3 4 5, left hand 5 4 3 2 1 going up.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "01-pentascales-a1.musicxml"
+  },
+  {
+   "id": "pentascales-a2",
+   "level": 0,
+   "kind": "technique",
+   "title": "Pentascales: D major and A minor",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 70,
+   "learn": "D major has two sharps (F♯ and C♯); in its pentascale you meet F♯. A minor uses only white keys, and its triad sounds darker than a major one.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Listen to the difference between the major and minor triads at the end.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "02-pentascales-a2.musicxml"
+  },
+  {
+   "id": "staccato-pentascales-a",
+   "level": 0,
+   "kind": "technique",
+   "title": "Staccato pentascales",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 70,
+   "learn": "The same pentascales played staccato: short and detached, bouncing off each key (the dots above or below the notes).",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Let the hand bounce lightly from the wrist; keep the fingers close to the keys."
+   ],
+   "file": "03-staccato-pentascales-a.musicxml"
+  },
+  {
+   "id": "triad-sequence-a",
+   "level": 0,
+   "kind": "technique",
+   "title": "Triad sequence in C major",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 45,
+   "learn": "Build a triad (three notes a third apart) on every note of the C major scale, going up: first broken, one note at a time, then solid, all together.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Keep the same hand shape (1 3 5 in the right hand, 5 3 1 in the left) and move it up one key at a time."
+   ],
+   "file": "04-triad-sequence-a.musicxml"
+  },
+  {
    "id": "middle-c",
    "level": 0,
+   "kind": "piece",
    "title": "Middle C and friends",
    "hands": "right",
    "bpm": 80,
@@ -22,11 +83,12 @@
     "Curve your fingers as if holding a ball; play with the fingertips.",
     "Keep your thumb resting on middle C between notes."
    ],
-   "file": "01-middle-c.musicxml"
+   "file": "05-middle-c.musicxml"
   },
   {
    "id": "five-fingers",
    "level": 0,
+   "kind": "piece",
    "title": "Five-finger position",
    "hands": "right",
    "bpm": 80,
@@ -36,11 +98,12 @@
     "Each finger stays over its own key: C=1, D=2, E=3, F=4, G=5.",
     "Let the 4th and 5th fingers play as clearly as the others; go slowly."
    ],
-   "file": "02-five-fingers.musicxml"
+   "file": "06-five-fingers.musicxml"
   },
   {
    "id": "mary",
    "level": 0,
+   "kind": "piece",
    "title": "Mary Had a Little Lamb",
    "hands": "right",
    "bpm": 90,
@@ -50,11 +113,12 @@
     "Count \"1 2 3 4\" in every bar.",
     "Hold half and whole notes for their full length."
    ],
-   "file": "03-mary.musicxml"
+   "file": "07-mary.musicxml"
   },
   {
    "id": "left-five",
-   "level": 1,
+   "level": 0,
+   "kind": "piece",
    "title": "Left hand five fingers",
    "hands": "left",
    "bpm": 80,
@@ -64,11 +128,12 @@
     "Read the bass clef: the line between the two dots is F.",
     "Your left thumb sits on the G just below middle C."
    ],
-   "file": "04-left-five.musicxml"
+   "file": "08-left-five.musicxml"
   },
   {
    "id": "hot-cross-buns",
-   "level": 1,
+   "level": 0,
+   "kind": "piece",
    "title": "Hot Cross Buns",
    "hands": "left",
    "bpm": 90,
@@ -78,11 +143,12 @@
     "Say \"1-and 2-and\" for the eighth notes.",
     "Keep the eighth notes even, like a ticking clock."
    ],
-   "file": "05-hot-cross-buns.musicxml"
+   "file": "09-hot-cross-buns.musicxml"
   },
   {
    "id": "au-clair",
-   "level": 1,
+   "level": 0,
+   "kind": "piece",
    "title": "Au clair de la lune",
    "hands": "right",
    "bpm": 90,
@@ -92,54 +158,99 @@
     "Hold the half notes for two full beats.",
     "Try Play along to feel the steady beat."
    ],
-   "file": "06-au-clair.musicxml"
+   "file": "10-au-clair.musicxml"
   },
   {
-   "id": "ode-together",
-   "level": 2,
-   "title": "Ode to Joy, hands together",
-   "hands": "both",
-   "bpm": 100,
-   "wait": 60,
-   "learn": "Play the melody with the right hand while the left hand holds long notes. Start with one hand at a time (choose Right or Left), then Both.",
-   "tips": [
-    "Practise each hand alone first.",
-    "The left hand only changes at the start of each bar.",
-    "The dotted quarter is 1½ beats: \"1 2-and\"."
+   "id": "ear-a",
+   "level": 0,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "clapback",
+    "chords",
+    "playback"
    ],
-   "file": "07-ode-together.musicxml"
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h"
+    ],
+    "bars": 2
+   },
+   "chords": {
+    "style": "scale"
+   },
+   "playback": {
+    "degrees": 3,
+    "keys": [
+     "C",
+     "G"
+    ],
+    "starts": [
+     0,
+     2
+    ],
+    "length": 4
+   },
+   "learn": "Clap back a rhythm, tell whether a chord is major or minor, and play back a short melody on the first three notes of the scale."
   },
   {
-   "id": "twinkle",
-   "level": 2,
-   "title": "Twinkle Twinkle Little Star",
-   "hands": "both",
-   "bpm": 90,
-   "wait": 60,
-   "learn": "The melody goes beyond five notes, so the right hand shifts: after the first C, finger 4 takes G and 5 takes A.",
-   "tips": [
-    "Watch the finger numbers where the hand moves.",
-    "The left hand plays C, F and G; keep it in place with the thumb on C."
+   "id": "sight-a",
+   "level": 0,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing"
    ],
-   "file": "08-twinkle.musicxml"
-  },
-  {
-   "id": "saints",
-   "level": 2,
-   "title": "When the Saints Go Marching In",
-   "hands": "both",
-   "bpm": 100,
-   "wait": 60,
-   "learn": "Each phrase starts after a rest. Feel the rest on beat 1, then come in on beat 2.",
-   "tips": [
-    "Count the rest out loud: \"(1) 2 3 4\".",
-    "The left hand holds whole notes: C, then G or F where the harmony changes."
-   ],
-   "file": "09-saints.musicxml"
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h"
+    ],
+    "bars": 2
+   },
+   "playing": {
+    "style": "two-hands-apart",
+    "keys": [
+     "C"
+    ],
+    "length": 4
+   },
+   "learn": "Tap a rhythm at sight, then play two four-note melodies: one in the right hand (treble clef), one in the left (bass clef). They move by step in one direction."
   },
   {
    "id": "c-scale-rh",
-   "level": 3,
+   "level": 1,
+   "kind": "technique",
    "title": "C major scale, right hand",
    "hands": "right",
    "bpm": 80,
@@ -150,11 +261,12 @@
     "Keep the wrist level; do not twist it.",
     "Then try the eighth notes in bars 5-6."
    ],
-   "file": "10-c-scale-rh.musicxml"
+   "file": "11-c-scale-rh.musicxml"
   },
   {
    "id": "c-scale-lh",
-   "level": 3,
+   "level": 1,
+   "kind": "technique",
    "title": "C major scale, left hand",
    "hands": "left",
    "bpm": 80,
@@ -164,11 +276,12 @@
     "Fingering up: 5 4 3 2 1, 3 2 1.",
     "Fingering down: 1 2 3, 1 2 3 4 5."
    ],
-   "file": "11-c-scale-lh.musicxml"
+   "file": "12-c-scale-lh.musicxml"
   },
   {
    "id": "g-scale",
-   "level": 3,
+   "level": 1,
+   "kind": "technique",
    "title": "G major scale: your first sharp",
    "hands": "right",
    "bpm": 80,
@@ -178,11 +291,12 @@
     "Finger 4 plays F♯.",
     "Look at the key signature at the start of every new piece."
    ],
-   "file": "12-g-scale.musicxml"
+   "file": "13-g-scale.musicxml"
   },
   {
    "id": "scale-together",
-   "level": 3,
+   "level": 1,
+   "kind": "technique",
    "title": "C scale, hands together",
    "hands": "both",
    "bpm": 72,
@@ -192,11 +306,383 @@
     "Practise slowly with Wait for me.",
     "Right thumb crosses on F; left finger 3 crosses on A going up."
    ],
-   "file": "13-scale-together.musicxml"
+   "file": "14-scale-together.musicxml"
+  },
+  {
+   "id": "contrary",
+   "level": 1,
+   "kind": "technique",
+   "title": "Contrary motion scale",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 40,
+   "learn": "The hands move in opposite directions, mirroring each other. Both use the same fingers at the same time, which makes it easier than the parallel scale.",
+   "tips": [
+    "Both thumbs cross under at the same moment.",
+    "Listen for the hands to sound exactly together."
+   ],
+   "file": "15-contrary.musicxml"
+  },
+  {
+   "id": "pentascales-b1",
+   "level": 1,
+   "kind": "technique",
+   "title": "Pentascales: D, A and F major",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 45,
+   "learn": "Pentascales in eighth notes. A major has F♯ and C♯ in its first five notes; F major has none (its B♭ is the 4th note of the scale, beyond the pentascale).",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Two notes per beat: count \"1 and 2 and\".",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "16-pentascales-b1.musicxml"
+  },
+  {
+   "id": "pentascales-b2",
+   "level": 1,
+   "kind": "technique",
+   "title": "Pentascales: E and D minor",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 45,
+   "learn": "Minor pentascales in eighth notes, legato. Then try them staccato too.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "E minor has F♯; D minor uses only white keys in its first five notes.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "17-pentascales-b2.musicxml"
+  },
+  {
+   "id": "octave-scales-b",
+   "level": 1,
+   "kind": "technique",
+   "title": "One-octave scales: C, G major and A minor",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 45,
+   "learn": "Full one-octave scales hands separately, with the thumb passing under. A minor here is the natural minor (all white keys).",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Right hand 1 2 3 1 2 3 4 5; left hand 5 4 3 2 1 3 2 1.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "18-octave-scales-b.musicxml"
+  },
+  {
+   "id": "tonic-triads-b",
+   "level": 1,
+   "kind": "technique",
+   "title": "Tonic triads: C, G major and A minor",
+   "hands": "both",
+   "bpm": 50,
+   "wait": 35,
+   "learn": "The tonic triad in root position, first inversion and second inversion, broken, going up and back down, ending with the solid chord.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Right hand fingering: root 1 3 5, first inversion 1 2 5, second inversion 1 3 5.",
+    "Left hand: root 5 3 1, first inversion 5 3 1, second inversion 5 2 1."
+   ],
+   "file": "19-tonic-triads-b.musicxml"
+  },
+  {
+   "id": "ode-together",
+   "level": 1,
+   "kind": "piece",
+   "title": "Ode to Joy, hands together",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "Play the melody with the right hand while the left hand holds long notes. Start with one hand at a time (choose Right or Left), then Both.",
+   "tips": [
+    "Practise each hand alone first.",
+    "The left hand only changes at the start of each bar.",
+    "The dotted quarter is 1½ beats: \"1 2-and\"."
+   ],
+   "file": "20-ode-together.musicxml"
+  },
+  {
+   "id": "twinkle",
+   "level": 1,
+   "kind": "piece",
+   "title": "Twinkle Twinkle Little Star",
+   "hands": "both",
+   "bpm": 90,
+   "wait": 60,
+   "learn": "The melody goes beyond five notes, so the right hand shifts: after the first C, finger 4 takes G and 5 takes A.",
+   "tips": [
+    "Watch the finger numbers where the hand moves.",
+    "The left hand plays C, F and G; keep it in place with the thumb on C."
+   ],
+   "file": "21-twinkle.musicxml"
+  },
+  {
+   "id": "saints",
+   "level": 1,
+   "kind": "piece",
+   "title": "When the Saints Go Marching In",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "Each phrase starts after a rest. Feel the rest on beat 1, then come in on beat 2.",
+   "tips": [
+    "Count the rest out loud: \"(1) 2 3 4\".",
+    "The left hand holds whole notes: C, then G or F where the harmony changes."
+   ],
+   "file": "22-saints.musicxml"
+  },
+  {
+   "id": "row-your-boat",
+   "level": 1,
+   "kind": "piece",
+   "title": "Row, Row, Row Your Boat",
+   "hands": "both",
+   "bpm": 96,
+   "wait": 60,
+   "learn": "A round in 6/8 time: each bar has two big beats, each split into three. The \"merrily\" bar uses a stretched hand from C to the C above.",
+   "tips": [
+    "Count \"1-2-3 4-5-6\" with the stress on 1 and 4.",
+    "In bar 5 the hand opens to an octave: C (5), G (3), E (2), C (1)."
+   ],
+   "file": "23-row-your-boat.musicxml"
+  },
+  {
+   "id": "london-bridge",
+   "level": 1,
+   "kind": "piece",
+   "title": "London Bridge",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 70,
+   "learn": "The melody uses six notes, so the right hand sits one key higher than C position: thumb on D, little finger on A.",
+   "tips": [
+    "The dotted quarter and eighth sound \"long-short\".",
+    "At the end the thumb moves down from D to C."
+   ],
+   "file": "24-london-bridge.musicxml"
+  },
+  {
+   "id": "jingle-bells",
+   "level": 1,
+   "kind": "piece",
+   "title": "Jingle Bells",
+   "hands": "both",
+   "bpm": 110,
+   "wait": 70,
+   "learn": "The famous chorus, all in C position. Repeated notes need a light, bouncy touch.",
+   "tips": [
+    "Keep finger 3 on E for the opening \"jingle bells\".",
+    "The left hand changes to F in bar 5 and G in bars 7–8."
+   ],
+   "file": "25-jingle-bells.musicxml"
+  },
+  {
+   "id": "ear-b",
+   "level": 1,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "clapback",
+    "chords",
+    "playback"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h."
+    ],
+    "bars": 2
+   },
+   "chords": {
+    "style": "scale"
+   },
+   "playback": {
+    "degrees": 3,
+    "keys": [
+     "C",
+     "G",
+     "Am"
+    ],
+    "starts": [
+     0,
+     2
+    ],
+    "length": 4
+   },
+   "learn": "Clap back a rhythm, tell major from minor, and play back a melody on the first three notes of a major or minor scale."
+  },
+  {
+   "id": "sight-b",
+   "level": 1,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h."
+    ],
+    "bars": 2
+   },
+   "playing": {
+    "style": "divided",
+    "keys": [
+     "C"
+    ],
+    "bars": 4,
+    "values": [
+     "q",
+     "h"
+    ]
+   },
+   "learn": "Tap a rhythm at sight, then play a short melody shared between the hands in C position."
+  },
+  {
+   "id": "scales-1-major",
+   "level": 2,
+   "kind": "technique",
+   "title": "Two-octave scales: C, G and F major",
+   "hands": "both",
+   "bpm": 69,
+   "wait": 50,
+   "learn": "Two-octave scales hands separately. The thumb passes under twice on the way up. F major has B♭ and its own right-hand fingering: 1 2 3 4, 1 2 3, 1 2 3 4.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "All scales are legato.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "26-scales-1-major.musicxml"
+  },
+  {
+   "id": "scales-1-minor",
+   "level": 2,
+   "kind": "technique",
+   "title": "Minor scales: A, E and D (natural and harmonic)",
+   "hands": "both",
+   "bpm": 69,
+   "wait": 50,
+   "learn": "Each minor key twice: first the natural minor, then the harmonic minor, which raises the 7th note (G♯ in A minor, D♯ in E minor, C♯ in D minor).",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Listen for the raised 7th: it pulls strongly back to the tonic.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "27-scales-1-minor.musicxml"
+  },
+  {
+   "id": "contrary-1",
+   "level": 2,
+   "kind": "technique",
+   "title": "Contrary motion, two octaves",
+   "hands": "both",
+   "bpm": 69,
+   "wait": 45,
+   "learn": "C major in contrary motion over two octaves, hands together: the hands move away from each other and back, using the same finger numbers at the same time.",
+   "tips": [
+    "Both thumbs pass under at the same moment.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "28-contrary-1.musicxml"
+  },
+  {
+   "id": "chromatic-1",
+   "level": 2,
+   "kind": "technique",
+   "title": "Chromatic scale from C",
+   "hands": "both",
+   "bpm": 69,
+   "wait": 50,
+   "learn": "Every key, black and white, for one octave. Black keys use finger 3, white keys the thumb, except where two white keys sit together (E–F, B–C), which use 1–2.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Keep the hand close to the black keys; the thumb and finger 3 do most of the work."
+   ],
+   "file": "29-chromatic-1.musicxml"
+  },
+  {
+   "id": "tonic-triads-1",
+   "level": 2,
+   "kind": "technique",
+   "title": "Tonic triads: C, G and F major (broken)",
+   "hands": "both",
+   "bpm": 50,
+   "wait": 35,
+   "learn": "Broken tonic triads through root position and both inversions, up and down, ending with the solid chord.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Keep the wrist level as the hand moves to each inversion."
+   ],
+   "file": "30-tonic-triads-1.musicxml"
+  },
+  {
+   "id": "tonic-triads-1m",
+   "level": 2,
+   "kind": "technique",
+   "title": "Tonic triads: A, E and D minor (broken)",
+   "hands": "both",
+   "bpm": 50,
+   "wait": 35,
+   "learn": "The minor tonic triads, broken, through all inversions.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "The minor triad has a minor third (3 half steps) at the bottom."
+   ],
+   "file": "31-tonic-triads-1m.musicxml"
+  },
+  {
+   "id": "solid-triads-1",
+   "level": 2,
+   "kind": "technique",
+   "title": "Solid tonic triads: C, G, F, A, E and D",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 70,
+   "learn": "The same triads played solid (all notes together), with a rest after each chord.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Press the three notes exactly together and release them together on the rest."
+   ],
+   "file": "32-solid-triads-1.musicxml"
   },
   {
    "id": "three-chords",
-   "level": 4,
+   "level": 2,
+   "kind": "piece",
    "title": "Three chords: C, F and G",
    "hands": "both",
    "bpm": 70,
@@ -207,11 +693,12 @@
     "Move as few fingers as possible between chords.",
     "The left hand plays the chord name: C, F or G."
    ],
-   "file": "14-three-chords.musicxml"
+   "file": "33-three-chords.musicxml"
   },
   {
    "id": "broken-chords",
-   "level": 4,
+   "level": 2,
+   "kind": "piece",
    "title": "Ode to Joy with broken chords",
    "hands": "both",
    "bpm": 72,
@@ -221,81 +708,12 @@
     "Learn the left-hand pattern alone first: 5 1 3 1.",
     "Keep the left hand quieter than the melody."
    ],
-   "file": "15-broken-chords.musicxml"
-  },
-  {
-   "id": "contrary",
-   "level": 4,
-   "title": "Contrary motion scale",
-   "hands": "both",
-   "bpm": 72,
-   "wait": 40,
-   "learn": "The hands move in opposite directions, mirroring each other. Both use the same fingers at the same time, which makes it easier than the parallel scale.",
-   "tips": [
-    "Both thumbs cross under at the same moment.",
-    "Listen for the hands to sound exactly together."
-   ],
-   "file": "16-contrary.musicxml"
-  },
-  {
-   "id": "progression",
-   "level": 4,
-   "title": "Chord progression study",
-   "hands": "both",
-   "bpm": 80,
-   "wait": 50,
-   "learn": "The famous I–V–vi–IV progression (C, G, A minor, F) with flowing right-hand arpeggios. Hundreds of pop songs use these four chords.",
-   "tips": [
-    "Each right-hand bar uses one chord shape: 1 2 3 5, back down.",
-    "Say the chord names as you play: C, G, A minor, F."
-   ],
-   "file": "17-progression.musicxml"
-  },
-  {
-   "id": "row-your-boat",
-   "level": 5,
-   "title": "Row, Row, Row Your Boat",
-   "hands": "both",
-   "bpm": 96,
-   "wait": 60,
-   "learn": "A round in 6/8 time: each bar has two big beats, each split into three. The \"merrily\" bar uses a stretched hand from C to the C above.",
-   "tips": [
-    "Count \"1-2-3 4-5-6\" with the stress on 1 and 4.",
-    "In bar 5 the hand opens to an octave: C (5), G (3), E (2), C (1)."
-   ],
-   "file": "18-row-your-boat.musicxml"
-  },
-  {
-   "id": "london-bridge",
-   "level": 5,
-   "title": "London Bridge",
-   "hands": "both",
-   "bpm": 100,
-   "wait": 70,
-   "learn": "The melody uses six notes, so the right hand sits one key higher than C position: thumb on D, little finger on A.",
-   "tips": [
-    "The dotted quarter and eighth sound \"long-short\".",
-    "At the end the thumb moves down from D to C."
-   ],
-   "file": "19-london-bridge.musicxml"
-  },
-  {
-   "id": "jingle-bells",
-   "level": 5,
-   "title": "Jingle Bells",
-   "hands": "both",
-   "bpm": 110,
-   "wait": 70,
-   "learn": "The famous chorus, all in C position. Repeated notes need a light, bouncy touch.",
-   "tips": [
-    "Keep finger 3 on E for the opening \"jingle bells\".",
-    "The left hand changes to F in bar 5 and G in bars 7–8."
-   ],
-   "file": "20-jingle-bells.musicxml"
+   "file": "34-broken-chords.musicxml"
   },
   {
    "id": "happy-birthday",
-   "level": 5,
+   "level": 2,
+   "kind": "piece",
    "title": "Happy Birthday",
    "hands": "both",
    "bpm": 100,
@@ -305,11 +723,12 @@
     "Count \"3 | 1 2 3\": the two short opening notes come on beat 3.",
     "In bar 5 the hand leaps up to the high C with finger 5."
    ],
-   "file": "21-happy-birthday.musicxml"
+   "file": "35-happy-birthday.musicxml"
   },
   {
    "id": "silent-night",
-   "level": 5,
+   "level": 2,
+   "kind": "piece",
    "title": "Silent Night",
    "hands": "both",
    "bpm": 90,
@@ -319,11 +738,12 @@
     "Play smoothly, joining the notes (legato).",
     "The left hand plays just C, F and G."
    ],
-   "file": "22-silent-night.musicxml"
+   "file": "36-silent-night.musicxml"
   },
   {
    "id": "greensleeves",
-   "level": 6,
+   "level": 2,
+   "kind": "piece",
    "title": "Greensleeves",
    "hands": "both",
    "bpm": 100,
@@ -333,11 +753,221 @@
     "The rhythm \"long-short-long\" (dotted quarter, eighth, quarter) repeats through the song.",
     "Finger 3 crosses over the thumb in bar 8."
    ],
-   "file": "23-greensleeves.musicxml"
+   "file": "37-greensleeves.musicxml"
+  },
+  {
+   "id": "ear-1",
+   "level": 2,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "clapback",
+    "intervals",
+    "chords",
+    "playback"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee"
+    ],
+    "bars": 3
+   },
+   "intervals": [
+    "m3",
+    "M3"
+   ],
+   "chords": {
+    "style": "broken-solid"
+   },
+   "playback": {
+    "degrees": 5,
+    "keys": [
+     "C",
+     "G",
+     "Am"
+    ],
+    "starts": [
+     0,
+     4
+    ],
+    "length": 5
+   },
+   "learn": "Clap back a rhythm, name minor and major thirds, tell major from minor, and play back a five-note melody."
+  },
+  {
+   "id": "sight-1",
+   "level": 2,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee"
+    ],
+    "bars": 2
+   },
+   "playing": {
+    "style": "divided",
+    "keys": [
+     "C",
+     "G",
+     "F",
+     "Am"
+    ],
+    "bars": 4,
+    "values": [
+     "q",
+     "h",
+     "h."
+    ]
+   },
+   "learn": "Tap a rhythm at sight, then play a four-bar melody shared between the hands in C, G, F major or A minor."
+  },
+  {
+   "id": "scales-2-major",
+   "level": 3,
+   "kind": "technique",
+   "title": "Two-octave scales: G, F and B♭ major",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "B♭ major starts on a black key, so its fingering begins with finger 4 in the right hand and 3 in the left: the thumbs land on C and F.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "B♭ major, right hand: 4 1 2 3 1 2 3 4; left hand: 3 2 1 4 3 2 1 3.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "38-scales-2-major.musicxml"
+  },
+  {
+   "id": "scales-2-harmonic",
+   "level": 3,
+   "kind": "technique",
+   "title": "Harmonic minor scales: E, D and G",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "Harmonic minor raises the 7th note going up and down: D♯ in E minor, C♯ in D minor, F♯ in G minor.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "39-scales-2-harmonic.musicxml"
+  },
+  {
+   "id": "scales-2-melodic",
+   "level": 3,
+   "kind": "technique",
+   "title": "Melodic minor scales: E, D and G",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "Melodic minor raises the 6th and 7th notes going up and comes down as the natural minor.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Going up it sounds almost like major; coming down it is minor again.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "40-scales-2-melodic.musicxml"
+  },
+  {
+   "id": "chromatic-2",
+   "level": 3,
+   "kind": "technique",
+   "title": "Chromatic scale from G",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "The chromatic scale starting on G. The same rule: black keys 3, white keys 1, and 1–2 where two white keys meet.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand."
+   ],
+   "file": "41-chromatic-2.musicxml"
+  },
+  {
+   "id": "tonic-triads-2",
+   "level": 3,
+   "kind": "technique",
+   "title": "Tonic triads: G, F, B♭ major and E, D, G minor (broken)",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "Broken tonic triads in the Level 2 keys, through all inversions.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand."
+   ],
+   "file": "42-tonic-triads-2.musicxml"
+  },
+  {
+   "id": "solid-triads-2",
+   "level": 3,
+   "kind": "technique",
+   "title": "Solid tonic triads: G, F, B♭ major and E, D, G minor",
+   "hands": "both",
+   "bpm": 112,
+   "wait": 80,
+   "learn": "The Level 2 tonic triads played solid with rests, up and down.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand."
+   ],
+   "file": "43-solid-triads-2.musicxml"
+  },
+  {
+   "id": "progression",
+   "level": 3,
+   "kind": "piece",
+   "title": "Chord progression study",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "The famous I–V–vi–IV progression (C, G, A minor, F) with flowing right-hand arpeggios. Hundreds of pop songs use these four chords.",
+   "tips": [
+    "Each right-hand bar uses one chord shape: 1 2 3 5, back down.",
+    "Say the chord names as you play: C, G, A minor, F."
+   ],
+   "file": "44-progression.musicxml"
   },
   {
    "id": "canon",
-   "level": 6,
+   "level": 3,
+   "kind": "piece",
    "title": "Canon (Pachelbel), simplified",
    "hands": "both",
    "bpm": 72,
@@ -347,11 +977,12 @@
     "Going down, finger 3 crosses over the thumb.",
     "Let each half note ring for its full two beats."
    ],
-   "file": "24-canon.musicxml"
+   "file": "45-canon.musicxml"
   },
   {
    "id": "nachtmusik",
-   "level": 6,
+   "level": 3,
+   "kind": "piece",
    "title": "Eine kleine Nachtmusik",
    "hands": "both",
    "bpm": 100,
@@ -361,11 +992,12 @@
     "Lift the hand during the eighth rests.",
     "Play the quarter notes short and bright."
    ],
-   "file": "25-nachtmusik.musicxml"
+   "file": "46-nachtmusik.musicxml"
   },
   {
    "id": "fur-elise",
-   "level": 6,
+   "level": 3,
+   "kind": "piece",
    "title": "Für Elise (opening)",
    "hands": "both",
    "bpm": 60,
@@ -376,7 +1008,118 @@
     "Practise the hand changes slowly with Wait for me.",
     "Use the pedal later; first make the notes even."
    ],
-   "file": "26-fur-elise.musicxml"
+   "file": "47-fur-elise.musicxml"
+  },
+  {
+   "id": "ear-2",
+   "level": 3,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "clapback",
+    "intervals",
+    "chords",
+    "playback"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e"
+    ],
+    "bars": 3
+   },
+   "intervals": [
+    "m3",
+    "M3",
+    "P5"
+   ],
+   "chords": {
+    "style": "solid"
+   },
+   "playback": {
+    "degrees": 5,
+    "keys": [
+     "G",
+     "F",
+     "Dm"
+    ],
+    "starts": [
+     0,
+     4
+    ],
+    "length": 5
+   },
+   "learn": "Clap back a rhythm, name minor thirds, major thirds and perfect fifths, tell major from minor, and play back a five-note melody."
+  },
+  {
+   "id": "sight-2",
+   "level": 3,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e",
+     "rq"
+    ],
+    "bars": 3
+   },
+   "playing": {
+    "style": "divided",
+    "keys": [
+     "C",
+     "G",
+     "F",
+     "Am",
+     "Dm"
+    ],
+    "bars": 4,
+    "values": [
+     "q",
+     "h",
+     "ee"
+    ],
+    "wide": true
+   },
+   "learn": "Tap a rhythm with rests at sight, then play a four-bar melody shared between the hands that may move beyond the five-finger position."
   }
  ]
 }

@@ -120,6 +120,14 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
 #lessons .row .n{width:28px;color:var(--muted);font-variant-numeric:tabular-nums}
 #lessons .row .t{flex:1}
 #lessons .row .t small{display:block;color:var(--muted);font-size:13px}
+#lessons .kind{margin:12px 0 2px;font-size:13px;font-weight:600;color:var(--accent)}
+#trainer{max-width:820px;margin:16px auto;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:#fff}
+#trainer[hidden]{display:none}
+#trainer h3{margin:0 0 6px;font-size:18px}
+#trainer .prompt{font-size:17px}
+#trainer .tbtns{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+#trainer .fb{min-height:24px;font-size:17px}
+body.hide #score svg{opacity:.06}
 #lessons .row.next{background:#f4f1ea;border-radius:10px;padding-left:8px;padding-right:8px}
 .stars{font-size:15px;letter-spacing:2px;color:#9aa3b2;white-space:nowrap}
 .stars b{color:var(--accent);font-weight:400}
@@ -154,16 +162,17 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
     <button data-v="piano">Piano</button><button data-v="tablet">Tablet</button></div></div>
   <div class="grp"><input id="showkb" type="checkbox" aria-label="Show keyboard"><span>Keyboard</span></div>
   <div class="grp"><input id="showfing" type="checkbox" aria-label="Show finger numbers"><span>Finger numbers</span></div>
+  <div class="grp"><input id="hidenotes" type="checkbox" aria-label="Hide the notes"><span>Hide the notes (from memory)</span></div>
   <button id="full">Full screen</button>
   <button id="install" hidden>Install app</button>
   <span class="muted" id="version" style="font-size:13px"></span>
 </div>
-<main id="scroll"><div id="lesson" hidden></div><div id="wrap"><div id="score"></div><div id="heat"></div><div id="fing"></div><div id="marks"></div></div></main>
+<main id="scroll"><div id="lesson" hidden></div><div id="trainer" hidden></div><div id="wrap"><div id="score"></div><div id="heat"></div><div id="fing"></div><div id="marks"></div></div></main>
 <footer><div id="status">Loading…</div><div id="kb"></div></footer>
 <div id="card" hidden role="status"></div>
 <div id="lessons" hidden role="dialog" aria-modal="true" aria-label="Lessons"><div class="sheet">
   <div class="top"><h2>Lessons</h2><button id="lclose">Close</button></div>
-  <p class="muted">Work through the lessons in order. Each one has three steps: <b>listen</b>, play it with <b>Wait for me</b>, then <b>Play along</b> at the target tempo. Finger numbers show which finger plays each note: 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger.</p>
+  <p class="muted">The levels and their parts (technique, pieces, ear tests and sight reading) follow the <a href="https://www.rcmusic.com/syllabi" target="_blank" rel="noopener">RCM Piano Syllabus</a> (2022 edition), from Preparatory A to Level 2. Technique and pieces have three steps: <b>listen</b>, <b>Wait for me</b>, then <b>Play along</b> at the target tempo. Finger numbers: 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger.</p>
   <div id="llist"></div>
 </div></div>
 <div id="prog" hidden role="dialog" aria-modal="true" aria-labelledby="ptitle"><div class="sheet">
@@ -184,7 +193,7 @@ const store = {
   get(k, d) { try { const v = localStorage.getItem('pr.' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v) { try { localStorage.setItem('pr.' + k, JSON.stringify(v)); } catch {} },
 };
-const S = Object.assign({bpm: 100, hands: 'both', mode: 'listen', zoom: 1, loop: false, kb: true, sound: 'piano', heat: true, fingers: true}, store.get('settings', {}));
+const S = Object.assign({bpm: 100, hands: 'both', mode: 'listen', zoom: 1, loop: false, kb: true, sound: 'piano', heat: true, fingers: true, hide: false}, store.get('settings', {}));
 const save = () => store.set('settings', S);
 let osmd, steps = [], pos = 0, bars = 1, playing = false, timer = null, target = 0;
 let actx = null, master = null, need = new Set(), lock = null, title = '';
@@ -373,7 +382,7 @@ function drawFingers() {                 // finger badges above (right hand) and
   const layer = $('fing'); layer.innerHTML = '';
   $('kb').querySelectorAll('[data-f]').forEach(k => delete k.dataset.f);
   const st = steps[pos], cur = osmd?.cursor?.cursorElement, svg = $('score').querySelector('svg');
-  if (!S.fingers || !st || !cur || !svg || cur.style.display === 'none') return;
+  if (!S.fingers || !st || !cur || !svg || cur.style.display === 'none' || (lesson?.kind === 'sight' && sightType === 'rhythm')) return;
   const ms = osmd.GraphicSheet.MeasureList[st.bar]; if (!ms?.[0]) return;
   const u = 10 * osmd.zoom, W = $('wrap').getBoundingClientRect(), G = svg.getBoundingClientRect(), C = cur.getBoundingClientRect();
   for (const left of [false, true]) {
@@ -579,6 +588,8 @@ function judge(m, i, n, off) {           // count a correct note and how close t
 function press(m, sound, t) {
   if (sound) tone(m, 0.6);
   t = t || performance.now();
+  if (ear) { flash(m, 'on', 160); return earKey(m, t); }                       // ear tests take the keys
+  if (lesson?.kind === 'sight' && sightType === 'rhythm' && playing) m = 72;    // rhythm reading: any key taps
   if (!playing || S.mode === 'listen' || !run) {
     const ref = expected(m);
     mark(m, ref ? 'ok' : null, ref); flash(m, 'on', 180); info(`You played ${noteName(m)}`); return;
@@ -685,7 +696,7 @@ function showCard(s, bars, lessonMsg) {
 }
 function drawHeat() {                    // tint each practised bar: green = good, yellow = some trouble, red = needs work
   const h = $('heat'); h.innerHTML = '';
-  const svg = $('score').querySelector('svg'); if (!S.heat || !steps.length || !svg) return;
+  const svg = $('score').querySelector('svg'); if (!S.heat || !steps.length || !svg || lesson?.kind === 'sight') return;   // sight reading: always new music
   const u = 10 * osmd.zoom, W = $('wrap').getBoundingClientRect(), G = svg.getBoundingClientRect();
   for (const [b, c] of Object.entries(progress().bars)) {
     const sc = barScore(c), ms = osmd.GraphicSheet.MeasureList[b]; if (!sc || !ms?.[0]) continue;
@@ -783,22 +794,30 @@ async function loadScore(data, name) {
   }
 }
 
-/* ---------- lessons ---------- */
+/* ---------- lessons (levels and parts follow the RCM Piano Syllabus, 2022 edition) ---------- */
 let course = null, lesson = null;
 const lessonsDone = () => store.get('lessons', null) || {};
+const KIND = {technique: 'Technique', piece: 'Pieces', ear: 'Ear tests', sight: 'Sight reading'};
+const isDone = (L, d = lessonsDone()[L.id] || {}) => L.kind === 'ear' || L.kind === 'sight' ? !!d.passed : !!d.along;
 async function getCourse() {
   if (!course) course = await fetch('lessons/lessons.json').then(r => r.json());
   return course;
 }
 function setSeg(id, k, v) { S[k] = v; save(); $(id).querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === v)); dimHands(); }
+function enterLesson(L) {
+  lesson = L; store.set('score', {lesson: L.id});
+  $('lessons').hidden = true; $('panel').hidden = true; $('card').hidden = true; $('lesson').classList.remove('min');
+}
 async function startLesson(id) {
   const c = await getCourse(), L = c.lessons.find(l => l.id === id); if (!L) return false;
+  leaveTrainer();
+  if (L.kind === 'ear') { pause(); enterLesson(L); showLesson(); openTrainer(); return true; }
+  if (L.kind === 'sight') { enterLesson(L); showLesson(); return newSight(L.tests.includes('playing') ? 'playing' : 'rhythm'); }
   const xml = await fetch('lessons/' + L.file).then(r => { if (!r.ok) throw new Error(r.status); return r.text(); });
   if (!await loadScore(xml, L.title)) return false;
-  lesson = L; store.set('score', {lesson: L.id});
+  enterLesson(L);
   setSeg('hands', 'hands', L.hands); setSeg('mode', 'mode', 'listen'); setBpm(L.bpm, false);
   S.loop = $('loop').checked = false; save();
-  $('lessons').hidden = true; $('panel').hidden = true; $('lesson').classList.remove('min');
   showLesson(); info(); drawFingers();
   return true;
 }
@@ -807,42 +826,53 @@ function lessonGoal(L, step) {
     wait: `Play it to the end with 90% correct${L.hands === 'both' ? ', both hands' : ''}`,
     along: `At ${L.bpm} bpm: 90% correct and 70% on time`}[step];
 }
+const nextLesson = L => course.lessons[course.lessons.indexOf(L) + 1];
 function showLesson() {
   const el = $('lesson'); el.hidden = !lesson; if (!lesson) return;
-  const L = lesson, n = course.lessons.indexOf(L), d = lessonsDone()[L.id] || {};
-  const handName = {right: 'right hand', left: 'left hand', both: 'both hands'}[L.hands];
-  el.innerHTML = `<div class="lt"><div style="flex:1"><div class="lv">Lesson ${n + 1} of ${course.lessons.length} · ${course.levels[L.level]} · ${handName}</div><h2></h2></div>
-    <button data-a="min" aria-label="Show or hide the lesson">▾</button><button data-a="list">All lessons</button></div>
-    <div class="body"><p class="learn"></p><ul>${L.tips.map(() => '<li></li>').join('')}</ul>
-    <div class="steps">
-      <button data-a="listen" class="${d.listen ? 'done' : ''}"><b>1 · Listen</b><small>${lessonGoal(L, 'listen')}</small></button>
+  const L = lesson, n = course.lessons.indexOf(L), d = lessonsDone()[L.id] || {}, nx = nextLesson(L);
+  const sub = L.kind === 'ear' || L.kind === 'sight' ? KIND[L.kind] : `${KIND[L.kind]} · ${{right: 'right hand', left: 'left hand', both: 'both hands'}[L.hands]}`;
+  let steps;
+  if (L.kind === 'ear') {
+    const best = d.tests || {};
+    steps = L.tests.map(t => `<button data-a="ear:${t}" class="${best[t] >= 8 ? 'done' : ''}"><b>${EAR[t].name}</b><small>${best[t] !== undefined ? `best ${best[t]}/10` : EAR[t].short}</small></button>`).join('');
+  } else if (L.kind === 'sight') {
+    steps = L.tests.map(t => `<button data-a="sight:${t}" class="${(d[t] || 0) >= 3 ? 'done' : ''}"><b>New ${t === 'rhythm' ? 'rhythm' : 'playing'} exercise</b><small>${Math.min(3, d[t] || 0)} of 3 passed · ${t === 'rhythm' ? 'tap any key' : 'play the notes'}</small></button>`).join('');
+  } else {
+    steps = `<button data-a="listen" class="${d.listen ? 'done' : ''}"><b>1 · Listen</b><small>${lessonGoal(L, 'listen')}</small></button>
       <button data-a="wait" class="${d.wait ? 'done' : ''}"><b>2 · Wait for me</b><small>${lessonGoal(L, 'wait')} · ${L.wait} bpm</small></button>
-      <button data-a="along" class="${d.along ? 'done' : ''}"><b>3 · Play along</b><small>${lessonGoal(L, 'along')}</small></button>
-      ${d.along && course.lessons[n + 1] ? '<button data-a="next" class="primary"><b>Next lesson →</b><small></small></button>' : ''}
-    </div></div>`;
+      <button data-a="along" class="${d.along ? 'done' : ''}"><b>3 · Play along</b><small>${lessonGoal(L, 'along')}</small></button>`;
+  }
+  el.innerHTML = `<div class="lt"><div style="flex:1"><div class="lv">${course.levels[L.level]} · lesson ${n + 1} of ${course.lessons.length} · ${sub}</div><h2></h2></div>
+    <button data-a="min" aria-label="Show or hide the lesson">▾</button><button data-a="list">All lessons</button></div>
+    <div class="body"><p class="learn"></p><ul>${(L.tips || []).map(() => '<li></li>').join('')}</ul>
+    <div class="steps">${steps}${isDone(L, d) && nx ? '<button data-a="next" class="primary"><b>Next lesson →</b><small></small></button>' : ''}</div></div>`;
   el.querySelector('h2').textContent = L.title;
   el.querySelector('.learn').textContent = L.learn;
   el.querySelectorAll('li').forEach((li, i) => { li.textContent = L.tips[i]; });
-  if (d.along && course.lessons[n + 1]) el.querySelector('[data-a=next] small').textContent = course.lessons[n + 1].title;
+  if (isDone(L, d) && nx) el.querySelector('[data-a=next] small').textContent = nx.title;
   el.onclick = e => {
     const a = e.target.closest('button')?.dataset.a; if (!a) return;
     if (a === 'min') return el.classList.toggle('min');
     if (a === 'list') return openLessons();
-    if (a === 'next') return startLesson(course.lessons[n + 1].id);
+    if (a === 'next') return startLesson(nx.id);
+    if (a.startsWith('ear:')) return earStart(a.slice(4));
+    if (a.startsWith('sight:')) return newSight(a.slice(6));
     setSeg('mode', 'mode', a); setBpm(a === 'wait' ? L.wait : L.bpm, false);
     if (a !== 'listen') setSeg('hands', 'hands', L.hands);
     $('card').hidden = true; pause(); gotoStep(0); play();
   };
 }
-function lessonStep(step) {              // mark a lesson step as done
-  if (!lesson) return;
+function saveDone(update) {              // change this lesson's saved progress
   const all = lessonsDone(), d = all[lesson.id] || {};
-  d[step] = true; all[lesson.id] = d; store.set('lessons', all); showLesson();
+  update(d); all[lesson.id] = d; store.set('lessons', all); showLesson();
   if (!$('lessons').hidden) openLessons();      // keep an open lesson list current
 }
+function lessonStep(step) { if (lesson && lesson.kind !== 'ear' && lesson.kind !== 'sight') saveDone(d => { d[step] = true; }); }
 function lessonResult(s) {               // what this finished run means for the lesson
   if (!lesson) return null;
   const L = lesson, why = [];
+  if (L.kind === 'sight') return sightResult(s);
+  if (L.kind === 'ear') return null;
   if (s.hands !== L.hands) why.push(`play with ${L.hands === 'both' ? 'both hands' : `the ${L.hands} hand`}`);
   if (s.acc < 90) why.push(`reach 90% correct (you had ${s.acc}%)`);
   if (s.mode === 'along' && s.ont < 70) why.push(`reach 70% on time (you had ${s.ont}%)`);
@@ -850,29 +880,296 @@ function lessonResult(s) {               // what this finished run means for the
   if (why.length) return `<small>To complete this lesson step: ${why.join(', ')}.</small>`;
   lessonStep(s.mode);
   if (s.mode === 'wait') return '<b>✓ Step 2 done!</b> <small>Now try step 3, Play along.</small>';
-  const next = course.lessons[course.lessons.indexOf(L) + 1];
-  return `<b>★ Lesson passed!</b> <small>${next ? 'Next: ' + next.title.replace(/</g, '') + '.' : 'You finished the whole course!'}</small>`;
+  const nx = nextLesson(L);
+  return `<b>★ Lesson passed!</b> <small>${nx ? 'Next: ' + nx.title.replace(/</g, '') + '.' : 'You finished the whole course!'}</small>`;
 }
 async function openLessons() {
   const c = await getCourse(), done = lessonsDone(), list = $('llist');
-  const next = c.lessons.find(l => !done[l.id]?.along);
+  const next = c.lessons.find(l => !isDone(l, done[l.id] || {}));
   list.innerHTML = '';
   c.levels.forEach((lv, li) => {
-    const h = document.createElement('h3'); h.textContent = `Level ${li + 1} · ${lv}`; list.append(h);
-    c.lessons.forEach((L, i) => {
-      if (L.level !== li) return;
-      const d = done[L.id] || {}, row = document.createElement('div');
+    const mine = c.lessons.filter(L => L.level === li);
+    const h = document.createElement('h3'); h.textContent = `${lv} · ${mine.filter(L => isDone(L, done[L.id] || {})).length} of ${mine.length} done`; list.append(h);
+    let kind = null;
+    for (const L of mine) {
+      if (L.kind !== kind) { kind = L.kind; const k = document.createElement('div'); k.className = 'kind'; k.textContent = KIND[kind]; list.append(k); }
+      const i = c.lessons.indexOf(L), d = done[L.id] || {}, row = document.createElement('div');
       row.className = 'row' + (L === next ? ' next' : '');
-      row.innerHTML = `<span class="n">${i + 1}</span><span class="t"><b></b><small>${{right: 'Right hand', left: 'Left hand', both: 'Both hands'}[L.hands]} · ${L.bpm} bpm</small></span>` +
-        `<span class="stars" title="Listen · Wait for me · Play along" aria-label="${['listen', 'wait', 'along'].filter(k => d[k]).length} of 3 steps done">${['listen', 'wait', 'along'].map(k => d[k] ? '<b>●</b>' : '○').join('')}</span>`;
+      let sub, status;
+      if (L.kind === 'ear') {
+        sub = L.tests.map(t => EAR[t].name).join(' · ');
+        const n = L.tests.filter(t => (d.tests || {})[t] >= 8).length;
+        status = `<span class="stars" aria-label="${n} of ${L.tests.length} tests passed">${L.tests.map(t => (d.tests || {})[t] >= 8 ? '<b>●</b>' : '○').join('')}</span>`;
+      } else if (L.kind === 'sight') {
+        sub = L.tests.map(t => `${t === 'rhythm' ? 'Rhythm' : 'Playing'} ${Math.min(3, d[t] || 0)}/3`).join(' · ');
+        status = `<span class="stars">${d.passed ? '<b>●</b>' : '○'}</span>`;
+      } else {
+        sub = `${{right: 'Right hand', left: 'Left hand', both: 'Both hands'}[L.hands]} · ${L.bpm} bpm`;
+        status = `<span class="stars" title="Listen · Wait for me · Play along" aria-label="${['listen', 'wait', 'along'].filter(k => d[k]).length} of 3 steps done">${['listen', 'wait', 'along'].map(k => d[k] ? '<b>●</b>' : '○').join('')}</span>`;
+      }
+      row.innerHTML = `<span class="n">${i + 1}</span><span class="t"><b></b><small>${sub}</small></span>${status}`;
       row.querySelector('.t b').textContent = L.title;
-      const b = document.createElement('button'); b.textContent = L === next ? 'Start ▶' : d.along ? 'Again' : 'Start';
+      const b = document.createElement('button'); b.textContent = L === next ? 'Start ▶' : isDone(L, d) ? 'Again' : 'Start';
       if (L === next) b.className = 'primary';
       b.onclick = () => startLesson(L.id).catch(() => { $('status').textContent = 'Could not open this lesson. Check the internet connection.'; });
       row.append(b); list.append(row);
-    });
+    }
   });
   $('card').hidden = true; $('prog').hidden = true; $('lessons').hidden = false;
+}
+
+/* ---------- music helpers for generated exercises ---------- */
+const KEYNOTES = {C: ['C D E F G A B', 0], G: ['G A B C D E F#', 1], D: ['D E F# G A B C#', 2], F: ['F G A Bb C D E', -1],
+  Am: ['A B C D E F G', 0], Dm: ['D E F G A Bb C', -1], Em: ['E F# G A B C D', 1]};
+const KEYNAME = {C: 'C major', G: 'G major', D: 'D major', F: 'F major', Am: 'A minor', Dm: 'D minor', Em: 'E minor'};
+const PC = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11};
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function placeNotes(key, octave, count, from = 0) {    // scale notes upward from degree `from`, as "F#4"-style names
+  const names = KEYNOTES[key][0].split(' '), out = [];
+  let prev = null;
+  if (from < 0 && 'CDEFGAB'.indexOf(names[6][0]) > 'CDEFGAB'.indexOf(names[0][0])) octave--;   // the note below the tonic is in the octave below (B under C)
+  for (let i = from; i < from + count; i++) {
+    const n = names[((i % 7) + 7) % 7], li = 'CDEFGAB'.indexOf(n[0]);
+    if (prev !== null && li <= prev) octave++;
+    out.push(n + octave); prev = li;
+  }
+  return out;
+}
+function midiOf(name) {
+  const m = name.match(/^([A-G])(#|b)?(-?\d)$/);
+  return (+m[3] + 1) * 12 + PC[m[1]] + (m[2] === '#' ? 1 : m[2] === 'b' ? -1 : 0);
+}
+const TYPES = {1: ['16th'], 2: ['eighth'], 3: ['eighth', 1], 4: ['quarter'], 6: ['quarter', 1], 8: ['half'], 12: ['half', 1], 16: ['whole']};
+function scoreXml(title, beats, fifths, bars, bpm) {   // bars: [{r: [[name|null, sixteenths, finger?]], l: [...]}]
+  const len = beats * 4;
+  const part = (notes, staff, voice) => {
+    if (!notes?.length) return `<note><rest measure="yes"/><duration>${len}</duration><voice>${voice}</voice><staff>${staff}</staff></note>`;
+    return notes.map(([n, d, f]) => {
+      const [type, dot] = TYPES[d], dots = dot ? '<dot/>' : '';
+      if (!n) return `<note><rest/><duration>${d}</duration><voice>${voice}</voice><type>${type}</type>${dots}<staff>${staff}</staff></note>`;
+      const m = n.match(/^([A-G])(#|b)?(-?\d)$/), alter = m[2] ? `<alter>${m[2] === '#' ? 1 : -1}</alter>` : '';
+      const fing = f ? `<notations><technical><fingering placement="${staff === 1 ? 'above' : 'below'}">${f}</fingering></technical></notations>` : '';
+      return `<note><pitch><step>${m[1]}</step>${alter}<octave>${m[3]}</octave></pitch><duration>${d}</duration><voice>${voice}</voice><type>${type}</type>${dots}<staff>${staff}</staff>${fing}</note>`;
+    }).join('');
+  };
+  const ms = bars.map((b, i) => `<measure number="${i + 1}">${i ? '' : `<attributes><divisions>4</divisions><key><fifths>${fifths}</fifths></key><time><beats>${beats}</beats><beat-type>4</beat-type></time><staves>2</staves><clef number="1"><sign>G</sign><line>2</line></clef><clef number="2"><sign>F</sign><line>4</line></clef></attributes><direction placement="above"><direction-type><metronome><beat-unit>quarter</beat-unit><per-minute>${bpm}</per-minute></metronome></direction-type><staff>1</staff><sound tempo="${bpm}"/></direction>`}` +
+    `${part(b.r, 1, 1)}<backup><duration>${len}</duration></backup>${part(b.l, 2, 5)}${i === bars.length - 1 ? '<barline location="right"><bar-style>light-heavy</bar-style></barline>' : ''}</measure>`).join('');
+  return `<?xml version="1.0" encoding="UTF-8"?><score-partwise version="3.1"><work><work-title>${title}</work-title></work><part-list><score-part id="P1"><part-name>Piano</part-name></score-part></part-list><part id="P1">${ms}</part></score-partwise>`;
+}
+// A random rhythm: each bar filled with the given values ('q', 'h', 'h.', 'ee' two eighths, 'q.e', 'rq' quarter rest).
+const VAL = {q: [4], h: [8], 'h.': [12], ee: [2, 2], 'q.e': [6, 2], rq: [-4]};
+function makeRhythm(values, beats, bars) {
+  const out = [];
+  for (let b = 0; b < bars; b++) {
+    let left = beats * 4, bar = [];
+    while (left > 0) {
+      const fits = values.filter(v => VAL[v].reduce((a, x) => a + Math.abs(x), 0) <= left && !(v === 'rq' && b === 0 && !bar.length));
+      for (const v of ['q', 'h']) if (fits.includes(v)) fits.push(v, v);     // favour quarters and halves
+      const last = b === bars - 1 && left <= 8;            // end on a longer note
+      const v = last && fits.includes(left === 8 ? 'h' : left === 12 ? 'h.' : 'q') ? (left === 8 ? 'h' : left === 12 ? 'h.' : 'q') : pick(fits);
+      for (const x of VAL[v]) { bar.push(x); left -= Math.abs(x); }
+    }
+    out.push(bar);
+  }
+  return out;
+}
+
+/* ---------- sight reading ---------- */
+let sightType = null;
+async function newSight(type) {
+  const L = lesson, cfg = L[type];
+  leaveTrainer(); sightType = type;
+  let title, xml, bpm;
+  if (type === 'rhythm') {                     // one note (middle C), any key counts: the rhythm is what matters
+    const [beats] = pick(cfg.meters), r = makeRhythm(cfg.values, beats, cfg.bars);
+    bpm = 72; title = 'Rhythm reading';
+    xml = scoreXml(title, beats, 0, r.map(bar => ({r: bar.map(d => d < 0 ? [null, -d] : ['C5', d])})), bpm);
+  } else if (cfg.style === 'two-hands-apart') {  // two four-note melodies: right hand, then left hand, by step in one direction
+    const tune = (oct, right) => {
+      const up = Math.random() < 0.5, start = up ? Math.floor(Math.random() * 2) : 2 + Math.floor(Math.random() * 3);
+      const p = placeNotes('C', oct, 5), out = [], rep = Math.floor(Math.random() * 4);
+      let d = start;
+      for (let i = 0; i < 4; i++) { out.push([p[d], 4, i ? null : right ? d + 1 : 5 - d]); if (i !== rep || Math.random() < 0.5) d += up ? 1 : -1; d = Math.max(0, Math.min(4, d)); }
+      return out;
+    };
+    bpm = 60; title = 'Sight reading';
+    xml = scoreXml(title, 4, 0, [{r: tune(4, true)}, {l: tune(3, false)}], bpm);
+  } else {                                      // a melody shared between the hands
+    const key = pick(cfg.keys), [beats] = pick([[3, 4], [4, 4]]), bars = cfg.bars;
+    const rh = placeNotes(key, 4, 7, cfg.wide ? -1 : 0), lh = placeNotes(key, 3, 7, cfg.wide ? -1 : 0);
+    const lo = 0, hi = cfg.wide ? 6 : 4, home = cfg.wide ? 1 : 0;   // home = where the tonic is in the note list
+    const rhythm = makeRhythm(cfg.values, beats, bars);
+    const split = Math.random() < 0.5 ? 'rl' : 'lr';  // which hand starts
+    let d = home + Math.floor(Math.random() * 5);    // starts on any note of the hand position (syllabus errata, Sept 2026)
+    const out = rhythm.map((bar, b) => {
+      const hand = b < bars / 2 ? split[0] : split[1], notes = hand === 'r' ? rh : lh;
+      return {[hand]: bar.map((dur, j) => {
+        const lastNote = b === bars - 1 && j === bar.length - 1;
+        if (lastNote) d = home;
+        else if (b || j) d = Math.max(lo, Math.min(hi, d + pick([-1, -1, 1, 1, 0, 2, -2])));
+        const first = j === 0 && (b === 0 || b === bars / 2);
+        const finger = first ? (hand === 'r' ? d - home + 1 : 5 - (d - home)) : null;
+        return [notes[d], dur, finger >= 1 && finger <= 5 ? finger : null];
+      })};
+    });
+    bpm = 60; title = `Sight reading in ${KEYNAME[key]}`;
+    xml = scoreXml(title, beats, KEYNOTES[key][1], out, bpm);
+  }
+  if (!await loadScore(xml, title)) return false;
+  setSeg('hands', 'hands', 'both'); setSeg('mode', 'mode', type === 'rhythm' ? 'along' : 'wait'); setBpm(bpm, false);
+  S.loop = $('loop').checked = false; save();
+  info(type === 'rhythm' ? 'Tap the rhythm on any key. Press ▶ Play, then start tapping' : 'Read it first, then press ▶ Play and play it');
+  return true;
+}
+function sightResult(s) {
+  const need = sightType === 'rhythm' ? s.acc >= 80 && s.ont >= 70 : s.acc >= 80;
+  if (s.mode === 'listen' || !need) return `<small>Sight reading: aim for 80% correct${sightType === 'rhythm' ? ' and 70% on time' : ''}. Try a new exercise.</small>`;
+  let passed = false;
+  saveDone(d => { d[sightType] = (d[sightType] || 0) + 1; d.passed = passed = lesson.tests.every(t => (d[t] || 0) >= 3); });
+  return passed ? '<b>★ Sight reading passed for this level!</b>' : `<b>✓ Exercise passed.</b> <small>Try a new one.</small>`;
+}
+
+/* ---------- ear tests ---------- */
+const EAR = {
+  clapback: {name: 'Clapback', short: 'tap back a rhythm'},
+  intervals: {name: 'Intervals', short: 'name the interval'},
+  chords: {name: 'Chords', short: 'major or minor?'},
+  playback: {name: 'Playback', short: 'play back a melody'},
+};
+const INTERVAL = {m3: [3, 'Minor 3rd'], M3: [4, 'Major 3rd'], P5: [7, 'Perfect 5th']};
+let ear = null;
+function openTrainer() {
+  $('wrap').hidden = true; $('trainer').hidden = false;
+  $('trainer').innerHTML = '<p class="muted">Choose a test above. Each test has 10 questions; 8 correct passes it.</p>';
+  $('status').textContent = `${lesson.title} · ${course.levels[lesson.level]}`;
+}
+function leaveTrainer() {
+  if (ear) ear.timers.forEach(clearTimeout);
+  ear = null; $('trainer').hidden = true; $('wrap').hidden = false;
+}
+function later(ms, fn) { const t = setTimeout(fn, ms); ear?.timers.push(t); return t; }
+function earStart(test) {
+  if (ear) ear.timers.forEach(clearTimeout);
+  pause(); $('wrap').hidden = true; $('trainer').hidden = false;
+  ear = {test, n: 0, right: 0, timers: [], q: null, taps: [], played: []};
+  earNext();
+}
+function earNext() {
+  const L = lesson, t = ear.test;
+  ear.n++; ear.q = null; ear.taps = []; ear.played = []; ear.listening = false;
+  const q = {};
+  if (t === 'chords') {
+    q.minor = Math.random() < 0.5; q.root = 55 + Math.floor(Math.random() * 10);
+    q.answers = [['major', 'Major'], ['minor', 'Minor']]; q.answer = q.minor ? 'minor' : 'major';
+  } else if (t === 'intervals') {
+    const k = pick(L.intervals); q.size = INTERVAL[k][0]; q.root = 55 + Math.floor(Math.random() * 10);
+    q.answers = L.intervals.map(i => [i, INTERVAL[i][1]]); q.answer = k;
+  } else if (t === 'playback') {
+    const cfg = L.playback, key = pick(cfg.keys), notes = placeNotes(key, key === 'Am' || key === 'Dm' ? 3 : 4, cfg.degrees);
+    let d = pick(cfg.starts); const mel = [d];
+    while (mel.length < cfg.length) {          // mostly steps, the odd skip, at most one repeated note
+      const moves = [-1, 1, -1, 1, 2, -2, ...(mel.some((x, i) => i && x === mel[i - 1]) ? [] : [0])]
+        .filter(m => d + m >= 0 && d + m < cfg.degrees);
+      d += pick(moves); mel.push(d);
+    }
+    q.key = key; q.notes = mel.map(i => midiOf(notes[i])); q.names = mel.map(i => notes[i].replace(/\d/, ''));
+    q.triad = [0, 2, 4].map(i => midiOf(placeNotes(key, key === 'Am' || key === 'Dm' ? 3 : 4, 5)[i]));
+  } else {                                     // clapback
+    const cfg = L.rhythm, [beats] = pick(cfg.meters);
+    q.beats = beats; q.rhythm = makeRhythm(cfg.values, beats, cfg.bars).flat();
+    q.onsets = []; let at = 0;
+    for (const d of q.rhythm) { if (d > 0) q.onsets.push(at / 4); at += Math.abs(d); }   // in beats
+    q.beatMs = 60000 / 80;
+  }
+  ear.q = q;
+  earDraw();
+  earPlay();
+}
+function earDraw(feedback = '') {
+  const t = ear.test, q = ear.q, el = $('trainer');
+  const prompt = {chords: 'Is this chord major or minor?', intervals: 'Which interval is this?',
+    playback: `Key of ${KEYNAME[q.key] || ''}. Listen, then play the melody back on the piano.`,
+    clapback: `${q.beats}/4 time. Listen to the rhythm twice, then after the count-in tap it back on any key.`}[t];
+  el.innerHTML = `<h3>${EAR[t].name} · question ${ear.n} of 10</h3><p class="prompt"></p>
+    <div class="tbtns"><button data-e="again">▶ Play again</button>${(q.answers || []).map(([v, label]) => `<button data-e="ans" data-v="${v}">${label}</button>`).join('')}</div>
+    <p class="fb">${feedback}</p><p class="muted">${ear.right} correct so far</p>`;
+  el.querySelector('.prompt').textContent = prompt;
+  el.onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.e === 'again') earPlay();
+    if (b.dataset.e === 'ans' && !ear.q.done) earAnswer(b.dataset.v === ear.q.answer, `It was ${ear.q.answers.find(a => a[0] === ear.q.answer)[1].toLowerCase()}.`);
+    if (b.dataset.e === 'next') earNext();
+  };
+}
+function earPlay() {                           // play the question
+  const q = ear.q, t = ear.test, gap = 420;
+  ear.timers.forEach(clearTimeout); ear.timers = [];
+  ear.listening = false;
+  if (t === 'chords') {
+    const third = q.minor ? 3 : 4, style = lesson.chords.style;
+    let at = 0;                                  // Preparatory: the first five notes of the scale, then the chord;
+    const run = style === 'scale' ? (q.minor ? [0, 2, 3, 5, 7] : [0, 2, 4, 5, 7]) : style === 'broken-solid' ? [0, third, 7] : [];
+    run.forEach(s => { later(at, () => tone(q.root + s, 0.4)); at += 420; });   // Level 1: broken then solid; Level 2: solid only
+    later(at + (run.length ? 200 : 0), () => [0, third, 7].forEach(s => tone(q.root + s, 1.2)));
+  } else if (t === 'intervals') {
+    later(0, () => tone(q.root, 0.6)); later(650, () => tone(q.root + q.size, 0.6));
+    later(1700, () => tone(q.root + q.size, 0.6)); later(2350, () => tone(q.root, 0.6));
+  } else if (t === 'playback') {
+    later(0, () => q.triad.forEach(m => tone(m, 1)));
+    let at = 1500;
+    for (let rep = 0; rep < 2; rep++) { q.notes.forEach(m => { later(at, () => tone(m, 0.45)); at += 600; }); at += 900; }
+    later(at - 600, () => { ear.listening = true; ear.played = []; $('status').textContent = 'Your turn: play the melody'; });
+  } else {
+    const pitch = 72, ms = q.beatMs;
+    let at = 0;
+    for (let rep = 0; rep < 2; rep++) {
+      q.onsets.forEach((o, i) => later(at + o * ms, () => tone(pitch, Math.max(0.15, ((q.onsets[i + 1] ?? q.rhythm.reduce((a, d) => a + Math.abs(d), 0) / 4) - o) * ms / 1000 * 0.8))));
+      at += q.rhythm.reduce((a, d) => a + Math.abs(d), 0) / 4 * ms + ms;
+    }
+    for (let b = 0; b < q.beats; b++) later(at + b * ms, () => tone(b ? 84 : 91, 0.08, 0.3));   // count-in
+    later(at + q.beats * ms - 150, () => { ear.listening = true; ear.taps = []; $('status').textContent = 'Tap the rhythm now'; });
+    later(at + q.beats * ms + 8000, () => { if (ear?.listening && ear.q === q && !ear.taps.length) earCheckTaps(); });   // no taps at all
+  }
+}
+function earKey(m, t) {                        // a key pressed during an ear test
+  const q = ear.q;
+  if (!ear.listening || q.done) return;
+  if (ear.test === 'playback') {
+    ear.played.push(m);
+    const i = ear.played.length - 1;
+    if (m !== q.notes[i]) return earAnswer(false, `The melody was ${q.names.join(' ')}.`);
+    if (ear.played.length === q.notes.length) earAnswer(true, `${q.names.join(' ')} ✓`);
+  } else if (ear.test === 'clapback') {
+    ear.taps.push(t);
+    if (ear.taps.length === 1) later((q.onsets[q.onsets.length - 1] - q.onsets[0] + 2) * q.beatMs, () => { if (ear?.listening && ear.q === q) earCheckTaps(); });
+    if (ear.taps.length === q.onsets.length) earCheckTaps();
+  }
+}
+function earCheckTaps() {                      // compare your taps with the rhythm, starting from your first tap
+  const q = ear.q, taps = ear.taps, ms = q.beatMs;
+  ear.listening = false;
+  if (taps.length !== q.onsets.length) return earAnswer(false, `You tapped ${taps.length} notes; the rhythm has ${q.onsets.length}.`);
+  const tol = Math.max(160, ms * 0.3);
+  const off = taps.map((t, i) => Math.abs((t - taps[0]) - (q.onsets[i] - q.onsets[0]) * ms));
+  const bad = off.filter(x => x > tol).length;
+  earAnswer(bad === 0, bad ? `${bad} of ${taps.length} taps were off the rhythm.` : 'Every tap in time.');
+}
+function earAnswer(ok, detail) {
+  const q = ear.q; if (q.done) return;
+  q.done = true; ear.listening = false;
+  if (ok) ear.right++;
+  const last = ear.n >= 10;
+  earDraw(`${ok ? '✓ Correct.' : '✗ Not quite.'} ${detail || ''}`);
+  const btns = $('trainer').querySelector('.tbtns');
+  if (!last) { const b = document.createElement('button'); b.className = 'primary'; b.dataset.e = 'next'; b.textContent = 'Next question →'; btns.append(b); return; }
+  const score = ear.right, test = ear.test;
+  saveDone(d => {
+    d.tests = d.tests || {}; d.tests[test] = Math.max(d.tests[test] || 0, score);
+    d.passed = lesson.tests.every(t => (d.tests[t] || 0) >= 8);
+  });
+  const fb = $('trainer').querySelector('.fb');
+  fb.innerHTML += `<br><b>${score} of 10 correct · ${score >= 8 ? '✓ test passed' : 'you need 8 to pass; try again'}</b>`;
+  const again = document.createElement('button'); again.textContent = 'Try this test again'; again.onclick = () => earStart(test); btns.append(again);
 }
 
 /* ---------- piano (MIDI) ---------- */
@@ -981,12 +1278,12 @@ function zoom(d) {
   osmd.zoom = S.zoom; osmd.render(); gotoStep(pos, true); drawHeat(); if (was) play(true);
 }
 $('zin').onclick = () => zoom(0.15); $('zout').onclick = () => zoom(-0.15);
-$('sample').onclick = () => { lesson = null; showLesson(); store.set('score', null); loadScore(SAMPLE); $('panel').hidden = true; };
+$('sample').onclick = () => { leaveTrainer(); lesson = null; showLesson(); store.set('score', null); loadScore(SAMPLE); $('panel').hidden = true; };
 $('file').onchange = e => {
   const f = e.target.files[0]; if (!f) return;
   const r = new FileReader();
   r.onload = async () => {
-    if (await loadScore(r.result, f.name.replace(/\.[^.]+$/, ''))) { lesson = null; showLesson(); store.set('score', {name: f.name, data: r.result}); $('panel').hidden = true; }
+    if (await loadScore(r.result, f.name.replace(/\.[^.]+$/, ''))) { leaveTrainer(); lesson = null; showLesson(); store.set('score', {name: f.name, data: r.result}); $('panel').hidden = true; }
   };
   /\.mxl$/i.test(f.name) ? r.readAsBinaryString(f) : r.readAsText(f);
   e.target.value = '';
@@ -995,6 +1292,8 @@ $('kb').addEventListener('pointerdown', e => { const m = e.target.dataset.m; if 
 $('midi').onclick = () => connectMidi(false);
 let resizeT = 0;
 addEventListener('resize', () => { clearMarks(); clearTimeout(resizeT); resizeT = setTimeout(() => { drawHeat(); drawFingers(); }, 700); });
+document.body.classList.toggle('hide', S.hide); $('hidenotes').checked = S.hide;
+$('hidenotes').onchange = e => { S.hide = e.target.checked; save(); document.body.classList.toggle('hide', S.hide); };
 $('showfing').checked = S.fingers;
 $('showfing').onchange = e => {
   S.fingers = e.target.checked; save();
