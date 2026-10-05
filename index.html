@@ -50,11 +50,11 @@ main{flex:1;overflow:auto;background:var(--paper);padding:4px 4px 40px;-webkit-o
 .mk .hd{position:absolute;border-radius:50%;transform:translate(0,-50%) rotate(-20deg)}
 .mk .lg{position:absolute;height:2px;transform:translateY(-50%)}
 .mk .ac{position:absolute;transform:translate(-100%,-55%);font-weight:700;line-height:1}
-.mk .lb{position:absolute;transform:translateY(-50%);font:700 15px/1 system-ui,sans-serif;color:#fff;padding:4px 7px;border-radius:8px;white-space:nowrap}
+.mk .lb{position:absolute;transform:translate(-50%,-100%);font:700 15px/1 system-ui,sans-serif;color:#fff;padding:4px 7px;border-radius:8px;white-space:nowrap}
 .mk.fade{opacity:0}
 #heat{position:absolute;inset:0;pointer-events:none}
 .hb{position:absolute;border-radius:6px}
-.hb b{position:absolute;top:-24px;left:0;font:600 12px/1 system-ui,sans-serif;color:var(--ink);background:#fff;padding:4px 6px;border-radius:6px;border:1px solid var(--line);white-space:nowrap}
+.hb b{position:absolute;bottom:-26px;left:0;font:600 12px/1 system-ui,sans-serif;color:var(--ink);background:#fff;padding:4px 6px;border-radius:6px;border:1px solid var(--line);white-space:nowrap}
 #card{position:fixed;left:50%;bottom:calc(140px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;max-width:calc(100vw - 32px);padding:12px 14px 12px 18px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px #1d233026}
 #card[hidden]{display:none}
 #card .big{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}
@@ -96,7 +96,7 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
 <body>
 <header>
   <button id="play" class="primary">▶ Play</button>
-  <button id="restart" aria-label="Back to start">⏮</button>
+  <button id="restart" aria-label="Back to start">⏮ Start</button>
   <div class="seg" id="mode" role="group" aria-label="Mode">
     <button data-v="listen">Listen</button><button data-v="along">Play along</button><button data-v="wait">Wait for me</button></div>
   <div class="seg" id="hands" role="group" aria-label="Hands you play">
@@ -217,7 +217,7 @@ function buildSteps() {
         notes.push({midi, len, staff, dia});
       }
     }
-    steps.push({ts: it.CurrentEnrolledTimestamp.RealValue, bar: it.CurrentMeasureIndex, notes});
+    steps.push({ts: it.CurrentEnrolledTimestamp.RealValue, abs: it.CurrentSourceTimestamp.RealValue, bar: it.CurrentMeasureIndex, notes});
     c.next();
   }
   c.reset();
@@ -238,10 +238,39 @@ function range() {
 }
 
 /* ---------- cursor ---------- */
-function gotoStep(i) {
+function gotoStep(i, stay) {
   const c = osmd.cursor; c.hide(); c.reset();
   for (let k = 0; k < i; k++) c.next();
-  c.show(); pos = i; follow(true); info();
+  c.show(); pos = i; if (!stay) follow(true); info();
+}
+function jumpTo(i, stay) {               // move the cursor; keep playing if the music was playing
+  const was = playing; pause(!was); clearMarks();
+  holding = false; open = []; early = null;
+  const [s, e] = range();
+  if (S.loop && (i < s || i > e)) { S.loop = $('loop').checked = false; save(); }   // tapped outside the repeated bars
+  gotoStep(i, stay);
+  if (was) play(true); else info('Press ▶ Play to start here');
+}
+function stepAt(cx, cy) {                // the step under a tap on the score
+  const svg = $('score').querySelector('svg'); if (!svg || !steps.length) return -1;
+  const u = 10 * osmd.zoom, G = svg.getBoundingClientRect(), x = (cx - G.left) / u, y = (cy - G.top) / u;
+  let hit = null;
+  osmd.GraphicSheet.MeasureList.forEach((ms, b) => {
+    const a = ms[0]?.PositionAndShape, z = ms[ms.length - 1]?.PositionAndShape; if (!a || hit) return;
+    if (x < a.AbsolutePosition.x || x > a.AbsolutePosition.x + a.Size.width) return;
+    if (y < a.AbsolutePosition.y - 6 || y > z.AbsolutePosition.y + 10) return;
+    hit = {b, ts: null, d: Infinity};
+    for (const gm of ms) for (const se of gm?.staffEntries || []) {
+      const d = Math.abs(se.PositionAndShape.AbsolutePosition.x - x);
+      if (d < hit.d) hit = {b, ts: se.getAbsoluteTimestamp().RealValue, d};
+    }
+  });
+  if (!hit) return -1;
+  let pick = -1;                         // if repeats play this spot more than once, take the one nearest the cursor
+  steps.forEach((st, i) => {
+    if (st.bar === hit.b && (hit.ts === null || Math.abs(st.abs - hit.ts) < 1e-6) && (pick < 0 || Math.abs(i - pos) < Math.abs(pick - pos))) pick = i;
+  });
+  return pick >= 0 ? pick : steps.findIndex(st => st.bar === hit.b);
 }
 function advance() { osmd.cursor.next(); pos++; follow(); info(); }
 function follow(force) {
@@ -293,10 +322,16 @@ function mark(m, verdict, ref) {
   for (let l = 5; off > 4.5 && l <= off + 0.01; l++) add('lg', {left: -u * 0.35 + 'px', width: u * 2 + 'px', top: (l - off) * u + 'px', background: col});
   add('hd', {left: 0, width: u * 1.32 + 'px', height: u + 'px', background: col});
   if (!ref && STEP[m % 12] === STEP[(m + 11) % 12]) add('ac', {left: -u * 0.15 + 'px', fontSize: u * 1.6 + 'px', color: col}, '♯');
-  add('lb', {left: u * 1.9 + 'px', background: col}, noteName(m) + tag);
   $('marks').append(el);
-  setTimeout(() => el.classList.add('fade'), 1100);
-  setTimeout(() => el.remove(), 1600);
+  // the name goes above the staff, so it never covers nearby notes; a chord's names stack upwards
+  const sysTop = G.top - W.top + osmd.GraphicSheet.MeasureList[st.bar][0].PositionAndShape.AbsolutePosition.y * u;
+  const stack = [...$('marks').querySelectorAll('.nm:not(.fade)')].length;
+  const nm = document.createElement('div'); nm.className = 'mk nm';
+  nm.style.left = (C.left + C.right) / 2 - W.left + 'px';
+  nm.style.top = Math.min(sysTop - u * 1.5, y - u * 1.2) - stack * 28 + 'px';
+  nm.innerHTML = `<div class="lb" style="background:${col}"></div>`; nm.firstChild.textContent = noteName(m) + tag;
+  $('marks').append(nm);
+  for (const d of [el, nm]) { setTimeout(() => d.classList.add('fade'), 1100); setTimeout(() => d.remove(), 1600); }
 }
 const clearMarks = () => { $('marks').innerHTML = ''; };
 
@@ -655,7 +690,11 @@ $('slower').onclick = () => setBpm(S.bpm - 5);
 $('faster').onclick = () => setBpm(S.bpm + 5);
 setBpm(S.bpm, false);
 $('play').onclick = () => playing ? pause() : play();
-$('restart').onclick = () => { pause(); if (steps.length) gotoStep(range()[0]); };
+$('restart').onclick = () => { if (steps.length) jumpTo(range()[0]); };
+$('scroll').addEventListener('click', e => {
+  if (e.target.closest('button, #card')) return;
+  const i = stepAt(e.clientX, e.clientY); if (i >= 0) jumpTo(i, true);
+});
 $('more').onclick = () => { const p = $('panel'); p.hidden = !p.hidden; $('more').setAttribute('aria-expanded', !p.hidden); };
 $('loop').checked = S.loop;
 $('loop').onchange = e => { S.loop = e.target.checked; save(); info(); };
