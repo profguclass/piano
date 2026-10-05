@@ -21,6 +21,10 @@ The notes the app plays (the other hand, Listen mode) then sound **on the piano 
 - **Wait for me** — the app waits for your hand's notes and plays the other hand with you.
 - **Left / Both / Right** — the hand(s) you play. Choose Right and the app plays the left hand, and vice versa.
 - Every key you press is shown on the score beside the current note: green ✓ = right note, red ✗ = wrong note.
+- **Timing** (Play along): each note is judged *on time* (within about ±15% of a beat), *early*, *late* or *missed*.
+- **Progress** is saved on the device for each piece: a summary after every run, and the **Progress** button shows
+  your results over time, the bars that need practice (one tap repeats that bar) and recent sessions.
+  Practised bars are colored on the score: ✓ green = good, ! yellow = some trouble, ✗ red = needs work.
 - ⋯ menu: open a score, note size, repeat bars, show/hide the on-screen keyboard, full screen.
 
 Opens `.musicxml`, `.xml` and `.mxl` files. Try [`ode-to-joy-sample.musicxml`](ode-to-joy-sample.musicxml).
