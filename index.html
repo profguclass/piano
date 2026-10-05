@@ -256,7 +256,8 @@ function info(extra) {
   if (S.loop) t += ` · Repeating ${$('from').value}–${$('to').value}`;
   if (run) {
     t += ` · Correct ${run.ok}`;
-    if (run.mode === 'along') t += ` · On time ${run.onTime} · Early ${run.early} · Late ${run.late} · Missed ${run.missed}`;
+    t += ` · On time ${run.onTime} · Early ${run.early} · Late ${run.late}`;
+    if (run.mode === 'along') t += ` · Missed ${run.missed}`;
     t += ` · Wrong ${run.wrong}`;
   }
   $('status').textContent = extra ? `${t} · ${extra}` : t;
@@ -325,7 +326,7 @@ function paintNeed() {
 /* ---------- playback ---------- */
 function setPlaying(on) { playing = on; $('play').textContent = on ? '❚❚ Pause' : '▶ Play'; }
 function pause(endSession = true) {
-  clearTimeout(timer); setPlaying(false); need.clear(); paintNeed(); silence();
+  clearTimeout(timer); setPlaying(false); holding = false; need.clear(); paintNeed(); silence();
   if (endSession) endRun();
 }
 function play(resume) {
@@ -334,7 +335,7 @@ function play(resume) {
   if (pos < s || pos > e || pos >= steps.length - 1 && !S.loop && pos !== 0) gotoStep(s);
   setPlaying(true); $('card').hidden = true;
   if (!resume || !run) startRun();
-  if (S.mode === 'wait') prepWait(); else { target = performance.now(); tick(); }
+  target = performance.now(); tick();
 }
 function atEnd() {                       // returns true if playback should stop
   const [s, e] = range();
@@ -343,36 +344,49 @@ function atEnd() {                       // returns true if playback should stop
   [...open].forEach(closeStep);
   pause(); gotoStep(0); info('Finished'); return true;
 }
-function tick() {                        // Listen and Play along: move at the set tempo
+// All modes move at the set tempo. Play along never stops; Wait for me holds on a note of yours
+// that is due but not played yet, then goes on from the moment you play it.
+let holding = false;
+function tick() {
   if (!playing) return;
   const st = steps[pos];
-  accompany(st);
+  if (S.mode !== 'listen') {
+    const now = performance.now();
+    open.filter(i => i === pos || now > when[i] + win(i)).forEach(closeStep);
+    when[pos] = target + latency();
+    done[pos] = early?.i === pos ? early.set : new Set(); early = null;
+  }
   if (S.mode === 'along') {
     for (const n of st.notes) if (mine(n)) flash(n.midi, 'need', Math.max(150, sec(n.len) * 900));
-    if (run) {
-      const now = performance.now();
-      open.filter(i => i === pos || now > when[i] + win(i)).forEach(closeStep);
-      when[pos] = target + latency();
-      done[pos] = early?.i === pos ? early.set : new Set(); early = null;
-      open.push(pos);
-    }
+    open.push(pos);
   }
+  if (S.mode === 'wait') {
+    need = new Set(st.notes.filter(n => mine(n) && !done[pos].has(n)).map(n => n.midi));
+    if (need.size) { holding = true; paintNeed(); info('Your turn'); return; }   // the other hand waits for you
+  }
+  accompany(st);
+  next();
+}
+function next() {                        // schedule the following step one note-length later
   target += sec(stepDur(pos)) * 1000;
   timer = setTimeout(() => { if (playing && !atEnd()) tick(); }, Math.max(0, target - performance.now()));
 }
-function prepWait() {                    // Wait for me: stop on each of your notes, play the other hand in time
-  clearTimeout(timer);
-  if (!playing) return;
-  need = new Set(steps[pos].notes.filter(mine).map(n => n.midi));
-  paintNeed();
-  if (need.size) { info('Play the highlighted keys'); return; }
-  accompany(steps[pos]);                 // nothing for you here: the app plays it, then moves on
-  timer = setTimeout(() => { if (playing && !atEnd()) prepWait(); }, sec(stepDur(pos)) * 1000);
+function release() {                     // you played the held step: the other hand joins you and the music goes on
+  holding = false; need.clear(); paintNeed();
+  accompany(steps[pos]);
+  target = performance.now(); next();
 }
 function expected(m) {                   // the score note this key matches, near the cursor
   const near = S.mode === 'along' && playing ? [pos, pos - 1, pos + 1] : [pos];
   for (const i of near) { const n = steps[i]?.notes.find(n => n.midi === m && (mine(n) || !playing)); if (n) return n; }
   return null;
+}
+function judge(m, i, n, off) {           // count a correct note and how close to the beat it was
+  const k = Math.abs(off) <= tol() ? 'onTime' : off < 0 ? 'early' : 'late', bar = steps[i].bar;
+  count(bar, 'ok'); count(bar, k);
+  if (Math.abs(off) <= win(i)) run.offs.push(off);            // long waits are not a timing habit
+  mark(m, k, n); flash(m, 'on', 220);
+  info(`${noteName(m)} ${k === 'onTime' ? 'on time' : off > 1000 ? 'late' : `${Math.round(Math.abs(off))} ms ${k}`}`);
 }
 function press(m, sound, t) {
   if (sound) tone(m, 0.6);
@@ -381,27 +395,23 @@ function press(m, sound, t) {
     const ref = expected(m);
     mark(m, ref ? 'ok' : null, ref); flash(m, 'on', 180); info(`You played ${noteName(m)}`); return;
   }
-  if (S.mode === 'along') {
+  if (holding) {
+    const n = steps[pos].notes.find(n => n.midi === m && mine(n) && !done[pos].has(n));
+    if (n) {
+      done[pos].add(n); need.delete(m); key(m)?.classList.remove('need');
+      judge(m, pos, n, t - when[pos]);
+      if (!need.size) release();
+      return;
+    }
+  } else {
     const hit = matchAlong(m, t);
-    if (!hit) { count(steps[pos].bar, 'wrong'); mark(m, 'bad', null); flash(m, 'bad', 220); info(`You played ${noteName(m)}`); return; }
-    const k = Math.abs(hit.off) <= tol() ? 'onTime' : hit.off < 0 ? 'early' : 'late', bar = steps[hit.i].bar;
-    count(bar, 'ok'); count(bar, k); run.offs.push(hit.off);
-    mark(m, k, hit.n); flash(m, 'on', 220);
-    info(`${noteName(m)} ${k === 'onTime' ? 'on time' : `${Math.round(Math.abs(hit.off))} ms ${k}`}`);
-    return;
+    if (hit) { judge(m, hit.i, hit.n, hit.off); return; }
   }
-  const ref = expected(m);
-  if (need.has(m)) {
-    mark(m, 'ok', ref); count(steps[pos].bar, 'ok');
-    need.delete(m); flash(m, 'on', 220); key(m)?.classList.remove('need');
-    if (!need.size) {
-      accompany(steps[pos]);             // the app plays the other hand with your last note
-      if (!atEnd()) prepWait();
-    } else info('Play the highlighted keys');
-  } else { count(steps[pos].bar, 'wrong'); mark(m, 'bad', null); flash(m, 'bad', 260); info(`You played ${noteName(m)} · Play the highlighted keys`); }
+  count(steps[pos].bar, 'wrong'); mark(m, 'bad', null); flash(m, 'bad', 240);
+  info(`You played ${noteName(m)}` + (holding ? ' · Your turn' : ''));
 }
 
-/* ---------- timing (Play along) ---------- */
+/* ---------- timing ---------- */
 let run = null;                          // results of the current play-through
 let when = [], done = [], open = [], early = null;   // per step: expected time, notes you hit; steps still accepting presses
 const tol = () => Math.min(130, Math.max(70, 9000 / S.bpm));             // "on time" = within ±15% of a beat (70–130 ms)
@@ -446,7 +456,7 @@ function endRun() {
   const r = run; run = null; open = []; early = null;
   if (r.ok + r.wrong + r.missed < 3) return;        // too short to count
   const s = {t: r.t0, secs: Math.round((Date.now() - r.t0) / 1000), mode: r.mode, hands: r.hands, bpm: r.bpm,
-    acc: pct(r.ok, r.ok + r.wrong + r.missed), ont: r.mode === 'along' ? pct(r.onTime, r.ok) : null,
+    acc: pct(r.ok, r.ok + r.wrong + r.missed), ont: pct(r.onTime, r.ok),
     avg: r.offs.length ? Math.round(r.offs.reduce((a, b) => a + b, 0) / r.offs.length) : null};
   for (const k of KEYS) s[k] = r[k];
   const p = progress();
@@ -501,7 +511,7 @@ function openProgress() {
   $('heaton').checked = S.heat;
   const lastA = [...ss].reverse().find(s => s.ont !== null);
   const tiles = [[ss.length, 'sessions'], [fmtTime(ss.reduce((a, s) => a + s.secs, 0)), 'practice time'],
-    [ss.length ? ss.at(-1).acc + '%' : '–', 'correct, last time'], [lastA ? lastA.ont + '%' : '–', 'on time, last Play along']];
+    [ss.length ? ss.at(-1).acc + '%' : '–', 'correct, last time'], [lastA ? lastA.ont + '%' : '–', 'on time, last time']];
   $('ptiles').innerHTML = tiles.map(([v, l]) => `<div class="tile"><b>${v}</b><span>${l}</span></div>`).join('');
   drawChart(ss.slice(-20));
   const weak = Object.entries(p.bars).map(([b, c]) => [b, barScore(c), c]).filter(([, x]) => x && x.bad > 0).sort((a, b) => b[1].bad - a[1].bad).slice(0, 5);
@@ -633,7 +643,7 @@ const dimHands = () => $('hands').classList.toggle('dim', S.mode === 'listen');
 seg('mode', 'mode', () => { pause(); dimHands(); info(S.mode === 'listen' ? 'The app plays both hands' : ''); });
 seg('hands', 'hands', () => {
   if (S.mode === 'listen') info('Hands apply in Play along and Wait for me');
-  else if (playing && S.mode === 'wait') prepWait();
+  else if (holding) { need = new Set(steps[pos].notes.filter(n => mine(n) && !done[pos].has(n)).map(n => n.midi)); paintNeed(); if (!need.size) release(); }
 });
 dimHands();
 seg('sound', 'sound', () => { silence(); info(S.sound === 'piano' && !midiOut ? 'Connect the piano to hear the app on it' : ''); });

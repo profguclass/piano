@@ -18,10 +18,10 @@ The notes the app plays (the other hand, Listen mode) then sound **on the piano 
 ## Practise
 - **Listen** — the app plays both hands.
 - **Play along** — you play your hand at the set tempo; the app plays the other hand.
-- **Wait for me** — the app waits for your hand's notes and plays the other hand with you.
+- **Wait for me** — the music keeps its tempo and rhythm, but when one of your notes is due and you haven't played it yet, it waits for you; when you play it, the other hand joins your note and the music carries on.
 - **Left / Both / Right** — the hand(s) you play. Choose Right and the app plays the left hand, and vice versa.
 - Every key you press is shown on the score beside the current note: green ✓ = right note, red ✗ = wrong note.
-- **Timing** (Play along): each note is judged *on time* (within about ±15% of a beat), *early*, *late* or *missed*.
+- **Timing**: each note is judged *on time* (within about ±15% of a beat), *early* or *late* (and *missed* in Play along).
 - **Progress** is saved on the device for each piece: a summary after every run, and the **Progress** button shows
   your results over time, the bars that need practice (one tap repeats that bar) and recent sessions.
   Practised bars are colored on the score: ✓ green = good, ! yellow = some trouble, ✗ red = needs work.
