@@ -41,7 +41,8 @@ suggests one (dashed circles). Turn them off in ⋯ → *Finger numbers*.
 - **Play along** — you play your hand at the set tempo; the app plays the other hand.
 - **Wait for me** — the music keeps its tempo and rhythm, but when one of your notes is due and you haven't played it yet, it waits for you; when you play it, the other hand joins your note and the music carries on.
 - **Left / Both / Right** — the hand(s) you play. Choose Right and the app plays the left hand, and vice versa.
-- Every key you press is shown on the score at the current note, with its name (e.g. C4) above the staff: green ✓ = right note, red ✗ = wrong note.
+- Every key you press is shown on the score with its name (e.g. C4) above the staff: green ✓ = right note, red ✗ = wrong note.
+  While playing, the mark sits where you played in time: on the note when on time, before it when early, after it when late.
 - **Tap the score** to move the cursor to that note; **⏮ Start** goes back to the beginning (both keep playing if the music is playing).
 - **Timing**: each note is judged *on time* (within about ±15% of a beat), *early* or *late* (and *missed* in Play along).
 - **Progress** is saved on the device for each piece: a summary after every run, and the **Progress** button shows

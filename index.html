@@ -47,7 +47,7 @@ main{flex:1;overflow:auto;background:var(--paper);padding:4px 4px 40px;-webkit-o
 #wrap{position:relative;max-width:1600px;margin:0 auto}
 #marks{position:absolute;inset:0;pointer-events:none}
 .mk{position:absolute;width:0;height:0;transition:opacity .4s}
-.mk .hd{position:absolute;border-radius:50%;transform:translate(0,-50%) rotate(-20deg)}
+.mk .hd{position:absolute;border-radius:50%;transform:translate(0,-50%) rotate(-20deg);opacity:.75}
 .mk .lg{position:absolute;height:2px;transform:translateY(-50%)}
 .mk .ac{position:absolute;transform:translate(-100%,-55%);font-weight:700;line-height:1}
 .mk .lb{position:absolute;transform:translate(-50%,-100%);font:700 15px/1 system-ui,sans-serif;color:#fff;padding:4px 7px;border-radius:8px;white-space:nowrap}
@@ -415,8 +415,27 @@ function staffFor(m) {
   if (S.hands === 'left') return 1;
   return m >= 60 ? 0 : 1;
 }
-function mark(m, verdict, ref) {
-  const cur = osmd?.cursor?.cursorElement, st = steps[pos], svg = $('score').querySelector('svg');
+// Where a step's notes sit on the score (in OSMD units), and which system (line of music) they are on.
+function stepX(i) {
+  const st = steps[i], ms = st && osmd.GraphicSheet.MeasureList[st.bar]; if (!ms?.[0]) return null;
+  let x = null;
+  for (const gm of ms) for (const se of gm?.staffEntries || [])
+    if (x === null && Math.abs(se.getAbsoluteTimestamp().RealValue - st.abs) < 1e-6) x = se.PositionAndShape.AbsolutePosition.x;
+  const a = ms[0].PositionAndShape;
+  return {x: x ?? a.AbsolutePosition.x + 1, start: a.AbsolutePosition.x, end: a.AbsolutePosition.x + a.Size.width, sys: a.AbsolutePosition.y};
+}
+// The x position (units) matching a press `dt` ms after step i was due: on time = on the note,
+// early = towards the previous note, late = towards the next one, in proportion to the note's length.
+function hitX(i, dt) {
+  const a = stepX(i); if (!a) return null;
+  if (!dt) return a.x;
+  const durMs = sec(stepDur(i)) * 1000, frac = Math.max(-0.95, Math.min(0.95, dt / durMs));
+  const nb = stepX(dt > 0 ? i + 1 : i - 1), same = nb && nb.sys === a.sys && (dt > 0 ? nb.x > a.x : nb.x < a.x);
+  const edge = dt > 0 ? (same ? nb.x : a.end) : (same ? nb.x : a.start);
+  return a.x + Math.abs(frac) * (edge - a.x);
+}
+function mark(m, verdict, ref, i = pos, dt = 0) {
+  const cur = osmd?.cursor?.cursorElement, st = steps[i], svg = $('score').querySelector('svg');
   if (!cur || !st || !svg || cur.style.display === 'none') return;
   const staff = ref ? ref.staff : staffFor(m);
   const gm = osmd.GraphicSheet.MeasureList[st.bar]?.[staff]; if (!gm) return;
@@ -426,7 +445,9 @@ function mark(m, verdict, ref) {
   const dia = ref ? ref.dia : diatonic(m);
   const off = (5 - line) - (dia - refDia) / 2;                                  // staff spaces below the top line
   const u = 10 * osmd.zoom, W = $('wrap').getBoundingClientRect(), G = svg.getBoundingClientRect(), C = cur.getBoundingClientRect();
-  const x = C.right - W.left + u * 0.4, y = G.top - W.top + (gm.PositionAndShape.AbsolutePosition.y + off) * u;
+  const hx = hitX(i, dt), y = G.top - W.top + (gm.PositionAndShape.AbsolutePosition.y + off) * u;
+  const cx = hx === null ? (C.left + C.right) / 2 - W.left : G.left - W.left + hx * u;   // centre of the mark
+  const x = cx - u * 0.66;
   const col = {ok: 'var(--accent)', onTime: 'var(--accent)', early: 'var(--off)', late: 'var(--off)', bad: 'var(--bad)'}[verdict] || 'var(--you)';
   const tag = {ok: ' ✓', onTime: ' ✓', early: ' early', late: ' late', bad: ' ✗'}[verdict] || '';
 
@@ -443,7 +464,7 @@ function mark(m, verdict, ref) {
   const sysTop = G.top - W.top + osmd.GraphicSheet.MeasureList[st.bar][0].PositionAndShape.AbsolutePosition.y * u;
   const stack = [...$('marks').querySelectorAll('.nm:not(.fade)')].length;
   const nm = document.createElement('div'); nm.className = 'mk nm';
-  nm.style.left = (C.left + C.right) / 2 - W.left + 'px';
+  nm.style.left = cx + 'px';
   nm.style.top = Math.min(sysTop - u * 1.5 - (S.fingers ? u * 1.1 + 30 : 0), y - u * 1.2) - stack * 28 + 'px';
   nm.innerHTML = `<div class="lb" style="background:${col}"></div>`; nm.firstChild.textContent = noteName(m) + tag;
   $('marks').append(nm);
@@ -538,7 +559,7 @@ function judge(m, i, n, off) {           // count a correct note and how close t
   const k = Math.abs(off) <= tol() ? 'onTime' : off < 0 ? 'early' : 'late', bar = steps[i].bar;
   count(bar, 'ok'); count(bar, k);
   if (Math.abs(off) <= win(i)) run.offs.push(off);            // long waits are not a timing habit
-  mark(m, k, n); flash(m, 'on', 220);
+  mark(m, k, n, i, off); flash(m, 'on', 220);
   info(`${noteName(m)} ${k === 'onTime' ? 'on time' : off > 1000 ? 'late' : `${Math.round(Math.abs(off))} ms ${k}`}`);
 }
 function press(m, sound, t) {
@@ -560,7 +581,7 @@ function press(m, sound, t) {
     const hit = matchAlong(m, t);
     if (hit) { judge(m, hit.i, hit.n, hit.off); return; }
   }
-  count(steps[pos].bar, 'wrong'); mark(m, 'bad', null); flash(m, 'bad', 240);
+  count(steps[pos].bar, 'wrong'); mark(m, 'bad', null, pos, holding || !when[pos] ? 0 : t - when[pos]); flash(m, 'bad', 240);
   info(`You played ${noteName(m)}` + (holding ? ' · Your turn' : ''));
 }
 
