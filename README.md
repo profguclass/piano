@@ -50,6 +50,7 @@ The Schumann pieces are licensed CC BY-SA (2.5/3.0) by their Mutopia typesetters
 The others are public domain.
 
 Johann Wilhelm Hässler's *Minuet in C*, Op. 38 No. 4 (Level 1), is public domain; it was transcribed by hand from the free [Pianocoda](https://pianocoda.com) edition, with its fingering.
+The same goes for *Away with Melancholy* (Mozart), *Ode to Joy* (Beethoven, with left-hand chords), the *Minuet in F* attributed to Leopold Mozart, the *Aria in F* (BWV Anh. 131) and the *Chorale* BWV 514 (Bach): public-domain music, transcribed by hand from the free Pianocoda editions with their fingering. Repeats are played through once.
 
 | Level | Piece | Composer | Licence | Source |
 |---|---|---|---|---|

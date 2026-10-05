@@ -300,6 +300,41 @@ LESSONS = [
          lh=('C4h.:2 | C4q E4q:1 C4q | G3h.:5 | G3q F4q:1 D4q:2 | C4q:1 A3q:2 E3q:3 | F3h.:2 | F3q D3q F3q | G3q G2q G3q | '
              'C4h.:2 | C4q E4e:1 C4e:2 B3e C4e | G3h.:5 | G3q F4e:1 D4e:2 B3e:3 G3e:5 | C4q:1! A3q:2! E3q:3! | F3h:2 F3q | G3q:1 G2q G3q | C3q:5 C4q rq')),
 
+    dict(id='away-melancholy', level=2, title='Away with Melancholy', hands='both', bpm=100, wait=60, pickup=True, composer='Wolfgang Amadeus Mozart',
+         learn="A cheerful tune from Mozart's The Magic Flute. It starts with a short pickup (two eighth notes), and the left hand plays steady half notes, then simple chords in the second half.",
+         tips=['Count "4 and" before the first note: the tune starts on the last beat of an empty bar.', 'The rests in bars 3, 5, 11 and 13 are part of the tune: wait for them.', 'In the second half the left hand plays two-note chords: press both notes together.'],
+         rh=('G5e:4 F5e:3 | E5q:2 E5q E5q E5q | G5e F5e F5q rq F5e E5e | D5q:1 D5q D5q D5q | F5q:3 E5q:2 rq E5e F5e | G5q:4 G5q G5q G5q | F5q.:3 G5e A5q F5q | E5e E5e E5q D5e D5e D5q | '
+             'C5q E5q C5q F5e E5e | D5q D5q D5q D5q | F5q E5q rq E5q | F5q:3 F5q F5q F5q | F5q E5q rq E5e F5e | G5q G5q G5q G5q | F5q.:3 G5e A5q F5q | E5e E5e E5q D5e D5e D5q | C5q E5q C5q rq'),
+         lh=('rq | C4h:1 C4h | G3h:4 G3h | B3h:2 B3h | C4h C4h | E3h:5 E3h | F3h:4 F3h | G3h:3 G3h | '
+             'C4h:1 C4q rq | B2+D3h:4+2 B2+D3h | G3+C4h:4+1 G3+C4h | B2+D3h B2+D3h | G3+C4h G3+C4h | E3h:5 E3h | F3h:4 F3h | G3h:3 G3h | C4h:1 C4q rq')),
+    dict(id='ode-chords', level=2, title='Ode to Joy (with left-hand chords)', hands='both', bpm=88, wait=60, composer='Ludwig van Beethoven',
+         learn='The famous melody again, with the left hand playing a whole note under each bar and chords in the last bar of each phrase. A good test of hands together.',
+         tips=['Left hand: C with the little finger, then G with the thumb, then E with finger 3.', 'The last bar of each section has a two- or three-note chord: press the notes together.', 'Get louder in the last line, then slow down at the end.'],
+         rh=('E4q:3 E4q F4q G4q | G4q:5 F4q E4q D4q | C4q:1 C4q D4q E4q | E4q. D4e D4h | E4q E4q F4q G4q | G4q F4q E4q D4q | C4q C4q D4q E4q | D4q. C4e C4h | '
+             'D4q:2 D4q E4q C4q | D4q E4e F4e E4q C4q | D4q E4e F4e E4q D4q | C4q D4q rh | E4q E4q F4q G4q | G4q F4q E4q D4q | C4q C4q D4q E4q | D4q. C4e C4h'),
+         lh=('C3w:5 | G3w:1 | E3w:3 | G3w | C3w | G3w | E3w | F3+G3h:2+1 E3+G3h:3+1 | G3w:1 | G3w | G3h G#3h:2 | A3h:1 G3h | C3w:5 | G3w | E3w | F3+G3h:2+1 C3+E3+G3h:5+3+1')),
+    dict(id='minuet-f-lmozart', level=3, title='Minuet in F (attributed to Leopold Mozart)', hands='both', bpm=88, wait=60, time=(3, 4), fifths=-1, composer='Leopold Mozart (attributed)',
+         learn='An elegant minuet in F major (one flat: B♭). Short, detached chords in the left hand answer the right-hand tune, which mixes slurred and staccato notes.',
+         tips=['The dots mean staccato: short and light. The slurs mean smooth.', 'The left hand plays two-note chords on beats 2 and 3, and rests on beat 1.', 'Every B is B♭ in this key, except where a natural sign says otherwise.'],
+         rh=('F5q:5 C5q:2! C5q! | C5h A4e:1 C5e:2 | F5q:5 D5q! D5q! | D5h Bb4e:1 D5e:3 | F5q:5 A4+C5q:1+2! A4+C5q! | A4+C5h A4e:3 C5e:5 | Bb4q! A4q! G4q! | F4h. | '
+             'F5q:5 G5e E5e F5e D5e | E5e:3 G5e C5q! C5q! | G5q G5e E5e F5e D5e | E5e G5e C5q! C5q! | F5q:5 A4+C5q! A4+C5q! | A4+C5h A4e C5e | Bb4q! A4q! G4q! | F4h.'),
+         lh=('rq F3+A3q:4+2! F3+A3q! | F3+A3h. | rq Bb3+D4q:3+1! Bb3+D4q! | Bb3+D4h. | rq F3+A3q! F3+A3q! | F3+A3h. | Bb3q:2! C4q:1! C3q:5! | F3q:1! C3q:2! F2q:5 | '
+             'C2+C3q:5+1 C2+C3h | rq C2+C3q! C2+C3q! | C2+C3q C2+C3h | rq C2+C3q! C2+C3q! | rq F3+A3q! F3+A3q! | F3+A3h. | Bb3q! C4q! C3q! | F3q! C3q! F2q')),
+    dict(id='aria-f-131', level=3, title='Aria in F (BWV Anh. 131)', hands='both', bpm=100, wait=60, pickup=True, fifths=-1, composer='Notebook for Anna Magdalena Bach',
+         learn='A flowing aria from the Anna Magdalena notebook, in F major. Both hands sing: the left hand answers the right in long, smooth lines, and in the second half it plays light staccato notes.',
+         tips=['Start with the pickup: one beat before the first full bar.', 'There is a B♮ in bars 6 and 7: the natural sign cancels the B♭.', 'Keep the phrase marks smooth and lift lightly at the end of each slur.'],
+         rh=('C5q:1 | F5h E5h | F5q A4q:1 Bb4q:3 C5q | A4h:2 G4q C5q:4 | A4h:2 D5h | B4q A4e G4e G5q F5q | E5q D5e C5e D5q:3 C5e B4e | C5h. E4e:2 F4e:1 | '
+             'G4h. A4q | Bb4h. C5q | A4q G4e F4e D5q Bb4e:3 A4e | G4h. C5q:1 | D5h E5h | F5q E5e D5e C5q Bb4q:4 | A4h G4h | F4h. rq'),
+         lh=('rq | rq F3q:3 C4q:1 C3q | A3q:1 F3q G3q E3q | F3q:1 A2q E3q rq | F3h D3h | G3h E3q F3q | G3h G2h | C3q! G2q! C2q! rq | '
+             'rq C3q! C2h | rq C3q! C2h | F3h:1 Bb2q Bb2q | C3q:1! G2q:2! C2q:5! A2q | Bb2h:2 G2h | A2h rq Bb2q | C3h C2h | F2q C3q F3q rq')),
+    dict(id='chorale-514', level=3, title='Chorale in C (BWV 514)', hands='both', bpm=84, wait=60, time=(3, 4), composer='Johann Sebastian Bach',
+         learn='A chorale-like piece in 3/4 where the two hands move as independent melodies. Listen for the little sixteenth-note ornaments in bars 3 and 11.',
+         tips=['Learn each hand separately: both have their own tune.', 'The two sixteenth notes take half of one beat together: "1 and-a".', 'Bar 6 has an F♯ in the left hand and bar 8 an F♮: watch the signs.'],
+         rh=('C5q:4 B4q C5q | A4q B4q C5q | F4q.:1 G4s:4 A4s G4q | E4q:3 D4e E4e C4q | G4q:1 A4q B4q | C5h D5q | B4e A4e A4h | G4h. | '
+             'C5q:3 D5q E5q | A4q B4q C5q:1 | D5q. E5s F5s E5q | D5h. | E5e:3 F5s G5s F5e E5e D5e C5e:1 | A4q:2 B4q C5q:1 | F5q:4 D5h | C5h.'),
+         lh=('C3q:5 D3q E3q | F3h E3q | D3q G3q G2q | C3q:1 G2q C2q | C3h:1 B2q | A2q G2q F#2q:5 | G2q D3q:1 D2q | G2q:2 G3e:1 F3e E3e D3e | '
+             'E3q:3 F3e E3e D3e C3e | F3h E3q:1 | B2q:3 G2q C3q | G2q G3e:4 A3e B3e G3e | C4q C3q E3q:3 | F3q E3e D3e E3e D3e | A3q F3q:2 G3q:1 | C3h.')),
+
     # ---------- more folk tunes (Preparatory levels) ----------
     dict(id='lightly-row', title='Lightly Row', hands='right', bpm=100, wait=70,
          learn='A cheerful German folk tune ("Hänschen klein") that stays in C position from start to finish.',
@@ -888,7 +923,7 @@ PLACE = {'lightly-row': 0, 'old-macdonald': 0, 'frere-jacques': 1, 'middle-c': 0
          'c-scale-rh': (1, 'technique'), 'c-scale-lh': (1, 'technique'), 'g-scale': (1, 'technique'),
          'scale-together': (1, 'technique'), 'contrary': (1, 'technique'),
          'three-chords': 2, 'broken-chords': 2, 'happy-birthday': 2, 'silent-night': 2, 'greensleeves': 2,
-         'hassler-minuet': 2, 'progression': 3, 'canon': 3, 'nachtmusik': 3, 'fur-elise': 3,
+         'hassler-minuet': 2, 'away-melancholy': 2, 'ode-chords': 2, 'minuet-f-lmozart': 3, 'aria-f-131': 3, 'chorale-514': 3, 'progression': 3, 'canon': 3, 'nachtmusik': 3, 'fur-elise': 3,
          'sonatina-c': 4, 'prelude-c': 5, 'waltz-am': 5}
 
 # Ear tests and sight reading run inside the app; these entries describe each level's requirements.
