@@ -553,6 +553,7 @@ function tick() {
     const now = performance.now();
     open.filter(i => i === pos || now > when[i] + win(i)).forEach(closeStep);
     when[pos] = target + latency();
+    if (early?.i !== pos) delete agroups[pos];      // a fresh try at this step (it may come round again in a repeat)
     done[pos] = early?.i === pos ? early.set : new Set(); early = null;
   }
   if (S.mode === 'along') {
@@ -627,6 +628,7 @@ function press(m, sound, t) {
   } else {
     const hit = matchAlong(m, t);
     if (hit) {
+      if (S.mode === 'along' && steps[hit.i].notes.filter(mine).length > 1) return alongChord(hit, m, t);
       judge(m, hit.i, hit.n, hit.off);
       if (S.mode === 'wait' && hit.pre && steps[hit.i].notes.filter(mine).every(n => early.set.has(n))) {
         clearTimeout(timer);                   // all of the next step played early: go on from now
@@ -637,6 +639,33 @@ function press(m, sound, t) {
   }
   count(steps[pos].bar, 'wrong'); mark(m, 'bad', null, pos, holding || !when[pos] ? 0 : t - when[pos]); flash(m, 'bad', 240);
   info(`You played ${noteName(m)}` + (holding ? ' · Your turn' : ''));
+  if (S.mode === 'along')                // a wrong key while a chord is being played spoils that chord
+    for (const i in agroups) if (!agroups[i].resolved && t - agroups[i].first <= TOGETHER) alongFail(+i, 'wrong');
+}
+
+/* ---------- chords in Play along: correct only if every note is right and they come together ---------- */
+let agroups = {};                        // step index -> notes played so far for that chord
+function alongChord(hit, m, t) {
+  const notes = steps[hit.i].notes.filter(mine);
+  let g = agroups[hit.i];
+  if (!g || g.resolved) g = agroups[hit.i] = {hits: new Map(), first: t, resolved: false};
+  if (t - g.first > TOGETHER) { g.hits.set(hit.n, {m, t, off: hit.off}); return alongFail(hit.i, 'together'); }
+  g.hits.set(hit.n, {m, t, off: hit.off});
+  mark(m, null, hit.n, hit.i, hit.off); flash(m, 'on', 200);
+  if (g.hits.size === notes.length) {    // all of them, together: now they count
+    g.resolved = true;
+    for (const [n, h] of g.hits) judge(h.m, hit.i, n, h.off);
+  }
+}
+function alongFail(i, why) {             // the chord counts as missed; its notes are marked red
+  const g = agroups[i]; if (!g || g.resolved) return;
+  g.resolved = true;
+  const notes = steps[i].notes.filter(mine);
+  for (const n of notes) count(steps[i].bar, 'missed');
+  for (const [n, h] of g.hits) mark(h.m, 'bad', n, i, h.off);
+  const set = early?.i === i ? early.set : done[i];
+  notes.forEach(n => set?.add(n));       // already counted: nothing more is missed when the step closes
+  info(why === 'wrong' ? `Wrong note: all ${notes.length} notes must be right` : why === 'missing' ? `Missed part of the chord: play all ${notes.length} notes` : `Play all ${notes.length} notes together`);
 }
 
 /* ---------- chords in Wait for me: all notes together, or play them again ---------- */
@@ -685,7 +714,7 @@ const KEYS = ['ok', 'wrong', 'missed', 'onTime', 'early', 'late'];
 function startRun() {
   run = S.mode === 'listen' ? null : {t0: Date.now(), mode: S.mode, hands: S.hands, bpm: S.bpm, offs: [], bars: {}};
   if (run) for (const k of KEYS) run[k] = 0;
-  when = []; done = []; open = []; early = null;
+  when = []; done = []; open = []; early = null; agroups = {};
 }
 function count(bar, k) {
   run[k]++;
@@ -694,6 +723,7 @@ function count(bar, k) {
 }
 function closeStep(i) {                  // the window for step i is over: anything of yours not played is missed
   open = open.filter(j => j !== i);
+  if (run && agroups[i] && !agroups[i].resolved) alongFail(i, 'missing');
   if (run) for (const n of steps[i].notes) if (mine(n) && !done[i]?.has(n)) count(steps[i].bar, 'missed');
 }
 function matchAlong(m, t) {              // the nearest note of yours with this pitch that is still open
