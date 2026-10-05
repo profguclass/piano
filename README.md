@@ -13,6 +13,7 @@ The installed app and the web page are the same code — every update to this re
 ## Connect the piano
 Plug the piano's **USB to Host** port into the tablet (USB-B → USB-C cable, or an OTG adapter), tap **Connect piano** once and allow MIDI.
 After that the app reconnects by itself.
+The notes the app plays (the other hand, Listen mode) then sound **on the piano itself**. To use the tablet speaker instead: ⋯ → *Sound from: Tablet*.
 
 ## Practise
 - **Listen** — the app plays both hands.
@@ -23,4 +24,5 @@ After that the app reconnects by itself.
 - ⋯ menu: open a score, note size, repeat bars, show/hide the on-screen keyboard, full screen.
 
 Opens `.musicxml`, `.xml` and `.mxl` files. Try [`ode-to-joy-sample.musicxml`](ode-to-joy-sample.musicxml).
-Built on [OpenSheetMusicDisplay](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay) (BSD-3-Clause), bundled inline.
+Built on [OpenSheetMusicDisplay](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay) (BSD-3-Clause), included as `opensheetmusicdisplay.min.js`.
+All app code is in `index.html`.
