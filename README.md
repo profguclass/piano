@@ -112,6 +112,7 @@ suggests one (dashed circles). Turn them off in ⋯ → *Finger numbers*.
 - **Play along** — you play your hand at the set tempo; the app plays the other hand.
 - **Wait for me** — the music follows you: each note is due one note-length after you correctly played the previous one (early or late, the music goes on from that moment); when you're not there yet, it waits, and the other hand joins your note.
 - **Play along** timing runs on a steady beat from your first note.
+- When a step has two or more notes (a chord, or both hands), Wait for me moves on only when **all of them are played correctly together** — within 0.3 s of the first. A wrong key, or notes too far apart, counts as wrong and the chord is played again.
 - **Left / Both / Right** — the hand(s) you play. Choose Right and the app plays the left hand, and vice versa.
 - Every key you press is shown on the score with its name (e.g. C4) above the staff: green ✓ = right note, red ✗ = wrong note.
   While playing, the mark sits where you played in time: on the note when on time, before it when early, after it when late.

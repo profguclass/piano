@@ -512,6 +512,7 @@ function paintNeed() {
 function setPlaying(on) { playing = on; $('play').textContent = on ? '❚❚ Pause' : '▶ Play'; }
 function pause(endSession = true) {
   clearTimeout(timer); setPlaying(false); holding = armed = false; need.clear(); paintNeed(); silence();
+  clearTimeout(grp?.timer); grp = null;
   if (endSession) endRun();
 }
 // In Play along and Wait for me the beat starts with your first note, not with the Play button:
@@ -608,6 +609,13 @@ function press(m, sound, t) {
     count(steps[pos].bar, 'wrong'); mark(m, 'bad', null); flash(m, 'bad', 240);
     return info(`You played ${noteName(m)} · Play the first note to start`);
   }
+  if (S.mode === 'wait') {                 // steps with two or more notes must be played together
+    if (grp) return chordPress(m, t);
+    if (holding && steps[pos].notes.filter(mine).length > 1) return chordStart(pos, m, t, false);
+    const nx = pos + 1;
+    if (!holding && nx <= range()[1] && steps[nx].notes.filter(mine).length > 1 && steps[nx].notes.some(n => mine(n) && n.midi === m)
+        && Math.abs(t - (target + latency())) <= win(nx)) return chordStart(nx, m, t, true);
+  }
   if (holding) {
     const n = steps[pos].notes.find(n => n.midi === m && mine(n) && !done[pos].has(n));
     if (n) {
@@ -629,6 +637,42 @@ function press(m, sound, t) {
   }
   count(steps[pos].bar, 'wrong'); mark(m, 'bad', null, pos, holding || !when[pos] ? 0 : t - when[pos]); flash(m, 'bad', 240);
   info(`You played ${noteName(m)}` + (holding ? ' · Your turn' : ''));
+}
+
+/* ---------- chords in Wait for me: all notes together, or play them again ---------- */
+const TOGETHER = 300;                    // ms from the first to the last key of a chord
+let grp = null;                          // the chord being played: step, notes so far, timer
+function chordStart(i, m, t, pre) {
+  grp = {i, pre, t0: t, hits: new Map(), timer: setTimeout(() => chordFail('together'), TOGETHER)};
+  return chordPress(m, t);
+}
+function chordPress(m, t) {
+  const g = grp, notes = steps[g.i].notes.filter(mine);
+  if (t - g.t0 > TOGETHER) { chordFail('together'); return press(m, false, t); }   // too late for this chord: it starts a new try
+  const n = notes.find(n => n.midi === m && !g.hits.has(n));
+  if (!n) return chordFail('wrong', m);
+  g.hits.set(n, t); mark(m, null, n, g.i, 0); flash(m, 'on', 200);
+  if (g.hits.size === notes.length) chordDone();
+}
+function chordDone() {                   // every note arrived in time: count them and go on
+  const g = grp; clearTimeout(g.timer); grp = null;
+  const due = g.pre ? target + latency() : when[g.i];
+  for (const [n, t] of g.hits) {
+    if (g.pre) { if (early?.i !== g.i) early = {i: g.i, set: new Set()}; early.set.add(n); }
+    else { done[g.i].add(n); need.delete(n.midi); key(n.midi)?.classList.remove('need'); }
+    judge(n.midi, g.i, n, t - due);
+  }
+  if (g.pre) { clearTimeout(timer); if (!atEnd()) { target = Math.max(...g.hits.values()) - latency(); tick(); } }
+  else if (!need.size) release();
+}
+function chordFail(why, m) {             // a wrong key, or not together: the chord counts as wrong and is played again
+  const g = grp; if (!g) return;
+  clearTimeout(g.timer); grp = null;
+  count(steps[g.i].bar, 'wrong');
+  if (m !== undefined) { mark(m, 'bad', null, g.i, 0); flash(m, 'bad', 260); }
+  const n = steps[g.i].notes.filter(mine).length;
+  info(why === 'wrong' ? `Wrong note: play all ${n} notes again, together` : `Play all ${n} notes together, at the same time`);
+  paintNeed();
 }
 
 /* ---------- timing ---------- */
