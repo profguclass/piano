@@ -46,6 +46,9 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--accent)}
 main{flex:1;overflow:auto;background:var(--paper);padding:4px 4px 40px;-webkit-overflow-scrolling:touch}
 #wrap{position:relative;max-width:1600px;margin:0 auto}
 #marks{position:absolute;inset:0;pointer-events:none}
+#playline{position:absolute;width:3px;margin-left:-1.5px;background:#e0312b;border-radius:2px;pointer-events:none;z-index:2;box-shadow:0 0 6px #e0312b66}
+#playline[hidden]{display:none}
+#score img[id^="cursorImg"]{opacity:0}
 .mk{position:absolute;width:0;height:0;transition:opacity .4s}
 .mk .hd{position:absolute;border-radius:50%;transform:translate(0,-50%) rotate(-20deg);opacity:.75}
 .mk .lg{position:absolute;height:2px;transform:translateY(-50%)}
@@ -167,7 +170,7 @@ body.hide #score svg{opacity:.06}
   <button id="install" hidden>Install app</button>
   <span class="muted" id="version" style="font-size:13px"></span>
 </div>
-<main id="scroll"><div id="lesson" hidden></div><div id="trainer" hidden></div><div id="wrap"><div id="score"></div><div id="heat"></div><div id="fing"></div><div id="marks"></div></div></main>
+<main id="scroll"><div id="lesson" hidden></div><div id="trainer" hidden></div><div id="wrap"><div id="score"></div><div id="heat"></div><div id="fing"></div><div id="marks"></div><div id="playline" hidden></div></div></main>
 <footer><div id="status">Loading…</div><div id="kb"></div></footer>
 <div id="card" hidden role="status"></div>
 <div id="lessons" hidden role="dialog" aria-modal="true" aria-label="Lessons"><div class="sheet">
@@ -346,7 +349,7 @@ function range() {
 function gotoStep(i, stay) {
   const c = osmd.cursor; c.hide(); c.reset();
   for (let k = 0; k < i; k++) c.next();
-  c.show(); pos = i; if (!stay) follow(true); info(); drawFingers();
+  c.show(); pos = i; line = {i, hold: true}; if (!stay) follow(true); info(); drawFingers();
 }
 function jumpTo(i, stay) {               // move the cursor; keep playing if the music was playing
   const was = playing; pause(!was); clearMarks();
@@ -513,6 +516,7 @@ function setPlaying(on) { playing = on; $('play').textContent = on ? '❚❚ Pau
 function pause(endSession = true) {
   clearTimeout(timer); setPlaying(false); holding = armed = false; need.clear(); paintNeed(); silence();
   clearTimeout(grp?.timer); grp = null;
+  line = {i: pos, hold: true};             // the red line rests on the current note
   if (endSession) endRun();
 }
 // In Play along and Wait for me the beat starts with your first note, not with the Play button:
@@ -549,6 +553,7 @@ let holding = false;
 function tick() {
   if (!playing) return;
   const st = steps[pos];
+  line = {i: pos, t0: target, hold: false};    // the red line reaches this note now and moves on toward the next
   if (S.mode !== 'listen') {
     const now = performance.now();
     open.filter(i => i === pos || now > when[i] + win(i)).forEach(closeStep);
@@ -562,7 +567,7 @@ function tick() {
   }
   if (S.mode === 'wait') {
     need = new Set(st.notes.filter(n => mine(n) && !done[pos].has(n)).map(n => n.midi));
-    if (need.size) { holding = true; paintNeed(); info('Your turn'); return; }   // the other hand waits for you
+    if (need.size) { holding = true; line.hold = true; paintNeed(); info('Your turn'); return; }   // the other hand (and the line) wait for you
   }
   accompany(st);
   next();
@@ -574,7 +579,7 @@ function next() {                        // schedule the following step one note
 function release() {                     // you played the held step: the other hand joins you and the music goes on
   holding = false; need.clear(); paintNeed();
   accompany(steps[pos]);
-  target = performance.now(); next();
+  target = performance.now(); line = {i: pos, t0: target, hold: false}; next();
 }
 function expected(m) {                   // the score note this key matches, near the cursor
   const near = S.mode === 'along' && playing ? [pos, pos - 1, pos + 1] : [pos];
@@ -667,6 +672,30 @@ function alongFail(i, why) {             // the chord counts as missed; its note
   notes.forEach(n => set?.add(n));       // already counted: nothing more is missed when the step closes
   info(why === 'wrong' ? `Wrong note: all ${notes.length} notes must be right` : why === 'missing' ? `Missed part of the chord: play all ${notes.length} notes` : `Play all ${notes.length} notes together`);
 }
+
+/* ---------- the red play line ---------- */
+let line = {i: 0, hold: true};
+function drawLine() {
+  requestAnimationFrame(drawLine);
+  const el = $('playline'), svg = $('score').querySelector('svg');
+  const i = Math.min(line.i ?? pos, steps.length - 1);
+  if (!steps.length || !svg || !osmd?.GraphicSheet || i < 0) { el.hidden = true; return; }
+  const a = stepX(i); if (!a) { el.hidden = true; return; }
+  let x = a.x;
+  if (playing && !line.hold) {
+    const frac = Math.max(0, Math.min(1, (performance.now() - line.t0) / (sec(stepDur(i)) * 1000)));
+    const nb = stepX(i + 1), end = nb && nb.sys === a.sys && nb.x > a.x ? nb.x : a.end;
+    x = a.x + frac * (end - a.x);
+  }
+  const ms = osmd.GraphicSheet.MeasureList[steps[i].bar];
+  const u = 10 * osmd.zoom, W = $('wrap').getBoundingClientRect(), G = svg.getBoundingClientRect();
+  const top = ms[0].PositionAndShape.AbsolutePosition.y - 1.5, bottom = ms[ms.length - 1].PositionAndShape.AbsolutePosition.y + 5.5;
+  el.hidden = false;
+  el.style.left = G.left - W.left + x * u + 'px';
+  el.style.top = G.top - W.top + top * u + 'px';
+  el.style.height = (bottom - top) * u + 'px';
+}
+requestAnimationFrame(drawLine);
 
 /* ---------- chords in Wait for me: all notes together, or play them again ---------- */
 const TOGETHER = 300;                    // ms from the first to the last key of a chord
