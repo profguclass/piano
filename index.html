@@ -461,7 +461,7 @@ function mark(m, verdict, ref, i = pos, dt = 0) {
   const col = {ok: 'var(--accent)', onTime: 'var(--accent)', early: 'var(--off)', late: 'var(--off)', bad: 'var(--bad)'}[verdict] || 'var(--you)';
   const tag = {ok: ' ✓', onTime: ' ✓', early: ' early', late: ' late', bad: ' ✗'}[verdict] || '';
 
-  $('marks').querySelector(`[data-m="${m}"]`)?.remove();
+  $('marks').querySelectorAll(`[data-m="${m}"]`).forEach(x => x.remove());   // one mark (and one name) per key
   const el = document.createElement('div'); el.className = 'mk'; el.dataset.m = m;
   el.style.left = x + 'px'; el.style.top = y + 'px';
   const add = (cls, css, txt) => { const d = document.createElement('div'); d.className = cls; Object.assign(d.style, css); if (txt) d.textContent = txt; el.append(d); };
@@ -473,7 +473,7 @@ function mark(m, verdict, ref, i = pos, dt = 0) {
   // the name goes above the staff, so it never covers nearby notes; a chord's names stack upwards
   const sysTop = G.top - W.top + osmd.GraphicSheet.MeasureList[st.bar][0].PositionAndShape.AbsolutePosition.y * u;
   const stack = [...$('marks').querySelectorAll('.nm:not(.fade)')].length;
-  const nm = document.createElement('div'); nm.className = 'mk nm';
+  const nm = document.createElement('div'); nm.className = 'mk nm'; nm.dataset.m = m;
   nm.style.left = cx + 'px';
   nm.style.top = Math.min(sysTop - u * 1.5 - (S.fingers ? u * 1.1 + 30 : 0), y - u * 1.2) - stack * 28 + 'px';
   nm.innerHTML = `<div class="lb" style="background:${col}"></div>`; nm.firstChild.textContent = noteName(m) + tag;
@@ -651,7 +651,7 @@ function alongChord(hit, m, t) {
   if (!g || g.resolved) g = agroups[hit.i] = {hits: new Map(), first: t, resolved: false};
   if (t - g.first > TOGETHER) { g.hits.set(hit.n, {m, t, off: hit.off}); return alongFail(hit.i, 'together'); }
   g.hits.set(hit.n, {m, t, off: hit.off});
-  mark(m, null, hit.n, hit.i, hit.off); flash(m, 'on', 200);
+  flash(m, 'on', 200);                   // the label comes when the chord is decided
   if (g.hits.size === notes.length) {    // all of them, together: now they count
     g.resolved = true;
     for (const [n, h] of g.hits) judge(h.m, hit.i, n, h.off);
@@ -680,7 +680,7 @@ function chordPress(m, t) {
   if (t - g.t0 > TOGETHER) { chordFail('together'); return press(m, false, t); }   // too late for this chord: it starts a new try
   const n = notes.find(n => n.midi === m && !g.hits.has(n));
   if (!n) return chordFail('wrong', m);
-  g.hits.set(n, t); mark(m, null, n, g.i, 0); flash(m, 'on', 200);
+  g.hits.set(n, t); flash(m, 'on', 200);         // the label comes when the chord is decided
   if (g.hits.size === notes.length) chordDone();
 }
 function chordDone() {                   // every note arrived in time: count them and go on
