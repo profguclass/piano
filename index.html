@@ -1312,13 +1312,17 @@ function noteOns(d) {                   // every note-on in a MIDI event (it may
   }
   return out;
 }
+const lastOn = {};                      // when each key was last pressed, to drop duplicates
 function hookMidi() {
   const names = [], outs = [...midiAccess.outputs.values()];
   midiAccess.inputs.forEach(i => {
     names.push(i.name || 'Piano');
     i.onmidimessage = ev => {
+      const now = ev.timeStamp || performance.now();
       for (const m of noteOns(ev.data)) {
         if (performance.now() - (sentAt[m] || -1e9) < 150) continue;   // the piano echoing a note the app sent
+        if (now - (lastOn[m] ?? -1e9) < 50) continue;                  // the same key again within 50 ms: a duplicate
+        lastOn[m] = now;                                               // (one piano can appear as several MIDI ports)
         press(m, false, ev.timeStamp);
       }
     };
