@@ -44,6 +44,7 @@ suggests one (dashed circles). Turn them off in ⋯ → *Finger numbers*.
 - Every key you press is shown on the score with its name (e.g. C4) above the staff: green ✓ = right note, red ✗ = wrong note.
   While playing, the mark sits where you played in time: on the note when on time, before it when early, after it when late.
 - **Tap the score** to move the cursor to that note; **⏮ Start** goes back to the beginning (both keep playing if the music is playing).
+- In Play along and Wait for me the music waits after ▶ Play: **the beat starts with your first note**, which counts as exactly on time.
 - **Timing**: each note is judged *on time* (within about ±15% of a beat), *early* or *late* (and *missed* in Play along).
 - **Progress** is saved on the device for each piece: a summary after every run, and the **Progress** button shows
   your results over time, the bars that need practice (one tap repeats that bar) and recent sessions.

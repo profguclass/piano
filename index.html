@@ -344,7 +344,7 @@ function jumpTo(i, stay) {               // move the cursor; keep playing if the
   const [s, e] = range();
   if (S.loop && (i < s || i > e)) { S.loop = $('loop').checked = false; save(); }   // tapped outside the repeated bars
   gotoStep(i, stay);
-  if (was) play(true); else info('Press ▶ Play to start here');
+  if (was) play(true, true); else info('Press ▶ Play to start here');
 }
 function stepAt(cx, cy) {                // the step under a tap on the score
   const svg = $('score').querySelector('svg'); if (!svg || !steps.length) return -1;
@@ -489,26 +489,39 @@ function buildKb() {
   }
 }
 const key = m => $('kb').querySelector(`[data-m="${m}"]`);
-function flash(m, cls, ms) { const k = key(m); if (!k) return; k.classList.add(cls); setTimeout(() => k.classList.remove(cls), ms); }
+function flash(m, cls, ms) {
+  const k = key(m); if (!k) return; k.classList.add(cls);
+  setTimeout(() => { if (!(cls === 'need' && need.has(m))) k.classList.remove(cls); }, ms);   // keep keys you still have to play lit
+}
 function paintNeed() {
   $('kb').querySelectorAll('.need').forEach(k => k.classList.remove('need'));
-  if (playing && S.mode === 'wait') need.forEach(m => key(m)?.classList.add('need'));
+  if (playing && (S.mode === 'wait' || armed)) need.forEach(m => key(m)?.classList.add('need'));
 }
 
 /* ---------- playback ---------- */
 function setPlaying(on) { playing = on; $('play').textContent = on ? '❚❚ Pause' : '▶ Play'; }
 function pause(endSession = true) {
-  clearTimeout(timer); setPlaying(false); holding = false; need.clear(); paintNeed(); silence();
+  clearTimeout(timer); setPlaying(false); holding = armed = false; need.clear(); paintNeed(); silence();
   if (endSession) endRun();
 }
-function play(resume) {
+// In Play along and Wait for me the beat starts with your first note, not with the Play button:
+// the app waits ("armed") until you play it, and that moment counts as exactly on time.
+let armed = false;
+function play(resume, arm = !resume) {
   if (!steps.length) return;
   const [s, e] = range();
   if (pos < s || pos > e || pos >= steps.length - 1 && !S.loop && pos !== 0) gotoStep(s);
   setPlaying(true); $('card').hidden = true;
   if (!resume || !run) startRun();
+  if (arm && S.mode !== 'listen') {
+    armed = true;
+    need = new Set(steps[pos].notes.filter(mine).map(n => n.midi)); paintNeed();
+    info(need.size ? 'Play the first note to start: the beat starts with you' : 'Press any key to start');
+    return;
+  }
   target = performance.now(); tick();
 }
+function begin(t) { armed = false; need.clear(); paintNeed(); target = t - latency(); tick(); }
 function atEnd() {                       // returns true if playback should stop
   const [s, e] = range();
   if (pos < e) { advance(); return false; }
@@ -568,6 +581,13 @@ function press(m, sound, t) {
   if (!playing || S.mode === 'listen' || !run) {
     const ref = expected(m);
     mark(m, ref ? 'ok' : null, ref); flash(m, 'on', 180); info(`You played ${noteName(m)}`); return;
+  }
+  if (armed) {
+    const first = steps[pos].notes.filter(mine);
+    if (!first.length) return begin(t);                                   // the other hand starts: any key sets it going
+    if (first.some(n => n.midi === m)) { begin(t); return press(m, false, t); }   // your first note: now on the beat
+    count(steps[pos].bar, 'wrong'); mark(m, 'bad', null); flash(m, 'bad', 240);
+    return info(`You played ${noteName(m)} · Play the first note to start`);
   }
   if (holding) {
     const n = steps[pos].notes.find(n => n.midi === m && mine(n) && !done[pos].has(n));
@@ -909,6 +929,7 @@ const dimHands = () => $('hands').classList.toggle('dim', S.mode === 'listen');
 seg('mode', 'mode', () => { pause(); dimHands(); info(S.mode === 'listen' ? 'The app plays both hands' : ''); });
 seg('hands', 'hands', () => {
   if (S.mode === 'listen') info('Hands apply in Play along and Wait for me');
+  else if (armed) { need = new Set(steps[pos].notes.filter(mine).map(n => n.midi)); paintNeed(); }
   else if (holding) { need = new Set(steps[pos].notes.filter(n => mine(n) && !done[pos].has(n)).map(n => n.midi)); paintNeed(); if (!need.size) release(); }
 });
 dimHands();
