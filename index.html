@@ -172,7 +172,7 @@ body.hide #score svg{opacity:.06}
 <div id="card" hidden role="status"></div>
 <div id="lessons" hidden role="dialog" aria-modal="true" aria-label="Lessons"><div class="sheet">
   <div class="top"><h2>Lessons</h2><button id="lclose">Close</button></div>
-  <p class="muted">The levels and their parts (technique, pieces, ear tests and sight reading) follow the <a href="https://www.rcmusic.com/syllabi" target="_blank" rel="noopener">RCM Piano Syllabus</a> (2022 edition), from Preparatory A to Level 4. Technique and pieces have three steps: <b>listen</b>, <b>Wait for me</b>, then <b>Play along</b> at the target tempo. Finger numbers: 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger.</p>
+  <p class="muted">The levels and their parts (technique, pieces, ear tests and sight reading) follow the <a href="https://www.rcmusic.com/syllabi" target="_blank" rel="noopener">RCM Piano Syllabus</a> (2022 edition), from Preparatory A to Level 6. Technique and pieces have three steps: <b>listen</b>, <b>Wait for me</b>, then <b>Play along</b> at the target tempo. Finger numbers: 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger.</p>
   <div id="llist"></div>
 </div></div>
 <div id="prog" hidden role="dialog" aria-modal="true" aria-labelledby="ptitle"><div class="sheet">
@@ -590,6 +590,12 @@ function press(m, sound, t) {
   t = t || performance.now();
   if (ear) { flash(m, 'on', 160); return earKey(m, t); }                       // ear tests take the keys
   if (lesson?.kind === 'sight' && sightType === 'rhythm' && playing) m = 72;    // rhythm reading: any key taps
+  if (lesson?.kind === 'sight' && sightType === 'leadsheet' && playing && run && m < 60) {   // your own accompaniment
+    if (armed) { flash(m, 'on', 160); return; }                                    // the melody starts the music
+    const ch = leadChords[steps[pos].bar], ok = ch && ch.pcs.includes(m % 12);
+    count(steps[pos].bar, ok ? 'ok' : 'wrong'); mark(m, ok ? 'ok' : 'bad', null); flash(m, ok ? 'on' : 'bad', 220);
+    return info(`${noteName(m)} ${ok ? 'fits' : 'is not in'} the ${ch?.root || ''}${ch?.kind === 'minor' ? 'm' : ch?.kind === 'dominant' ? '7' : ''} chord`);
+  }
   if (!playing || S.mode === 'listen' || !run) {
     const ref = expected(m);
     mark(m, ref ? 'ok' : null, ref); flash(m, 'on', 180); info(`You played ${noteName(m)}`); return;
@@ -836,7 +842,8 @@ function showLesson() {
     const best = d.tests || {};
     steps = L.tests.map(t => `<button data-a="ear:${t}" class="${best[t] >= 8 ? 'done' : ''}"><b>${EAR[t].name}</b><small>${best[t] !== undefined ? `best ${best[t]}/10` : EAR[t].short}</small></button>`).join('');
   } else if (L.kind === 'sight') {
-    steps = L.tests.map(t => `<button data-a="sight:${t}" class="${(d[t] || 0) >= 3 ? 'done' : ''}"><b>New ${t === 'rhythm' ? 'rhythm' : 'playing'} exercise</b><small>${Math.min(3, d[t] || 0)} of 3 passed · ${t === 'rhythm' ? 'tap any key' : 'play the notes'}</small></button>`).join('');
+    const what = {rhythm: ['rhythm exercise', 'tap any key'], playing: ['playing exercise', 'play the notes'], leadsheet: ['lead sheet', 'melody + your own left hand']};
+    steps = L.tests.map(t => `<button data-a="sight:${t}" class="${(d[t] || 0) >= 3 ? 'done' : ''}"><b>New ${what[t][0]}</b><small>${Math.min(3, d[t] || 0)} of 3 passed · ${what[t][1]}</small></button>`).join('');
   } else {
     steps = `<button data-a="listen" class="${d.listen ? 'done' : ''}"><b>1 · Listen</b><small>${lessonGoal(L, 'listen')}</small></button>
       <button data-a="wait" class="${d.wait ? 'done' : ''}"><b>2 · Wait for me</b><small>${lessonGoal(L, 'wait')} · ${L.wait} bpm</small></button>
@@ -902,7 +909,7 @@ async function openLessons() {
         const n = L.tests.filter(t => (d.tests || {})[t] >= 8).length;
         status = `<span class="stars" aria-label="${n} of ${L.tests.length} tests passed">${L.tests.map(t => (d.tests || {})[t] >= 8 ? '<b>●</b>' : '○').join('')}</span>`;
       } else if (L.kind === 'sight') {
-        sub = L.tests.map(t => `${t === 'rhythm' ? 'Rhythm' : 'Playing'} ${Math.min(3, d[t] || 0)}/3`).join(' · ');
+        sub = L.tests.map(t => `${{rhythm: 'Rhythm', playing: 'Playing', leadsheet: 'Lead sheet'}[t]} ${Math.min(3, d[t] || 0)}/3`).join(' · ');
         status = `<span class="stars">${d.passed ? '<b>●</b>' : '○'}</span>`;
       } else {
         sub = `${{right: 'Right hand', left: 'Left hand', both: 'Both hands'}[L.hands]} · ${L.bpm} bpm`;
@@ -921,17 +928,19 @@ async function openLessons() {
 
 /* ---------- music helpers for generated exercises ---------- */
 const KEYNOTES = {C: ['C D E F G A B', 0], G: ['G A B C D E F#', 1], D: ['D E F# G A B C#', 2], A: ['A B C# D E F# G#', 3],
+  E: ['E F# G# A B C# D#', 4],
   F: ['F G A Bb C D E', -1], Bb: ['Bb C D Eb F G A', -2], Eb: ['Eb F G Ab Bb C D', -3],
   Am: ['A B C D E F G', 0], Dm: ['D E F G A Bb C', -1], Em: ['E F# G A B C D', 1], Gm: ['G A Bb C D Eb F', -2],
   Bm: ['B C# D E F# G A', 2], Cm: ['C D Eb F G Ab Bb', -3]};
-const KEYNAME = {C: 'C major', G: 'G major', D: 'D major', A: 'A major', F: 'F major', Bb: 'B♭ major', Eb: 'E♭ major',
+const KEYNAME = {C: 'C major', G: 'G major', D: 'D major', A: 'A major', E: 'E major', F: 'F major', Bb: 'B♭ major', Eb: 'E♭ major',
   Am: 'A minor', Dm: 'D minor', Em: 'E minor', Gm: 'G minor', Bm: 'B minor', Cm: 'C minor'};
 const tonicOctave = key => 'CDEF'.includes(key[0]) ? 4 : 3;   // keeps melodies around middle C
 const one = v => Array.isArray(v) ? pick(v) : v;            // a setting given as a choice
 const PC = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11};
 const pick = a => a[Math.floor(Math.random() * a.length)];
-function placeNotes(key, octave, count, from = 0) {    // scale notes upward from degree `from`, as "F#4"-style names
+function placeNotes(key, octave, count, from = 0, harmonic = false) {    // scale notes upward from degree `from`, as "F#4"-style names
   const names = KEYNOTES[key][0].split(' '), out = [];
+  if (harmonic && key.endsWith('m')) names[6] = names[6].endsWith('b') ? names[6].slice(0, -1) : names[6] + '#';   // raised 7th
   let prev = null;
   if (from < 0 && 'CDEFGAB'.indexOf(names[6][0]) > 'CDEFGAB'.indexOf(names[0][0])) octave--;   // the note below the tonic is in the octave below (B under C)
   for (let i = from; i < from + count; i++) {
@@ -946,7 +955,11 @@ function midiOf(name) {
   return (+m[3] + 1) * 12 + PC[m[1]] + (m[2] === '#' ? 1 : m[2] === 'b' ? -1 : 0);
 }
 const TYPES = {1: ['16th'], 2: ['eighth'], 3: ['eighth', 1], 4: ['quarter'], 6: ['quarter', 1], 8: ['half'], 12: ['half', 1], 16: ['whole']};
-function scoreXml(title, beats, fifths, bars, bpm) {   // bars: [{r: [[name|null, sixteenths, finger?]], l: [...]}]
+function harmonyXml(h) {                       // a chord symbol: {root: 'F#', kind: 'major' | 'minor' | 'dominant'}
+  const alter = h.root[1] === '#' ? 1 : h.root[1] === 'b' ? -1 : 0;
+  return `<harmony><root><root-step>${h.root[0]}</root-step>${alter ? `<root-alter>${alter}</root-alter>` : ''}</root><kind${h.kind === 'minor' ? ' text="m"' : h.kind === 'dominant' ? ' text="7"' : ' text=""'}>${h.kind}</kind></harmony>`;
+}
+function scoreXml(title, beats, fifths, bars, bpm) {   // bars: [{r: [[name|null, sixteenths, finger?]], l: [...], h: chord symbol}]
   const len = beats * 4;
   const part = (notes, staff, voice) => {
     if (!notes?.length) return `<note><rest measure="yes"/><duration>${len}</duration><voice>${voice}</voice><staff>${staff}</staff></note>`;
@@ -959,7 +972,7 @@ function scoreXml(title, beats, fifths, bars, bpm) {   // bars: [{r: [[name|null
     }).join('');
   };
   const ms = bars.map((b, i) => `<measure number="${i + 1}">${i ? '' : `<attributes><divisions>4</divisions><key><fifths>${fifths}</fifths></key><time><beats>${beats}</beats><beat-type>4</beat-type></time><staves>2</staves><clef number="1"><sign>G</sign><line>2</line></clef><clef number="2"><sign>F</sign><line>4</line></clef></attributes><direction placement="above"><direction-type><metronome><beat-unit>quarter</beat-unit><per-minute>${bpm}</per-minute></metronome></direction-type><staff>1</staff><sound tempo="${bpm}"/></direction>`}` +
-    `${part(b.r, 1, 1)}<backup><duration>${len}</duration></backup>${part(b.l, 2, 5)}${i === bars.length - 1 ? '<barline location="right"><bar-style>light-heavy</bar-style></barline>' : ''}</measure>`).join('');
+    `${b.h ? harmonyXml(b.h) : ''}${part(b.r, 1, 1)}<backup><duration>${len}</duration></backup>${part(b.l, 2, 5)}${i === bars.length - 1 ? '<barline location="right"><bar-style>light-heavy</bar-style></barline>' : ''}</measure>`).join('');
   return `<?xml version="1.0" encoding="UTF-8"?><score-partwise version="3.1"><work><work-title>${title}</work-title></work><part-list><score-part id="P1"><part-name>Piano</part-name></score-part></part-list><part id="P1">${ms}</part></score-partwise>`;
 }
 // A random rhythm: each bar filled with the given values ('q', 'h', 'h.', 'ee' two eighths, 'q.e', 'rq' quarter rest).
@@ -981,7 +994,7 @@ function makeRhythm(values, beats, bars) {
 }
 
 /* ---------- sight reading ---------- */
-let sightType = null;
+let sightType = null, leadChords = [];
 async function newSight(type) {
   const L = lesson, cfg = L[type];
   leaveTrainer(); sightType = type;
@@ -1005,17 +1018,46 @@ async function newSight(type) {
     };
     bpm = 60; title = 'Sight reading';
     xml = scoreXml(title, 4, 0, [{r: tune(4, true)}, {l: tune(3, false)}], bpm);
+  } else if (type === 'leadsheet') {           // a melody with chord symbols; the left hand makes up its own accompaniment
+    const key = pick(cfg.keys), minor = key.endsWith('m'), [beats] = pick([[3, 4], [4, 4]]), bars = cfg.bars;
+    const names = KEYNOTES[key][0].split(' '), rh = placeNotes(key, 4, 8);
+    const voc = cfg.chords, sub = c => voc.includes(c) ? c : null;
+    const plan = [['I', sub('vi') || 'IV', 'V', 'I', 'I', 'IV', sub('V7') || 'V', 'I'], ['I', 'V', sub('vi') || 'I', 'IV', 'I', 'IV', sub('V7') || 'V', 'I'],
+                  ['I', 'IV', 'I', 'V', sub('vi') || 'I', 'IV', 'V', 'I']].map(x => x.slice(0, bars));
+    const prog = pick(plan);
+    const DEG = {I: 0, IV: 3, V: 4, V7: 4, vi: 5};
+    const chordOf = c => {                     // root name, symbol kind and pitch classes of a chord in this key
+      const deg = DEG[c], root = names[deg], rootPc = midiOf(root + '4') % 12;
+      let third = [0, 3].includes(deg) ? (minor ? 3 : 4) : deg === 4 ? 4 : (minor ? 4 : 3);   // V is major in minor (raised 7th)
+      const pcs = [0, third, 7, ...(c === 'V7' ? [10] : [])].map(x => (rootPc + x) % 12);
+      return {root, kind: c === 'V7' ? 'dominant' : third === 3 ? 'minor' : 'major', pcs, tones: [deg, deg + 2, deg + 4].map(x => x % 7)};
+    };
+    leadChords = prog.map(chordOf);
+    const rhythm = makeRhythm(['q', 'h', 'ee', 'q.e'], beats, bars);
+    let d = 2;
+    const out = rhythm.map((bar, b) => ({
+      h: leadChords[b],
+      r: bar.map((dur, j) => {
+        if (b === bars - 1 && j === bar.length - 1) d = 0;
+        else if (j === 0) { const ts = leadChords[b].tones.flatMap(x => [x, x + 7]).filter(x => x <= 7); d = ts.reduce((a, x) => Math.abs(x - d) < Math.abs(a - d) ? x : a); }
+        else d = Math.max(0, Math.min(7, d + pick([-1, 1, -1, 1, 2, -2])));
+        return [rh[d], dur, b === 0 && j === 0 ? Math.min(5, d + 1) : null];
+      }),
+    }));
+    bpm = 60; title = `Lead sheet in ${KEYNAME[key]}`;
+    xml = scoreXml(title, beats, KEYNOTES[key][1], out, bpm);
   } else if (cfg.style === 'together') {        // hands together: a melody over long bass notes (I, IV, V)
     const key = pick(cfg.keys), [beats] = pick([[3, 4], [4, 4]]), bars = cfg.bars;
     const rh = placeNotes(key, 4, 5), lh = placeNotes(key, 3, 5);
-    const plan = pick([[0, 4, 4, 0], [0, 0, 4, 0], [0, 3, 4, 0], [0, 4, 0, 0]]);   // bass degree of each bar
+    const plan = bars === 8 ? pick([[0, 3, 4, 4, 0, 3, 4, 0], [0, 4, 0, 4, 0, 3, 4, 0], [0, 0, 3, 4, 0, 3, 4, 0]])
+                            : pick([[0, 4, 4, 0], [0, 0, 4, 0], [0, 3, 4, 0], [0, 4, 0, 0]]);   // bass degree of each bar
     const tones = {0: [0, 2, 4], 3: [0, 3], 4: [1, 4]};                             // chord notes within the five-finger position
     const rhythm = makeRhythm(cfg.values, beats, bars);
     let d = pick(tones[0]);
     const out = rhythm.map((bar, b) => ({
       r: bar.map((dur, j) => {
         if (b === bars - 1 && j === bar.length - 1) d = 0;
-        else if (j === 0) d = tones[plan[b]].reduce((a, x) => Math.abs(x - d) < Math.abs(a - d) ? x : a);   // a chord note on beat 1
+        else if (j === 0 || (bars === 8 && b === 3 && j === bar.length - 1)) d = tones[plan[b]].reduce((a, x) => Math.abs(x - d) < Math.abs(a - d) ? x : a);   // chord notes on beat 1 and at the half cadence
         else d = Math.max(0, Math.min(4, d + pick([-1, 1, -1, 1, 2, -2, 0])));
         return [rh[d], dur, b === 0 && j === 0 ? d + 1 : null];
       }),
@@ -1045,16 +1087,22 @@ async function newSight(type) {
     xml = scoreXml(title, beats, KEYNOTES[key][1], out, bpm);
   }
   if (!await loadScore(xml, title)) return false;
-  setSeg('hands', 'hands', 'both'); setSeg('mode', 'mode', type === 'rhythm' ? 'along' : 'wait'); setBpm(bpm, false);
+  setSeg('hands', 'hands', type === 'leadsheet' ? 'right' : 'both'); setSeg('mode', 'mode', type === 'rhythm' ? 'along' : 'wait'); setBpm(bpm, false);
   S.loop = $('loop').checked = false; save();
-  info(type === 'rhythm' ? 'Tap the rhythm on any key. Press ▶ Play, then start tapping' : 'Read it first, then press ▶ Play and play it');
+  info(type === 'rhythm' ? 'Tap the rhythm on any key. Press ▶ Play, then start tapping'
+    : type === 'leadsheet' ? 'Play the melody with your right hand and an accompaniment from the chord symbols with your left (below middle C)'
+    : 'Read it first, then press ▶ Play and play it');
   return true;
 }
 function sightResult(s) {
   const need = sightType === 'rhythm' ? s.acc >= 80 && s.ont >= 70 : s.acc >= 80;
   if (s.mode === 'listen' || !need) return `<small>Sight reading: aim for 80% correct${sightType === 'rhythm' ? ' and 70% on time' : ''}. Try a new exercise.</small>`;
   let passed = false;
-  saveDone(d => { d[sightType] = (d[sightType] || 0) + 1; d.passed = passed = lesson.tests.every(t => (d[t] || 0) >= 3); });
+  saveDone(d => {
+    d[sightType] = (d[sightType] || 0) + 1;
+    const ok = t => (d[t] || 0) >= 3;          // the lead sheet is an alternative to the playing test, as in the syllabus
+    d.passed = passed = lesson.tests.includes('leadsheet') ? ok('rhythm') && (ok('playing') || ok('leadsheet')) : lesson.tests.every(ok);
+  });
   return passed ? '<b>★ Sight reading passed for this level!</b>' : `<b>✓ Exercise passed.</b> <small>Try a new one.</small>`;
 }
 
@@ -1065,8 +1113,11 @@ const EAR = {
   chords: {name: 'Chords', short: 'major or minor?'},
   playback: {name: 'Playback', short: 'play back a melody'},
   members: {name: 'Chord notes', short: 'root, third or fifth?'},
+  progressions: {name: 'Chord progressions', short: 'I–IV–I or I–V–I?'},
 };
-const INTERVAL = {m3: [3, 'Minor 3rd'], M3: [4, 'Major 3rd'], P4: [5, 'Perfect 4th'], P5: [7, 'Perfect 5th'], P8: [12, 'Octave']};
+const INTERVAL = {m2: [1, 'Minor 2nd'], M2: [2, 'Major 2nd'], m3: [3, 'Minor 3rd'], M3: [4, 'Major 3rd'], P4: [5, 'Perfect 4th'],
+  P5: [7, 'Perfect 5th'], m6: [8, 'Minor 6th'], M6: [9, 'Major 6th'], P8: [12, 'Octave']};
+const QUALITY = {major: [[0, 4, 7], 'Major'], minor: [[0, 3, 7], 'Minor'], dom7: [[0, 4, 7, 10], 'Dominant 7th'], dim7: [[0, 3, 6, 9], 'Diminished 7th']};
 let ear = null;
 function openTrainer() {
   $('wrap').hidden = true; $('trainer').hidden = false;
@@ -1089,22 +1140,30 @@ function earNext() {
   ear.n++; ear.q = null; ear.taps = []; ear.played = []; ear.listening = false;
   const q = {};
   if (t === 'chords') {
-    q.minor = Math.random() < 0.5; q.root = 55 + Math.floor(Math.random() * 10);
-    q.answers = [['major', 'Major'], ['minor', 'Minor']]; q.answer = q.minor ? 'minor' : 'major';
+    const qs = L.chords.qualities || ['major', 'minor'];
+    q.quality = pick(qs); q.minor = q.quality === 'minor'; q.root = 55 + Math.floor(Math.random() * 10);
+    q.answers = qs.map(k => [k, QUALITY[k][1]]); q.answer = q.quality;
+  } else if (t === 'progressions') {
+    q.minor = L.progressions.minor && Math.random() < 0.5; q.kind = pick(['IV', 'V']); q.tonic = 60 + Math.floor(Math.random() * 6) - 2;
+    q.answers = q.minor ? [['IV', 'i–iv–i'], ['V', 'i–V–i']] : [['IV', 'I–IV–I'], ['V', 'I–V–I']]; q.answer = q.kind;
   } else if (t === 'intervals') {
-    const k = pick(L.intervals); q.size = INTERVAL[k][0]; q.root = 55 + Math.floor(Math.random() * 10);
+    const k = pick(L.intervals); q.size = INTERVAL[k][0]; q.root = 55 + Math.floor(Math.random() * 10); q.down = Math.random() < 0.5;
     q.answers = L.intervals.map(i => [i, INTERVAL[i][1]]); q.answer = k;
   } else if (t === 'members') {
     q.minor = Math.random() < 0.5; q.root = 55 + Math.floor(Math.random() * 10);
     q.answer = pick(['root', 'third', 'fifth']); q.answers = [['root', 'Root'], ['third', 'Third'], ['fifth', 'Fifth']];
   } else if (t === 'playback') {
-    const cfg = L.playback, key = pick(cfg.keys), notes = placeNotes(key, tonicOctave(key), cfg.degrees), length = one(cfg.length);
-    let d = pick(cfg.starts); const mel = [d];
+    const cfg = L.playback, key = pick(cfg.keys), length = one(cfg.length);
+    const pool = cfg.pool || [...Array(cfg.degrees).keys()];            // the scale degrees the melody may use
+    const notes = placeNotes(key, tonicOctave(key), 12, 0, true);
+    let d = pool.indexOf(pick(cfg.starts.filter(x => pool.includes(x)))); const mel = [d];
     while (mel.length < length) {              // mostly steps, the odd skip, at most one repeated note
       const moves = [-1, 1, -1, 1, 2, -2, ...(mel.some((x, i) => i && x === mel[i - 1]) ? [] : [0])]
-        .filter(m => d + m >= 0 && d + m < cfg.degrees);
+        .filter(m => d + m >= 0 && d + m < pool.length);
       d += pick(moves); mel.push(d);
     }
+    for (let i = 0; i < mel.length; i++) mel[i] = pool[mel[i]];
+    q.plays = cfg.plays || 2;
     q.key = key; q.notes = mel.map(i => midiOf(notes[i])); q.names = mel.map(i => notes[i].replace(/\d/, ''));
     q.triad = [0, 2, 4].map(i => midiOf(placeNotes(key, tonicOctave(key), 5)[i]));
   } else {                                     // clapback
@@ -1120,7 +1179,9 @@ function earNext() {
 }
 function earDraw(feedback = '') {
   const t = ear.test, q = ear.q, el = $('trainer');
-  const prompt = {chords: 'Is this chord major or minor?', intervals: 'Which interval is this?',
+  const prompt = {chords: (lesson.chords.qualities || []).length > 2 ? 'What kind of chord is this?' : 'Is this chord major or minor?',
+    intervals: lesson.intervalStyle === 'melodic-harmonic' ? 'Which interval is this? (played as two notes, then together)' : 'Which interval is this?',
+    progressions: 'Listen to the three chords (played twice). Which progression is it?',
     members: 'You hear a broken chord, then one note. Is that note the root, the third or the fifth?',
     playback: `Key of ${KEYNAME[q.key] || ''}. Listen, then play the melody back on the piano.`,
     clapback: `${q.beats}/4 time. Listen to the rhythm twice, then after the count-in tap it back on any key.`}[t];
@@ -1144,18 +1205,28 @@ function earPlay() {                           // play the question
     let at = 0;                                  // Preparatory: the first five notes of the scale, then the chord;
     const run = style === 'scale' ? (q.minor ? [0, 2, 3, 5, 7] : [0, 2, 4, 5, 7]) : style === 'broken-solid' ? [0, third, 7] : [];
     run.forEach(s => { later(at, () => tone(q.root + s, 0.4)); at += 420; });   // Level 1: broken then solid; Level 2: solid only
-    later(at + (run.length ? 200 : 0), () => [0, third, 7].forEach(s => tone(q.root + s, 1.2)));
+    later(at + (run.length ? 200 : 0), () => QUALITY[q.quality || (q.minor ? 'minor' : 'major')][0].forEach(s => tone(q.root + s, 1.2)));
+  } else if (t === 'progressions') {           // keyboard style: chords in the right hand, the bass rising from the tonic
+    const T = q.tonic, m3 = q.minor ? 3 : 4;
+    const I = [T + m3, T + 7, T + 12], X = q.kind === 'IV' ? [T + 5, T + (q.minor ? 8 : 9), T + 12] : [T + 2, T + 7, T + 11];
+    const bass = [T - 12, T - 12 + (q.kind === 'IV' ? 5 : 7), T];
+    for (let rep = 0; rep < 2; rep++)
+      [I, X, I].forEach((ch, i) => later(rep * 3600 + i * 900, () => { tone(bass[i], 0.8); ch.forEach(n => tone(n, 0.8)); }));
   } else if (t === 'members') {
     const iv = [0, q.minor ? 3 : 4, 7];
     iv.forEach((s, i) => later(i * 450, () => tone(q.root + s, 0.45)));
     later(2100, () => tone(q.root + iv[{root: 0, third: 1, fifth: 2}[q.answer]], 0.9));
+  } else if (t === 'intervals' && lesson.intervalStyle === 'melodic-harmonic') {
+    const [a, b] = q.down ? [q.root + q.size, q.root] : [q.root, q.root + q.size];
+    later(0, () => tone(a, 0.6)); later(650, () => tone(b, 0.6));
+    later(1700, () => { tone(q.root, 1.2); tone(q.root + q.size, 1.2); });
   } else if (t === 'intervals') {
     later(0, () => tone(q.root, 0.6)); later(650, () => tone(q.root + q.size, 0.6));
     later(1700, () => tone(q.root + q.size, 0.6)); later(2350, () => tone(q.root, 0.6));
   } else if (t === 'playback') {
     later(0, () => q.triad.forEach(m => tone(m, 1)));
     let at = 1500;
-    for (let rep = 0; rep < 2; rep++) { q.notes.forEach(m => { later(at, () => tone(m, 0.45)); at += 600; }); at += 900; }
+    for (let rep = 0; rep < (q.plays || 2); rep++) { q.notes.forEach(m => { later(at, () => tone(m, 0.45)); at += 600; }); at += 900; }
     later(at - 600, () => { ear.listening = true; ear.played = []; $('status').textContent = 'Your turn: play the melody'; });
   } else {
     const pitch = 72, ms = q.beatMs;

@@ -6,7 +6,9 @@
   "Level 1",
   "Level 2",
   "Level 3",
-  "Level 4"
+  "Level 4",
+  "Level 5",
+  "Level 6"
  ],
  "lessons": [
   {
@@ -2184,6 +2186,1038 @@
     ]
    },
    "learn": "Tap the rhythm of a four-bar melody at sight, then play a four-bar passage hands together."
+  },
+  {
+   "id": "scales-5-major",
+   "level": 6,
+   "kind": "technique",
+   "title": "Scales hands together: A, E, F and A♭ major",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 65,
+   "learn": "Two-octave scales hands together at a brisker tempo. A♭ major (four flats) starts with finger 3 in both hands.",
+   "tips": [
+    "A♭ major, right hand: 3 4 1 2 3 1 2 3; left hand: 3 2 1 4 3 2 1 3.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "98-scales-5-major.musicxml"
+  },
+  {
+   "id": "scales-5-harmonic",
+   "level": 6,
+   "kind": "technique",
+   "title": "Harmonic minor scales hands together: A, E and F",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 65,
+   "learn": "F minor has four flats; its harmonic form raises the 7th note, E♭, to E♮.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "99-scales-5-harmonic.musicxml"
+  },
+  {
+   "id": "scales-5-melodic",
+   "level": 6,
+   "kind": "technique",
+   "title": "Melodic minor scales hands together: A, E and F",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 65,
+   "learn": "Melodic minor hands together: 6th and 7th raised going up, natural coming down.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "100-scales-5-melodic.musicxml"
+  },
+  {
+   "id": "formula-5",
+   "level": 6,
+   "kind": "technique",
+   "title": "Formula patterns: A major and A harmonic minor",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 65,
+   "learn": "The formula pattern in A major, then A harmonic minor.",
+   "tips": [
+    "Check the exact shape with your syllabus book: this is one common form of the pattern."
+   ],
+   "file": "101-formula-5.musicxml"
+  },
+  {
+   "id": "chromatic-5",
+   "level": 6,
+   "kind": "technique",
+   "title": "Chromatic scales hands together: from A and from F",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 65,
+   "learn": "Chromatic scales now hands together, an octave apart. Both hands use 3 on black keys and the thumb on most white keys, so they match closely.",
+   "tips": [
+    "Where E–F and B–C meet, the right hand uses 1–2 and the left hand 2–1: listen for evenness there."
+   ],
+   "file": "102-chromatic-5.musicxml"
+  },
+  {
+   "id": "tonic-triads-5",
+   "level": 6,
+   "kind": "technique",
+   "title": "Tonic triads with I–V–I: A, E, F and A♭ major",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "Broken tonic triads over two octaves hands together, now ending with a I–V–I cadence: tonic chord, dominant chord, tonic chord.",
+   "tips": [
+    "In the cadence the right hand moves smoothly: only two notes change for the V chord."
+   ],
+   "file": "103-tonic-triads-5.musicxml"
+  },
+  {
+   "id": "tonic-triads-5m",
+   "level": 6,
+   "kind": "technique",
+   "title": "Tonic triads with i–V–i: A, E and F minor",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "Minor tonic triads hands together, ending with i–V–i. The V chord uses the raised 7th (G♯ in A minor).",
+   "tips": [],
+   "file": "104-tonic-triads-5m.musicxml"
+  },
+  {
+   "id": "dominant-7-5",
+   "level": 6,
+   "kind": "technique",
+   "title": "Dominant 7th chords: A, E, F and A♭ major",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 50,
+   "learn": "The dominant 7th is a four-note chord on the 5th note of the scale (in A major: E G♯ B D). Play it broken and solid, in root position and all three inversions.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Right hand: root 1 2 3 5, first inversion 1 2 4 5, second and third 1 2 3 5."
+   ],
+   "file": "105-dominant-7-5.musicxml"
+  },
+  {
+   "id": "dominant-7-5s",
+   "level": 6,
+   "kind": "technique",
+   "title": "Dominant 7th chords, solid: A, E, F and A♭ major",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 45,
+   "learn": "The dominant 7th chords solid, with a rest after each.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand."
+   ],
+   "file": "106-dominant-7-5s.musicxml"
+  },
+  {
+   "id": "arpeggios-5",
+   "level": 6,
+   "kind": "technique",
+   "title": "Arpeggios: A, E, F and A♭ major",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "Two-octave tonic arpeggios hands separately.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Keep the wrist level and let the thumb pass under smoothly."
+   ],
+   "file": "107-arpeggios-5.musicxml"
+  },
+  {
+   "id": "arpeggios-5m",
+   "level": 6,
+   "kind": "technique",
+   "title": "Arpeggios: A, E and F minor",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "Minor tonic arpeggios, two octaves.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand."
+   ],
+   "file": "108-arpeggios-5m.musicxml"
+  },
+  {
+   "id": "petite-reunion",
+   "level": 6,
+   "kind": "piece",
+   "title": "The Little Party (La Petite Réunion), Op. 100 No. 4",
+   "hands": "both",
+   "bpm": 110,
+   "wait": 65,
+   "learn": "Lively repeated chords and quick changes of hand position.",
+   "tips": [
+    "Keep the repeated chords light, from the wrist."
+   ],
+   "file": "109-petite-reunion.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=219"
+  },
+  {
+   "id": "innocence",
+   "level": 6,
+   "kind": "piece",
+   "title": "Innocence, Op. 100 No. 5",
+   "hands": "both",
+   "bpm": 90,
+   "wait": 55,
+   "learn": "A graceful 3/4 study with flowing runs in F major.",
+   "tips": [
+    "Shape every run with a small swell and fade."
+   ],
+   "file": "110-innocence.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=214"
+  },
+  {
+   "id": "progres",
+   "level": 6,
+   "kind": "piece",
+   "title": "Progress (Progrès), Op. 100 No. 6",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "Scales and broken chords shared between the hands: a study in evenness.",
+   "tips": [
+    "Practise the hand changes slowly so the runs sound like one line."
+   ],
+   "file": "111-progres.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=215"
+  },
+  {
+   "id": "courant-limpide",
+   "level": 6,
+   "kind": "piece",
+   "title": "The Limpid Stream (Le Courant Limpide), Op. 100 No. 7",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "Rippling sixteenths in the right hand over a calm left-hand melody.",
+   "tips": [
+    "Keep the right hand soft and even; let the left hand sing."
+   ],
+   "file": "112-courant-limpide.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=216"
+  },
+  {
+   "id": "gracieuse",
+   "level": 6,
+   "kind": "piece",
+   "title": "The Graceful One (La Gracieuse), Op. 100 No. 8",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "An elegant piece in F major with turns and delicate ornaments (the shortest are left out).",
+   "tips": [
+    "Play lightly and gracefully, never heavy."
+   ],
+   "file": "113-gracieuse.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=217"
+  },
+  {
+   "id": "tendre-fleur",
+   "level": 6,
+   "kind": "piece",
+   "title": "Tender Flower (Tendre Fleur), Op. 100 No. 10",
+   "hands": "both",
+   "bpm": 110,
+   "wait": 65,
+   "learn": "Chords and short slurs in D major: practise a gentle, controlled touch.",
+   "tips": [
+    "Lift at the end of each two-note slur."
+   ],
+   "file": "114-tendre-fleur.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=221"
+  },
+  {
+   "id": "bergeronnette",
+   "level": 6,
+   "kind": "piece",
+   "title": "The Wagtail (La Bergeronnette), Op. 100 No. 11",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "Quick, light figures that flick between the hands like a little bird.",
+   "tips": [
+    "Keep the fingers close to the keys for speed."
+   ],
+   "file": "115-bergeronnette.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=222"
+  },
+  {
+   "id": "petite-etude-68-14",
+   "level": 6,
+   "kind": "piece",
+   "title": "Little Study, Op. 68 No. 14",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "Broken chords shared between the hands in a smooth 6/8 flow.",
+   "tips": [
+    "Make the hand changes invisible: one continuous line."
+   ],
+   "file": "116-petite-etude-68-14.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=786"
+  },
+  {
+   "id": "wooden-soldiers",
+   "level": 6,
+   "kind": "piece",
+   "title": "March of the Wooden Soldiers, Op. 39 No. 5",
+   "hands": "both",
+   "bpm": 110,
+   "wait": 65,
+   "learn": "A crisp toy-soldier march with dotted rhythms in D major.",
+   "tips": [
+    "Keep the dotted rhythms sharp and the tempo steady."
+   ],
+   "file": "117-wooden-soldiers.musicxml",
+   "composer": "Pyotr Ilyich Tchaikovsky (Album for the Young)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1806"
+  },
+  {
+   "id": "polonaise-117b",
+   "level": 6,
+   "kind": "piece",
+   "title": "Polonaise in F (BWV Anh. 117b)",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "A more ornamented version of the F major polonaise (the shortest ornaments are left out).",
+   "tips": [
+    "Stately, not fast."
+   ],
+   "file": "118-polonaise-117b.musicxml",
+   "composer": "Notebook for Anna Magdalena Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1015"
+  },
+  {
+   "id": "ear-5",
+   "level": 6,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "intervals",
+    "chords",
+    "progressions",
+    "playback"
+   ],
+   "intervals": [
+    "m3",
+    "M3",
+    "P4",
+    "P5",
+    "m6",
+    "M6",
+    "P8"
+   ],
+   "intervalStyle": "melodic-harmonic",
+   "chords": {
+    "style": "solid",
+    "qualities": [
+     "major",
+     "minor",
+     "dom7"
+    ]
+   },
+   "progressions": {
+    "minor": false
+   },
+   "playback": {
+    "pool": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     7
+    ],
+    "keys": [
+     "A",
+     "E",
+     "Am",
+     "Em"
+    ],
+    "starts": [
+     0,
+     2,
+     4,
+     7
+    ],
+    "length": [
+     6,
+     7,
+     8
+    ],
+    "plays": 3
+   },
+   "learn": "Name intervals up to the octave (heard melodically, then together), tell major, minor and dominant 7th chords apart, recognise I–IV–I and I–V–I, and play back a melody of up to eight notes."
+  },
+  {
+   "id": "sight-5",
+   "level": 6,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing",
+    "leadsheet"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e",
+     "rq"
+    ],
+    "bars": 4,
+    "melodic": true
+   },
+   "playing": {
+    "style": "together",
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "F",
+     "Bb",
+     "Am",
+     "Em",
+     "Bm",
+     "Dm",
+     "Gm"
+    ],
+    "bars": 8,
+    "values": [
+     "q",
+     "h",
+     "ee",
+     "q.e"
+    ]
+   },
+   "leadsheet": {
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "F",
+     "Bb"
+    ],
+    "bars": 8,
+    "chords": [
+     "I",
+     "IV",
+     "V"
+    ]
+   },
+   "learn": "Tap the rhythm of a melody, then play an eight-bar passage hands together, or read a lead sheet: play the melody and make up a left-hand accompaniment from the chord symbols."
+  },
+  {
+   "id": "scales-6-major",
+   "level": 7,
+   "kind": "technique",
+   "title": "Scales hands together: G, E, B and D♭ major",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "B major (five sharps) and D♭ major (five flats) use the black keys a lot; their fingering puts the thumbs on the white keys.",
+   "tips": [
+    "B major, left hand: 4 3 2 1, 4 3 2 1. D♭ major, right hand: 2 3 1 2 3 4 1 2.",
+    "The syllabus tempo is ♩ = 60 in sixteenth notes, the same speed as eighth notes at 120.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "119-scales-6-major.musicxml"
+  },
+  {
+   "id": "scales-6-harmonic",
+   "level": 7,
+   "kind": "technique",
+   "title": "Harmonic minor scales hands together: G, E, B and C♯",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "C♯ minor has four sharps; its harmonic form raises B to B♯.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "120-scales-6-harmonic.musicxml"
+  },
+  {
+   "id": "scales-6-melodic",
+   "level": 7,
+   "kind": "technique",
+   "title": "Melodic minor scales hands together: G, E, B and C♯",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "Melodic minor hands together in the Level 6 keys.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "121-scales-6-melodic.musicxml"
+  },
+  {
+   "id": "formula-6",
+   "level": 7,
+   "kind": "technique",
+   "title": "Formula patterns: E major and E harmonic minor",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "The formula pattern in E major and E harmonic minor.",
+   "tips": [
+    "Check the exact shape with your syllabus book: this is one common form of the pattern."
+   ],
+   "file": "122-formula-6.musicxml"
+  },
+  {
+   "id": "chromatic-6",
+   "level": 7,
+   "kind": "technique",
+   "title": "Chromatic scales hands together, two octaves: from E and from D♭",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "Two-octave chromatic scales hands together.",
+   "tips": [
+    "Keep the hands exactly together; listen for an even, smooth sound."
+   ],
+   "file": "123-chromatic-6.musicxml"
+  },
+  {
+   "id": "tonic-triads-6",
+   "level": 7,
+   "kind": "technique",
+   "title": "Tonic triads with I–V–I: G, E, B and D♭ major",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "Broken tonic triads hands together over two octaves, ending with I–V–I.",
+   "tips": [],
+   "file": "124-tonic-triads-6.musicxml"
+  },
+  {
+   "id": "tonic-triads-6m",
+   "level": 7,
+   "kind": "technique",
+   "title": "Tonic triads with i–V–i: G, E, B and C♯ minor",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "Minor tonic triads hands together, ending with i–V–i.",
+   "tips": [],
+   "file": "125-tonic-triads-6m.musicxml"
+  },
+  {
+   "id": "dominant-7-6",
+   "level": 7,
+   "kind": "technique",
+   "title": "Dominant 7th chords, two octaves: G, E, B and D♭ major",
+   "hands": "both",
+   "bpm": 88,
+   "wait": 60,
+   "learn": "Broken dominant 7th chords through all inversions, now over two octaves.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand."
+   ],
+   "file": "126-dominant-7-6.musicxml"
+  },
+  {
+   "id": "diminished-7-6",
+   "level": 7,
+   "kind": "technique",
+   "title": "Diminished 7th chords: G, E, B and C♯ minor",
+   "hands": "both",
+   "bpm": 88,
+   "wait": 60,
+   "learn": "The leading-tone diminished 7th is built on the raised 7th of the harmonic minor (in G minor: F♯ A C E♭). All its notes are a minor 3rd apart, so every inversion has the same shape.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "The fingering shown is one choice; with black keys you may adjust it so the thumb stays on white keys."
+   ],
+   "file": "127-diminished-7-6.musicxml"
+  },
+  {
+   "id": "sevenths-6s",
+   "level": 7,
+   "kind": "technique",
+   "title": "Dominant and diminished 7ths, solid (Level 6 keys)",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 50,
+   "learn": "Solid dominant 7th (major keys) and diminished 7th (minor keys) chords with rests.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand."
+   ],
+   "file": "128-sevenths-6s.musicxml"
+  },
+  {
+   "id": "arpeggios-6",
+   "level": 7,
+   "kind": "technique",
+   "title": "Arpeggios: G, E, B and D♭ major",
+   "hands": "both",
+   "bpm": 92,
+   "wait": 60,
+   "learn": "Two-octave tonic arpeggios in the Level 6 major keys.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand."
+   ],
+   "file": "129-arpeggios-6.musicxml"
+  },
+  {
+   "id": "arpeggios-6m",
+   "level": 7,
+   "kind": "technique",
+   "title": "Arpeggios: G, E, B and C♯ minor",
+   "hands": "both",
+   "bpm": 92,
+   "wait": 60,
+   "learn": "Two-octave tonic arpeggios in the Level 6 minor keys.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand."
+   ],
+   "file": "130-arpeggios-6m.musicxml"
+  },
+  {
+   "id": "seventh-arpeggios-6",
+   "level": 7,
+   "kind": "technique",
+   "title": "Dominant 7th and diminished 7th arpeggios",
+   "hands": "both",
+   "bpm": 92,
+   "wait": 60,
+   "learn": "Four-note arpeggios over two octaves: dominant 7ths in G, E, B, D♭ major and diminished 7ths in G, E, B, C♯ minor.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Fingering 1 2 3 4 suits white-key chords; with black keys, adjust so the thumb lands on white keys."
+   ],
+   "file": "131-seventh-arpeggios-6.musicxml"
+  },
+  {
+   "id": "la-chasse",
+   "level": 7,
+   "kind": "piece",
+   "title": "The Hunt (La Chasse), Op. 100 No. 9",
+   "hands": "both",
+   "bpm": 140,
+   "wait": 80,
+   "learn": "Hunting horns and galloping horses in 6/8: crossing hands and crisp staccato.",
+   "tips": [
+    "Keep the gallop rhythm steady."
+   ],
+   "file": "132-la-chasse.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=220"
+  },
+  {
+   "id": "adieu",
+   "level": 7,
+   "kind": "piece",
+   "title": "Farewell (L'Adieu), Op. 100 No. 12",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "An agitated piece in A minor with a melody over restless sixteenths.",
+   "tips": [
+    "Bring out the melody notes above the accompaniment."
+   ],
+   "file": "133-adieu.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=223"
+  },
+  {
+   "id": "consolation",
+   "level": 7,
+   "kind": "piece",
+   "title": "Consolation, Op. 100 No. 13",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "A warm, singing melody over broken-chord accompaniment.",
+   "tips": [
+    "Let the melody sing; keep the accompaniment soft and even."
+   ],
+   "file": "134-consolation.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=224"
+  },
+  {
+   "id": "ballade-burgmuller",
+   "level": 7,
+   "kind": "piece",
+   "title": "Ballade, Op. 100 No. 15",
+   "hands": "both",
+   "bpm": 90,
+   "wait": 55,
+   "learn": "A dramatic story in C minor with a lyrical middle section in C major.",
+   "tips": [
+    "Contrast the stormy staccato with the singing middle part."
+   ],
+   "file": "135-ballade-burgmuller.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=227"
+  },
+  {
+   "id": "douce-plainte",
+   "level": 7,
+   "kind": "piece",
+   "title": "Gentle Lament (Douce Plainte), Op. 100 No. 16",
+   "hands": "both",
+   "bpm": 90,
+   "wait": 55,
+   "learn": "A sorrowful melody in G minor with expressive slurs.",
+   "tips": [
+    "Lean gently on the first note of each slur."
+   ],
+   "file": "136-douce-plainte.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=228"
+  },
+  {
+   "id": "babillarde",
+   "level": 7,
+   "kind": "piece",
+   "title": "The Chatterbox (La Babillarde), Op. 100 No. 17",
+   "hands": "both",
+   "bpm": 90,
+   "wait": 55,
+   "learn": "Fast chattering figures in 3/8: lightness and even fingers.",
+   "tips": [
+    "Practise slowly in short groups, then join them."
+   ],
+   "file": "137-babillarde.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=229"
+  },
+  {
+   "id": "inquietude",
+   "level": 7,
+   "kind": "piece",
+   "title": "Restlessness (Inquiétude), Op. 100 No. 18",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "Nervous, quick figures passed between the hands in E minor.",
+   "tips": [
+    "Keep the hand changes rhythmically exact."
+   ],
+   "file": "138-inquietude.musicxml",
+   "composer": "Friedrich Burgmüller (25 Easy Studies)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=230"
+  },
+  {
+   "id": "may-68-13",
+   "level": 7,
+   "kind": "piece",
+   "title": "May, Dear May, Op. 68 No. 13",
+   "hands": "both",
+   "bpm": 50,
+   "wait": 35,
+   "learn": "A springtime piece in E major (four sharps) with a gentle, singing line.",
+   "tips": [
+    "Watch the key signature: F♯, C♯, G♯ and D♯."
+   ],
+   "file": "139-may-68-13.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=662"
+  },
+  {
+   "id": "first-loss-68-16",
+   "level": 7,
+   "kind": "piece",
+   "title": "First Loss, Op. 68 No. 16",
+   "hands": "both",
+   "bpm": 70,
+   "wait": 45,
+   "learn": "A short, heartfelt piece in E minor: one of the best-loved of the Album.",
+   "tips": [
+    "Make the melody sing with expression."
+   ],
+   "file": "140-first-loss-68-16.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=676"
+  },
+  {
+   "id": "reapers-song-68-18",
+   "level": 7,
+   "kind": "piece",
+   "title": "Reaper's Song, Op. 68 No. 18",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "A cheerful harvest song in 6/8 with melody and accompaniment in the same hand.",
+   "tips": [
+    "Hold the melody notes while the other fingers play."
+   ],
+   "file": "141-reapers-song-68-18.musicxml",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=663"
+  },
+  {
+   "id": "foreign-lands",
+   "level": 7,
+   "kind": "piece",
+   "title": "Of Foreign Lands and Peoples, Op. 15 No. 1",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "The first of Schumann's Scenes from Childhood: a melody floating above gentle broken chords.",
+   "tips": [
+    "Voice the melody on top; keep the inner notes very soft."
+   ],
+   "file": "142-foreign-lands.musicxml",
+   "composer": "Robert Schumann (Scenes from Childhood)",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=354"
+  },
+  {
+   "id": "prelude-928",
+   "level": 7,
+   "kind": "piece",
+   "title": "Little Prelude in F (BWV 928)",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "A Little Prelude with busy sixteenths in both hands.",
+   "tips": [
+    "Practise hands separately until each line is smooth."
+   ],
+   "file": "143-prelude-928.musicxml",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=493"
+  },
+  {
+   "id": "prelude-924",
+   "level": 7,
+   "kind": "piece",
+   "title": "Little Prelude in C (BWV 924)",
+   "hands": "both",
+   "bpm": 50,
+   "wait": 35,
+   "learn": "Broken chords in the right hand over a slow bass: like a small cousin of the Prelude in C.",
+   "tips": [
+    "Let the harmony changes shape the music."
+   ],
+   "file": "144-prelude-924.musicxml",
+   "composer": "Johann Sebastian Bach",
+   "license": "CC BY-SA 3.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=978"
+  },
+  {
+   "id": "prelude-999",
+   "level": 7,
+   "kind": "piece",
+   "title": "Prelude in C minor (BWV 999)",
+   "hands": "both",
+   "bpm": 70,
+   "wait": 45,
+   "learn": "Originally for lute: steady broken chords in 3/4 over a moving bass.",
+   "tips": [
+    "Keep the broken chords perfectly even."
+   ],
+   "file": "145-prelude-999.musicxml",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=60"
+  },
+  {
+   "id": "ear-6",
+   "level": 7,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "intervals",
+    "chords",
+    "progressions",
+    "playback"
+   ],
+   "intervals": [
+    "m2",
+    "M2",
+    "m3",
+    "M3",
+    "P4",
+    "P5",
+    "m6",
+    "M6",
+    "P8"
+   ],
+   "intervalStyle": "melodic-harmonic",
+   "chords": {
+    "style": "solid",
+    "qualities": [
+     "major",
+     "minor",
+     "dom7",
+     "dim7"
+    ]
+   },
+   "progressions": {
+    "minor": true
+   },
+   "playback": {
+    "pool": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "keys": [
+     "G",
+     "E",
+     "Gm",
+     "Em"
+    ],
+    "starts": [
+     0,
+     2,
+     4,
+     7
+    ],
+    "length": [
+     7,
+     8,
+     9
+    ],
+    "plays": 3
+   },
+   "learn": "Name all intervals from a minor 2nd to the octave, recognise major, minor, dominant 7th and diminished 7th chords, I–IV–I and I–V–I in major and minor, and play back a melody using the whole scale."
+  },
+  {
+   "id": "sight-6",
+   "level": 7,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing",
+    "leadsheet"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e",
+     "rq"
+    ],
+    "bars": 4,
+    "melodic": true
+   },
+   "playing": {
+    "style": "together",
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "A",
+     "F",
+     "Bb",
+     "Eb",
+     "Am",
+     "Em",
+     "Bm",
+     "Dm",
+     "Gm",
+     "Cm"
+    ],
+    "bars": 8,
+    "values": [
+     "q",
+     "h",
+     "ee",
+     "q.e"
+    ]
+   },
+   "leadsheet": {
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "F",
+     "Bb",
+     "Am",
+     "Dm",
+     "Em"
+    ],
+    "bars": 8,
+    "chords": [
+     "I",
+     "IV",
+     "V",
+     "V7",
+     "vi"
+    ]
+   },
+   "learn": "Tap the rhythm of a melody, then play an eight-bar passage hands together in keys up to three sharps or flats, or read a lead sheet and make up the accompaniment."
   }
  ]
 }

@@ -134,6 +134,12 @@ def convert(path, title, composer, pickup=0.0, max_bars=None, transpose=0, right
             moved = max(moved, abs(st - q(t)), abs(en - q(t + d)))
             notes[s].append((st, en - st, p + transpose))
     end = max(t + d for s in notes for t, d, p in notes[s])
+    if pickup == 'auto':                   # the opening pickup that makes the fewest notes cross a bar line
+        def crossings(pu):
+            return sum(1 for s in notes for t, d, p in notes[s]
+                       if int(round((t - pu) / bar * 1e6)) // 1000000 != int(round((t + d - pu - 1e-6) / bar * 1e6)) // 1000000)
+        cands = [k / 8 for k in range(int(bar * 8))]
+        pickup = min(cands, key=lambda pu: (crossings(pu), pu))
     # bar boundaries (the first bar may be a short pickup)
     bounds = [0.0] + ([pickup] if pickup else [])
     while bounds[-1] < end - 1e-9:
@@ -209,7 +215,7 @@ def convert(path, title, composer, pickup=0.0, max_bars=None, transpose=0, right
            f'<identification><creator type="composer">{escape(composer)}</creator>{f"<rights>{escape(rights)}</rights>" if rights else ""}</identification>'
            '<part-list><score-part id="P1"><part-name>Piano</part-name></score-part></part-list>'
            f'<part id="P1">{"".join(xml_m)}</part></score-partwise>\n')
-    return xml, {'bars': nbars, 'notes': count, 'tempo': round(tempo), 'time': ts, 'key': ks, 'tracks': len(note_tracks),
+    return xml, {'pickup': pickup, 'bars': nbars, 'notes': count, 'tempo': round(tempo), 'time': ts, 'key': ks, 'tracks': len(note_tracks),
                  'moved': round(moved, 4), 'dropped': dropped}
 
 

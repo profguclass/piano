@@ -16,8 +16,8 @@ After that the app reconnects by itself.
 The notes the app plays (the other hand, Listen mode) then sound **on the piano itself**. To use the tablet speaker instead: ⋯ → *Sound from: Tablet*.
 
 ## Lessons
-Tap **Lessons** for a 109-lesson course. Its levels and the parts of each level follow the
-[RCM Piano Syllabus, 2022 edition](https://www.rcmusic.com/syllabi) (with its September 2026 errata), from **Preparatory A** to **Level 4**:
+Tap **Lessons** for a 161-lesson course. Its levels and the parts of each level follow the
+[RCM Piano Syllabus, 2022 edition](https://www.rcmusic.com/syllabi) (with its September 2026 errata), from **Preparatory A** to **Level 6**:
 
 | | Technique | Pieces | Ear tests | Sight reading |
 |---|---|---|---|---|
@@ -27,6 +27,8 @@ Tap **Lessons** for a 109-lesson course. Its levels and the parts of each level 
 | **Level 2** | two-octave scales G, F, B♭; E, D, G minor (harmonic, melodic); chromatic from G; tonic triads broken and solid | chord progression study, Pachelbel's *Canon*, *Eine kleine Nachtmusik*, *Für Elise* (opening) | clapback, intervals (m3, M3, P5), chords, playback | rhythm with rests; four-bar melody beyond five-finger position |
 | **Level 3** | scales hands together D, F, B♭; B, D, G minor (harmonic, melodic); formula pattern D; chromatic from D; tonic triads two octaves broken and solid | Petzold *Minuet in G*, Sonatina in C (Classical style, Alberti bass) | clapback, intervals (m3, M3, P4, P5), chords, chord notes (root/third/fifth), playback | four-bar rhythm; four-bar passage hands together |
 | **Level 4** | scales hands together D, A, B♭, E♭; B, G, C minor (harmonic, melodic); formula pattern C minor; chromatic from C; tonic triads hands together; arpeggios D, A, B♭, E♭, B, G, C minor | Bach *Prelude in C* (opening), Little Waltz in A minor | clapback, intervals (+ octave), chords, chord notes, playback (6–8 notes) | rhythm of a four-bar melody; four-bar passage hands together |
+| **Level 5** | scales hands together A, E, F, A♭; A, E, F minor; formula patterns A major / A minor; chromatic hands together from A and F; tonic triads with I–V–I; dominant 7th chords; arpeggios | Burgmüller Op. 100 Nos. 4–8, 10, 11; Schumann *Little Study*; Tchaikovsky *March of the Wooden Soldiers*; Bach *Polonaise* Anh. 117b | intervals (melodic then harmonic, up to the octave), chords (incl. dominant 7th), progressions I–IV–I / I–V–I, playback up to 8 notes | rhythm of a melody; eight-bar passage hands together, or a lead sheet |
+| **Level 6** | scales hands together G, E, B, D♭; G, E, B, C♯ minor; formula patterns E major / E minor; chromatic two octaves from E and D♭; tonic triads with I–V–I; dominant and diminished 7th chords; tonic, dominant 7th and diminished 7th arpeggios | Burgmüller Op. 100 Nos. 9, 12, 13, 15–18; Schumann *May, Dear May*, *First Loss*, *Reaper's Song*, *Of Foreign Lands and Peoples*; Bach Little Preludes BWV 928, 924, Prelude BWV 999 | intervals from minor 2nd to octave, chords (incl. diminished 7th), progressions in major and minor, playback over the whole scale | rhythm of a melody; eight-bar passage (up to three sharps/flats), or a lead sheet |
 
 - **Technique and pieces**: three steps — **Listen**, **Wait for me**, **Play along** at the target tempo (90% correct, 70% on time).
   Technique tempos are the syllabus metronome marks. In the exam technique is played from memory: practise with ⋯ → *Hide the notes*.
@@ -34,6 +36,7 @@ Tap **Lessons** for a 109-lesson course. Its levels and the parts of each level 
 - **Ear tests** (the app plays, you answer or play back on the piano): 10 questions per test, 8 correct passes it.
   In the exam, Levels 1–4 weight playback (4 marks) above clapback (2 marks); here each test simply has to be passed.
 - **Sight reading**: every exercise is newly generated to the level's rules; pass 3 rhythm and 3 playing exercises (80% correct).
+  From Level 5 a **lead sheet** (melody with chord symbols) can replace the playing exercise: your left-hand notes are checked against the chord of each bar.
 - Technical exercises are generated exactly from the syllabus keys and patterns with standard fingering. The pieces are this course's own
   traditional or public-domain arrangements — the syllabus's own repertoire books are not reproduced.
 
@@ -74,6 +77,30 @@ The others are public domain.
 | Level 4 | Sonatina in C, Op. 36 No. 1: I. Spiritoso | Muzio Clementi | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=804) |
 | Level 4 | Sonatina in C, Op. 36 No. 1: II. Andante | Muzio Clementi | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=804) |
 | Level 4 | Sonatina in C, Op. 36 No. 1: III. Vivace | Muzio Clementi | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=804) |
+| Level 5 | The Little Party (La Petite Réunion), Op. 100 No. 4 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=219) |
+| Level 5 | Innocence, Op. 100 No. 5 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=214) |
+| Level 5 | Progress (Progrès), Op. 100 No. 6 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=215) |
+| Level 5 | The Limpid Stream (Le Courant Limpide), Op. 100 No. 7 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=216) |
+| Level 5 | The Graceful One (La Gracieuse), Op. 100 No. 8 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=217) |
+| Level 5 | Tender Flower (Tendre Fleur), Op. 100 No. 10 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=221) |
+| Level 5 | The Wagtail (La Bergeronnette), Op. 100 No. 11 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=222) |
+| Level 5 | Little Study, Op. 68 No. 14 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=786) |
+| Level 5 | March of the Wooden Soldiers, Op. 39 No. 5 | Pyotr Ilyich Tchaikovsky (Album for the Young) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1806) |
+| Level 5 | Polonaise in F (BWV Anh. 117b) | Notebook for Anna Magdalena Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1015) |
+| Level 6 | The Hunt (La Chasse), Op. 100 No. 9 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=220) |
+| Level 6 | Farewell (L'Adieu), Op. 100 No. 12 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=223) |
+| Level 6 | Consolation, Op. 100 No. 13 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=224) |
+| Level 6 | Ballade, Op. 100 No. 15 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=227) |
+| Level 6 | Gentle Lament (Douce Plainte), Op. 100 No. 16 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=228) |
+| Level 6 | The Chatterbox (La Babillarde), Op. 100 No. 17 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=229) |
+| Level 6 | Restlessness (Inquiétude), Op. 100 No. 18 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=230) |
+| Level 6 | May, Dear May, Op. 68 No. 13 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=662) |
+| Level 6 | First Loss, Op. 68 No. 16 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=676) |
+| Level 6 | Reaper's Song, Op. 68 No. 18 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=663) |
+| Level 6 | Of Foreign Lands and Peoples, Op. 15 No. 1 | Robert Schumann (Scenes from Childhood) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=354) |
+| Level 6 | Little Prelude in F (BWV 928) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=493) |
+| Level 6 | Little Prelude in C (BWV 924) | Johann Sebastian Bach | CC BY-SA 3.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=978) |
+| Level 6 | Prelude in C minor (BWV 999) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=60) |
 
 ## Finger numbers
 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger. The finger for the current note is shown above (right hand) and
