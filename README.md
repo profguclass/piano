@@ -16,8 +16,8 @@ After that the app reconnects by itself.
 The notes the app plays (the other hand, Listen mode) then sound **on the piano itself**. To use the tablet speaker instead: ⋯ → *Sound from: Tablet*.
 
 ## Lessons
-Tap **Lessons** for a 55-lesson course. Its levels and the parts of each level follow the
-[RCM Piano Syllabus, 2022 edition](https://www.rcmusic.com/syllabi) (with its September 2026 errata), from **Preparatory A** to **Level 2**:
+Tap **Lessons** for an 81-lesson course. Its levels and the parts of each level follow the
+[RCM Piano Syllabus, 2022 edition](https://www.rcmusic.com/syllabi) (with its September 2026 errata), from **Preparatory A** to **Level 4**:
 
 | | Technique | Pieces | Ear tests | Sight reading |
 |---|---|---|---|---|
@@ -25,9 +25,12 @@ Tap **Lessons** for a 55-lesson course. Its levels and the parts of each level f
 | **Preparatory B** | pentascales D, A, F, E minor, D minor; one-octave scales C, G, A minor; contrary motion; tonic triads | *Ode to Joy*, *Twinkle Twinkle*, *When the Saints*, *Row Your Boat*, *London Bridge*, *Jingle Bells* | clapback, chords, playback | rhythm; melody shared between the hands |
 | **Level 1** | two-octave scales C, G, F; A, E, D minor (natural, harmonic); contrary motion 2 octaves; chromatic from C; tonic triads broken and solid | three chords, broken-chord *Ode to Joy*, *Happy Birthday*, *Silent Night*, *Greensleeves* | clapback, intervals (m3, M3), chords, playback | rhythm; four-bar melody in C, G, F, A minor |
 | **Level 2** | two-octave scales G, F, B♭; E, D, G minor (harmonic, melodic); chromatic from G; tonic triads broken and solid | chord progression study, Pachelbel's *Canon*, *Eine kleine Nachtmusik*, *Für Elise* (opening) | clapback, intervals (m3, M3, P5), chords, playback | rhythm with rests; four-bar melody beyond five-finger position |
+| **Level 3** | scales hands together D, F, B♭; B, D, G minor (harmonic, melodic); formula pattern D; chromatic from D; tonic triads two octaves broken and solid | Petzold *Minuet in G*, Sonatina in C (Classical style, Alberti bass) | clapback, intervals (m3, M3, P4, P5), chords, chord notes (root/third/fifth), playback | four-bar rhythm; four-bar passage hands together |
+| **Level 4** | scales hands together D, A, B♭, E♭; B, G, C minor (harmonic, melodic); formula pattern C minor; chromatic from C; tonic triads hands together; arpeggios D, A, B♭, E♭, B, G, C minor | Bach *Prelude in C* (opening), Little Waltz in A minor | clapback, intervals (+ octave), chords, chord notes, playback (6–8 notes) | rhythm of a four-bar melody; four-bar passage hands together |
 
 - **Technique and pieces**: three steps — **Listen**, **Wait for me**, **Play along** at the target tempo (90% correct, 70% on time).
   Technique tempos are the syllabus metronome marks. In the exam technique is played from memory: practise with ⋯ → *Hide the notes*.
+- The formula pattern is one common form (similar motion up, contrary out and in, similar down); check the exact shape with your syllabus book.
 - **Ear tests** (the app plays, you answer or play back on the piano): 10 questions per test, 8 correct passes it.
   In the exam, Levels 1–4 weight playback (4 marks) above clapback (2 marks); here each test simply has to be passed.
 - **Sight reading**: every exercise is newly generated to the level's rules; pass 3 rhythm and 3 playing exercises (80% correct).

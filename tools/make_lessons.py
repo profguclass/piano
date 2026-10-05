@@ -101,6 +101,28 @@ LC_UP, LC_DN = 'C3 D3 E3 F3 G3 A3 B3 C4', 'C4 B3 A3 G3 F3 E3 D3 C3'
 LH_UP, LH_DN = '5 4 3 2 1 3 2 1', '1 2 3 1 2 3 4 5'
 ODE_RH = ('E4q:3 E4q:3 F4q:4 G4q:5 | G4q:5 F4q:4 E4q:3 D4q:2 | C4q:1 C4q:1 D4q:2 E4q:3 | E4q.:3 D4e:2 D4h:2 | '
           'E4q:3 E4q:3 F4q:4 G4q:5 | G4q:5 F4q:4 E4q:3 D4q:2 | C4q:1 C4q:1 D4q:2 E4q:3 | D4q.:2 C4e:1 C4h:1')
+PRELUDE = [('C4', 'E4', 'G4', 'C5', 'E5', '1 3 5'), ('C4', 'D4', 'A4', 'D5', 'F5', '1 3 5'), ('B3', 'D4', 'G4', 'D5', 'F5', '1 4 5'),
+           ('C4', 'E4', 'G4', 'C5', 'E5', '1 3 5'), ('C4', 'E4', 'A4', 'E5', 'A5', '1 3 5'), ('C4', 'D4', 'F#4', 'A4', 'D5', '1 2 4'),
+           ('B3', 'D4', 'G4', 'D5', 'G5', '1 3 5'), ('B3', 'C4', 'E4', 'G4', 'C5', '1 2 5'), ('A3', 'C4', 'E4', 'G4', 'C5', '1 2 5'),
+           ('D3', 'A3', 'D4', 'F#4', 'C5', '1 2 5'), ('G3', 'B3', 'D4', 'G4', 'B4', '1 3 5')]
+
+
+def prelude_bar(n1, n2, a, b, c, f):      # Bach's pattern: two low notes, then the upper three twice, every half bar
+    f = f.split()
+    gap = (midi(n2) - midi(n1))
+    f2 = 4 if gap <= 2 else 3 if gap <= 4 else 2
+    lh = f'{n1}s:5 {n2}s:{f2} rq.'
+    rh = f'rs rs {a}s:{f[0]} {b}s:{f[1]} {c}s:{f[2]} {a}s:{f[0]} {b}s:{f[1]} {c}s:{f[2]}'
+    return f'{rh} {rh}', f'{lh} {lh}'
+
+
+def midi(n):
+    return (int(n[-1]) + 1) * 12 + 'C D EF G A B'.index(n[0]) + n[1:-1].count('#') - n[1:-1].count('b')
+
+
+MINUET_A = ('D5q:5 G4e:1 A4e:2 B4e:3 C5e:4 | D5q:5 G4q:1 G4q:1 | E5q:3 C5e:1 D5e:2 E5e:3 F#5e:4 | G5q:5 G4q:1 G4q:1 | '
+            'C5q:4 D5e:5 C5e:4 B4e:3 A4e:2 | B4q:3 C5e:4 B4e:3 A4e:2 G4e:1 | ')
+
 C_ARP, G_ARP = up8('C3 G3 E3 G3 C3 G3 E3 G3', '5 1 3 1 5 1 3 1'), up8('B2 G3 D3 G3 B2 G3 D3 G3', '5 1 3 1 5 1 3 1')
 
 
@@ -266,6 +288,35 @@ LESSONS = [
          rh=('E5s:5 D#5s:4 | E5s:5 D#5s:4 E5s:5 B4s:2 D5s:4 C5s:3 | A4e:1 rs C4s:1 E4s:2 A4s:4 | B4e:5 rs E4s:1 G#4s:3 B4s:4 | C5e:5 rs E4s:1 E5s:5 D#5s:4 | '
              'E5s:5 D#5s:4 E5s:5 B4s:2 D5s:4 C5s:3 | A4e:1 rs C4s:1 E4s:2 A4s:4 | B4e:5 rs E4s:1 C5s:4 B4s:3 | A4q.:2'),
          lh=('re | | A2s:5 E3s:2 A3s:1 re. | E2s:5 E3s:2 G#3s:1 re. | A2s:5 E3s:2 A3s:1 re. | | A2s:5 E3s:2 A3s:1 re. | E2s:5 E3s:2 G#3s:1 re. | A2s:5 E3s:2 A3s:1 re.')),
+
+    # ---------- Levels 3 and 4 ----------
+    dict(id='minuet-g', title='Minuet in G', hands='both', bpm=100, wait=60, time=(3, 4), fifths=1, composer='Christian Petzold, arranged',
+         learn='One of the most famous Baroque minuets (from the Notebook for Anna Magdalena Bach). The melody is as written; the left hand is simplified to one long note per bar.',
+         tips=['A minuet is a dance in 3: feel a gentle stress on beat 1.', 'Play the eighth notes evenly and lightly, slightly detached in Baroque style.'],
+         rh=MINUET_A + 'F#4q:1 G4e:2 A4e:3 B4e:4 G4e:2 | A4h.:3 | ' + MINUET_A + 'A4q:3 B4e:4 A4e:3 G4e:2 F#4e:1 | G4h.:2',
+         lh=('G3h.:4 | B3h.:2 | C4h.:1 | B3h.:2 | A3h.:3 | G3h.:4 | D3h.:5 | D3h.:5 | '
+             'G3h.:4 | B3h.:2 | C4h.:1 | B3h.:2 | A3h.:3 | G3h.:4 | D3h.:5 | G2h.:5')),
+    dict(id='sonatina-c', title='Sonatina in C (Classical style)', hands='both', bpm=100, wait=60, composer='Piano Reader',
+         learn='An original piece in the Classical style: a clear melody over an "Alberti bass", the broken-chord pattern (low, high, middle, high) used by Mozart and Clementi.',
+         tips=['Keep the Alberti bass soft and even; the melody sings above it.', 'Left hand pattern: 5 1 3 1.'],
+         rh=('E5h:3 G5q:5 E5q:3 | D5q:2 F5q:4 D5q:2 B4q:1 | C5q:1 E5q:3 G5q:5 E5q:3 | D5h.:2 rq | '
+             'E5q:3 E5e:3 F5e:4 G5q:5 E5q:3 | F5q:4 A5q:5 F5q:4 C5q:1 | F5q:4 D5q:2 B4q:1 D5q:2 | C5w:1'),
+         lh=' | '.join([up8('C3 G3 E3 G3 C3 G3 E3 G3', '5 1 3 1 5 1 3 1'), up8('B2 G3 F3 G3 B2 G3 F3 G3', '5 1 2 1 5 1 2 1'),
+                        up8('C3 G3 E3 G3 C3 G3 E3 G3', '5 1 3 1 5 1 3 1'), up8('B2 G3 D3 G3 B2 G3 D3 G3', '5 1 3 1 5 1 3 1'),
+                        up8('C3 G3 E3 G3 C3 G3 E3 G3', '5 1 3 1 5 1 3 1'), up8('C3 A3 F3 A3 C3 A3 F3 A3', '5 1 3 1 5 1 3 1'),
+                        up8('B2 G3 F3 G3 B2 G3 F3 G3', '5 1 2 1 5 1 2 1'), 'C3+G3+C4w:5+2+1'])),
+    dict(id='prelude-c', title='Prelude in C (opening)', hands='both', bpm=60, wait=40, composer='Johann Sebastian Bach, BWV 846, arranged',
+         learn="The first bars of the Prelude in C from Bach's Well-Tempered Clavier. Every half bar repeats one chord pattern; the music is in the slowly changing harmony.",
+         tips=['The left hand plays the two low notes; the right hand the three upper notes, twice.', 'Play very evenly and let the harmony change be the expression.'],
+         rh=' | '.join(prelude_bar(*b)[0] for b in PRELUDE) + ' | E4+G4+C5w:1+2+5',
+         lh=' | '.join(prelude_bar(*b)[1] for b in PRELUDE) + ' | C3+G3+C4w:5+2+1'),
+    dict(id='waltz-am', title='Little Waltz in A minor', hands='both', bpm=120, wait=70, time=(3, 4), composer='Piano Reader',
+         learn='An original Romantic-style waltz. The left hand plays the classic waltz accompaniment: a low bass note on beat 1, a chord on beats 2 and 3.',
+         tips=['Make beat 1 of the left hand a little deeper; keep the chords on 2 and 3 light.', 'Shape the melody: grow toward bar 6 and relax at the end.'],
+         rh=('E5q:5 C5q:3 A4q:1 | B4q:2 C5q:3 D5q:4 | D5h:4 C5e:3 B4e:2 | C5h.:3 | '
+             'B4q:3 G#4q:1 B4q:3 | D5h:5 C5e:4 B4e:3 | C5h:4 B4q:3 | A4h.:2'),
+         lh=('A2q:5 C3+E3q:3+1 C3+E3q:3+1 | A2q:5 C3+E3q:3+1 C3+E3q:3+1 | D3q:5 F3+A3q:3+1 F3+A3q:3+1 | A2q:5 C3+E3q:3+1 C3+E3q:3+1 | '
+             'E2q:5 B2+E3q:2+1 B2+E3q:2+1 | E2q:5 B2+D3q:2+1 B2+D3q:2+1 | A2q:5 C3+E3q:3+1 C3+E3q:3+1 | A2+E3h.:5+1')),
 ]
 
 # =====================================================================================================
@@ -274,14 +325,16 @@ LESSONS = [
 # reading. Technical exercises are generated below from the keys, patterns and metronome marks the
 # syllabus lists for each level; the pieces are this course's own public-domain arrangements.
 # =====================================================================================================
-LEVELS = ['Preparatory A', 'Preparatory B', 'Level 1', 'Level 2']
+LEVELS = ['Preparatory A', 'Preparatory B', 'Level 1', 'Level 2', 'Level 3', 'Level 4']
 
 LETTERS = 'CDEFGAB'
 KEYS = {'C': ('C D E F G A B', 0), 'G': ('G A B C D E F#', 1), 'D': ('D E F# G A B C#', 2), 'A': ('A B C# D E F# G#', 3),
         'F': ('F G A Bb C D E', -1), 'Bb': ('Bb C D Eb F G A', -2),
-        'Am': ('A B C D E F G', 0), 'Em': ('E F# G A B C D', 1), 'Dm': ('D E F G A Bb C', -1), 'Gm': ('G A Bb C D Eb F', -2)}
+        'Eb': ('Eb F G Ab Bb C D', -3),
+        'Am': ('A B C D E F G', 0), 'Em': ('E F# G A B C D', 1), 'Dm': ('D E F G A Bb C', -1), 'Gm': ('G A Bb C D Eb F', -2),
+        'Bm': ('B C# D E F# G A', 2), 'Cm': ('C D Eb F G Ab Bb', -3)}
 NAMES = {'C': 'C major', 'G': 'G major', 'D': 'D major', 'A': 'A major', 'F': 'F major', 'Bb': 'B♭ major',
-         'Am': 'A minor', 'Em': 'E minor', 'Dm': 'D minor', 'Gm': 'G minor'}
+         'Eb': 'E♭ major', 'Am': 'A minor', 'Em': 'E minor', 'Dm': 'D minor', 'Gm': 'G minor', 'Bm': 'B minor', 'Cm': 'C minor'}
 TOKDUR = {1: 's', 2: 'e', 3: 'e.', 4: 'q', 6: 'q.', 8: 'h', 12: 'h.', 16: 'w'}
 
 
@@ -320,11 +373,11 @@ def start_octave(key, hand, octaves=1):  # keep scales near the middle of the ke
 def scale_fingers(key, hand, octaves):   # standard fingering, ascending, tonic to tonic
     k = key.rstrip('m') if key.endswith('m') else key
     if hand == 'R':
-        group = {'F': [1, 2, 3, 4, 1, 2, 3], 'Bb': [4, 1, 2, 3, 1, 2, 3]}.get(k, [1, 2, 3, 1, 2, 3, 4])
-        top = 4 if k in ('F', 'Bb') else 5
+        group = {'F': [1, 2, 3, 4, 1, 2, 3], 'Bb': [4, 1, 2, 3, 1, 2, 3], 'Eb': [3, 1, 2, 3, 4, 1, 2]}.get(k, [1, 2, 3, 1, 2, 3, 4])
+        top = {'F': 4, 'Bb': 4, 'Eb': 3}.get(k, 5)
         return (group * octaves) + [top]
-    group = {'Bb': [3, 2, 1, 4, 3, 2, 1]}.get(k, [5, 4, 3, 2, 1, 3, 2])
-    top = 3 if k == 'Bb' else 1
+    group = {'Bb': [3, 2, 1, 4, 3, 2, 1], 'Eb': [3, 2, 1, 4, 3, 2, 1], 'B': [4, 3, 2, 1, 4, 3, 2]}.get(k, [5, 4, 3, 2, 1, 3, 2])
+    top = 3 if k in ('Bb', 'Eb') else 1
     return group + ([top] + group[1:]) * (octaves - 1) + [top]
 
 
@@ -422,29 +475,89 @@ INV_R = [[1, 3, 5], [1, 2, 5], [1, 3, 5], [1, 3, 5]]  # root, 1st inversion, 2nd
 INV_L = [[5, 3, 1], [5, 3, 1], [5, 2, 1], [5, 3, 1]]
 
 
-def triad_positions(key, hand):
-    p = place(scale_names(key), start_octave(key, hand), 12)
-    return [(p[0], p[2], p[4]), (p[2], p[4], p[7]), (p[4], p[7], p[9]), (p[7], p[9], p[11])]
+def triad_positions(key, hand, octaves=1, octave=None):   # root, 1st and 2nd inversion per octave, then the top root
+    o = octave if octave is not None else (start_octave(key, hand) if octaves == 1 else start_octave(key, 'R', 2) - (hand == 'L'))
+    p = place(scale_names(key), o, 7 * octaves + 5)
+    pos = []
+    for k in range(octaves):
+        b = 7 * k
+        pos += [(p[b], p[b + 2], p[b + 4]), (p[b + 2], p[b + 4], p[b + 7]), (p[b + 4], p[b + 7], p[b + 9])]
+    t = 7 * octaves
+    pos.append((p[t], p[t + 2], p[t + 4]))
+    fs = [(INV_R if hand == 'R' else INV_L)[i % 3] for i in range(len(pos))]
+    return pos, fs
 
 
-def triads_broken(key, hand):             # 3/4, eighths: two positions a bar up, back down, then the solid chord
-    pos, fs = triad_positions(key, hand), INV_R if hand == 'R' else INV_L
-    up = [(n, fs[k][j]) for k in range(4) for j, n in enumerate(pos[k])]
-    down = [(n, fs[k][j]) for k in (3, 2, 1, 0) for j, n in reversed(list(enumerate(pos[k])))]
+def triads_broken(key, hand, octaves=1):  # 3/4, eighths: two positions a bar up, back down, then the solid chord
+    pos, fs = triad_positions(key, hand, octaves)
+    n = len(pos)
+    up = [(x, fs[k][j]) for k in range(n) for j, x in enumerate(pos[k])]
+    down = [(x, fs[k][j]) for k in reversed(range(n)) for j, x in reversed(list(enumerate(pos[k])))]
     bars = to_bars(up + down, bar=12)
     bars.append(f'{"+".join(pos[0])}h.:{"+".join(map(str, fs[0]))}')
     return keyed(bars, key)
 
 
-def triads_solid(key, hand):              # 4/4: each position as a chord with a rest, up and down
-    pos, fs = triad_positions(key, hand), INV_R if hand == 'R' else INV_L
-    c = [f'{"+".join(pos[k])}q:{"+".join(map(str, fs[k]))}' for k in range(4)]
-    bars = [f'{c[0]} rq {c[1]} rq', f'{c[2]} rq {c[3]} rq', f'{c[2]} rq {c[1]} rq', f'{c[0]} rq rh']
-    return keyed(bars, key)
+def triads_solid(key, hand, octaves=1):   # 4/4: each position as a chord with a rest, up and back down
+    pos, fs = triad_positions(key, hand, octaves)
+    order = list(range(len(pos))) + list(range(len(pos) - 2, -1, -1))
+    c = [f'{"+".join(pos[k])}q:{"+".join(map(str, fs[k]))} rq' for k in order]
+    if len(c) % 2:
+        c.append('rh')
+    return keyed([' '.join(c[i:i + 2]) for i in range(0, len(c), 2)], key)
 
 
-def tech(id, level, title, learn, tips, sections, bpm, wait, time=(4, 4), together=None):
-    rh, lh = together if together else hs(sections)
+def together(fn, key, *args):             # the same exercise for both hands at once (hands together)
+    r, l = fn(key, 'R', *args), fn(key, 'L', *args)
+    return r, [b.replace(f'[k={KEYS[key][1]}] ', '') for b in l]
+
+
+def scale_ht(key, form='natural'):        # two octaves, hands together an octave apart
+    o = start_octave(key, 'R', 2)
+    out = []
+    for hand, oc in (('R', o), ('L', o - 1)):
+        up = place(scale_names(key, form), oc, 15)
+        down = place(scale_names(key, 'natural' if form == 'melodic' else form), oc, 15)[::-1]
+        f = scale_fingers(key, hand, 2)
+        out.append(to_bars(list(zip(up, f)) + list(zip(down[1:], f[::-1][1:]))))
+    return keyed(out[0], key), out[1]
+
+
+def formula(key, form='natural'):         # similar motion up, contrary motion out and back in, similar motion down
+    o = start_octave(key, 'R', 2)
+    rp, rf = place(scale_names(key, form), o, 15), scale_fingers(key, 'R', 2)
+    lp, lf = place(scale_names(key, form), o - 1, 8), scale_fingers(key, 'L', 1)
+    r_idx = list(range(0, 8)) + list(range(8, 15)) + list(range(13, 6, -1)) + list(range(6, -1, -1))
+    l_idx = list(range(0, 8)) + list(range(6, -1, -1)) + list(range(1, 8)) + list(range(6, -1, -1))
+    return (keyed(to_bars([(rp[i], rf[i]) for i in r_idx]), key), to_bars([(lp[i], lf[i]) for i in l_idx]))
+
+
+def arp_fingers(key, hand):               # tonic arpeggio, root position, two octaves, ascending
+    k = key.rstrip('m') if key.endswith('m') else key
+    if hand == 'R':
+        return [2, 1, 2, 4, 1, 2, 4] if k in ('Bb', 'Eb') else [1, 2, 3, 1, 2, 3, 5]
+    if k == 'Bb':
+        return [3, 2, 1, 3, 2, 1, 3]
+    if k == 'Eb':
+        return [2, 1, 4, 2, 1, 4, 2]
+    third = scale_names(key)[2]
+    x = 3 if '#' in third or 'b' in third else 4    # finger 3 when the third is a black key
+    return [5, x, 2, 1, x, 2, 1]
+
+
+def arpeggio(key, hand):
+    o = start_octave(key, 'R', 2) - (hand == 'L')
+    p = place(scale_names(key), o, 15)
+    notes = [p[i] for i in (0, 2, 4, 7, 9, 11, 14)]
+    f = arp_fingers(key, hand)
+    return keyed(to_bars(list(zip(notes, f)) + list(zip(notes[::-1][1:], f[::-1][1:]))), key)
+
+
+def tech(id, level, title, learn, tips, sections, bpm, wait, time=(4, 4), together=None, ht=None):
+    if ht:                                # hands together: [(rh_bars, lh_bars)] played in turn
+        rh = ' | '.join(b for r, l in ht for b in r); lh = ' | '.join(b for r, l in ht for b in l)
+    else:
+        rh, lh = together if together else hs(sections)
     return dict(id=id, level=level, kind='technique', title=title, hands='both', bpm=bpm, wait=wait, time=time,
                 learn=learn, tips=tips, rh=rh, lh=lh, composer='Technique')
 
@@ -536,6 +649,65 @@ TECHNIQUE = [
     tech('solid-triads-2', 3, 'Solid tonic triads: G, F, B♭ major and E, D, G minor',
          'The Level 2 tonic triads played solid with rests, up and down.',
          [HS_TIP], [(triads_solid(k, 'R'), triads_solid(k, 'L')) for k in ('G', 'F', 'Bb', 'Em', 'Dm', 'Gm')], 112, 80),
+    # ---------- Level 3 ----------
+    tech('scales-3-major', 4, 'Two-octave scales hands together: D, F and B♭ major',
+         'From Level 3 the scales are played hands together, an octave apart. Each hand keeps its own fingering, so the thumbs cross at different moments.',
+         ['Practise each hand alone first, then together slowly with Wait for me.', 'Watch where each thumb goes: in D major the right thumb plays D and G, the left thumb A and D.', MEMORY_TIP],
+         [], 80, 50, ht=[scale_ht(k) for k in ('D', 'F', 'Bb')]),
+    tech('scales-3-harmonic', 4, 'Harmonic minor scales hands together: B, D and G',
+         'B minor has two sharps (F♯, C♯) and raises A to A♯; D minor raises C to C♯; G minor raises F to F♯. In B minor the left hand starts with finger 4.',
+         ['Left hand in B minor: 4 3 2 1, 4 3 2 1.', MEMORY_TIP], [], 80, 50, ht=[scale_ht(k, 'harmonic') for k in ('Bm', 'Dm', 'Gm')]),
+    tech('scales-3-melodic', 4, 'Melodic minor scales hands together: B, D and G',
+         'Melodic minor, hands together: the 6th and 7th notes are raised going up and natural coming down.',
+         [MEMORY_TIP], [], 80, 50, ht=[scale_ht(k, 'melodic') for k in ('Bm', 'Dm', 'Gm')]),
+    tech('formula-3', 4, 'Formula pattern in D major',
+         'The formula pattern joins similar and contrary motion: both hands go up together, then move apart, come back in, and go down together.',
+         ['Check the exact shape with your syllabus book (Technical Requirements for Piano): this is one common form of the pattern.', 'Keep the hands exactly together where they change direction.'],
+         [], 80, 50, together=tuple(' | '.join(x) for x in formula('D'))),
+    tech('chromatic-3', 4, 'Chromatic scale from D', 'The chromatic scale starting on D, hands separately.',
+         [HS_TIP, 'Black keys 3, white keys 1, and 1–2 where two white keys meet.'], [(chromatic('D', 'R'), chromatic('D', 'L'))], 80, 55),
+    tech('tonic-triads-3', 4, 'Tonic triads, two octaves: D, F and B♭ major',
+         'Broken tonic triads now cover two octaves: root position, first and second inversion, then again an octave higher.',
+         [HS_TIP, 'Keep the same fingering pattern in the second octave.'],
+         [(triads_broken(k, 'R', 2), triads_broken(k, 'L', 2)) for k in ('D', 'F', 'Bb')], 69, 45, time=(3, 4)),
+    tech('tonic-triads-3m', 4, 'Tonic triads, two octaves: B, D and G minor',
+         'The minor tonic triads, broken, over two octaves.', [HS_TIP],
+         [(triads_broken(k, 'R', 2), triads_broken(k, 'L', 2)) for k in ('Bm', 'Dm', 'Gm')], 69, 45, time=(3, 4)),
+    tech('solid-triads-3', 4, 'Solid tonic triads, two octaves (Level 3 keys)',
+         'Solid tonic triads in D, F, B♭ major and B, D, G minor, up two octaves and back, with a rest after each chord.',
+         [HS_TIP, 'Move to each new position during the rest.'],
+         [(triads_solid(k, 'R', 2), triads_solid(k, 'L', 2)) for k in ('D', 'F', 'Bb', 'Bm', 'Dm', 'Gm')], 120, 80),
+    # ---------- Level 4 ----------
+    tech('scales-4-major', 5, 'Scales hands together: D, A, B♭ and E♭ major',
+         'Two-octave scales hands together, now including E♭ major (three flats). In E♭ the right hand starts with finger 3, the left with 3.',
+         ['E♭ major, right hand: 3 1 2 3 4 1 2 3; left hand: 3 2 1 4 3 2 1 3.', MEMORY_TIP], [], 92, 60, ht=[scale_ht(k) for k in ('D', 'A', 'Bb', 'Eb')]),
+    tech('scales-4-harmonic', 5, 'Harmonic minor scales hands together: B, G and C',
+         'C minor has three flats; its harmonic form raises B♭ to B.', [MEMORY_TIP], [], 92, 60, ht=[scale_ht(k, 'harmonic') for k in ('Bm', 'Gm', 'Cm')]),
+    tech('scales-4-melodic', 5, 'Melodic minor scales hands together: B, G and C',
+         'Melodic minor hands together in B, G and C minor.', [MEMORY_TIP], [], 92, 60, ht=[scale_ht(k, 'melodic') for k in ('Bm', 'Gm', 'Cm')]),
+    tech('formula-4', 5, 'Formula pattern in C harmonic minor',
+         'The formula pattern in C harmonic minor: up together, apart and back in contrary motion, then down together.',
+         ['Check the exact shape with your syllabus book: this is one common form of the pattern.', 'Listen for the raised 7th (B♮) in both hands.'],
+         [], 92, 60, together=tuple(' | '.join(x) for x in formula('Cm', 'harmonic'))),
+    tech('chromatic-4', 5, 'Chromatic scale from C, faster', 'The chromatic scale from C again, now at a quicker tempo.',
+         [HS_TIP, 'Keep the thumb light so the scale stays even.'], [(chromatic('C', 'R'), chromatic('C', 'L'))], 104, 70),
+    tech('tonic-triads-4', 5, 'Tonic triads hands together: D, A, B♭ and E♭ major',
+         'Broken tonic triads over two octaves, now hands together an octave apart.',
+         ['Practise hands separately first; then together slowly.'], [], 60, 40, time=(3, 4),
+         ht=[together(triads_broken, k, 2) for k in ('D', 'A', 'Bb', 'Eb')]),
+    tech('tonic-triads-4m', 5, 'Tonic triads hands together: B, G and C minor',
+         'Minor tonic triads, broken, two octaves, hands together.', [], [], 60, 40, time=(3, 4),
+         ht=[together(triads_broken, k, 2) for k in ('Bm', 'Gm', 'Cm')]),
+    tech('solid-triads-4', 5, 'Solid tonic triads hands together (Level 4 keys)',
+         'Solid tonic triads in all Level 4 keys, hands together, two octaves up and back.', ['Both hands press and release together.'], [], 120, 80,
+         ht=[together(triads_solid, k, 2) for k in ('D', 'A', 'Bb', 'Eb', 'Bm', 'Gm', 'Cm')]),
+    tech('arpeggios-4', 5, 'Arpeggios: D, A, B♭ and E♭ major',
+         'An arpeggio is a broken chord spread over the keyboard: root, third, fifth, root, two octaves up and back. The thumb passes under to reach the next octave.',
+         [HS_TIP, 'Let the wrist move sideways smoothly as the thumb passes under.', 'In B♭ and E♭ the right hand starts with finger 2 so the thumb lands on a white key.'],
+         [(arpeggio(k, 'R'), arpeggio(k, 'L')) for k in ('D', 'A', 'Bb', 'Eb')], 72, 50),
+    tech('arpeggios-4m', 5, 'Arpeggios: B, G and C minor', 'Minor tonic arpeggios, two octaves, hands separately.',
+         [HS_TIP, 'Fingering shown is one standard choice; your teacher may prefer another.'],
+         [(arpeggio(k, 'R'), arpeggio(k, 'L')) for k in ('Bm', 'Gm', 'Cm')], 72, 50),
 ]
 
 # Where each existing piece belongs in the syllabus levels.
@@ -544,7 +716,8 @@ PLACE = {'middle-c': 0, 'five-fingers': 0, 'mary': 0, 'left-five': 0, 'hot-cross
          'c-scale-rh': (1, 'technique'), 'c-scale-lh': (1, 'technique'), 'g-scale': (1, 'technique'),
          'scale-together': (1, 'technique'), 'contrary': (1, 'technique'),
          'three-chords': 2, 'broken-chords': 2, 'happy-birthday': 2, 'silent-night': 2, 'greensleeves': 2,
-         'progression': 3, 'canon': 3, 'nachtmusik': 3, 'fur-elise': 3}
+         'progression': 3, 'canon': 3, 'nachtmusik': 3, 'fur-elise': 3,
+         'minuet-g': 4, 'sonatina-c': 4, 'prelude-c': 5, 'waltz-am': 5}
 
 # Ear tests and sight reading run inside the app; these entries describe each level's requirements.
 MUSICIANSHIP = [
@@ -582,6 +755,24 @@ MUSICIANSHIP = [
          rhythm={'meters': [[2, 4], [3, 4], [4, 4]], 'values': ['q', 'h', 'h.', 'ee', 'q.e', 'rq'], 'bars': 3},
          playing={'style': 'divided', 'keys': ['C', 'G', 'F', 'Am', 'Dm'], 'bars': 4, 'values': ['q', 'h', 'ee'], 'wide': True},
          learn='Tap a rhythm with rests at sight, then play a four-bar melody shared between the hands that may move beyond the five-finger position.'),
+    dict(id='ear-3', level=4, kind='ear', title='Ear tests', tests=['clapback', 'intervals', 'chords', 'members', 'playback'],
+         rhythm={'meters': [[2, 4], [3, 4], [4, 4]], 'values': ['q', 'h', 'h.', 'ee', 'q.e'], 'bars': [3, 4]},
+         intervals=['m3', 'M3', 'P4', 'P5'], chords={'style': 'solid'},
+         playback={'degrees': 5, 'keys': ['D', 'F', 'Dm', 'Gm'], 'starts': [0, 2, 4], 'length': [5, 6]},
+         learn='Clap back a longer rhythm; name thirds, fourths and fifths; tell major from minor; say whether a note is the root, third or fifth of a chord; play back a five- or six-note melody.'),
+    dict(id='sight-3', level=4, kind='sight', title='Sight reading', tests=['rhythm', 'playing'],
+         rhythm={'meters': [[2, 4], [3, 4], [4, 4]], 'values': ['q', 'h', 'h.', 'ee', 'q.e', 'rq'], 'bars': 4},
+         playing={'style': 'together', 'keys': ['C', 'G', 'D', 'F', 'Am', 'Dm'], 'bars': 4, 'values': ['q', 'h', 'ee']},
+         learn='Tap a four-bar rhythm at sight, then play a four-bar passage with both hands together.'),
+    dict(id='ear-4', level=5, kind='ear', title='Ear tests', tests=['clapback', 'intervals', 'chords', 'members', 'playback'],
+         rhythm={'meters': [[2, 4], [3, 4], [4, 4]], 'values': ['q', 'h', 'h.', 'ee', 'q.e', 'rq'], 'bars': [2, 3, 4]},
+         intervals=['m3', 'M3', 'P4', 'P5', 'P8'], chords={'style': 'solid'},
+         playback={'degrees': 5, 'keys': ['D', 'A', 'Gm', 'Cm'], 'starts': [0, 2, 4], 'length': [6, 7, 8]},
+         learn='Clap back a rhythm; name thirds, fourths, fifths and octaves; tell major from minor; name a chord note as root, third or fifth; play back a six- to eight-note melody.'),
+    dict(id='sight-4', level=5, kind='sight', title='Sight reading', tests=['rhythm', 'playing'],
+         rhythm={'meters': [[2, 4], [3, 4], [4, 4]], 'values': ['q', 'h', 'h.', 'ee', 'q.e', 'rq'], 'bars': 4, 'melodic': True},
+         playing={'style': 'together', 'keys': ['C', 'G', 'D', 'F', 'Am', 'Em', 'Dm'], 'bars': 4, 'values': ['q', 'h', 'ee', 'q.e']},
+         learn='Tap the rhythm of a four-bar melody at sight, then play a four-bar passage hands together.'),
 ]
 KIND_ORDER = {'technique': 0, 'piece': 1, 'ear': 2, 'sight': 3}
 

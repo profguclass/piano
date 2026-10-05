@@ -172,7 +172,7 @@ body.hide #score svg{opacity:.06}
 <div id="card" hidden role="status"></div>
 <div id="lessons" hidden role="dialog" aria-modal="true" aria-label="Lessons"><div class="sheet">
   <div class="top"><h2>Lessons</h2><button id="lclose">Close</button></div>
-  <p class="muted">The levels and their parts (technique, pieces, ear tests and sight reading) follow the <a href="https://www.rcmusic.com/syllabi" target="_blank" rel="noopener">RCM Piano Syllabus</a> (2022 edition), from Preparatory A to Level 2. Technique and pieces have three steps: <b>listen</b>, <b>Wait for me</b>, then <b>Play along</b> at the target tempo. Finger numbers: 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger.</p>
+  <p class="muted">The levels and their parts (technique, pieces, ear tests and sight reading) follow the <a href="https://www.rcmusic.com/syllabi" target="_blank" rel="noopener">RCM Piano Syllabus</a> (2022 edition), from Preparatory A to Level 4. Technique and pieces have three steps: <b>listen</b>, <b>Wait for me</b>, then <b>Play along</b> at the target tempo. Finger numbers: 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger.</p>
   <div id="llist"></div>
 </div></div>
 <div id="prog" hidden role="dialog" aria-modal="true" aria-labelledby="ptitle"><div class="sheet">
@@ -919,9 +919,14 @@ async function openLessons() {
 }
 
 /* ---------- music helpers for generated exercises ---------- */
-const KEYNOTES = {C: ['C D E F G A B', 0], G: ['G A B C D E F#', 1], D: ['D E F# G A B C#', 2], F: ['F G A Bb C D E', -1],
-  Am: ['A B C D E F G', 0], Dm: ['D E F G A Bb C', -1], Em: ['E F# G A B C D', 1]};
-const KEYNAME = {C: 'C major', G: 'G major', D: 'D major', F: 'F major', Am: 'A minor', Dm: 'D minor', Em: 'E minor'};
+const KEYNOTES = {C: ['C D E F G A B', 0], G: ['G A B C D E F#', 1], D: ['D E F# G A B C#', 2], A: ['A B C# D E F# G#', 3],
+  F: ['F G A Bb C D E', -1], Bb: ['Bb C D Eb F G A', -2], Eb: ['Eb F G Ab Bb C D', -3],
+  Am: ['A B C D E F G', 0], Dm: ['D E F G A Bb C', -1], Em: ['E F# G A B C D', 1], Gm: ['G A Bb C D Eb F', -2],
+  Bm: ['B C# D E F# G A', 2], Cm: ['C D Eb F G Ab Bb', -3]};
+const KEYNAME = {C: 'C major', G: 'G major', D: 'D major', A: 'A major', F: 'F major', Bb: 'B♭ major', Eb: 'E♭ major',
+  Am: 'A minor', Dm: 'D minor', Em: 'E minor', Gm: 'G minor', Bm: 'B minor', Cm: 'C minor'};
+const tonicOctave = key => 'CDEF'.includes(key[0]) ? 4 : 3;   // keeps melodies around middle C
+const one = v => Array.isArray(v) ? pick(v) : v;            // a setting given as a choice
 const PC = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11};
 const pick = a => a[Math.floor(Math.random() * a.length)];
 function placeNotes(key, octave, count, from = 0) {    // scale notes upward from degree `from`, as "F#4"-style names
@@ -983,7 +988,12 @@ async function newSight(type) {
   if (type === 'rhythm') {                     // one note (middle C), any key counts: the rhythm is what matters
     const [beats] = pick(cfg.meters), r = makeRhythm(cfg.values, beats, cfg.bars);
     bpm = 72; title = 'Rhythm reading';
-    xml = scoreXml(title, beats, 0, r.map(bar => ({r: bar.map(d => d < 0 ? [null, -d] : ['C5', d])})), bpm);
+    const tune = placeNotes('C', 4, 5); let d = 2;           // Level 4: the rhythm of a melody
+    xml = scoreXml(title, beats, 0, r.map(bar => ({r: bar.map(x => {
+      if (x < 0) return [null, -x];
+      if (cfg.melodic) d = Math.max(0, Math.min(4, d + pick([-1, 1, 0, 2, -2])));
+      return [cfg.melodic ? tune[d] : 'C5', x];
+    })})), bpm);
   } else if (cfg.style === 'two-hands-apart') {  // two four-note melodies: right hand, then left hand, by step in one direction
     const tune = (oct, right) => {
       const up = Math.random() < 0.5, start = up ? Math.floor(Math.random() * 2) : 2 + Math.floor(Math.random() * 3);
@@ -994,6 +1004,24 @@ async function newSight(type) {
     };
     bpm = 60; title = 'Sight reading';
     xml = scoreXml(title, 4, 0, [{r: tune(4, true)}, {l: tune(3, false)}], bpm);
+  } else if (cfg.style === 'together') {        // hands together: a melody over long bass notes (I, IV, V)
+    const key = pick(cfg.keys), [beats] = pick([[3, 4], [4, 4]]), bars = cfg.bars;
+    const rh = placeNotes(key, 4, 5), lh = placeNotes(key, 3, 5);
+    const plan = pick([[0, 4, 4, 0], [0, 0, 4, 0], [0, 3, 4, 0], [0, 4, 0, 0]]);   // bass degree of each bar
+    const tones = {0: [0, 2, 4], 3: [0, 3], 4: [1, 4]};                             // chord notes within the five-finger position
+    const rhythm = makeRhythm(cfg.values, beats, bars);
+    let d = pick(tones[0]);
+    const out = rhythm.map((bar, b) => ({
+      r: bar.map((dur, j) => {
+        if (b === bars - 1 && j === bar.length - 1) d = 0;
+        else if (j === 0) d = tones[plan[b]].reduce((a, x) => Math.abs(x - d) < Math.abs(a - d) ? x : a);   // a chord note on beat 1
+        else d = Math.max(0, Math.min(4, d + pick([-1, 1, -1, 1, 2, -2, 0])));
+        return [rh[d], dur, b === 0 && j === 0 ? d + 1 : null];
+      }),
+      l: [[lh[plan[b]], beats * 4, b === 0 ? 5 - plan[b] : null]],
+    }));
+    bpm = 60; title = `Sight reading in ${KEYNAME[key]}`;
+    xml = scoreXml(title, beats, KEYNOTES[key][1], out, bpm);
   } else {                                      // a melody shared between the hands
     const key = pick(cfg.keys), [beats] = pick([[3, 4], [4, 4]]), bars = cfg.bars;
     const rh = placeNotes(key, 4, 7, cfg.wide ? -1 : 0), lh = placeNotes(key, 3, 7, cfg.wide ? -1 : 0);
@@ -1035,8 +1063,9 @@ const EAR = {
   intervals: {name: 'Intervals', short: 'name the interval'},
   chords: {name: 'Chords', short: 'major or minor?'},
   playback: {name: 'Playback', short: 'play back a melody'},
+  members: {name: 'Chord notes', short: 'root, third or fifth?'},
 };
-const INTERVAL = {m3: [3, 'Minor 3rd'], M3: [4, 'Major 3rd'], P5: [7, 'Perfect 5th']};
+const INTERVAL = {m3: [3, 'Minor 3rd'], M3: [4, 'Major 3rd'], P4: [5, 'Perfect 4th'], P5: [7, 'Perfect 5th'], P8: [12, 'Octave']};
 let ear = null;
 function openTrainer() {
   $('wrap').hidden = true; $('trainer').hidden = false;
@@ -1064,19 +1093,22 @@ function earNext() {
   } else if (t === 'intervals') {
     const k = pick(L.intervals); q.size = INTERVAL[k][0]; q.root = 55 + Math.floor(Math.random() * 10);
     q.answers = L.intervals.map(i => [i, INTERVAL[i][1]]); q.answer = k;
+  } else if (t === 'members') {
+    q.minor = Math.random() < 0.5; q.root = 55 + Math.floor(Math.random() * 10);
+    q.answer = pick(['root', 'third', 'fifth']); q.answers = [['root', 'Root'], ['third', 'Third'], ['fifth', 'Fifth']];
   } else if (t === 'playback') {
-    const cfg = L.playback, key = pick(cfg.keys), notes = placeNotes(key, key === 'Am' || key === 'Dm' ? 3 : 4, cfg.degrees);
+    const cfg = L.playback, key = pick(cfg.keys), notes = placeNotes(key, tonicOctave(key), cfg.degrees), length = one(cfg.length);
     let d = pick(cfg.starts); const mel = [d];
-    while (mel.length < cfg.length) {          // mostly steps, the odd skip, at most one repeated note
+    while (mel.length < length) {              // mostly steps, the odd skip, at most one repeated note
       const moves = [-1, 1, -1, 1, 2, -2, ...(mel.some((x, i) => i && x === mel[i - 1]) ? [] : [0])]
         .filter(m => d + m >= 0 && d + m < cfg.degrees);
       d += pick(moves); mel.push(d);
     }
     q.key = key; q.notes = mel.map(i => midiOf(notes[i])); q.names = mel.map(i => notes[i].replace(/\d/, ''));
-    q.triad = [0, 2, 4].map(i => midiOf(placeNotes(key, key === 'Am' || key === 'Dm' ? 3 : 4, 5)[i]));
+    q.triad = [0, 2, 4].map(i => midiOf(placeNotes(key, tonicOctave(key), 5)[i]));
   } else {                                     // clapback
     const cfg = L.rhythm, [beats] = pick(cfg.meters);
-    q.beats = beats; q.rhythm = makeRhythm(cfg.values, beats, cfg.bars).flat();
+    q.beats = beats; q.rhythm = makeRhythm(cfg.values, beats, one(cfg.bars)).flat();
     q.onsets = []; let at = 0;
     for (const d of q.rhythm) { if (d > 0) q.onsets.push(at / 4); at += Math.abs(d); }   // in beats
     q.beatMs = 60000 / 80;
@@ -1088,6 +1120,7 @@ function earNext() {
 function earDraw(feedback = '') {
   const t = ear.test, q = ear.q, el = $('trainer');
   const prompt = {chords: 'Is this chord major or minor?', intervals: 'Which interval is this?',
+    members: 'You hear a broken chord, then one note. Is that note the root, the third or the fifth?',
     playback: `Key of ${KEYNAME[q.key] || ''}. Listen, then play the melody back on the piano.`,
     clapback: `${q.beats}/4 time. Listen to the rhythm twice, then after the count-in tap it back on any key.`}[t];
   el.innerHTML = `<h3>${EAR[t].name} · question ${ear.n} of 10</h3><p class="prompt"></p>
@@ -1111,6 +1144,10 @@ function earPlay() {                           // play the question
     const run = style === 'scale' ? (q.minor ? [0, 2, 3, 5, 7] : [0, 2, 4, 5, 7]) : style === 'broken-solid' ? [0, third, 7] : [];
     run.forEach(s => { later(at, () => tone(q.root + s, 0.4)); at += 420; });   // Level 1: broken then solid; Level 2: solid only
     later(at + (run.length ? 200 : 0), () => [0, third, 7].forEach(s => tone(q.root + s, 1.2)));
+  } else if (t === 'members') {
+    const iv = [0, q.minor ? 3 : 4, 7];
+    iv.forEach((s, i) => later(i * 450, () => tone(q.root + s, 0.45)));
+    later(2100, () => tone(q.root + iv[{root: 0, third: 1, fifth: 2}[q.answer]], 0.9));
   } else if (t === 'intervals') {
     later(0, () => tone(q.root, 0.6)); later(650, () => tone(q.root + q.size, 0.6));
     later(1700, () => tone(q.root + q.size, 0.6)); later(2350, () => tone(q.root, 0.6));

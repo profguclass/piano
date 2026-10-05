@@ -4,7 +4,9 @@
   "Preparatory A",
   "Preparatory B",
   "Level 1",
-  "Level 2"
+  "Level 2",
+  "Level 3",
+  "Level 4"
  ],
  "lessons": [
   {
@@ -1120,6 +1122,578 @@
     "wide": true
    },
    "learn": "Tap a rhythm with rests at sight, then play a four-bar melody shared between the hands that may move beyond the five-finger position."
+  },
+  {
+   "id": "scales-3-major",
+   "level": 4,
+   "kind": "technique",
+   "title": "Two-octave scales hands together: D, F and B♭ major",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "From Level 3 the scales are played hands together, an octave apart. Each hand keeps its own fingering, so the thumbs cross at different moments.",
+   "tips": [
+    "Practise each hand alone first, then together slowly with Wait for me.",
+    "Watch where each thumb goes: in D major the right thumb plays D and G, the left thumb A and D.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "48-scales-3-major.musicxml"
+  },
+  {
+   "id": "scales-3-harmonic",
+   "level": 4,
+   "kind": "technique",
+   "title": "Harmonic minor scales hands together: B, D and G",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "B minor has two sharps (F♯, C♯) and raises A to A♯; D minor raises C to C♯; G minor raises F to F♯. In B minor the left hand starts with finger 4.",
+   "tips": [
+    "Left hand in B minor: 4 3 2 1, 4 3 2 1.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "49-scales-3-harmonic.musicxml"
+  },
+  {
+   "id": "scales-3-melodic",
+   "level": 4,
+   "kind": "technique",
+   "title": "Melodic minor scales hands together: B, D and G",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "Melodic minor, hands together: the 6th and 7th notes are raised going up and natural coming down.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "50-scales-3-melodic.musicxml"
+  },
+  {
+   "id": "formula-3",
+   "level": 4,
+   "kind": "technique",
+   "title": "Formula pattern in D major",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "The formula pattern joins similar and contrary motion: both hands go up together, then move apart, come back in, and go down together.",
+   "tips": [
+    "Check the exact shape with your syllabus book (Technical Requirements for Piano): this is one common form of the pattern.",
+    "Keep the hands exactly together where they change direction."
+   ],
+   "file": "51-formula-3.musicxml"
+  },
+  {
+   "id": "chromatic-3",
+   "level": 4,
+   "kind": "technique",
+   "title": "Chromatic scale from D",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "The chromatic scale starting on D, hands separately.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Black keys 3, white keys 1, and 1–2 where two white keys meet."
+   ],
+   "file": "52-chromatic-3.musicxml"
+  },
+  {
+   "id": "tonic-triads-3",
+   "level": 4,
+   "kind": "technique",
+   "title": "Tonic triads, two octaves: D, F and B♭ major",
+   "hands": "both",
+   "bpm": 69,
+   "wait": 45,
+   "learn": "Broken tonic triads now cover two octaves: root position, first and second inversion, then again an octave higher.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Keep the same fingering pattern in the second octave."
+   ],
+   "file": "53-tonic-triads-3.musicxml"
+  },
+  {
+   "id": "tonic-triads-3m",
+   "level": 4,
+   "kind": "technique",
+   "title": "Tonic triads, two octaves: B, D and G minor",
+   "hands": "both",
+   "bpm": 69,
+   "wait": 45,
+   "learn": "The minor tonic triads, broken, over two octaves.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand."
+   ],
+   "file": "54-tonic-triads-3m.musicxml"
+  },
+  {
+   "id": "solid-triads-3",
+   "level": 4,
+   "kind": "technique",
+   "title": "Solid tonic triads, two octaves (Level 3 keys)",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 80,
+   "learn": "Solid tonic triads in D, F, B♭ major and B, D, G minor, up two octaves and back, with a rest after each chord.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Move to each new position during the rest."
+   ],
+   "file": "55-solid-triads-3.musicxml"
+  },
+  {
+   "id": "minuet-g",
+   "level": 4,
+   "kind": "piece",
+   "title": "Minuet in G",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "One of the most famous Baroque minuets (from the Notebook for Anna Magdalena Bach). The melody is as written; the left hand is simplified to one long note per bar.",
+   "tips": [
+    "A minuet is a dance in 3: feel a gentle stress on beat 1.",
+    "Play the eighth notes evenly and lightly, slightly detached in Baroque style."
+   ],
+   "file": "56-minuet-g.musicxml"
+  },
+  {
+   "id": "sonatina-c",
+   "level": 4,
+   "kind": "piece",
+   "title": "Sonatina in C (Classical style)",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "An original piece in the Classical style: a clear melody over an \"Alberti bass\", the broken-chord pattern (low, high, middle, high) used by Mozart and Clementi.",
+   "tips": [
+    "Keep the Alberti bass soft and even; the melody sings above it.",
+    "Left hand pattern: 5 1 3 1."
+   ],
+   "file": "57-sonatina-c.musicxml"
+  },
+  {
+   "id": "ear-3",
+   "level": 4,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "clapback",
+    "intervals",
+    "chords",
+    "members",
+    "playback"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e"
+    ],
+    "bars": [
+     3,
+     4
+    ]
+   },
+   "intervals": [
+    "m3",
+    "M3",
+    "P4",
+    "P5"
+   ],
+   "chords": {
+    "style": "solid"
+   },
+   "playback": {
+    "degrees": 5,
+    "keys": [
+     "D",
+     "F",
+     "Dm",
+     "Gm"
+    ],
+    "starts": [
+     0,
+     2,
+     4
+    ],
+    "length": [
+     5,
+     6
+    ]
+   },
+   "learn": "Clap back a longer rhythm; name thirds, fourths and fifths; tell major from minor; say whether a note is the root, third or fifth of a chord; play back a five- or six-note melody."
+  },
+  {
+   "id": "sight-3",
+   "level": 4,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e",
+     "rq"
+    ],
+    "bars": 4
+   },
+   "playing": {
+    "style": "together",
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "F",
+     "Am",
+     "Dm"
+    ],
+    "bars": 4,
+    "values": [
+     "q",
+     "h",
+     "ee"
+    ]
+   },
+   "learn": "Tap a four-bar rhythm at sight, then play a four-bar passage with both hands together."
+  },
+  {
+   "id": "scales-4-major",
+   "level": 5,
+   "kind": "technique",
+   "title": "Scales hands together: D, A, B♭ and E♭ major",
+   "hands": "both",
+   "bpm": 92,
+   "wait": 60,
+   "learn": "Two-octave scales hands together, now including E♭ major (three flats). In E♭ the right hand starts with finger 3, the left with 3.",
+   "tips": [
+    "E♭ major, right hand: 3 1 2 3 4 1 2 3; left hand: 3 2 1 4 3 2 1 3.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "58-scales-4-major.musicxml"
+  },
+  {
+   "id": "scales-4-harmonic",
+   "level": 5,
+   "kind": "technique",
+   "title": "Harmonic minor scales hands together: B, G and C",
+   "hands": "both",
+   "bpm": 92,
+   "wait": 60,
+   "learn": "C minor has three flats; its harmonic form raises B♭ to B.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "59-scales-4-harmonic.musicxml"
+  },
+  {
+   "id": "scales-4-melodic",
+   "level": 5,
+   "kind": "technique",
+   "title": "Melodic minor scales hands together: B, G and C",
+   "hands": "both",
+   "bpm": 92,
+   "wait": 60,
+   "learn": "Melodic minor hands together in B, G and C minor.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "60-scales-4-melodic.musicxml"
+  },
+  {
+   "id": "formula-4",
+   "level": 5,
+   "kind": "technique",
+   "title": "Formula pattern in C harmonic minor",
+   "hands": "both",
+   "bpm": 92,
+   "wait": 60,
+   "learn": "The formula pattern in C harmonic minor: up together, apart and back in contrary motion, then down together.",
+   "tips": [
+    "Check the exact shape with your syllabus book: this is one common form of the pattern.",
+    "Listen for the raised 7th (B♮) in both hands."
+   ],
+   "file": "61-formula-4.musicxml"
+  },
+  {
+   "id": "chromatic-4",
+   "level": 5,
+   "kind": "technique",
+   "title": "Chromatic scale from C, faster",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 70,
+   "learn": "The chromatic scale from C again, now at a quicker tempo.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Keep the thumb light so the scale stays even."
+   ],
+   "file": "62-chromatic-4.musicxml"
+  },
+  {
+   "id": "tonic-triads-4",
+   "level": 5,
+   "kind": "technique",
+   "title": "Tonic triads hands together: D, A, B♭ and E♭ major",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "Broken tonic triads over two octaves, now hands together an octave apart.",
+   "tips": [
+    "Practise hands separately first; then together slowly."
+   ],
+   "file": "63-tonic-triads-4.musicxml"
+  },
+  {
+   "id": "tonic-triads-4m",
+   "level": 5,
+   "kind": "technique",
+   "title": "Tonic triads hands together: B, G and C minor",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "Minor tonic triads, broken, two octaves, hands together.",
+   "tips": [],
+   "file": "64-tonic-triads-4m.musicxml"
+  },
+  {
+   "id": "solid-triads-4",
+   "level": 5,
+   "kind": "technique",
+   "title": "Solid tonic triads hands together (Level 4 keys)",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 80,
+   "learn": "Solid tonic triads in all Level 4 keys, hands together, two octaves up and back.",
+   "tips": [
+    "Both hands press and release together."
+   ],
+   "file": "65-solid-triads-4.musicxml"
+  },
+  {
+   "id": "arpeggios-4",
+   "level": 5,
+   "kind": "technique",
+   "title": "Arpeggios: D, A, B♭ and E♭ major",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 50,
+   "learn": "An arpeggio is a broken chord spread over the keyboard: root, third, fifth, root, two octaves up and back. The thumb passes under to reach the next octave.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Let the wrist move sideways smoothly as the thumb passes under.",
+    "In B♭ and E♭ the right hand starts with finger 2 so the thumb lands on a white key."
+   ],
+   "file": "66-arpeggios-4.musicxml"
+  },
+  {
+   "id": "arpeggios-4m",
+   "level": 5,
+   "kind": "technique",
+   "title": "Arpeggios: B, G and C minor",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 50,
+   "learn": "Minor tonic arpeggios, two octaves, hands separately.",
+   "tips": [
+    "Hands separately: the right hand plays first, then the left hand.",
+    "Fingering shown is one standard choice; your teacher may prefer another."
+   ],
+   "file": "67-arpeggios-4m.musicxml"
+  },
+  {
+   "id": "prelude-c",
+   "level": 5,
+   "kind": "piece",
+   "title": "Prelude in C (opening)",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "The first bars of the Prelude in C from Bach's Well-Tempered Clavier. Every half bar repeats one chord pattern; the music is in the slowly changing harmony.",
+   "tips": [
+    "The left hand plays the two low notes; the right hand the three upper notes, twice.",
+    "Play very evenly and let the harmony change be the expression."
+   ],
+   "file": "68-prelude-c.musicxml"
+  },
+  {
+   "id": "waltz-am",
+   "level": 5,
+   "kind": "piece",
+   "title": "Little Waltz in A minor",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "An original Romantic-style waltz. The left hand plays the classic waltz accompaniment: a low bass note on beat 1, a chord on beats 2 and 3.",
+   "tips": [
+    "Make beat 1 of the left hand a little deeper; keep the chords on 2 and 3 light.",
+    "Shape the melody: grow toward bar 6 and relax at the end."
+   ],
+   "file": "69-waltz-am.musicxml"
+  },
+  {
+   "id": "ear-4",
+   "level": 5,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "clapback",
+    "intervals",
+    "chords",
+    "members",
+    "playback"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e",
+     "rq"
+    ],
+    "bars": [
+     2,
+     3,
+     4
+    ]
+   },
+   "intervals": [
+    "m3",
+    "M3",
+    "P4",
+    "P5",
+    "P8"
+   ],
+   "chords": {
+    "style": "solid"
+   },
+   "playback": {
+    "degrees": 5,
+    "keys": [
+     "D",
+     "A",
+     "Gm",
+     "Cm"
+    ],
+    "starts": [
+     0,
+     2,
+     4
+    ],
+    "length": [
+     6,
+     7,
+     8
+    ]
+   },
+   "learn": "Clap back a rhythm; name thirds, fourths, fifths and octaves; tell major from minor; name a chord note as root, third or fifth; play back a six- to eight-note melody."
+  },
+  {
+   "id": "sight-4",
+   "level": 5,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e",
+     "rq"
+    ],
+    "bars": 4,
+    "melodic": true
+   },
+   "playing": {
+    "style": "together",
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "F",
+     "Am",
+     "Em",
+     "Dm"
+    ],
+    "bars": 4,
+    "values": [
+     "q",
+     "h",
+     "ee",
+     "q.e"
+    ]
+   },
+   "learn": "Tap the rhythm of a four-bar melody at sight, then play a four-bar passage hands together."
   }
  ]
 }
