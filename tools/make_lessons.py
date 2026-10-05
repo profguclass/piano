@@ -292,6 +292,14 @@ LESSONS = [
              'E5s:5 D#5s:4 E5s:5 B4s:2 D5s:4 C5s:3 | A4e:1 rs C4s:1 E4s:2 A4s:4 | B4e:5 rs E4s:1 C5s:4 B4s:3 | A4q.:2'),
          lh=('re | | A2s:5 E3s:2 A3s:1 re. | E2s:5 E3s:2 G#3s:1 re. | A2s:5 E3s:2 A3s:1 re. | | A2s:5 E3s:2 A3s:1 re. | E2s:5 E3s:2 G#3s:1 re. | A2s:5 E3s:2 A3s:1 re.')),
 
+    dict(id='hassler-minuet', level=2, title='Minuet in C, Op. 38 No. 4', hands='both', bpm=100, wait=60, time=(3, 4), composer='Johann Wilhelm Hässler',
+         learn="A short classical minuet from Hässler's 50 Pieces for Beginners. The right hand sings; the left hand has long notes and little eighth-note turns. Look for the answering phrases: bars 1-4 and 9-12 are nearly the same.",
+         tips=['Learn each hand alone first, then together.', 'Bar 6 has a G♯ and bar 7 a C♯: watch the accidentals.', 'Play the last-bar chords together, then lift the hands for the final C.', 'Keep it light and graceful: one beat per quarter, a gentle lilt on beat 1.'],
+         rh=('C5q:2 E5q:4 C5q | G4h. | D5q:3 F5q D5q | G4h. | E5e:2 C5e:1 F5e:3 C5e G5e:4 C5e | G#5e:4 A5e G5e F5e E5e D5e | C#5e:2 D5e:3 E5e F5e A4e:1 D5e:4 | C5h:3 B4q | '
+             'C5q:3 E5e:5 C5e B4e C5e | G4h. | D5q:3 F5e:5 D5e C#5e D5e | G4h. | E5e:2 C5e F5e C5e G5e C5e | G#5e:4 A5e G5e F5e E5e D5e | C5+E5q:2+4 B4+D5+F5q:1+3+5 B4+D5q:1+3 | C5q:2 rq rq'),
+         lh=('C4h.:2 | C4q E4q:1 C4q | G3h.:5 | G3q F4q:1 D4q:2 | C4q:1 A3q:2 E3q:3 | F3h.:2 | F3q D3q F3q | G3q G2q G3q | '
+             'C4h.:2 | C4q E4e:1 C4e:2 B3e C4e | G3h.:5 | G3q F4e:1 D4e:2 B3e:3 G3e:5 | C4q:1! A3q:2! E3q:3! | F3h:2 F3q | G3q:1 G2q G3q | C3q:5 C4q rq')),
+
     # ---------- more folk tunes (Preparatory levels) ----------
     dict(id='lightly-row', title='Lightly Row', hands='right', bpm=100, wait=70,
          learn='A cheerful German folk tune ("Hänschen klein") that stays in C position from start to finish.',
@@ -880,7 +888,7 @@ PLACE = {'lightly-row': 0, 'old-macdonald': 0, 'frere-jacques': 1, 'middle-c': 0
          'c-scale-rh': (1, 'technique'), 'c-scale-lh': (1, 'technique'), 'g-scale': (1, 'technique'),
          'scale-together': (1, 'technique'), 'contrary': (1, 'technique'),
          'three-chords': 2, 'broken-chords': 2, 'happy-birthday': 2, 'silent-night': 2, 'greensleeves': 2,
-         'progression': 3, 'canon': 3, 'nachtmusik': 3, 'fur-elise': 3,
+         'hassler-minuet': 2, 'progression': 3, 'canon': 3, 'nachtmusik': 3, 'fur-elise': 3,
          'sonatina-c': 4, 'prelude-c': 5, 'waltz-am': 5}
 
 # Ear tests and sight reading run inside the app; these entries describe each level's requirements.

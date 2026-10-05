@@ -49,6 +49,8 @@ Ornaments shorter than a 32nd note are left out, repeats are played through once
 The Schumann pieces are licensed CC BY-SA (2.5/3.0) by their Mutopia typesetters; our MusicXML versions of them are shared under the same licence.
 The others are public domain.
 
+Johann Wilhelm Hässler's *Minuet in C*, Op. 38 No. 4 (Level 1), is public domain; it was transcribed by hand from the free [Pianocoda](https://pianocoda.com) edition, with its fingering.
+
 | Level | Piece | Composer | Licence | Source |
 |---|---|---|---|---|
 | Level 1 | Minuet in F (BWV Anh. 113) | Notebook for Anna Magdalena Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=74) |
