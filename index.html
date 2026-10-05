@@ -156,6 +156,7 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
   <div class="grp"><input id="showfing" type="checkbox" aria-label="Show finger numbers"><span>Finger numbers</span></div>
   <button id="full">Full screen</button>
   <button id="install" hidden>Install app</button>
+  <span class="muted" id="version" style="font-size:13px"></span>
 </div>
 <main id="scroll"><div id="lesson" hidden></div><div id="wrap"><div id="score"></div><div id="heat"></div><div id="fing"></div><div id="marks"></div></div></main>
 <footer><div id="status">Loading…</div><div id="kb"></div></footer>
@@ -837,6 +838,7 @@ function lessonStep(step) {              // mark a lesson step as done
   if (!lesson) return;
   const all = lessonsDone(), d = all[lesson.id] || {};
   d[step] = true; all[lesson.id] = d; store.set('lessons', all); showLesson();
+  if (!$('lessons').hidden) openLessons();      // keep an open lesson list current
 }
 function lessonResult(s) {               // what this finished run means for the lesson
   if (!lesson) return null;
@@ -916,7 +918,27 @@ $('install').onclick = async () => { if (!installEvt) return; installEvt.prompt(
 const standalone = matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches;
 $('full').hidden = standalone || !document.documentElement.requestFullscreen;
 $('full').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {});
-if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) navigator.serviceWorker.register('sw.js').catch(() => {});
+// Keep the installed app up to date: look for a new version whenever the app comes back to the
+// screen (and every 30 minutes); when one has been installed, reload, but never in the middle of playing.
+$('version').textContent = 'Version of ' + new Date(document.lastModified).toLocaleString([], {dateStyle: 'medium', timeStyle: 'short'});
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  const hadWorker = !!navigator.serviceWorker.controller;
+  let reloadWhenIdle = false;
+  navigator.serviceWorker.register('sw.js', {updateViaCache: 'none'}).then(reg => {
+    const check = () => reg.update().catch(() => {});
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') check(); });
+    setInterval(check, 30 * 60 * 1000);
+  }).catch(() => {});
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadWorker) return;                                // first install: this page is already current
+    if (!playing) location.reload();
+    else { reloadWhenIdle = true; info('A new version is ready; it loads when you stop'); }
+  });
+  $('play').addEventListener('click', e => {        // pressing Play while stopped loads the new version first
+    if (reloadWhenIdle && !playing) { e.stopImmediatePropagation(); location.reload(); }
+  }, true);
+  document.addEventListener('visibilitychange', () => { if (reloadWhenIdle && !playing && document.visibilityState === 'visible') location.reload(); });
+}
 
 /* ---------- wiring ---------- */
 function seg(id, k, after) {

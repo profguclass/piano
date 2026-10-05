@@ -1,5 +1,5 @@
 // Network first so updates show up right away; the cache keeps the app working offline.
-const CACHE = 'piano-reader-v4';
+const CACHE = 'piano-reader-v5';
 const FILES = ['./', './index.html', './opensheetmusicdisplay.min.js', './manifest.webmanifest', './icon-192.png', './icon-512.png', './lessons/lessons.json'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(async c => {
@@ -15,7 +15,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const r = e.request;
   if (r.method !== 'GET' || new URL(r.url).origin !== location.origin) return;
-  e.respondWith(fetch(r).then(res => {
+  e.respondWith(fetch(r, {cache: 'no-cache'}).then(res => {     // always ask the server, so updates are never hidden by the browser cache
     if (res.ok) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(r, copy)); }
     return res;
   }).catch(() => caches.match(r, {ignoreSearch: true}).then(m => m || caches.match('./'))));
