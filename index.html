@@ -4,56 +4,90 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1f6f5c">
+<meta name="color-scheme" content="only light">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
 <title>Piano Reader</title>
 <style>
-:root{--ink:#1d2330;--muted:#667085;--line:#d9dee7;--bar:#f4f1ea;--paper:#fffdf8;--accent:#1f6f5c;--accent-ink:#fff;--hint:#f2b63d;--bad:#d64545}
+:root{color-scheme:only light;--ink:#1d2330;--muted:#667085;--line:#d9dee7;--bar:#f4f1ea;--paper:#fffdf8;--accent:#1f6f5c;--accent-ink:#fff;--hint:#f2b63d;--bad:#d64545;--you:#2f6fd6}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{display:flex;flex-direction:column;height:100dvh;font:15px/1.3 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bar);touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:8px 12px;border-bottom:1px solid var(--line)}
-h1{font:600 17px/1 Georgia,"Times New Roman",serif;margin:0 6px 0 0;letter-spacing:.02em}
-.grp{display:flex;align-items:center;gap:6px;padding:4px 8px;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:44px}
-.grp>span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-button,.btn,select,input[type=number]{font:inherit;font-size:16px;min-height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);padding:0 14px;cursor:pointer}
-.grp button,.grp select,.grp input[type=number]{min-height:34px;padding:0 8px;border-radius:7px}
+body{display:flex;flex-direction:column;height:100dvh;font:17px/1.3 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bar);touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));border-bottom:1px solid var(--line)}
+button,.btn,input[type=number]{font:inherit;min-height:48px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);padding:0 16px;cursor:pointer}
 .btn{display:inline-flex;align-items:center}
-button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600;min-width:104px}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600;min-width:120px}
 button:active,.btn:active{transform:translateY(1px)}
-button:focus-visible,select:focus-visible,input:focus-visible,.btn:focus-within{outline:3px solid #8cc7b8;outline-offset:1px}
-input[type=number]{width:58px;text-align:center;cursor:text}
-input[type=range]{width:120px;accent-color:var(--accent)}
-input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent)}
-#bpmv{min-width:34px;text-align:right;font-variant-numeric:tabular-nums}
-main{flex:1;overflow:auto;background:var(--paper);padding:8px 6px 40px;-webkit-overflow-scrolling:touch}
-#score{max-width:1400px;margin:0 auto}
+button:focus-visible,input:focus-visible,.btn:focus-within{outline:3px solid #8cc7b8;outline-offset:1px}
+button:disabled{opacity:.45}
+.seg{display:flex;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+.seg button{border:0;border-radius:0;min-width:64px;padding:0 14px;border-left:1px solid var(--line)}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff;font-weight:600}
+.seg.dim{opacity:.5}
+.tempo{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:#fff}
+.tempo button{border:0;min-width:48px;padding:0;font-size:22px}
+.tempo b{min-width:48px;text-align:center;font-variant-numeric:tabular-nums}
+.tempo small{color:var(--muted);font-size:12px;margin-right:4px}
+.grow{flex:1}
+#midi{display:inline-flex;align-items:center;gap:8px;max-width:240px}
+#midi span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#midi i{width:12px;height:12px;border-radius:50%;background:#b8c0cc;flex:none}
+#midi.on i{background:#2fb26a;box-shadow:0 0 0 3px #2fb26a33}
+#more{font-size:22px;min-width:52px;padding:0}
+#panel{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:10px 12px;border-bottom:1px solid var(--line);background:#fff}
+#panel[hidden]{display:none}
+#panel .grp{display:flex;align-items:center;gap:8px}
+#panel .grp>span{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+input[type=number]{width:64px;text-align:center;padding:0 4px;cursor:text}
+input[type=checkbox]{width:24px;height:24px;accent-color:var(--accent)}
+main{flex:1;overflow:auto;background:var(--paper);padding:4px 4px 40px;-webkit-overflow-scrolling:touch}
+#wrap{position:relative;max-width:1600px;margin:0 auto}
+#marks{position:absolute;inset:0;pointer-events:none}
+.mk{position:absolute;width:0;height:0;transition:opacity .4s}
+.mk .hd{position:absolute;border-radius:50%;transform:translate(0,-50%) rotate(-20deg)}
+.mk .lg{position:absolute;height:2px;transform:translateY(-50%)}
+.mk .ac{position:absolute;transform:translate(-100%,-55%);font-weight:700;line-height:1}
+.mk .lb{position:absolute;transform:translateY(-50%);font:700 15px/1 system-ui,sans-serif;color:#fff;padding:4px 7px;border-radius:8px;white-space:nowrap}
+.mk.fade{opacity:0}
 footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
-#status{font-size:13px;color:var(--muted);padding:0 4px 6px;min-height:22px;font-variant-numeric:tabular-nums}
-#kb{position:relative;height:104px;display:flex;user-select:none;-webkit-user-select:none;touch-action:none}
+#status{font-size:15px;color:var(--muted);padding:0 4px 6px;min-height:24px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#kb{position:relative;height:96px;display:flex;touch-action:none}
+#kb[hidden]{display:none}
 .w{flex:1;border:1px solid #9aa3b2;border-top:0;border-radius:0 0 5px 5px;background:#fff;margin-right:-1px}
 .b{position:absolute;top:0;height:62%;background:#1d2330;border-radius:0 0 4px 4px;z-index:1}
 .w.need,.b.need{background:var(--hint)}
 .w.on,.b.on{background:var(--accent)}
 .w.bad,.b.bad{background:var(--bad)}
-@media (max-height:520px){#kb{height:70px}}
+@media (max-width:760px){button.primary{min-width:96px}.seg button{min-width:52px;padding:0 10px}.tempo small{display:none}}
+@media (max-height:600px){#kb{height:64px}header{padding-top:4px;padding-bottom:4px}}
 </style>
 </head>
 <body>
 <header>
-  <h1>Piano Reader</h1>
-  <label class="btn">Open score<input id="file" type="file" accept=".musicxml,.xml,.mxl" hidden></label>
   <button id="play" class="primary">▶ Play</button>
-  <button id="restart" aria-label="Back to start">⏮ Start</button>
-  <div class="grp"><span>Mode</span>
-    <select id="mode"><option value="listen">Listen</option><option value="wait">Wait for me</option></select></div>
-  <div class="grp"><span>Hands</span>
-    <select id="hands"><option value="both">Both</option><option value="right">Right only</option><option value="left">Left only</option></select></div>
-  <div class="grp"><span>Tempo</span><input id="bpm" type="range" min="30" max="200" value="100" aria-label="Tempo"><b id="bpmv">100</b></div>
-  <div class="grp"><span>Size</span><button id="zout" aria-label="Smaller notes">−</button><button id="zin" aria-label="Bigger notes">+</button></div>
-  <div class="grp"><input id="loop" type="checkbox" aria-label="Repeat section"><span>Repeat bars</span>
-    <input id="from" type="number" min="1" value="1" aria-label="From bar"><span>to</span><input id="to" type="number" min="1" value="1" aria-label="To bar"></div>
-  <button id="midi">Connect piano</button>
+  <button id="restart" aria-label="Back to start">⏮</button>
+  <div class="seg" id="mode" role="group" aria-label="Mode">
+    <button data-v="listen">Listen</button><button data-v="along">Play along</button><button data-v="wait">Wait for me</button></div>
+  <div class="seg" id="hands" role="group" aria-label="Hands you play">
+    <button data-v="left">Left</button><button data-v="both">Both</button><button data-v="right">Right</button></div>
+  <div class="tempo"><button id="slower" aria-label="Slower">−</button><b id="bpmv">100</b><small>bpm</small><button id="faster" aria-label="Faster">+</button></div>
+  <span class="grow"></span>
+  <button id="midi"><i></i><span>Connect piano</span></button>
+  <button id="more" aria-label="More settings" aria-expanded="false">⋯</button>
 </header>
-<main id="scroll"><div id="score"></div></main>
+<div id="panel" hidden>
+  <label class="btn">Open score<input id="file" type="file" accept=".musicxml,.xml,.mxl" hidden></label>
+  <button id="sample">Sample: Ode to Joy</button>
+  <div class="grp"><span>Note size</span><button id="zout" aria-label="Smaller notes">−</button><button id="zin" aria-label="Bigger notes">+</button></div>
+  <div class="grp"><input id="loop" type="checkbox" aria-label="Repeat bars"><span>Repeat bars</span>
+    <input id="from" type="number" min="1" value="1" aria-label="From bar"><span>to</span><input id="to" type="number" min="1" value="1" aria-label="To bar"></div>
+  <div class="grp"><input id="showkb" type="checkbox" aria-label="Show keyboard"><span>Keyboard</span></div>
+  <button id="full">Full screen</button>
+  <button id="install" hidden>Install app</button>
+</div>
+<main id="scroll"><div id="wrap"><div id="score"></div><div id="marks"></div></div></main>
 <footer><div id="status">Loading…</div><div id="kb"></div></footer>
 
 <script>/*! For license information please see opensheetmusicdisplay.min.js.LICENSE.txt */
@@ -62,12 +96,19 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
 <script>
 const SAMPLE = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<score-partwise version=\"3.1\">\n  <work><work-title>Ode to Joy</work-title></work>\n  <identification><creator type=\"composer\">Ludwig van Beethoven</creator></identification>\n  <part-list><score-part id=\"P1\"><part-name>Piano</part-name></score-part></part-list>\n  <part id=\"P1\">\n    <measure number=\"1\">\n      <attributes><divisions>2</divisions><key><fifths>0</fifths></key><time><beats>4</beats><beat-type>4</beat-type></time><staves>2</staves><clef number=\"1\"><sign>G</sign><line>2</line></clef><clef number=\"2\"><sign>F</sign><line>4</line></clef></attributes>\n      <direction placement=\"above\"><direction-type><metronome><beat-unit>quarter</beat-unit><per-minute>100</per-minute></metronome></direction-type><staff>1</staff><sound tempo=\"100\"/></direction>\n      <note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>F</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>G</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <backup><duration>8</duration></backup>\n      <note><pitch><step>C</step><octave>3</octave></pitch><duration>8</duration><voice>2</voice><type>whole</type><staff>2</staff></note>\n    </measure>\n    <measure number=\"2\">\n      <note><pitch><step>G</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>F</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>D</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <backup><duration>8</duration></backup>\n      <note><pitch><step>G</step><octave>2</octave></pitch><duration>8</duration><voice>2</voice><type>whole</type><staff>2</staff></note>\n    </measure>\n    <measure number=\"3\">\n      <note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>D</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <backup><duration>8</duration></backup>\n      <note><pitch><step>C</step><octave>3</octave></pitch><duration>8</duration><voice>2</voice><type>whole</type><staff>2</staff></note>\n    </measure>\n    <measure number=\"4\">\n      <note><pitch><step>E</step><octave>4</octave></pitch><duration>3</duration><voice>1</voice><type>quarter</type><dot/><staff>1</staff></note>\n      <note><pitch><step>D</step><octave>4</octave></pitch><duration>1</duration><voice>1</voice><type>eighth</type><staff>1</staff></note>\n      <note><pitch><step>D</step><octave>4</octave></pitch><duration>4</duration><voice>1</voice><type>half</type><staff>1</staff></note>\n      <backup><duration>8</duration></backup>\n      <note><pitch><step>G</step><octave>2</octave></pitch><duration>8</duration><voice>2</voice><type>whole</type><staff>2</staff></note>\n    </measure>\n    <measure number=\"5\">\n      <note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>F</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>G</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <backup><duration>8</duration></backup>\n      <note><pitch><step>C</step><octave>3</octave></pitch><duration>8</duration><voice>2</voice><type>whole</type><staff>2</staff></note>\n    </measure>\n    <measure number=\"6\">\n      <note><pitch><step>G</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>F</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>D</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <backup><duration>8</duration></backup>\n      <note><pitch><step>G</step><octave>2</octave></pitch><duration>8</duration><voice>2</voice><type>whole</type><staff>2</staff></note>\n    </measure>\n    <measure number=\"7\">\n      <note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>D</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>\n      <backup><duration>8</duration></backup>\n      <note><pitch><step>C</step><octave>3</octave></pitch><duration>8</duration><voice>2</voice><type>whole</type><staff>2</staff></note>\n    </measure>\n    <measure number=\"8\">\n      <note><pitch><step>D</step><octave>4</octave></pitch><duration>3</duration><voice>1</voice><type>quarter</type><dot/><staff>1</staff></note>\n      <note><pitch><step>C</step><octave>4</octave></pitch><duration>1</duration><voice>1</voice><type>eighth</type><staff>1</staff></note>\n      <note><pitch><step>C</step><octave>4</octave></pitch><duration>4</duration><voice>1</voice><type>half</type><staff>1</staff></note>\n      <backup><duration>8</duration></backup>\n      <note><pitch><step>G</step><octave>2</octave></pitch><duration>4</duration><voice>2</voice><type>half</type><staff>2</staff></note>\n      <note><pitch><step>C</step><octave>3</octave></pitch><duration>4</duration><voice>2</voice><type>half</type><staff>2</staff></note>\n      <barline location=\"right\"><bar-style>light-heavy</bar-style></barline>\n    </measure>\n  </part>\n</score-partwise>\n";
 const $ = id => document.getElementById(id);
-const S = {bpm:100, hands:'both', mode:'listen', zoom:1, loop:false};
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('pr.' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem('pr.' + k, JSON.stringify(v)); } catch {} },
+};
+const S = Object.assign({bpm: 100, hands: 'both', mode: 'listen', zoom: 1, loop: false, kb: true}, store.get('settings', {}));
+const save = () => store.set('settings', S);
 let osmd, steps = [], pos = 0, bars = 1, playing = false, timer = null, target = 0;
 let actx = null, master = null, need = new Set(), hits = 0, misses = 0, lock = null, title = '';
 
 const sec = whole => whole * 240 / S.bpm;
-const handOK = staff => S.hands === 'both' || (S.hands === 'right' ? staff === 0 : staff >= 1);
+// "mine" = a note the learner plays; the app plays everything else
+const mine = n => S.hands === 'both' || (S.hands === 'right' ? n.staff === 0 : n.staff >= 1);
+const appPlays = n => S.mode === 'listen' || !mine(n);
 
 /* ---------- sound ---------- */
 function tone(midi, dur, vel = 0.22) {
@@ -88,6 +129,14 @@ function tone(midi, dur, vel = 0.22) {
   g.gain.exponentialRampToValueAtTime(0.0001, t + d + 0.3);
   o.start(t); o2.start(t); o.stop(t + d + 0.35); o2.stop(t + d + 0.35);
 }
+function accompany(st) { for (const n of st.notes) if (appPlays(n)) { tone(n.midi, sec(n.len)); flash(n.midi, 'on', Math.max(120, sec(n.len) * 900)); } }
+
+/* ---------- note names ---------- */
+const NAMES = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
+const STEP = [0, 0, 1, 1, 2, 3, 3, 4, 4, 5, 5, 6];            // diatonic step of each pitch class (sharp spelling)
+const FUND = {0: 0, 2: 1, 4: 2, 5: 3, 7: 4, 9: 5, 11: 6};    // OSMD NoteEnum -> diatonic step
+const noteName = m => NAMES[m % 12] + (Math.floor(m / 12) - 1);
+const diatonic = m => (Math.floor(m / 12) - 1) * 7 + STEP[m % 12];   // C4 = 28
 
 /* ---------- reading the score into playable steps ---------- */
 function buildSteps() {
@@ -102,7 +151,9 @@ function buildSteps() {
         if (n.NoteTie && n.NoteTie.StartNote !== n) continue;       // tied continuation: already sounding
         const staff = n.ParentStaffEntry?.ParentStaff?.idInMusicSheet ?? 0;
         const len = n.NoteTie ? n.NoteTie.Duration.RealValue : n.Length.RealValue;
-        notes.push({midi: n.halfTone + 12, len, staff});
+        const midi = n.halfTone + 12, p = n.Pitch;
+        const dia = p && FUND[p.FundamentalNote] !== undefined ? (p.Octave + 3) * 7 + FUND[p.FundamentalNote] : diatonic(midi);
+        notes.push({midi, len, staff, dia});
       }
     }
     steps.push({ts: it.CurrentEnrolledTimestamp.RealValue, bar: it.CurrentMeasureIndex, notes});
@@ -141,11 +192,48 @@ function follow(force) {
 function info(extra) {
   const st = steps[pos]; if (!st) return;
   let t = `${title ? title + ' · ' : ''}Bar ${st.bar + 1} of ${bars}`;
-  if (S.mode === 'wait' && (hits || misses)) t += ` · Correct ${hits} · Missed ${misses}`;
+  if (S.loop) t += ` · Repeating ${$('from').value}–${$('to').value}`;
+  if (S.mode !== 'listen' && (hits || misses)) t += ` · Correct ${hits} · Missed ${misses}`;
   $('status').textContent = extra ? `${t} · ${extra}` : t;
 }
 
-/* ---------- keyboard ---------- */
+/* ---------- "you played" marks beside the cursor ---------- */
+function staffFor(m) {
+  const n = steps[0] ? Math.max(1, osmd.GraphicSheet.MeasureList[0]?.length || 1) : 1;
+  if (n < 2 || S.hands === 'right') return 0;
+  if (S.hands === 'left') return 1;
+  return m >= 60 ? 0 : 1;
+}
+function mark(m, verdict, ref) {
+  const cur = osmd?.cursor?.cursorElement, st = steps[pos], svg = $('score').querySelector('svg');
+  if (!cur || !st || !svg || cur.style.display === 'none') return;
+  const staff = ref ? ref.staff : staffFor(m);
+  const gm = osmd.GraphicSheet.MeasureList[st.bar]?.[staff]; if (!gm) return;
+  const clef = gm.InitiallyActiveClef, type = clef?.ClefType ?? 0;
+  const line = clef?.Line || (type === 1 ? 4 : type === 2 ? 3 : 2);              // clef line, counted from the bottom
+  const refDia = (type === 1 ? 24 : type === 2 ? 28 : 32) + (clef?.OctaveOffset || 0) * 7;   // F3 / C4 / G4
+  const dia = ref ? ref.dia : diatonic(m);
+  const off = (5 - line) - (dia - refDia) / 2;                                  // staff spaces below the top line
+  const u = 10 * osmd.zoom, W = $('wrap').getBoundingClientRect(), G = svg.getBoundingClientRect(), C = cur.getBoundingClientRect();
+  const x = C.right - W.left + u * 0.4, y = G.top - W.top + (gm.PositionAndShape.AbsolutePosition.y + off) * u;
+  const col = verdict === 'ok' ? 'var(--accent)' : verdict === 'bad' ? 'var(--bad)' : 'var(--you)';
+
+  $('marks').querySelector(`[data-m="${m}"]`)?.remove();
+  const el = document.createElement('div'); el.className = 'mk'; el.dataset.m = m;
+  el.style.left = x + 'px'; el.style.top = y + 'px';
+  const add = (cls, css, txt) => { const d = document.createElement('div'); d.className = cls; Object.assign(d.style, css); if (txt) d.textContent = txt; el.append(d); };
+  for (let l = Math.ceil(off) - (off < 0 ? 0 : 0); off < -0.5 && l <= -1; l++) if (l >= off - 0.01) add('lg', {left: -u * 0.35 + 'px', width: u * 2 + 'px', top: (l - off) * u + 'px', background: col});
+  for (let l = 5; off > 4.5 && l <= off + 0.01; l++) add('lg', {left: -u * 0.35 + 'px', width: u * 2 + 'px', top: (l - off) * u + 'px', background: col});
+  add('hd', {left: 0, width: u * 1.32 + 'px', height: u + 'px', background: col});
+  if (!ref && STEP[m % 12] === STEP[(m + 11) % 12]) add('ac', {left: -u * 0.15 + 'px', fontSize: u * 1.6 + 'px', color: col}, '♯');
+  add('lb', {left: u * 1.9 + 'px', background: col}, noteName(m) + (verdict === 'ok' ? ' ✓' : verdict === 'bad' ? ' ✗' : ''));
+  $('marks').append(el);
+  setTimeout(() => el.classList.add('fade'), 1100);
+  setTimeout(() => el.remove(), 1600);
+}
+const clearMarks = () => { $('marks').innerHTML = ''; };
+
+/* ---------- on-screen keyboard ---------- */
 const isBlack = m => [1, 3, 6, 8, 10].includes(m % 12);
 function buildKb() {
   const all = steps.flatMap(s => s.notes.map(n => n.midi));
@@ -169,18 +257,14 @@ function paintNeed() {
 }
 
 /* ---------- playback ---------- */
-function setPlaying(on) {
-  playing = on; $('play').textContent = on ? '❚❚ Pause' : '▶ Play';
-  if (on && navigator.wakeLock) navigator.wakeLock.request('screen').then(l => lock = l).catch(() => {});
-  if (!on && lock) { lock.release().catch(() => {}); lock = null; }
-}
+function setPlaying(on) { playing = on; $('play').textContent = on ? '❚❚ Pause' : '▶ Play'; }
 function pause() { clearTimeout(timer); setPlaying(false); need.clear(); paintNeed(); }
 function play() {
   if (!steps.length) return;
   const [s, e] = range();
   if (pos < s || pos > e || pos >= steps.length - 1 && !S.loop && pos !== 0) gotoStep(s);
-  setPlaying(true);
-  if (S.mode === 'listen') { target = performance.now(); tick(); } else { hits = misses = 0; prepWait(); }
+  setPlaying(true); hits = misses = 0;
+  if (S.mode === 'wait') prepWait(); else { target = performance.now(); tick(); }
 }
 function atEnd() {                       // returns true if playback should stop
   const [s, e] = range();
@@ -188,88 +272,161 @@ function atEnd() {                       // returns true if playback should stop
   if (S.loop) { gotoStep(s); return false; }
   pause(); gotoStep(0); info('Finished'); return true;
 }
-function tick() {
+function tick() {                        // Listen and Play along: move at the set tempo
   if (!playing) return;
   const st = steps[pos];
-  for (const n of st.notes) if (handOK(n.staff)) { tone(n.midi, sec(n.len)); flash(n.midi, 'on', Math.max(120, sec(n.len) * 900)); }
+  accompany(st);
+  if (S.mode === 'along') for (const n of st.notes) if (mine(n)) flash(n.midi, 'need', Math.max(150, sec(n.len) * 900));
   target += sec(stepDur(pos)) * 1000;
   timer = setTimeout(() => { if (playing && !atEnd()) tick(); }, Math.max(0, target - performance.now()));
 }
-function prepWait() {
-  for (let spins = 0; playing && spins < steps.length + 2; spins++) {
-    need = new Set(steps[pos].notes.filter(n => handOK(n.staff)).map(n => n.midi));
-    if (need.size) { paintNeed(); info('Play the highlighted keys'); return; }
-    if (atEnd()) return;
-  }
-  pause();
+function prepWait() {                    // Wait for me: stop on each of your notes, play the other hand in time
+  clearTimeout(timer);
+  if (!playing) return;
+  need = new Set(steps[pos].notes.filter(mine).map(n => n.midi));
+  paintNeed();
+  if (need.size) { info('Play the highlighted keys'); return; }
+  accompany(steps[pos]);                 // nothing for you here: the app plays it, then moves on
+  timer = setTimeout(() => { if (playing && !atEnd()) prepWait(); }, sec(stepDur(pos)) * 1000);
+}
+function expected(m) {                   // the score note this key matches, near the cursor
+  const near = S.mode === 'along' && playing ? [pos, pos - 1, pos + 1] : [pos];
+  for (const i of near) { const n = steps[i]?.notes.find(n => n.midi === m && (mine(n) || !playing)); if (n) return n; }
+  return null;
 }
 function press(m, sound) {
   if (sound) tone(m, 0.6);
-  if (!(playing && S.mode === 'wait')) { flash(m, 'on', 180); return; }
+  const ref = expected(m);
+  if (!playing || S.mode === 'listen') {
+    mark(m, ref ? 'ok' : null, ref); flash(m, 'on', 180); info(`You played ${noteName(m)}`); return;
+  }
+  if (S.mode === 'along') {
+    ref ? hits++ : misses++;
+    mark(m, ref ? 'ok' : 'bad', ref); flash(m, ref ? 'on' : 'bad', 220); info(`You played ${noteName(m)}`); return;
+  }
   if (need.has(m)) {
+    mark(m, 'ok', ref);
     need.delete(m); hits++; flash(m, 'on', 220); key(m)?.classList.remove('need');
     if (!need.size) {
-      for (const n of steps[pos].notes) if (!handOK(n.staff)) tone(n.midi, sec(n.len));   // app plays the other hand
+      accompany(steps[pos]);             // the app plays the other hand with your last note
       if (!atEnd()) prepWait();
     } else info('Play the highlighted keys');
-  } else { misses++; flash(m, 'bad', 260); info('Play the highlighted keys'); }
+  } else { misses++; mark(m, 'bad', null); flash(m, 'bad', 260); info(`You played ${noteName(m)} · Play the highlighted keys`); }
 }
 
 /* ---------- loading ---------- */
-async function loadScore(data) {
-  pause(); $('status').textContent = 'Reading score…';
+async function loadScore(data, name) {
+  pause(); clearMarks(); $('status').textContent = 'Reading score…';
   try {
     await osmd.load(data); osmd.zoom = S.zoom; osmd.render();
     buildSteps();
     if (!steps.length) throw new Error('empty');
-    bars = osmd.Sheet.SourceMeasures.length; title = osmd.Sheet.TitleString || '';
-    const t = Math.round(osmd.Sheet.DefaultStartTempoInBpm || 0);
-    if (t >= 30 && t <= 200) { S.bpm = t; $('bpm').value = t; $('bpmv').textContent = t; }
+    bars = osmd.Sheet.SourceMeasures.length; title = osmd.Sheet.TitleString || name || '';
+    const t = store.get('tempo:' + title, Math.round(osmd.Sheet.DefaultStartTempoInBpm || 0));
+    if (t >= 30 && t <= 200) setBpm(t, false);
     $('from').max = $('to').max = bars; $('from').value = 1; $('to').value = Math.min(bars, 4);
     hits = misses = 0; buildKb(); osmd.cursor.show(); pos = 0; $('scroll').scrollTop = 0; info();
+    return true;
   } catch (err) {
     console.error(err); steps = [];
     $('status').textContent = 'Could not read this file. Please choose a MusicXML score (.musicxml, .xml or .mxl).';
+    return false;
   }
 }
 
+/* ---------- piano (MIDI) ---------- */
+let midiAccess = null;
+function pianoState(on, text) { $('midi').classList.toggle('on', on); $('midi').querySelector('span').textContent = text; }
+function hookMidi() {
+  const names = [];
+  midiAccess.inputs.forEach(i => {
+    names.push(i.name || 'Piano');
+    i.onmidimessage = ev => { const [s, d1, d2] = ev.data; if ((s & 0xf0) === 0x90 && d2 > 0) press(d1, false); };
+  });
+  pianoState(names.length > 0, names.length ? names[0] : 'Plug in piano');
+}
+async function connectMidi(auto) {
+  if (!navigator.requestMIDIAccess) { if (!auto) pianoState(false, 'Use Chrome to connect'); return; }
+  try {
+    midiAccess = await navigator.requestMIDIAccess();
+    store.set('midi', true); hookMidi(); midiAccess.onstatechange = hookMidi;
+  } catch { if (!auto) pianoState(false, 'Piano link blocked'); }
+}
+async function autoConnect() {           // reconnect silently once the piano has been allowed before
+  if (!store.get('midi', false) || !navigator.requestMIDIAccess) return;
+  try { if ((await navigator.permissions.query({name: 'midi'})).state !== 'granted') return; } catch {}
+  connectMidi(true);
+}
+
+/* ---------- screen, install, full screen ---------- */
+async function keepAwake() {
+  if (lock || !navigator.wakeLock || document.visibilityState !== 'visible') return;
+  try { lock = await navigator.wakeLock.request('screen'); lock.addEventListener('release', () => { lock = null; }); } catch {}
+}
+document.addEventListener('visibilitychange', keepAwake);
+document.addEventListener('pointerdown', keepAwake);
+let installEvt = null;
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; $('install').hidden = false; });
+$('install').onclick = async () => { if (!installEvt) return; installEvt.prompt(); await installEvt.userChoice; installEvt = null; $('install').hidden = true; };
+const standalone = matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches;
+$('full').hidden = standalone || !document.documentElement.requestFullscreen;
+$('full').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {});
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) navigator.serviceWorker.register('sw.js').catch(() => {});
+
 /* ---------- wiring ---------- */
+function seg(id, k, after) {
+  const el = $(id);
+  const paint = () => el.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === S[k]));
+  el.onclick = e => { const b = e.target.closest('button'); if (!b) return; S[k] = b.dataset.v; paint(); save(); after(); };
+  paint();
+}
+const dimHands = () => $('hands').classList.toggle('dim', S.mode === 'listen');
+seg('mode', 'mode', () => { pause(); hits = misses = 0; dimHands(); info(S.mode === 'listen' ? 'The app plays both hands' : ''); });
+seg('hands', 'hands', () => {
+  if (S.mode === 'listen') info('Hands apply in Play along and Wait for me');
+  else if (playing && S.mode === 'wait') prepWait();
+});
+dimHands();
+function setBpm(v, remember = true) {
+  S.bpm = Math.min(200, Math.max(30, v)); $('bpmv').textContent = S.bpm; save();
+  if (remember && title) store.set('tempo:' + title, S.bpm);
+}
+$('slower').onclick = () => setBpm(S.bpm - 5);
+$('faster').onclick = () => setBpm(S.bpm + 5);
+setBpm(S.bpm, false);
 $('play').onclick = () => playing ? pause() : play();
 $('restart').onclick = () => { pause(); if (steps.length) gotoStep(range()[0]); };
-$('mode').onchange = e => { pause(); S.mode = e.target.value; info(); };
-$('hands').onchange = e => { S.hands = e.target.value; if (playing && S.mode === 'wait') prepWait(); };
-$('bpm').oninput = e => { S.bpm = +e.target.value; $('bpmv').textContent = S.bpm; };
-$('loop').onchange = e => { S.loop = e.target.checked; };
+$('more').onclick = () => { const p = $('panel'); p.hidden = !p.hidden; $('more').setAttribute('aria-expanded', !p.hidden); };
+$('loop').checked = S.loop;
+$('loop').onchange = e => { S.loop = e.target.checked; save(); info(); };
+$('from').onchange = $('to').onchange = () => info();
+$('showkb').checked = S.kb; $('kb').hidden = !S.kb;
+$('showkb').onchange = e => { S.kb = e.target.checked; $('kb').hidden = !S.kb; save(); };
 function zoom(d) {
-  S.zoom = Math.min(2.2, Math.max(0.5, +(S.zoom + d).toFixed(2)));
-  if (!steps.length) return; const was = playing; pause();
+  S.zoom = Math.min(2.2, Math.max(0.5, +(S.zoom + d).toFixed(2))); save();
+  if (!steps.length) return; const was = playing; pause(); clearMarks();
   osmd.zoom = S.zoom; osmd.render(); gotoStep(pos); if (was) play();
 }
 $('zin').onclick = () => zoom(0.15); $('zout').onclick = () => zoom(-0.15);
+$('sample').onclick = () => { store.set('score', null); loadScore(SAMPLE); $('panel').hidden = true; };
 $('file').onchange = e => {
   const f = e.target.files[0]; if (!f) return;
-  const r = new FileReader(); r.onload = () => loadScore(r.result);
+  const r = new FileReader();
+  r.onload = async () => {
+    if (await loadScore(r.result, f.name.replace(/\.[^.]+$/, ''))) { store.set('score', {name: f.name, data: r.result}); $('panel').hidden = true; }
+  };
   /\.mxl$/i.test(f.name) ? r.readAsBinaryString(f) : r.readAsText(f);
   e.target.value = '';
 };
 $('kb').addEventListener('pointerdown', e => { const m = e.target.dataset.m; if (m) { e.preventDefault(); press(+m, true); } });
-$('midi').onclick = async () => {
-  const b = $('midi');
-  if (!navigator.requestMIDIAccess) { b.textContent = 'Piano link not supported here'; return; }
-  try {
-    const a = await navigator.requestMIDIAccess();
-    const hook = () => {
-      let n = 0;
-      a.inputs.forEach(i => { n++; i.onmidimessage = ev => { const [s, d1, d2] = ev.data; if ((s & 0xf0) === 0x90 && d2 > 0) press(d1, false); }; });
-      b.textContent = n ? 'Piano connected' : 'No piano found';
-    };
-    hook(); a.onstatechange = hook;
-  } catch { b.textContent = 'Piano link blocked'; }
-};
+$('midi').onclick = () => connectMidi(false);
+addEventListener('resize', clearMarks);
 
 osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay('score', {autoResize: true, backend: 'svg', drawTitle: true, drawPartNames: false, followCursor: false});
 window._pr = {get steps() { return steps; }, get pos() { return pos; }, get playing() { return playing; }, press};
-loadScore(SAMPLE);
+const saved = store.get('score', null);
+(saved?.data ? loadScore(saved.data, saved.name.replace(/\.[^.]+$/, '')) : Promise.resolve(false)).then(ok => ok || loadScore(SAMPLE));
+keepAwake(); autoConnect();
 </script>
 </body>
 </html>
