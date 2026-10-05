@@ -3056,11 +3056,11 @@
    "id": "prelude-999",
    "level": 7,
    "kind": "piece",
-   "title": "Prelude in C minor (BWV 999)",
+   "title": "Prelude in D minor (BWV 999)",
    "hands": "both",
    "bpm": 70,
    "wait": 45,
-   "learn": "Originally for lute: steady broken chords in 3/4 over a moving bass.",
+   "learn": "Originally for lute (in C minor; this edition is in D minor): steady broken chords in 3/4 over a moving bass.",
    "tips": [
     "Keep the broken chords perfectly even."
    ],

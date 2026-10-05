@@ -128,6 +128,6 @@ REPERTOIRE = [
           'A Little Prelude with busy sixteenths in both hands.', ['Practise hands separately until each line is smooth.']),
     piece('prelude-924', '978-0.mid', 7, 'Little Prelude in C (BWV 924)', 'Johann Sebastian Bach', 50, 35, BYSA30,
           'Broken chords in the right hand over a slow bass: like a small cousin of the Prelude in C.', ['Let the harmony changes shape the music.']),
-    piece('prelude-999', '60-0.mid', 7, 'Prelude in C minor (BWV 999)', 'Johann Sebastian Bach', 70, 45, PD,
-          'Originally for lute: steady broken chords in 3/4 over a moving bass.', ['Keep the broken chords perfectly even.']),
+    piece('prelude-999', '60-0.mid', 7, 'Prelude in D minor (BWV 999)', 'Johann Sebastian Bach', 70, 45, PD,
+          'Originally for lute (in C minor; this edition is in D minor): steady broken chords in 3/4 over a moving bass.', ['Keep the broken chords perfectly even.']),
 ]
