@@ -541,8 +541,9 @@ function atEnd() {                       // returns true if playback should stop
   if (S.mode === 'listen') lessonStep('listen');
   pause(); gotoStep(0); info('Finished'); return true;
 }
-// All modes move at the set tempo. Play along never stops; Wait for me holds on a note of yours
-// that is due but not played yet, then goes on from the moment you play it.
+// All modes move at the set tempo. Play along never stops and times every note from your first one.
+// Wait for me follows you: it holds on a note of yours that is due but not played yet, and every note is
+// timed from the moment you correctly played the one before it (early or late, the music goes on from there).
 let holding = false;
 function tick() {
   if (!playing) return;
@@ -617,7 +618,14 @@ function press(m, sound, t) {
     }
   } else {
     const hit = matchAlong(m, t);
-    if (hit) { judge(m, hit.i, hit.n, hit.off); return; }
+    if (hit) {
+      judge(m, hit.i, hit.n, hit.off);
+      if (S.mode === 'wait' && hit.pre && steps[hit.i].notes.filter(mine).every(n => early.set.has(n))) {
+        clearTimeout(timer);                   // all of the next step played early: go on from now
+        if (!atEnd()) { target = t - latency(); tick(); }
+      }
+      return;
+    }
   }
   count(steps[pos].bar, 'wrong'); mark(m, 'bad', null, pos, holding || !when[pos] ? 0 : t - when[pos]); flash(m, 'bad', 240);
   info(`You played ${noteName(m)}` + (holding ? ' · Your turn' : ''));
@@ -1284,15 +1292,30 @@ function earAnswer(ok, detail) {
 /* ---------- piano (MIDI) ---------- */
 let midiAccess = null;
 function pianoState(on, text) { $('midi').classList.toggle('on', on); $('midi').querySelector('span').textContent = text; }
+function noteOns(d) {                   // every note-on in a MIDI event (it may hold several messages, with running status)
+  const out = [];
+  let i = 0, status = 0;
+  while (i < d.length) {
+    const b = d[i];
+    if (b >= 0xf8) { i++; continue; }                       // real-time bytes (clock, active sensing)
+    if (b === 0xf0) { while (i < d.length && d[i] !== 0xf7) i++; i++; status = 0; continue; }   // system exclusive
+    if (b & 0x80) { status = b; i++; }
+    if (!status || status >= 0xf0) { i += status === 0xf2 ? 2 : status === 0xf1 || status === 0xf3 ? 1 : 0; status = 0; continue; }
+    const type = status & 0xf0, len = type === 0xc0 || type === 0xd0 ? 1 : 2;
+    if (type === 0x90 && i + 1 < d.length && d[i + 1] > 0) out.push(d[i]);
+    i += len;
+  }
+  return out;
+}
 function hookMidi() {
   const names = [], outs = [...midiAccess.outputs.values()];
   midiAccess.inputs.forEach(i => {
     names.push(i.name || 'Piano');
     i.onmidimessage = ev => {
-      const [s, d1, d2] = ev.data;
-      if ((s & 0xf0) !== 0x90 || d2 === 0) return;
-      if (performance.now() - (sentAt[d1] || -1e9) < 150) return;   // the piano echoing a note the app sent
-      press(d1, false, ev.timeStamp);
+      for (const m of noteOns(ev.data)) {
+        if (performance.now() - (sentAt[m] || -1e9) < 150) continue;   // the piano echoing a note the app sent
+        press(m, false, ev.timeStamp);
+      }
     };
   });
   midiOut = outs.find(o => names.includes(o.name)) || outs[0] || null;
@@ -1330,8 +1353,16 @@ $('version').textContent = 'Version of ' + new Date(document.lastModified).toLoc
 if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
   const hadWorker = !!navigator.serviceWorker.controller;
   let reloadWhenIdle = false;
+  const newer = async () => {                 // is a newer index.html published than the one running?
+    try {
+      const r = await fetch('./', {method: 'HEAD', cache: 'no-store'});
+      const lm = r.headers.get('last-modified');
+      return lm && new Date(lm) - new Date(document.lastModified) > 1000;
+    } catch { return false; }
+  };
+  const reloadIfNewer = async () => { if (await newer()) { if (!playing) location.reload(); else reloadWhenIdle = true; } };
   navigator.serviceWorker.register('sw.js', {updateViaCache: 'none'}).then(reg => {
-    const check = () => reg.update().catch(() => {});
+    const check = () => { reg.update().catch(() => {}); reloadIfNewer(); };
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') check(); });
     setInterval(check, 30 * 60 * 1000);
   }).catch(() => {});

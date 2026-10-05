@@ -110,7 +110,8 @@ suggests one (dashed circles). Turn them off in ⋯ → *Finger numbers*.
 ## Practise
 - **Listen** — the app plays both hands.
 - **Play along** — you play your hand at the set tempo; the app plays the other hand.
-- **Wait for me** — the music keeps its tempo and rhythm, but when one of your notes is due and you haven't played it yet, it waits for you; when you play it, the other hand joins your note and the music carries on.
+- **Wait for me** — the music follows you: each note is due one note-length after you correctly played the previous one (early or late, the music goes on from that moment); when you're not there yet, it waits, and the other hand joins your note.
+- **Play along** timing runs on a steady beat from your first note.
 - **Left / Both / Right** — the hand(s) you play. Choose Right and the app plays the left hand, and vice versa.
 - Every key you press is shown on the score with its name (e.g. C4) above the staff: green ✓ = right note, red ✗ = wrong note.
   While playing, the mark sits where you played in time: on the note when on time, before it when early, after it when late.
