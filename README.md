@@ -16,13 +16,17 @@ After that the app reconnects by itself.
 The notes the app plays (the other hand, Listen mode) then sound **on the piano itself**. To use the tablet speaker instead: ⋯ → *Sound from: Tablet*.
 
 ## Lessons
-Tap **Lessons** for a 17-lesson course from the first notes to chords and scales:
+Tap **Lessons** for a 26-lesson course from the first notes to famous pieces:
 
 1. **First steps** — middle C, five-finger position, *Mary Had a Little Lamb*
 2. **Left hand and rhythm** — left-hand position, *Hot Cross Buns* (eighth notes), *Au clair de la lune*
 3. **Hands together** — *Ode to Joy*, *Twinkle Twinkle Little Star*, *When the Saints Go Marching In*
 4. **Scales and the thumb** — C major (each hand), G major, hands together
 5. **Chords and accompaniment** — C/F/G chords, broken-chord bass, contrary motion, I–V–vi–IV arpeggio study
+6. **Popular songs** — *Row, Row, Row Your Boat*, *London Bridge*, *Jingle Bells*, *Happy Birthday*, *Silent Night*
+7. **Famous classics** — *Greensleeves*, Pachelbel's *Canon* (simplified), Mozart's *Eine kleine Nachtmusik*, Beethoven's *Für Elise* (opening)
+
+All songs are traditional or public domain, arranged here for learning.
 
 Each lesson has three steps — **Listen**, **Wait for me**, **Play along** at the target tempo (90% correct, 70% on time) — and the app ticks them off as you go.
 Lesson scores are in [`lessons/`](lessons/) and are built by [`tools/make_lessons.py`](tools/make_lessons.py) (`python tools/make_lessons.py`).

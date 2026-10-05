@@ -4,7 +4,9 @@
   "Left hand and rhythm",
   "Hands together",
   "Scales and the thumb",
-  "Chords and accompaniment"
+  "Chords and accompaniment",
+  "Popular songs",
+  "Famous classics"
  ],
  "lessons": [
   {
@@ -248,6 +250,133 @@
     "Say the chord names as you play: C, G, A minor, F."
    ],
    "file": "17-progression.musicxml"
+  },
+  {
+   "id": "row-your-boat",
+   "level": 5,
+   "title": "Row, Row, Row Your Boat",
+   "hands": "both",
+   "bpm": 96,
+   "wait": 60,
+   "learn": "A round in 6/8 time: each bar has two big beats, each split into three. The \"merrily\" bar uses a stretched hand from C to the C above.",
+   "tips": [
+    "Count \"1-2-3 4-5-6\" with the stress on 1 and 4.",
+    "In bar 5 the hand opens to an octave: C (5), G (3), E (2), C (1)."
+   ],
+   "file": "18-row-your-boat.musicxml"
+  },
+  {
+   "id": "london-bridge",
+   "level": 5,
+   "title": "London Bridge",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 70,
+   "learn": "The melody uses six notes, so the right hand sits one key higher than C position: thumb on D, little finger on A.",
+   "tips": [
+    "The dotted quarter and eighth sound \"long-short\".",
+    "At the end the thumb moves down from D to C."
+   ],
+   "file": "19-london-bridge.musicxml"
+  },
+  {
+   "id": "jingle-bells",
+   "level": 5,
+   "title": "Jingle Bells",
+   "hands": "both",
+   "bpm": 110,
+   "wait": 70,
+   "learn": "The famous chorus, all in C position. Repeated notes need a light, bouncy touch.",
+   "tips": [
+    "Keep finger 3 on E for the opening \"jingle bells\".",
+    "The left hand changes to F in bar 5 and G in bars 7–8."
+   ],
+   "file": "20-jingle-bells.musicxml"
+  },
+  {
+   "id": "happy-birthday",
+   "level": 5,
+   "title": "Happy Birthday",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "In 3/4 time with a pickup: the song starts before the first full bar. It is in F major, so every B is played as B♭.",
+   "tips": [
+    "Count \"3 | 1 2 3\": the two short opening notes come on beat 3.",
+    "In bar 5 the hand leaps up to the high C with finger 5."
+   ],
+   "file": "21-happy-birthday.musicxml"
+  },
+  {
+   "id": "silent-night",
+   "level": 5,
+   "title": "Silent Night",
+   "hands": "both",
+   "bpm": 90,
+   "wait": 60,
+   "learn": "A gentle carol in 6/8 that moves around the keyboard. Look ahead to the finger number at each new phrase: the hand moves to a new position.",
+   "tips": [
+    "Play smoothly, joining the notes (legato).",
+    "The left hand plays just C, F and G."
+   ],
+   "file": "22-silent-night.musicxml"
+  },
+  {
+   "id": "greensleeves",
+   "level": 6,
+   "title": "Greensleeves",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "A minor-key melody in 3/4 with a pickup. Watch for the sharps (F♯ and G♯) that give it its old, haunting sound.",
+   "tips": [
+    "The rhythm \"long-short-long\" (dotted quarter, eighth, quarter) repeats through the song.",
+    "Finger 3 crosses over the thumb in bar 8."
+   ],
+   "file": "23-greensleeves.musicxml"
+  },
+  {
+   "id": "canon",
+   "level": 6,
+   "title": "Canon (Pachelbel), simplified",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 50,
+   "learn": "The famous Canon, in C major and in slow half notes. The left hand repeats the same eight-note bass line, the melody walks down above it.",
+   "tips": [
+    "Going down, finger 3 crosses over the thumb.",
+    "Let each half note ring for its full two beats."
+   ],
+   "file": "24-canon.musicxml"
+  },
+  {
+   "id": "nachtmusik",
+   "level": 6,
+   "title": "Eine kleine Nachtmusik",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "The opening of Mozart's serenade in G major. Short rests between the notes make it crisp; the second phrase uses F♯.",
+   "tips": [
+    "Lift the hand during the eighth rests.",
+    "Play the quarter notes short and bright."
+   ],
+   "file": "25-nachtmusik.musicxml"
+  },
+  {
+   "id": "fur-elise",
+   "level": 6,
+   "title": "Für Elise (opening)",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "The first part of Beethoven's Für Elise, in 3/8 with sixteenth notes. The hands take turns: the left hand plays a broken chord, then the right hand answers.",
+   "tips": [
+    "Rock gently between E and D♯ with fingers 5 and 4.",
+    "Practise the hand changes slowly with Wait for me.",
+    "Use the pedal later; first make the notes even."
+   ],
+   "file": "26-fur-elise.musicxml"
   }
  ]
 }
