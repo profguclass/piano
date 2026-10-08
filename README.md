@@ -130,3 +130,28 @@ suggests one (dashed circles). Turn them off in ⋯ → *Finger numbers*.
 Opens `.musicxml`, `.xml` and `.mxl` files. Try [`ode-to-joy-sample.musicxml`](ode-to-joy-sample.musicxml).
 Built on [OpenSheetMusicDisplay](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay) (BSD-3-Clause), included as `opensheetmusicdisplay.min.js`.
 All app code is in `index.html`.
+
+## Free MusicXML scores
+These public-domain pieces were supplied as MusicXML by their arrangers (almost all on [MuseScore.com](https://musescore.com), where they are free to download) and are used as they are, with titles and credits added by [`tools/mxl_import.py`](tools/mxl_import.py); the files are in [`tools/sources/musicxml/`](tools/sources/musicxml/). Scores with extra empty staves are reduced to two.
+
+| Level | Piece | Composer | Source |
+|---|---|---|---|
+| Level 1 | Andante in G minor | Georg Philipp Telemann | Sao Mai Center for the Blind |
+| Level 2 | Minuet in G (BWV Anh. 114), second edition | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://api.musescore.com/score/2086106) |
+| Level 2 | Minuet in G (BWV Anh. 114), third edition | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://musescore.com/classicman/scores/62312) |
+| Level 2 | Minuet in G minor (BWV Anh. 115), with fingering | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://api.musescore.com/score/2086136) |
+| Level 2 | Greensleeves (easy arrangement) | Traditional (English) | Sao Mai Center for the Blind |
+| Level 3 | Canon in D (easy) | Johann Pachelbel | [MuseScore](https://musescore.com/score/1376056) |
+| Level 3 | Für Elise (beginner version) | Ludwig van Beethoven | [MuseScore](https://musescore.com/classicman/scores/33816) |
+| Level 3 | Swan Lake theme | Pyotr Ilyich Tchaikovsky | Sao Mai Center for the Blind |
+| Level 4 | Clair de lune (easy) | Claude Debussy | [MuseScore](https://musescore.com/user/31902283/scores/10568761) |
+| Level 4 | Symphony No. 5 (easy piano) | Ludwig van Beethoven | [MuseScore](https://musescore.com/user/29460332/scores/5869298) |
+| Level 4 | The Blue Danube | Johann Strauss II | [MuseScore](https://musescore.com/user/27824718/scores/4941073) |
+| Level 5 | Gymnopédie No. 1 | Erik Satie | [MuseScore](https://musescore.com/user/19710/scores/4766391) |
+| Level 5 | The Swan (Le Cygne) | Camille Saint-Saëns | [MuseScore](https://musescore.com/user/27524722/scores/4901201) |
+| Level 5 | The Entertainer | Scott Joplin | [MuseScore](https://api.musescore.com/score/1352881) |
+| Level 5 | Waltz in A minor (B. 150) | Frédéric Chopin | [MuseScore](https://musescore.com/score/1749181) |
+| Level 6 | Prelude in E minor, Op. 28 No. 4 | Frédéric Chopin | Sao Mai Center for the Blind |
+| Level 6 | Prelude in C major (BWV 846) | Johann Sebastian Bach | [MuseScore](https://musescore.com/user/101554/scores/117279) |
+| Level 6 | Prelude in C minor (BWV 999) | Johann Sebastian Bach | [MuseScore](https://musescore.com/score/4526) |
+| Level 6 | Passacaglia (Handel-Halvorsen), easy version | Georg Friedrich Handel / Johan Halvorsen | [MuseScore](https://musescore.com/user/37309912/scores/6790392) |
