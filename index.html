@@ -5,29 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#1f6f5c">
-<meta name="color-scheme" content="only light">
+<meta name="color-scheme" content="light dark">
+<script>try{var _s=JSON.parse(localStorage.getItem("pr.settings")||"{}");document.documentElement.dataset.theme=_s.theme==="dark"||(_s.theme!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light"}catch(e){}</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <title>Piano Reader</title>
 <style>
-:root{color-scheme:only light;--ink:#1d2330;--muted:#667085;--line:#d9dee7;--bar:#f4f1ea;--paper:#fffdf8;--accent:#1f6f5c;--accent-ink:#fff;--hint:#f2b63d;--bad:#d64545;--you:#2f6fd6;--off:#9a5b00;
+:root{color-scheme:light;--surface:#fff;--on-ink:#fff;--done:#eef6f3;--nextbg:#f4f1ea;--keyw:#fff;--keyb:#1d2330;--wline:#9aa3b2;--pink:#1d2330;--pmuted:#667085;--stars:#9aa3b2;--ink:#1d2330;--muted:#667085;--line:#d9dee7;--bar:#f4f1ea;--paper:#fffdf8;--accent:#1f6f5c;--accent-ink:#fff;--hint:#f2b63d;--bad:#d64545;--you:#2f6fd6;--off:#9a5b00;
   --s1:#2a78d6;--s2:#eb6834;--good:#0ca30c;--warn:#fab219;--crit:#d03b3b}
+:root[data-theme=dark]{color-scheme:dark;--ink:#e8ebf1;--muted:#a3adbd;--line:#394255;--bar:#161a22;--surface:#222937;--on-ink:#141821;--done:#1d3a33;--nextbg:#2c3447;
+  --keyw:#f1f3f7;--keyb:#0b0e14;--wline:#6b7385;--stars:#7d879a;--accent:#2f8f78;--hint:#d9a02b;--bad:#e05a5a;--you:#6ea0f0;--off:#e0a24a;
+  --s1:#5b9cf0;--s2:#f08a5a;--good:#3fc23f;--warn:#fab219;--crit:#ef6a6a}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
 body{display:flex;flex-direction:column;height:100dvh;font:17px/1.3 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bar);touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 header{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));border-bottom:1px solid var(--line)}
-button,.btn,input[type=number]{font:inherit;min-height:48px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);padding:0 16px;cursor:pointer}
+button,.btn,input[type=number]{font:inherit;min-height:48px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);padding:0 16px;cursor:pointer}
 .btn{display:inline-flex;align-items:center}
 button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600;min-width:120px}
 button:active,.btn:active{transform:translateY(1px)}
 button:focus-visible,input:focus-visible,.btn:focus-within{outline:3px solid #8cc7b8;outline-offset:1px}
 button:disabled{opacity:.45}
-.seg{display:flex;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+.seg{display:flex;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
 .seg button{border:0;border-radius:0;min-width:64px;padding:0 14px;border-left:1px solid var(--line)}
 .seg button:first-child{border-left:0}
-.seg button[aria-pressed=true]{background:var(--ink);color:#fff;font-weight:600}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--on-ink);font-weight:600}
 .seg.dim{opacity:.5}
-.tempo{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:#fff}
+.tempo{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
 .tempo button{border:0;min-width:48px;padding:0;font-size:22px}
 .tempo b{min-width:48px;text-align:center;font-variant-numeric:tabular-nums}
 .tempo small{color:var(--muted);font-size:12px;margin-right:4px}
@@ -37,7 +41,7 @@ button:disabled{opacity:.45}
 #midi i{width:12px;height:12px;border-radius:50%;background:#b8c0cc;flex:none}
 #midi.on i{background:#2fb26a;box-shadow:0 0 0 3px #2fb26a33}
 #more{font-size:22px;min-width:52px;padding:0}
-#panel{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:10px 12px;border-bottom:1px solid var(--line);background:#fff}
+#panel{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--surface)}
 #panel[hidden]{display:none}
 #panel .grp{display:flex;align-items:center;gap:8px}
 #panel .grp>span{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
@@ -57,14 +61,14 @@ main{flex:1;overflow:auto;background:var(--paper);padding:4px 4px 40px;-webkit-o
 .mk.fade{opacity:0}
 #heat{position:absolute;inset:0;pointer-events:none}
 .hb{position:absolute;border-radius:6px}
-.hb b{position:absolute;bottom:-26px;right:0;font:600 12px/1 system-ui,sans-serif;color:var(--ink);background:#fff;padding:4px 6px;border-radius:6px;border:1px solid var(--line);white-space:nowrap}
-#card{position:fixed;left:50%;bottom:calc(140px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;max-width:calc(100vw - 32px);padding:12px 14px 12px 18px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px #1d233026}
+.hb b{position:absolute;bottom:-26px;right:0;font:600 12px/1 system-ui,sans-serif;color:#1d2330;background:#fff;padding:4px 6px;border-radius:6px;border:1px solid #d9dee7;white-space:nowrap}
+#card{position:fixed;left:50%;bottom:calc(140px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;max-width:calc(100vw - 32px);padding:12px 14px 12px 18px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px #1d233026}
 #card[hidden]{display:none}
 #card .big{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}
 #card small{color:var(--muted);font-size:14px}
 #prog{position:fixed;inset:0;z-index:6;background:#1d233066;display:flex;justify-content:center;align-items:flex-start;padding:24px 16px;overflow:auto}
 #prog[hidden]{display:none}
-#prog .sheet{width:100%;max-width:820px;background:#fff;border-radius:18px;padding:18px 20px 22px;user-select:text;-webkit-user-select:text}
+#prog .sheet{width:100%;max-width:820px;background:var(--surface);border-radius:18px;padding:18px 20px 22px;user-select:text;-webkit-user-select:text}
 #prog .top{display:flex;align-items:center;gap:12px}
 #prog h2{flex:1;margin:0;font:600 22px/1.2 Georgia,"Times New Roman",serif}
 #prog h3{margin:22px 0 10px;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
@@ -74,7 +78,7 @@ main{flex:1;overflow:auto;background:var(--paper);padding:4px 4px 40px;-webkit-o
 .tile span{font-size:14px;color:var(--muted)}
 #pchart{position:relative}
 #pchart svg{display:block;width:100%;height:auto;overflow:visible}
-#pchart .tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:13px;line-height:1.4;padding:6px 9px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-100%)}
+#pchart .tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--on-ink);font-size:13px;line-height:1.4;padding:6px 9px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-100%)}
 .legend{display:flex;gap:16px;font-size:14px;color:var(--ink);margin-bottom:6px}
 .legend i{display:inline-block;width:16px;height:4px;border-radius:2px;vertical-align:middle;margin-right:6px}
 #pbars .row{display:flex;align-items:center;gap:12px;padding:6px 0;border-top:1px solid var(--line)}
@@ -87,19 +91,19 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
 #status{font-size:15px;color:var(--muted);padding:0 4px 6px;min-height:24px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #kb{position:relative;height:96px;display:flex;touch-action:none}
 #kb[hidden]{display:none}
-.w{flex:1;border:1px solid #9aa3b2;border-top:0;border-radius:0 0 5px 5px;background:#fff;margin-right:-1px}
-.b{position:absolute;top:0;height:62%;background:#1d2330;border-radius:0 0 4px 4px;z-index:1}
+.w{flex:1;border:1px solid var(--wline);border-top:0;border-radius:0 0 5px 5px;background:var(--keyw);margin-right:-1px}
+.b{position:absolute;top:0;height:62%;background:var(--keyb);border-radius:0 0 4px 4px;z-index:1}
 .w.need,.b.need{background:var(--hint)}
-.w[data-f]::after,.b[data-f]::after{content:attr(data-f);position:absolute;bottom:6px;left:0;right:0;text-align:center;font:700 15px/1 system-ui,sans-serif;color:var(--ink)}
+.w[data-f]::after,.b[data-f]::after{content:attr(data-f);position:absolute;bottom:6px;left:0;right:0;text-align:center;font:700 15px/1 system-ui,sans-serif;color:var(--pink)}
 .b[data-f]::after{color:#fff;bottom:4px;font-size:13px}
 .w{position:relative}
 #fing{position:absolute;inset:0;pointer-events:none}
 .fb{position:absolute;transform:translateX(-50%);display:flex;gap:3px;align-items:center;font:700 14px/1 system-ui,sans-serif;white-space:nowrap}
-.fb span{font-size:11px;color:var(--muted);margin-right:2px}
-.fb i{font-style:normal;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff}
-.fb.auto i{background:#fff;color:var(--ink);border:2px dashed var(--ink)}
+.fb span{font-size:11px;color:var(--pmuted);margin-right:2px}
+.fb i{font-style:normal;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--pink);color:#fff}
+.fb.auto i{background:#fff;color:var(--pink);border:2px dashed var(--pink)}
 .fb.other{opacity:.4}
-#lesson{max-width:1600px;margin:4px auto 6px;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;user-select:text;-webkit-user-select:text}
+#lesson{max-width:1600px;margin:4px auto 6px;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface);user-select:text;-webkit-user-select:text}
 #lesson[hidden]{display:none}
 #lesson .lt{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 #lesson h2{margin:0;font:600 19px/1.25 Georgia,"Times New Roman",serif}
@@ -110,15 +114,15 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
 #lesson .steps button{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;line-height:1.25;padding:6px 14px}
 #lesson .steps button small{color:var(--muted);font-size:13px}
 #lesson .steps button.primary small{color:#fff}
-#lesson .steps button.done{border-color:var(--accent);background:#eef6f3}
+#lesson .steps button.done{border-color:var(--accent);background:var(--done)}
 #lesson .steps button.done b::before{content:"✓ ";color:var(--accent)}
 #lesson.min .body{display:none}
 #lessons{position:fixed;inset:0;z-index:6;background:#1d233066;display:flex;justify-content:center;align-items:flex-start;padding:24px 16px;overflow:auto}
 #library{position:fixed;inset:0;z-index:6;background:#1d233066;display:flex;justify-content:center;align-items:flex-start;padding:24px 16px;overflow:auto}
 #lessons[hidden]{display:none}
 #library[hidden]{display:none}
-#lessons .sheet{width:100%;max-width:760px;background:#fff;border-radius:18px;padding:18px 20px 22px}
-#library .sheet{width:100%;max-width:760px;background:#fff;border-radius:18px;padding:18px 20px 22px}
+#lessons .sheet{width:100%;max-width:760px;background:var(--surface);border-radius:18px;padding:18px 20px 22px}
+#library .sheet{width:100%;max-width:760px;background:var(--surface);border-radius:18px;padding:18px 20px 22px}
 #lessons .top{display:flex;align-items:center;gap:12px}
 #library .top{display:flex;align-items:center;gap:12px}
 #lessons h2{flex:1;margin:0;font:600 22px/1.2 Georgia,"Times New Roman",serif}
@@ -135,19 +139,19 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
 #library .row .t small{display:block;color:var(--muted);font-size:13px}
 #lessons .kind{margin:12px 0 2px;font-size:13px;font-weight:600;color:var(--accent)}
 #library .kind{margin:12px 0 2px;font-size:13px;font-weight:600;color:var(--accent)}
-#trainer{max-width:820px;margin:16px auto;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:#fff}
+#trainer{max-width:820px;margin:16px auto;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
 #trainer[hidden]{display:none}
 #trainer h3{margin:0 0 6px;font-size:18px}
 #trainer .prompt{font-size:17px}
 #trainer .tbtns{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
 #trainer .fb{min-height:24px;font-size:17px}
 body.hide #score svg{opacity:.06}
-#lessons .row.next{background:#f4f1ea;border-radius:10px;padding-left:8px;padding-right:8px}
+#lessons .row.next{background:var(--nextbg);border-radius:10px;padding-left:8px;padding-right:8px}
 #library .sheet{max-width:820px}
-#library input[type=search]{width:100%;box-sizing:border-box;margin:10px 0 0;height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;font-size:16px}
+#library input[type=search]{background:var(--surface);color:var(--ink);width:100%;box-sizing:border-box;margin:10px 0 0;height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;font-size:16px}
 #library .row .lv{color:var(--muted);font-size:13px;white-space:nowrap}
 #library .row .tag{font-size:12px;color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:1px 6px;margin-left:6px;vertical-align:middle}
-.stars{font-size:15px;letter-spacing:2px;color:#9aa3b2;white-space:nowrap}
+.stars{font-size:15px;letter-spacing:2px;color:var(--stars);white-space:nowrap}
 .stars b{color:var(--accent);font-weight:400}
 .w.on,.b.on{background:var(--accent)}
 .w.bad,.b.bad{background:var(--bad)}
@@ -179,6 +183,8 @@ body.hide #score svg{opacity:.06}
     <input id="from" type="number" min="1" value="1" aria-label="From bar"><span>to</span><input id="to" type="number" min="1" value="1" aria-label="To bar"></div>
   <div class="grp"><span>Sound from</span><div class="seg" id="sound" role="group" aria-label="Sound from">
     <button data-v="piano">Piano</button><button data-v="tablet">Tablet</button></div></div>
+  <div class="grp"><span>Theme</span><div class="seg" id="theme" role="group" aria-label="Theme">
+    <button data-v="auto">Auto</button><button data-v="light">Light</button><button data-v="dark">Dark</button></div></div>
   <div class="grp"><input id="showkb" type="checkbox" aria-label="Show keyboard"><span>Keyboard</span></div>
   <div class="grp"><input id="showfing" type="checkbox" aria-label="Show finger numbers"><span>Finger numbers</span></div>
   <div class="grp"><input id="hidenotes" type="checkbox" aria-label="Hide the notes"><span>Hide the notes (from memory)</span></div>
@@ -219,7 +225,7 @@ const store = {
   get(k, d) { try { const v = localStorage.getItem('pr.' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v) { try { localStorage.setItem('pr.' + k, JSON.stringify(v)); } catch {} },
 };
-const S = Object.assign({bpm: 100, hands: 'both', mode: 'listen', zoom: 1, loop: false, kb: true, sound: 'piano', heat: true, fingers: true, hide: false}, store.get('settings', {}));
+const S = Object.assign({bpm: 100, hands: 'both', mode: 'listen', zoom: 1, loop: false, kb: true, sound: 'piano', heat: true, fingers: true, hide: false, theme: 'auto'}, store.get('settings', {}));
 const save = () => store.set('settings', S);
 let osmd, steps = [], pos = 0, bars = 1, playing = false, timer = null, target = 0;
 let actx = null, master = null, need = new Set(), lock = null, title = '';
@@ -885,20 +891,20 @@ function drawChart(ss) {                 // correct % and on-time % per session,
   const x = i => L + (W - L - R) * (ss.length === 1 ? 0.5 : i / (ss.length - 1)), y = v => T + (H - T - B) * (1 - v / 100);
   const series = [['acc', 'Correct', 'var(--s1)'], ['ont', 'On time', 'var(--s2)']].filter(([k]) => ss.some(s => s[k] !== null));
   let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Correct and on-time percentage for the last ${ss.length} sessions">`;
-  for (const v of [0, 50, 100]) svg += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="#e7e9ee"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" font-size="12" fill="#667085">${v}%</text>`;
-  svg += `<text x="${L}" y="${H - 6}" font-size="12" fill="#667085">older</text><text x="${W - R}" y="${H - 6}" text-anchor="end" font-size="12" fill="#667085">latest</text>`;
+  for (const v of [0, 50, 100]) svg += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" font-size="12" fill="var(--muted)">${v}%</text>`;
+  svg += `<text x="${L}" y="${H - 6}" font-size="12" fill="var(--muted)">older</text><text x="${W - R}" y="${H - 6}" text-anchor="end" font-size="12" fill="var(--muted)">latest</text>`;
   const ends = [];                       // direct labels at each line's last point
   for (const [k, name, col] of series) {
     let d = '', pen = false;
     ss.forEach((s, i) => { if (s[k] === null) { pen = false; return; } d += `${pen ? 'L' : 'M'}${x(i)},${y(s[k])}`; pen = true; });
     svg += `<path d="${d}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
-    ss.forEach((s, i) => { if (s[k] !== null) svg += `<circle cx="${x(i)}" cy="${y(s[k])}" r="4" fill="${col}" stroke="#fff" stroke-width="2"/>`; });
+    ss.forEach((s, i) => { if (s[k] !== null) svg += `<circle cx="${x(i)}" cy="${y(s[k])}" r="4" fill="${col}" stroke="var(--surface)" stroke-width="2"/>`; });
     const li = ss.length - 1;
     if (ss[li][k] !== null) ends.push({x: x(li) + 10, y: y(ss[li][k]) + 4, name});
   }
   ends.sort((a, b) => a.y - b.y);
   for (let i = 1; i < ends.length; i++) ends[i].y = Math.max(ends[i].y, ends[i - 1].y + 15);   // keep labels from overlapping
-  for (const e of ends) svg += `<text x="${e.x}" y="${e.y}" font-size="13" fill="#1d2330">${e.name}</text>`;
+  for (const e of ends) svg += `<text x="${e.x}" y="${e.y}" font-size="13" fill="var(--ink)">${e.name}</text>`;
   svg += `<line id="xh" y1="${T}" y2="${H - B}" stroke="#9aa3b2" stroke-dasharray="3 3" visibility="hidden"/>`;
   ss.forEach((s, i) => { svg += `<rect data-i="${i}" x="${x(i) - (W - L - R) / ss.length / 2}" y="0" width="${(W - L - R) / ss.length}" height="${H}" fill="transparent"/>`; });
   el.innerHTML = `<div class="legend">${series.map(([, n, c]) => `<span><i style="background:${c}"></i>${n}</span>`).join('')}</div>` + svg + '</svg><div class="tip" hidden></div>';
@@ -1607,6 +1613,14 @@ seg('hands', 'hands', () => {
   else if (holding) { need = new Set(steps[pos].notes.filter(n => mine(n) && !done[pos].has(n)).map(n => n.midi)); paintNeed(); if (!need.size) release(); }
 });
 dimHands();
+const darkQ = matchMedia('(prefers-color-scheme: dark)');
+function applyTheme() {                  // Auto follows the device; the score itself always stays on light paper
+  const dark = S.theme === 'dark' || (S.theme !== 'light' && darkQ.matches);
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  document.querySelector('meta[name=theme-color]').content = dark ? '#161a22' : '#1f6f5c';
+}
+darkQ.addEventListener?.('change', applyTheme);
+seg('theme', 'theme', applyTheme); applyTheme();
 seg('sound', 'sound', () => { silence(); info(S.sound === 'piano' && !midiOut ? 'Connect the piano to hear the app on it' : ''); });
 function setBpm(v, remember = true) {
   S.bpm = Math.min(200, Math.max(30, v)); $('bpmv').textContent = S.bpm; save();
