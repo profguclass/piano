@@ -119,26 +119,48 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
 #lesson.min .body{display:none}
 #lessons{position:fixed;inset:0;z-index:6;background:#1d233066;display:flex;justify-content:center;align-items:flex-start;padding:24px 16px;overflow:auto}
 #library{position:fixed;inset:0;z-index:6;background:#1d233066;display:flex;justify-content:center;align-items:flex-start;padding:24px 16px;overflow:auto}
+#today{position:fixed;inset:0;z-index:6;background:#1d233066;display:flex;justify-content:center;align-items:flex-start;padding:24px 16px;overflow:auto}
+#report{position:fixed;inset:0;z-index:6;background:#1d233066;display:flex;justify-content:center;align-items:flex-start;padding:24px 16px;overflow:auto}
 #lessons[hidden]{display:none}
 #library[hidden]{display:none}
+#today[hidden]{display:none}
+#report[hidden]{display:none}
 #lessons .sheet{width:100%;max-width:760px;background:var(--surface);border-radius:18px;padding:18px 20px 22px}
 #library .sheet{width:100%;max-width:760px;background:var(--surface);border-radius:18px;padding:18px 20px 22px}
+#today .sheet{width:100%;max-width:760px;background:var(--surface);border-radius:18px;padding:18px 20px 22px}
+#report .sheet{width:100%;max-width:760px;background:var(--surface);border-radius:18px;padding:18px 20px 22px}
 #lessons .top{display:flex;align-items:center;gap:12px}
 #library .top{display:flex;align-items:center;gap:12px}
+#today .top{display:flex;align-items:center;gap:12px}
+#report .top{display:flex;align-items:center;gap:12px}
 #lessons h2{flex:1;margin:0;font:600 22px/1.2 Georgia,"Times New Roman",serif}
 #library h2{flex:1;margin:0;font:600 22px/1.2 Georgia,"Times New Roman",serif}
+#today h2{flex:1;margin:0;font:600 22px/1.2 Georgia,"Times New Roman",serif}
+#report h2{flex:1;margin:0;font:600 22px/1.2 Georgia,"Times New Roman",serif}
 #lessons h3{margin:20px 0 6px;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 #library h3{margin:20px 0 6px;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+#today h3{margin:20px 0 6px;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+#report h3{margin:20px 0 6px;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 #lessons .row{display:flex;align-items:center;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
 #library .row{display:flex;align-items:center;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+#today .row{display:flex;align-items:center;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+#report .row{display:flex;align-items:center;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
 #lessons .row .n{width:28px;color:var(--muted);font-variant-numeric:tabular-nums}
 #library .row .n{width:28px;color:var(--muted);font-variant-numeric:tabular-nums}
+#today .row .n{width:28px;color:var(--muted);font-variant-numeric:tabular-nums}
+#report .row .n{width:28px;color:var(--muted);font-variant-numeric:tabular-nums}
 #lessons .row .t{flex:1}
 #library .row .t{flex:1}
+#today .row .t{flex:1}
+#report .row .t{flex:1}
 #lessons .row .t small{display:block;color:var(--muted);font-size:13px}
 #library .row .t small{display:block;color:var(--muted);font-size:13px}
+#today .row .t small{display:block;color:var(--muted);font-size:13px}
+#report .row .t small{display:block;color:var(--muted);font-size:13px}
 #lessons .kind{margin:12px 0 2px;font-size:13px;font-weight:600;color:var(--accent)}
 #library .kind{margin:12px 0 2px;font-size:13px;font-weight:600;color:var(--accent)}
+#today .kind{margin:12px 0 2px;font-size:13px;font-weight:600;color:var(--accent)}
+#report .kind{margin:12px 0 2px;font-size:13px;font-weight:600;color:var(--accent)}
 #trainer{max-width:820px;margin:16px auto;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
 #trainer[hidden]{display:none}
 #trainer h3{margin:0 0 6px;font-size:18px}
@@ -151,6 +173,22 @@ body.hide #score svg{opacity:.06}
 #library input[type=search]{background:var(--surface);color:var(--ink);width:100%;box-sizing:border-box;margin:10px 0 0;height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;font-size:16px}
 #library .row .lv{color:var(--muted);font-size:13px;white-space:nowrap}
 #library .row .tag{font-size:12px;color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+#today .tiles{margin-bottom:6px}
+#today .plan{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+#today .plan .t{flex:1}
+#today .plan .t small{display:block;color:var(--muted);font-size:13px}
+#today .wk{display:flex;align-items:flex-end;gap:8px;height:90px;margin:8px 0 2px}
+#today .wk div{flex:1;text-align:center;font-size:12px;color:var(--muted)}
+#today .wk i{display:block;margin:0 auto 4px;width:70%;max-width:46px;border-radius:6px 6px 0 0;background:var(--accent);min-height:3px}
+#today .wk i.none{background:var(--line)}
+#rptext{white-space:pre-wrap;font:14px/1.45 ui-monospace,Consolas,monospace;background:var(--bar);padding:12px;border-radius:10px;max-height:45vh;overflow:auto;user-select:text;-webkit-user-select:text}
+#drillbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 12px;background:var(--accent);color:var(--accent-ink)}
+#drillbar[hidden]{display:none}
+#drillbar span{flex:1;min-width:200px}
+#drillbar button{min-height:40px;background:transparent;color:inherit;border-color:#ffffff88}
+.w.soon,.b.soon{box-shadow:inset 0 0 0 4px var(--hint)}
+#pedal{position:absolute;inset:0;pointer-events:none}
+.pd{position:absolute;transform:translateX(-50%);font:italic 600 15px Georgia,serif;color:#1d2330;white-space:nowrap}
 .stars{font-size:15px;letter-spacing:2px;color:var(--stars);white-space:nowrap}
 .stars b{color:var(--accent);font-weight:400}
 .w.on,.b.on{background:var(--accent)}
@@ -169,12 +207,14 @@ body.hide #score svg{opacity:.06}
     <button data-v="left">Left</button><button data-v="both">Both</button><button data-v="right">Right</button></div>
   <div class="tempo"><button id="slower" aria-label="Slower">−</button><b id="bpmv">100</b><small>bpm</small><button id="faster" aria-label="Faster">+</button></div>
   <span class="grow"></span>
+  <button id="todaybtn">Today</button>
   <button id="lessonsbtn">Lessons</button>
   <button id="librarybtn">Library</button>
   <button id="progress">Progress</button>
   <button id="midi"><i></i><span>Connect piano</span></button>
   <button id="more" aria-label="More settings" aria-expanded="false">⋯</button>
 </header>
+<div id="drillbar" hidden><span id="drilltxt"></span><button id="drillskip">Skip</button><button id="drillstop">Stop drill</button></div>
 <div id="panel" hidden>
   <label class="btn">Open score<input id="file" type="file" accept=".musicxml,.xml,.mxl" hidden></label>
   <button id="sample">Sample: Ode to Joy</button>
@@ -183,6 +223,12 @@ body.hide #score svg{opacity:.06}
     <input id="from" type="number" min="1" value="1" aria-label="From bar"><span>to</span><input id="to" type="number" min="1" value="1" aria-label="To bar"></div>
   <div class="grp"><span>Sound from</span><div class="seg" id="sound" role="group" aria-label="Sound from">
     <button data-v="piano">Piano</button><button data-v="tablet">Tablet</button></div></div>
+  <div class="grp"><input id="click" type="checkbox" aria-label="Metronome click"><span>Metronome</span>
+    <input id="countin" type="checkbox" aria-label="Count in one bar"><span>Count-in</span></div>
+  <div class="grp"><input id="speedup" type="checkbox" aria-label="Speed up after clean passes"><span>Speed up when clean</span>
+    <input id="spstep" type="number" min="1" max="20" value="4" aria-label="Beats per minute to add"><span>bpm, up to</span>
+    <input id="spgoal" type="number" min="30" max="200" placeholder="auto" aria-label="Goal tempo"></div>
+  <div class="grp"><button id="backup">Back up</button><label class="btn">Restore<input id="restore" type="file" accept=".json,application/json" hidden></label><span class="muted" id="backupnote" style="font-size:13px"></span></div>
   <div class="grp"><span>Theme</span><div class="seg" id="theme" role="group" aria-label="Theme">
     <button data-v="auto">Auto</button><button data-v="light">Light</button><button data-v="dark">Dark</button></div></div>
   <div class="grp"><input id="showkb" type="checkbox" aria-label="Show keyboard"><span>Keyboard</span></div>
@@ -192,13 +238,26 @@ body.hide #score svg{opacity:.06}
   <button id="install" hidden>Install app</button>
   <span class="muted" id="version" style="font-size:13px"></span>
 </div>
-<main id="scroll"><div id="lesson" hidden></div><div id="trainer" hidden></div><div id="wrap"><div id="score"></div><div id="heat"></div><div id="fing"></div><div id="marks"></div><div id="playline" hidden></div></div></main>
+<main id="scroll"><div id="lesson" hidden></div><div id="trainer" hidden></div><div id="wrap"><div id="score"></div><div id="heat"></div><div id="pedal"></div><div id="fing"></div><div id="marks"></div><div id="playline" hidden></div></div></main>
 <footer><div id="status">Loading…</div><div id="kb"></div></footer>
 <div id="card" hidden role="status"></div>
 <div id="lessons" hidden role="dialog" aria-modal="true" aria-label="Lessons"><div class="sheet">
   <div class="top"><h2>Lessons</h2><span class="muted" id="lversion" style="font-size:13px"></span><button id="lclose">Close</button></div>
   <p class="muted">The levels and their parts (technique, pieces, ear tests and sight reading) follow the <a href="https://www.rcmusic.com/syllabi" target="_blank" rel="noopener">RCM Piano Syllabus</a> (2022 edition), from Preparatory A to Level 6. Technique and pieces have three steps: <b>listen</b>, <b>Wait for me</b>, then <b>Play along</b> at the target tempo. Finger numbers: 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger.</p>
   <div id="llist"></div>
+</div></div>
+<div id="today" hidden role="dialog" aria-modal="true" aria-label="Today"><div class="sheet">
+  <div class="top"><h2>Today</h2><button id="tdclose">Close</button></div>
+  <div class="tiles" id="tdtiles"></div>
+  <h3>Today's plan</h3><div id="tdplan"></div>
+  <h3>Last 7 days</h3><div id="tdweek"></div>
+  <p><label>Daily goal <input id="tdgoal" type="number" min="5" max="180" value="15" aria-label="Daily goal in minutes"> minutes</label> <button id="tdreport">Share a report</button></p>
+</div></div>
+<div id="report" hidden role="dialog" aria-modal="true" aria-label="Practice report"><div class="sheet">
+  <div class="top"><h2>Practice report</h2><button id="rpclose">Close</button></div>
+  <p class="muted">The last 30 days, ready to send to a teacher.</p>
+  <pre id="rptext"></pre>
+  <p><button id="rpshare" class="primary">Share</button> <button id="rpcopy">Copy text</button> <button id="rpcsv">Download CSV</button></p>
 </div></div>
 <div id="library" hidden role="dialog" aria-modal="true" aria-label="Library"><div class="sheet">
   <div class="top"><h2>Library</h2><label class="btn">Add a score<input id="libfile" type="file" accept=".musicxml,.xml,.mxl" hidden></label><button id="libclose">Close</button></div>
@@ -212,6 +271,7 @@ body.hide #score svg{opacity:.06}
   <div class="tiles" id="ptiles"></div>
   <h3>Your results over time</h3><div id="pchart"></div>
   <h3>Bars to practise</h3><div id="pbars"></div>
+  <p><button id="drillbtn">Drill my weak spots</button> <button id="reportbtn">Share a report</button></p>
   <p><label><input id="heaton" type="checkbox"> Color bars on the score by how well you play them</label></p>
   <h3>Recent sessions</h3><table id="ptable"></table>
   <p><button id="preset">Reset progress for this piece</button></p>
@@ -225,7 +285,7 @@ const store = {
   get(k, d) { try { const v = localStorage.getItem('pr.' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v) { try { localStorage.setItem('pr.' + k, JSON.stringify(v)); } catch {} },
 };
-const S = Object.assign({bpm: 100, hands: 'both', mode: 'listen', zoom: 1, loop: false, kb: true, sound: 'piano', heat: true, fingers: true, hide: false, theme: 'auto'}, store.get('settings', {}));
+const S = Object.assign({bpm: 100, hands: 'both', mode: 'listen', zoom: 1, loop: false, kb: true, sound: 'piano', heat: true, fingers: true, hide: false, theme: 'auto', click: false, countin: false, speedup: false, step: 4, goalBpm: 0}, store.get('settings', {}));
 const save = () => store.set('settings', S);
 let osmd, steps = [], pos = 0, bars = 1, playing = false, timer = null, target = 0;
 let actx = null, master = null, need = new Set(), lock = null, title = '';
@@ -251,7 +311,7 @@ function tone(midi, dur, vel = 0.5) {
   synth(midi, dur, vel);
 }
 function silence() { try { midiOut?.send([0xB0, 123, 0]); } catch {} }   // all notes off
-function synth(midi, dur, vel) {         // soft piano-like tone: few harmonics, brightness fades like a struck string
+function initAudio() {
   if (!actx) {
     actx = new (window.AudioContext || window.webkitAudioContext)({latencyHint: 'balanced'});
     const comp = actx.createDynamicsCompressor();
@@ -261,6 +321,9 @@ function synth(midi, dur, vel) {         // soft piano-like tone: few harmonics,
     wave = actx.createPeriodicWave(new Float32Array(8), new Float32Array([0, 1, 0.42, 0.18, 0.09, 0.04, 0.02, 0.01]));
   }
   if (actx.state === 'suspended') actx.resume();
+}
+function synth(midi, dur, vel) {         // soft piano-like tone: few harmonics, brightness fades like a struck string
+  initAudio();
   const t = actx.currentTime + 0.02, f = 440 * 2 ** ((midi - 69) / 12), d = Math.max(0.2, dur);
   const decay = Math.min(1.6, Math.max(0.35, Math.sqrt(262 / f)));   // low notes ring longer
   const o = actx.createOscillator(), lp = actx.createBiquadFilter(), g = actx.createGain();
@@ -447,6 +510,7 @@ function info(extra) {
     if (run.mode === 'along') t += ` · Missed ${run.missed}`;
     t += ` · Wrong ${run.wrong}`;
   }
+  if (pedalDown) t += ' · Pedal ▼';
   $('status').textContent = extra ? `${t} · ${extra}` : t;
 }
 
@@ -544,7 +608,7 @@ function paintNeed() {
 function setPlaying(on) { playing = on; $('play').textContent = on ? '❚❚ Pause' : '▶ Play'; }
 function pause(endSession = true) {
   clearTimeout(timer); setPlaying(false); holding = armed = false; need.clear(); paintNeed(); silence();
-  clearTimeout(grp?.timer); grp = null;
+  clearTimeout(grp?.timer); grp = null; counting = false; clearTimeout(countTimer); paintSoon();
   line = {i: pos, hold: true};             // the red line rests on the current note
   if (endSession) endRun();
 }
@@ -557,6 +621,7 @@ function play(resume, arm = !resume) {
   if (pos < s || pos > e || pos >= steps.length - 1 && !S.loop && pos !== 0) gotoStep(s);
   setPlaying(true); $('card').hidden = true;
   if (!resume || !run) startRun();
+  if (S.countin && !resume && S.mode !== 'wait') { countIn(() => { target = performance.now(); tick(); }); return; }   // one bar of clicks, then the music
   if (arm && S.mode !== 'listen') {
     armed = true;
     need = new Set(steps[pos].notes.filter(mine).map(n => n.midi)); paintNeed();
@@ -569,7 +634,7 @@ function begin(t) { armed = false; need.clear(); paintNeed(); target = t - laten
 function atEnd() {                       // returns true if playback should stop
   const [s, e] = range();
   if (pos < e) { advance(); return false; }
-  if (S.loop) { gotoStep(s); return false; }
+  if (S.loop) { if (onPass()) return true; gotoStep(s); return false; }
   [...open].forEach(closeStep);
   if (run) run.finished = true;
   if (S.mode === 'listen') lessonStep('listen');
@@ -583,6 +648,7 @@ function tick() {
   if (!playing) return;
   const st = steps[pos];
   line = {i: pos, t0: target, hold: false};    // the red line reaches this note now and moves on toward the next
+  paintSoon(); scheduleClicks(pos);
   if (S.mode !== 'listen') {
     const now = performance.now();
     open.filter(i => i === pos || now > when[i] + win(i)).forEach(closeStep);
@@ -617,7 +683,7 @@ function expected(m) {                   // the score note this key matches, nea
 }
 function judge(m, i, n, off) {           // count a correct note and how close to the beat it was
   const k = Math.abs(off) <= tol() ? 'onTime' : off < 0 ? 'early' : 'late', bar = steps[i].bar;
-  count(bar, 'ok'); count(bar, k);
+  count(bar, 'ok'); count(bar, k); noteExpr(i, m);
   if (Math.abs(off) <= win(i)) run.offs.push(off);            // long waits are not a timing habit
   mark(m, k, n, i, off); flash(m, 'on', 220);
   info(`${noteName(m)} ${k === 'onTime' ? 'on time' : off > 1000 ? 'late' : `${Math.round(Math.abs(off))} ms ${k}`}`);
@@ -626,6 +692,7 @@ function press(m, sound, t) {
   if (sound) tone(m, 0.6);
   t = t || performance.now();
   if (ear) { flash(m, 'on', 160); return earKey(m, t); }                       // ear tests take the keys
+  if (counting) { flash(m, 'on', 160); return; }                                // during the count-in keys only sound
   if (lesson?.kind === 'sight' && sightType === 'rhythm' && playing) m = 72;    // rhythm reading: any key taps
   if (lesson?.kind === 'sight' && sightType === 'leadsheet' && playing && run && m < 60) {   // your own accompaniment
     if (armed) { flash(m, 'on', 160); return; }                                    // the melody starts the music
@@ -771,7 +838,7 @@ const latency = () => midiOut && S.sound === 'piano' ? 0 : 20 + ((actx?.outputLa
 const KEYS = ['ok', 'wrong', 'missed', 'onTime', 'early', 'late'];
 function startRun() {
   run = S.mode === 'listen' ? null : {t0: Date.now(), mode: S.mode, hands: S.hands, bpm: S.bpm, offs: [], bars: {}};
-  if (run) for (const k of KEYS) run[k] = 0;
+  if (run) { for (const k of KEYS) run[k] = 0; run.dyn = []; run.ped = []; passMark = {ok: 0, wrong: 0, missed: 0}; }
   when = []; done = []; open = []; early = null; agroups = {};
 }
 function count(bar, k) {
@@ -811,6 +878,9 @@ function endRun() {
     acc: pct(r.ok, r.ok + r.wrong + r.missed), ont: pct(r.onTime, r.ok),
     avg: r.offs.length ? Math.round(r.offs.reduce((a, b) => a + b, 0) / r.offs.length) : null};
   for (const k of KEYS) s[k] = r[k];
+  const dc = dynContrast(r); if (dc !== null) s.dyn = dc;
+  if (r.ped?.length >= 6) s.ped = pct(r.ped.filter(Boolean).length, r.ped.length);
+  store.set('last', {title, src: store.get('score', null)});
   const p = progress();
   p.sessions = [...p.sessions, s].slice(-200);
   for (const [b, c] of Object.entries(r.bars)) {   // older practice of a bar counts less, so improvement shows
@@ -818,7 +888,7 @@ function endRun() {
     p.bars[b] = Object.fromEntries(KEYS.map(k => [k, Math.round(((o[k] || 0) * 0.8 + c[k]) * 100) / 100]));
   }
   store.set('progress:' + title, p);
-  drawHeat(); showCard(s, r.bars, r.finished ? lessonResult(s) : null);
+  drawHeat(); if (!quiet) showCard(s, r.bars, r.finished ? lessonResult(s) : null);
 }
 function practiseBar(b) {
   $('from').value = $('to').value = +b + 1; $('loop').checked = S.loop = true; save();
@@ -832,15 +902,19 @@ function showCard(s, bars, lessonMsg) {
   if (s.ont !== null) add(`<span class="big">${s.ont}%</span> <small>on time</small>`);
   if (s.avg !== null && Math.abs(s.avg) > tol() / 2) add(`<small>${s.avg > 0 ? `You tend to play late (${s.avg} ms)` : `You tend to rush (${-s.avg} ms early)`}</small>`);
   else if (s.avg !== null) add('<small>Steady timing</small>');
+  if (s.dyn !== undefined) add(s.dyn >= 12 ? '<small>Dynamics ✓ the loud parts were louder than the soft parts</small>' : '<small>Dynamics: play the soft parts softer and the loud parts louder</small>');
+  if (s.ped !== undefined) add(`<small>Pedal ${s.ped}% as marked</small>`);
   const worst = Object.entries(bars).map(([b, x]) => [b, barScore(x)]).filter(([, x]) => x && x.bad > 0).sort((a, b) => b[1].bad - a[1].bad)[0];
   if (worst) {
     const btn = document.createElement('button'); btn.textContent = `Repeat bar ${+worst[0] + 1}`;
     btn.onclick = () => practiseBar(worst[0]); c.append(btn);
   }
+  if (worst) { const d = document.createElement('button'); d.textContent = 'Drill weak spots'; d.onclick = () => startDrill(); c.append(d); }
   const pb = document.createElement('button'); pb.textContent = 'Progress'; pb.onclick = openProgress; c.append(pb);
   const x = document.createElement('button'); x.textContent = '✕'; x.setAttribute('aria-label', 'Close'); x.onclick = () => { c.hidden = true; }; c.append(x);
 }
 function drawHeat() {                    // tint each practised bar: green = good, yellow = some trouble, red = needs work
+  drawPedal();
   const h = $('heat'); h.innerHTML = '';
   const svg = $('score').querySelector('svg'); if (!S.heat || !steps.length || !svg || lesson?.kind === 'sight') return;   // sight reading: always new music
   const u = 10 * osmd.zoom, W = $('wrap').getBoundingClientRect(), G = svg.getBoundingClientRect();
@@ -928,6 +1002,7 @@ async function loadScore(data, name) {
     buildSteps();
     if (!steps.length) throw new Error('empty');
     bars = osmd.Sheet.SourceMeasures.length; title = osmd.Sheet.TitleString || name || '';
+    pieceBpm = Math.round(osmd.Sheet.DefaultStartTempoInBpm || 0); await readMarks(data);
     const t = store.get('tempo:' + title, Math.round(osmd.Sheet.DefaultStartTempoInBpm || 0));
     if (t >= 30 && t <= 200) setBpm(t, false);
     $('from').max = $('to').max = bars; $('from').value = 1; $('to').value = Math.min(bars, 4);
@@ -938,6 +1013,312 @@ async function loadScore(data, name) {
     $('status').textContent = 'Could not read this file. Please choose a MusicXML score (.musicxml, .xml or .mxl).';
     return false;
   }
+}
+
+
+/* ---------- practice tools: metronome, count-in, speed-up, next key, drills ---------- */
+let counting = false, countTimer = 0, passMark = null, quiet = false, drill = null, pieceBpm = 0;
+const barAbs = b => osmd.Sheet.SourceMeasures[b]?.AbsoluteTimestamp?.RealValue ?? 0;
+function beatInfo(bar) {                 // beats in a bar and the length of one beat (in whole notes); 6/8, 9/8 and 12/8 count in dotted quarters
+  const ts = osmd.Sheet.SourceMeasures[bar]?.ActiveTimeSignature, n = ts?.Numerator || 4, d = ts?.Denominator || 4;
+  const compound = d === 8 && n % 3 === 0 && n > 3;
+  return {beats: compound ? n / 3 : n, len: (compound ? 3 : 1) / d};
+}
+function click(accent, delay = 0) {
+  initAudio();
+  const t = actx.currentTime + Math.max(0.005, delay), o = actx.createOscillator(), g = actx.createGain();
+  o.type = 'square'; o.frequency.value = accent ? 1600 : 1100;
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(accent ? 0.45 : 0.28, t + 0.002); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+  o.connect(g).connect(master); o.start(t); o.stop(t + 0.06);
+}
+function scheduleClicks(i) {             // the clicks that fall inside this step (not in Wait for me: there the tempo is yours)
+  if (!S.click || S.mode === 'wait' || !playing || !steps[i]) return;
+  const st = steps[i], b = beatInfo(st.bar), t0 = barAbs(st.bar), dur = stepDur(i);
+  for (let k = 0; k < b.beats; k++) {
+    const tb = t0 + k * b.len;
+    if (tb < st.abs - 1e-6 || tb >= st.abs + dur - 1e-6) continue;
+    click(k === 0, (target - performance.now()) / 1000 + sec(tb - st.abs));
+  }
+}
+function countIn(done) {
+  const b = beatInfo(steps[pos].bar), gap = sec(b.len) * 1000; let k = 0;
+  counting = true; need.clear(); paintNeed();
+  const go = () => {
+    if (!counting) return;
+    if (k < b.beats) { click(k === 0); info(`Count-in ${k + 1}`); k++; countTimer = setTimeout(go, gap); }
+    else { counting = false; done(); }
+  };
+  go();
+}
+function paintSoon() {                   // outline the keys of the next notes you play, before they are due
+  $('kb').querySelectorAll('.soon').forEach(k => k.classList.remove('soon'));
+  if (!playing || !steps.length) return;
+  for (let j = pos + 1; j < Math.min(steps.length, pos + 8); j++) {
+    const ns = steps[j].notes.filter(n => S.mode === 'listen' || mine(n)); if (!ns.length) continue;
+    ns.forEach(n => { if (!need.has(n.midi)) key(n.midi)?.classList.add('soon'); });
+    break;
+  }
+}
+// A pass of repeated bars is judged when it comes round again: clean passes speed the music up; a drill moves on.
+function goalBpm() { return S.goalBpm > 0 ? S.goalBpm : Math.max(lesson?.bpm || pieceBpm || 100, S.bpm); }
+function onPass() {                      // returns true when a drill took over and playback was restarted
+  if (!run || !passMark) return false;
+  const d = {ok: run.ok - passMark.ok, wrong: run.wrong - passMark.wrong, missed: run.missed - passMark.missed};
+  passMark = {ok: run.ok, wrong: run.wrong, missed: run.missed};
+  const n = d.ok + d.wrong + d.missed; if (n < 3) return false;
+  const acc = d.ok / n, pc = Math.round(acc * 100);
+  if (drill) {
+    if (acc >= 0.9) { drillNext(); return true; }
+    setTimeout(() => info(`${pc}% correct: once more, aiming for 90%`), 50); return false;
+  }
+  if (!S.speedup || S.mode === 'listen') return false;
+  let msg;
+  if (acc >= 0.9) {
+    const goal = goalBpm();
+    if (S.bpm < goal) { const nb = Math.min(goal, S.bpm + (S.step || 4)); setBpm(nb, false); msg = `Clean pass (${pc}%): faster, now ${nb} bpm`; }
+    else msg = `Clean pass (${pc}%) at the goal tempo, ${S.bpm} bpm`;
+  } else msg = `${pc}% correct: again at ${S.bpm} bpm`;
+  setTimeout(() => info(msg), 50); return false;
+}
+// Drill: the weakest bars one after another: each hand alone (slowly) and then together, until a pass is 90% correct.
+function startDrill() {
+  if (!steps.length) return;
+  const weak = Object.entries(progress().bars).map(([b, c]) => [+b, barScore(c)]).filter(([, x]) => x && x.bad > 0).sort((a, b) => b[1].bad - a[1].bad).slice(0, 3);
+  if (!weak.length) { info('No trouble spots yet: play in Play along or Wait for me first'); $('card').hidden = true; $('prog').hidden = true; return; }
+  const slow = Math.max(40, Math.round(S.bpm * 0.7)), mid = Math.max(40, Math.round(S.bpm * 0.85)), queue = [];
+  for (const [b] of weak) {
+    const hasR = steps.some(st => st.bar === b && st.notes.some(n => n.staff === 0)), hasL = steps.some(st => st.bar === b && st.notes.some(n => n.staff >= 1));
+    if (hasR && hasL) queue.push({b, hands: 'right', mode: 'wait', bpm: slow}, {b, hands: 'left', mode: 'wait', bpm: slow});
+    queue.push({b, hands: hasR && hasL ? 'both' : hasL ? 'left' : 'right', mode: 'along', bpm: mid});
+  }
+  drill = {queue, i: -1, saved: {hands: S.hands, mode: S.mode, bpm: S.bpm, loop: S.loop, from: $('from').value, to: $('to').value}};
+  $('card').hidden = true; $('prog').hidden = true; $('library').hidden = true; $('today').hidden = true; $('lessons').hidden = true; $('panel').hidden = true;
+  drillNext();
+}
+function drillNext() {
+  if (!drill) return;
+  quiet = true; pause(); quiet = false;
+  drill.i++;
+  if (drill.i >= drill.queue.length) return endDrill(true);
+  const q = drill.queue[drill.i];
+  setSeg('hands', 'hands', q.hands); setSeg('mode', 'mode', q.mode); setBpm(q.bpm, false);
+  $('from').value = q.b + 1; $('to').value = Math.min(bars, q.b + 1); $('loop').checked = S.loop = true; save();
+  $('drillbar').hidden = false;
+  $('drilltxt').textContent = `Drill ${drill.i + 1} of ${drill.queue.length} · bar ${q.b + 1} · ${{right: 'right hand', left: 'left hand', both: 'both hands'}[q.hands]} · ${q.mode === 'wait' ? 'Wait for me' : 'Play along'} at ${q.bpm} bpm · play it 90% right to move on`;
+  gotoStep(range()[0]); play();
+}
+function endDrill(done) {
+  if (!drill) return;
+  const sv = drill.saved; drill = null;
+  quiet = true; pause(); quiet = false;
+  setSeg('hands', 'hands', sv.hands); setSeg('mode', 'mode', sv.mode); setBpm(sv.bpm, false);
+  $('from').value = sv.from; $('to').value = sv.to; $('loop').checked = S.loop = sv.loop; save();
+  $('drillbar').hidden = true; drawHeat(); gotoStep(range()[0]);
+  info(done ? 'Drill finished: well done!' : 'Drill stopped');
+}
+
+/* ---------- loudness and pedal: what the score marks and what you play ---------- */
+let dynEv = [], pedEv = [], stepDyn = [], stepPed = [], pedalDown = false, pedalSeen = false;
+const lastVel = {};
+const DYN = {ppp: 1, pp: 2, p: 3, mp: 4, mf: 5, f: 6, ff: 7, fff: 8};
+async function xmlText(data) {           // the MusicXML text, also from a compressed .mxl (a zip file)
+  if (typeof data !== 'string') return null;
+  if (data.trimStart().startsWith('<')) return data;
+  if (!data.startsWith('PK') || typeof DecompressionStream === 'undefined') return null;
+  const u8 = Uint8Array.from(data, c => c.charCodeAt(0)), dv = new DataView(u8.buffer);
+  let e = u8.length - 22; while (e >= 0 && dv.getUint32(e, true) !== 0x06054b50) e--;
+  if (e < 0) return null;
+  const entries = {}; let q = dv.getUint32(e + 16, true);
+  for (let n = dv.getUint16(e + 10, true); n > 0 && dv.getUint32(q, true) === 0x02014b50; n--) {
+    const nl = dv.getUint16(q + 28, true), el = dv.getUint16(q + 30, true), cl = dv.getUint16(q + 32, true);
+    entries[new TextDecoder().decode(u8.subarray(q + 46, q + 46 + nl))] = {method: dv.getUint16(q + 10, true), size: dv.getUint32(q + 20, true), off: dv.getUint32(q + 42, true)};
+    q += 46 + nl + el + cl;
+  }
+  const read = async name => {
+    const z = entries[name]; if (!z) return null;
+    const start = z.off + 30 + dv.getUint16(z.off + 26, true) + dv.getUint16(z.off + 28, true), raw = u8.subarray(start, start + z.size);
+    if (z.method === 0) return new TextDecoder().decode(raw);
+    return new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();
+  };
+  const c = await read('META-INF/container.xml'), path = c && /full-path="([^"]+)"/.exec(c)?.[1];
+  return path ? read(path) : null;
+}
+async function readMarks(data) {         // dynamics (p, mf, f ...) and pedal marks from the MusicXML, and which step each belongs to
+  dynEv = []; pedEv = []; stepDyn = []; stepPed = [];
+  try {
+    const xml = await xmlText(data); if (!xml) return;
+    const part = new DOMParser().parseFromString(xml, 'application/xml').querySelector('part'); if (!part) return;
+    let div = 1;
+    [...part.querySelectorAll(':scope > measure')].forEach((m, bar) => {
+      let t = 0;
+      for (const el of m.children) {
+        const tag = el.tagName;
+        if (tag === 'attributes') { const d = el.querySelector('divisions'); if (d) div = +d.textContent || div; }
+        else if (tag === 'note') { if (!el.querySelector('chord')) t += +(el.querySelector('duration')?.textContent || 0); }
+        else if (tag === 'backup') t -= +el.querySelector('duration').textContent;
+        else if (tag === 'forward') t += +el.querySelector('duration').textContent;
+        else if (tag === 'direction') {
+          const at = (t + +(el.querySelector('offset')?.textContent || 0)) / div / 4;   // whole notes from the start of the bar
+          for (const d of el.querySelectorAll('dynamics > *')) if (DYN[d.tagName]) dynEv.push({bar, at, v: DYN[d.tagName]});
+          for (const pd of el.querySelectorAll('pedal')) pedEv.push({bar, at, type: pd.getAttribute('type')});
+        }
+      }
+    });
+  } catch { dynEv = []; pedEv = []; }
+  const at = i => ({bar: steps[i].bar, at: steps[i].abs - barAbs(steps[i].bar)});
+  const before = (e, a) => e.bar < a.bar || (e.bar === a.bar && e.at <= a.at + 1e-6);
+  let di = -1, pi = -1, down = false, lvl = 0;
+  for (let i = 0; i < steps.length; i++) {
+    const a = at(i);
+    while (di + 1 < dynEv.length && before(dynEv[di + 1], a)) lvl = dynEv[++di].v;
+    while (pi + 1 < pedEv.length && before(pedEv[pi + 1], a)) { const t = pedEv[++pi].type; if (t === 'start' || t === 'change') down = true; else if (t === 'stop') down = false; }
+    stepDyn[i] = lvl; stepPed[i] = down;
+  }
+}
+function drawPedal() {                   // "Ped." where the pedal goes down, "✱" where it comes up, under the left-hand staff
+  const el = $('pedal'); el.innerHTML = '';
+  const svg = $('score').querySelector('svg'); if (!pedEv.length || !svg || !steps.length) return;
+  const u = 10 * osmd.zoom, W = $('wrap').getBoundingClientRect(), G = svg.getBoundingClientRect();
+  for (const ev of pedEv) {
+    const i = steps.findIndex(st => st.bar === ev.bar && st.abs - barAbs(st.bar) >= ev.at - 1e-6), a = i >= 0 ? stepX(i) : null;
+    const ms = osmd.GraphicSheet.MeasureList[ev.bar]; if (!a || !ms?.length) continue;
+    const d = document.createElement('div'); d.className = 'pd';
+    d.textContent = ev.type === 'start' ? 'Ped.' : ev.type === 'stop' ? '✱' : ev.type === 'change' ? '✱Ped.' : '';
+    if (!d.textContent) continue;
+    d.style.left = G.left - W.left + a.x * u + 'px';
+    d.style.top = G.top - W.top + (ms[ms.length - 1].PositionAndShape.AbsolutePosition.y + 5.2) * u + 'px';
+    el.append(d);
+  }
+}
+function noteExpr(i, m) {                // remember how loudly and with what pedal a correct note was played
+  const v = lastVel[m];
+  if (v && stepDyn[i]) run.dyn.push([stepDyn[i], v]);
+  if (pedalSeen && pedEv.length) run.ped.push(stepPed[i] === pedalDown);
+}
+function dynContrast(r) {                // how much louder the loud (f, ff) notes were than the soft (p, pp) ones, in MIDI velocity
+  if (!r.dyn?.length) return null;
+  const soft = r.dyn.filter(([l]) => l <= 3).map(x => x[1]), loud = r.dyn.filter(([l]) => l >= 6).map(x => x[1]);
+  if (soft.length < 3 || loud.length < 3) return null;
+  const avg = a => a.reduce((x, y) => x + y, 0) / a.length;
+  return Math.round(avg(loud) - avg(soft));
+}
+
+/* ---------- my practice: days, streak, today's plan, report ---------- */
+const dayKey = t => { const d = new Date(t); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+function logDay(secs) { const days = store.get('days', {}), k = dayKey(Date.now()); days[k] = (days[k] || 0) + secs; store.set('days', days); }   // ear tests
+function allProgress() {                 // every piece's saved progress
+  const out = [];
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k?.startsWith('pr.progress:')) { const p = JSON.parse(localStorage.getItem(k)); if (p?.sessions) out.push({title: k.slice(12), p}); }
+    }
+  } catch {}
+  return out;
+}
+function daySecs() {
+  const m = {};
+  for (const {p} of allProgress()) for (const s of p.sessions) { const k = dayKey(s.t); m[k] = (m[k] || 0) + s.secs; }
+  const x = store.get('days', {}); for (const k in x) m[k] = (m[k] || 0) + x[k];
+  return m;
+}
+function streak(m = daySecs()) {         // days in a row with at least a minute of practice; today may still be to come
+  let n = 0; const d = new Date();
+  if (!(m[dayKey(d)] >= 60)) d.setDate(d.getDate() - 1);
+  while (m[dayKey(d)] >= 60) { n++; d.setDate(d.getDate() - 1); }
+  return n;
+}
+async function openToday() {
+  const c = await getCourse(), m = daySecs(), goal = store.get('goalmin', 15), todayMin = Math.round((m[dayKey(Date.now())] || 0) / 60);
+  const week = [...Array(7)].map((_, i) => { const d = new Date(); d.setDate(d.getDate() - 6 + i); return {d, secs: m[dayKey(d)] || 0}; });
+  const weekMin = Math.round(week.reduce((a, w) => a + w.secs, 0) / 60), n = streak(m);
+  $('tdgoal').value = goal;
+  $('tdtiles').innerHTML = [[n + (n === 1 ? ' day' : ' days'), 'practice streak'], [`${todayMin} of ${goal} min`, 'today'], [weekMin + ' min', 'last 7 days']].map(([v, l]) => `<div class="tile"><b>${v}</b><span>${l}</span></div>`).join('');
+  const mx = Math.max(goal * 60, ...week.map(w => w.secs));
+  $('tdweek').innerHTML = `<div class="wk">${week.map(w => `<div><i class="${w.secs ? '' : 'none'}" style="height:${Math.round(70 * w.secs / mx)}px" title="${Math.round(w.secs / 60)} min"></i>${w.d.toLocaleDateString([], {weekday: 'short'})}</div>`).join('')}</div>`;
+  // the plan: go on with the course, fix a weak spot, an ear test, a sight reading
+  const done = lessonsDone(), plan = [], cur = Math.max(0, c.lessons.findIndex(l => l.id === store.get('score', null)?.lesson));
+  const nextL = c.lessons.slice(cur).find(l => !isDone(l, done[l.id] || {}) && l.kind !== 'ear' && l.kind !== 'sight') || c.lessons.find(l => !isDone(l, done[l.id] || {}) && l.kind !== 'ear' && l.kind !== 'sight');
+  if (nextL) plan.push({t: `Go on with the course: ${nextL.title}`, sub: `${c.levels[nextL.level]} · ${KIND[nextL.kind]}`, go: () => startLesson(nextL.id), b: 'Start'});
+  const last = store.get('last', null), lp = last && store.get('progress:' + last.title, null);
+  const weak = lp ? Object.entries(lp.bars).map(([b, x]) => [+b, barScore(x)]).filter(([, x]) => x && x.bad > 0).sort((a, b) => b[1].bad - a[1].bad) : [];
+  const openLast = async () => { if (title === last.title) return true; const s = last.src; return s?.lesson ? startLesson(s.lesson) : s?.course || s?.mine ? openWhole(s) : false; };
+  if (weak.length) {
+    plan.push({t: `Fix a weak spot: bar ${weak[0][0] + 1} of ${last.title}`, sub: `${weak[0][1].acc}% correct so far`, b: 'Practise',
+      go: async () => { if (await openLast()) { $('today').hidden = true; practiseBar(weak[0][0]); } }});
+    plan.push({t: `Drill the weak spots of ${last.title}`, sub: 'each hand slowly, then together', b: 'Drill',
+      go: async () => { if (await openLast()) startDrill(); }});
+  }
+  const lv = nextL ? nextL.level : 0;
+  const ear = c.lessons.find(l => l.kind === 'ear' && l.level === lv) || c.lessons.find(l => l.kind === 'ear');
+  const sight = c.lessons.find(l => l.kind === 'sight' && l.level === lv) || c.lessons.find(l => l.kind === 'sight');
+  if (ear) plan.push({t: 'Ear training: ' + ear.title, sub: 'about 3 minutes', go: () => startLesson(ear.id), b: 'Start'});
+  if (sight) plan.push({t: 'Sight reading: ' + sight.title, sub: 'a new exercise every time', go: () => startLesson(sight.id), b: 'Start'});
+  const box = $('tdplan'); box.innerHTML = '';
+  for (const it of plan) {
+    const r = document.createElement('div'); r.className = 'plan'; r.innerHTML = '<span class="t"><b></b><small></small></span>';
+    r.querySelector('b').textContent = it.t; r.querySelector('small').textContent = it.sub;
+    const b = document.createElement('button'); b.textContent = it.b; b.className = 'primary';
+    b.onclick = () => Promise.resolve(it.go()).then(() => { $('today').hidden = true; }).catch(() => { $('status').textContent = 'Could not open this. Check the internet connection.'; });
+    r.append(b); box.append(r);
+  }
+  $('card').hidden = true; $('prog').hidden = true; $('library').hidden = true; $('lessons').hidden = true; $('today').hidden = false;
+}
+function buildReport(days = 30) {
+  const from = Date.now() - days * 864e5, rows = [];
+  for (const {title: t, p} of allProgress()) for (const s of p.sessions) if (s.t >= from) rows.push({...s, piece: t});
+  rows.sort((a, b) => a.t - b.t);
+  const avg = (a, k) => { const v = a.filter(x => x[k] !== null && x[k] !== undefined); return v.length ? Math.round(v.reduce((s, x) => s + x[k], 0) / v.length) : null; };
+  const mins = a => Math.round(a.reduce((s, x) => s + x.secs, 0) / 60), m = daySecs();
+  const days7 = rows.filter(r => r.t >= Date.now() - 7 * 864e5);
+  const lines = ['Piano practice report', `Created ${new Date().toLocaleDateString([], {dateStyle: 'long'})} · last ${days} days`, '',
+    `Practice streak: ${streak(m)} day${streak(m) === 1 ? '' : 's'}`,
+    `Last 7 days: ${days7.length} sessions, ${mins(days7)} minutes`,
+    `Last ${days} days: ${rows.length} sessions, ${mins(rows)} minutes · correct ${avg(rows, 'acc') ?? '–'}% · on time ${avg(rows, 'ont') ?? '–'}%`, ''];
+  const by = {}; rows.forEach(r => (by[r.piece] ||= []).push(r));
+  lines.push('By piece:');
+  for (const [piece, rs] of Object.entries(by).sort((a, b) => b[1].length - a[1].length)) {
+    const last = rs.at(-1), prog = store.get('progress:' + piece, null);
+    const weak = prog ? Object.entries(prog.bars).map(([b, c]) => [+b, barScore(c)]).filter(([, x]) => x && x.bad > 0.1).sort((a, b) => b[1].bad - a[1].bad).slice(0, 3).map(([b]) => b + 1) : [];
+    lines.push(`- ${piece}: ${rs.length} session${rs.length === 1 ? '' : 's'}, ${mins(rs)} min · latest ${last.acc}% correct${last.ont !== null ? `, ${last.ont}% on time` : ''} at ${last.bpm} bpm` + (weak.length ? ` · weak bars: ${weak.join(', ')}` : ''));
+  }
+  if (!rows.length) lines.push('(no practice sessions yet)');
+  const q = v => `"${String(v).replace(/"/g, '""')}"`;
+  const csv = ['date,piece,mode,hands,tempo_bpm,minutes,correct_pct,on_time_pct,average_timing_ms'].concat(rows.map(r =>
+    [new Date(r.t).toISOString().slice(0, 16).replace('T', ' '), q(r.piece), r.mode, r.hands, r.bpm, (r.secs / 60).toFixed(1), r.acc, r.ont ?? '', r.avg ?? ''].join(','))).join('\n');
+  return {text: lines.join('\n'), csv};
+}
+function openReport() {
+  $('report').dataset.csv = ''; const r = buildReport(); $('rptext').textContent = r.text; $('report').dataset.csv = r.csv;
+  $('rpshare').hidden = !navigator.share;
+  $('today').hidden = true; $('prog').hidden = true; $('report').hidden = false;
+}
+function download(name, text, type) {
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name;
+  document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+}
+
+/* ---------- backup: progress, settings and "My scores" in one file ---------- */
+async function backup() {
+  const local = {};
+  for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k?.startsWith('pr.')) local[k] = localStorage.getItem(k); }
+  const data = {app: 'piano-reader', version: 1, date: new Date().toISOString(), local, scores: await idb.all()};
+  download(`piano-reader-backup-${dayKey(Date.now())}.json`, JSON.stringify(data), 'application/json');
+  store.set('lastbackup', Date.now()); backupNote();
+}
+function backupNote() { const t = store.get('lastbackup', 0); $('backupnote').textContent = t ? 'Last backup ' + new Date(t).toLocaleDateString([], {month: 'short', day: 'numeric'}) : 'No backup yet'; }
+function restore(e) {
+  const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+  const r = new FileReader();
+  r.onload = async () => {
+    let d; try { d = JSON.parse(r.result); } catch {}
+    if (d?.app !== 'piano-reader' || !d.local) { $('status').textContent = 'This is not a Piano Reader backup file.'; return; }
+    if (!confirm(`Restore the backup from ${new Date(d.date).toLocaleDateString()}? It replaces the progress, settings and scores on this device with the ones in the file.`)) return;
+    try { for (const [k, v] of Object.entries(d.local)) if (k.startsWith('pr.')) localStorage.setItem(k, v); } catch {}
+    for (const rec of d.scores || []) { try { await idb.put(rec); } catch {} }
+    location.reload();
+  };
+  r.readAsText(f);
 }
 
 /* ---------- library: any score as a whole piece, outside the lesson steps ---------- */
@@ -1016,7 +1397,7 @@ async function openLibrary() {
     for (const L of ps) k.append(row(L.title, `${L.composer || 'Traditional'} · ${{right: 'right hand', left: 'left hand', both: 'both hands'}[L.hands]}`, [btn('Practise', () => openWhole({course: L.id}).catch(fail))]));
   });
   if (q && !own.length && !k.children.length) k.innerHTML = '<p class="muted">No piece matches your search.</p>';
-  $('card').hidden = true; $('prog').hidden = true; $('lessons').hidden = true; $('library').hidden = false;
+  $('card').hidden = true; $('prog').hidden = true; $('lessons').hidden = true; $('today').hidden = true; $('library').hidden = false;
 }
 
 /* ---------- lessons (levels and parts follow the RCM Piano Syllabus, 2022 edition) ---------- */
@@ -1146,7 +1527,7 @@ async function openLessons() {
       row.append(b); list.append(row);
     }
   });
-  $('card').hidden = true; $('prog').hidden = true; $('library').hidden = true; $('lessons').hidden = false;
+  $('card').hidden = true; $('prog').hidden = true; $('library').hidden = true; $('today').hidden = true; $('lessons').hidden = false;
   $('lversion').textContent = `${c.lessons.length} lessons · ${$('version').textContent}`;
   list.querySelector('.row.next')?.scrollIntoView({block: 'center'});   // show where you are
 }
@@ -1496,7 +1877,7 @@ function earAnswer(ok, detail) {
   earDraw(`${ok ? '✓ Correct.' : '✗ Not quite.'} ${detail || ''}`);
   const btns = $('trainer').querySelector('.tbtns');
   if (!last) { const b = document.createElement('button'); b.className = 'primary'; b.dataset.e = 'next'; b.textContent = 'Next question →'; btns.append(b); return; }
-  const score = ear.right, test = ear.test;
+  const score = ear.right, test = ear.test; logDay(120);
   saveDone(d => {
     d.tests = d.tests || {}; d.tests[test] = Math.max(d.tests[test] || 0, score);
     d.passed = lesson.tests.every(t => (d.tests[t] || 0) >= 8);
@@ -1519,7 +1900,8 @@ function noteOns(d) {                   // every note-on in a MIDI event (it may
     if (b & 0x80) { status = b; i++; }
     if (!status || status >= 0xf0) { i += status === 0xf2 ? 2 : status === 0xf1 || status === 0xf3 ? 1 : 0; status = 0; continue; }
     const type = status & 0xf0, len = type === 0xc0 || type === 0xd0 ? 1 : 2;
-    if (type === 0x90 && i + 1 < d.length && d[i + 1] > 0) out.push(d[i]);
+    if (type === 0x90 && i + 1 < d.length && d[i + 1] > 0) out.push({m: d[i], v: d[i + 1]});
+    if (type === 0xb0 && d[i] === 64 && i + 1 < d.length) { pedalSeen = true; const dn = d[i + 1] >= 64; if (dn !== pedalDown) { pedalDown = dn; if (steps.length) info(); } }   // sustain pedal
     i += len;
   }
   return out;
@@ -1531,10 +1913,10 @@ function hookMidi() {
     names.push(i.name || 'Piano');
     i.onmidimessage = ev => {
       const now = ev.timeStamp || performance.now();
-      for (const m of noteOns(ev.data)) {
+      for (const {m, v} of noteOns(ev.data)) {
         if (performance.now() - (sentAt[m] || -1e9) < 150) continue;   // the piano echoing a note the app sent
         if (now - (lastOn[m] ?? -1e9) < 50) continue;                  // the same key again within 50 ms: a duplicate
-        lastOn[m] = now;                                               // (one piano can appear as several MIDI ports)
+        lastOn[m] = now; lastVel[m] = v;                               // (one piano can appear as several MIDI ports)
         press(m, false, ev.timeStamp);
       }
     };
@@ -1675,6 +2057,25 @@ $('showfing').onchange = e => {
   if (!steps.length) return;
   const was = playing; pause(false); osmd.EngravingRules.RenderFingerings = S.fingers; osmd.render(); gotoStep(pos, true); drawHeat(); if (was) play(true);
 };
+const chk = (id, k) => { $(id).checked = !!S[k]; $(id).onchange = e => { S[k] = e.target.checked; save(); }; };
+chk('click', 'click'); chk('countin', 'countin'); chk('speedup', 'speedup');
+$('spstep').value = S.step || 4; $('spstep').onchange = e => { S.step = Math.min(20, Math.max(1, +e.target.value || 4)); save(); };
+$('spgoal').value = S.goalBpm || ''; $('spgoal').onchange = e => { S.goalBpm = Math.min(200, Math.max(0, +e.target.value || 0)); save(); };
+$('backup').onclick = () => backup().catch(() => { $('status').textContent = 'Could not save the backup file.'; });
+$('restore').onchange = restore; backupNote();
+$('drillbtn').onclick = () => startDrill();
+$('drillskip').onclick = () => drillNext();
+$('drillstop').onclick = () => endDrill(false);
+$('reportbtn').onclick = openReport; $('tdreport').onclick = openReport;
+$('rpclose').onclick = () => { $('report').hidden = true; };
+$('report').onclick = e => { if (e.target === $('report')) $('report').hidden = true; };
+$('rpshare').onclick = () => navigator.share({title: 'Piano practice report', text: $('rptext').textContent}).catch(() => {});
+$('rpcopy').onclick = async () => { try { await navigator.clipboard.writeText($('rptext').textContent); $('rpcopy').textContent = 'Copied ✓'; setTimeout(() => { $('rpcopy').textContent = 'Copy text'; }, 1500); } catch { $('rpcopy').textContent = 'Could not copy'; } };
+$('rpcsv').onclick = () => download(`piano-practice-${dayKey(Date.now())}.csv`, $('report').dataset.csv || '', 'text/csv');
+$('todaybtn').onclick = () => openToday().catch(() => {});
+$('tdclose').onclick = () => { $('today').hidden = true; };
+$('today').onclick = e => { if (e.target === $('today')) $('today').hidden = true; };
+$('tdgoal').onchange = e => { store.set('goalmin', Math.min(180, Math.max(5, +e.target.value || 15))); openToday().catch(() => {}); };
 $('lessonsbtn').onclick = openLessons;
 $('librarybtn').onclick = () => openLibrary().catch(() => {});
 $('libclose').onclick = () => { $('library').hidden = true; };

@@ -42,6 +42,17 @@ Tap **Lessons** for a 194-lesson course. Its levels and the parts of each level 
 
 Lesson scores are in [`lessons/`](lessons/) and are built by [`tools/make_lessons.py`](tools/make_lessons.py) (`python tools/make_lessons.py`).
 
+## Practice tools
+- **Today:** your practice streak (days in a row with at least a minute of practice), minutes today against a daily goal you can change, the last 7 days, and a plan: go on with the course, fix a weak spot, drill it, an ear test and a sight-reading exercise.
+- **Metronome and count-in** (in the ⋯ menu): a click on every beat while the music plays (not in Wait for me, where the tempo is yours) and one bar of clicks before it starts.
+- **Speed up when clean:** with **Repeat bars** on, every pass that is 90% correct raises the tempo by the step you choose, up to a goal tempo (the piece's own tempo unless you set one).
+- **Next keys:** the keys of the notes you play next are outlined on the keyboard before they are due.
+- **Drill my weak spots** (Progress window or end-of-run card): your three weakest bars, each hand alone and slowly first, then both hands, moving on after a pass that is 90% correct.
+- **Dynamics and pedal:** the dynamics (p, mf, f ...) and pedal marks in a MusicXML score are read: pedal marks are shown under the bass staff (*Ped.* and ✱), the piano's velocity and sustain pedal are tracked, and the end-of-run card says whether your loud parts were louder than your soft ones and how much of the pedal you used as marked.
+- **Share a report** (Today or Progress): the last 30 days as text (share, copy) and as a CSV file, for a teacher.
+- **Back up / Restore** (⋯ menu): saves progress, settings and **My scores** in one file; restoring replaces what is on the device.
+- **Theme** (⋯ menu): Auto (follows the device), Light or Dark. The score always stays on light paper.
+
 ## Library: practise a piece as a whole
 Tap **Library** to practise any piece from the first bar to the last, outside the lesson steps. It lists every piece in the course (searchable by title or composer, grouped by level) and a **My scores** shelf: use **Add a score** (or **Open score**) to open your own MusicXML file (`.musicxml`, `.xml`, `.mxl`) and it stays on the device in the browser's own storage (IndexedDB), ready for next time. Listen, Play along, Wait for me, the hands, the tempo, Repeat bars and Progress all work as usual; the app returns to the piece you were practising when you reopen it.
 
