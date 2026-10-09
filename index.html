@@ -114,16 +114,27 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
 #lesson .steps button.done b::before{content:"✓ ";color:var(--accent)}
 #lesson.min .body{display:none}
 #lessons{position:fixed;inset:0;z-index:6;background:#1d233066;display:flex;justify-content:center;align-items:flex-start;padding:24px 16px;overflow:auto}
+#library{position:fixed;inset:0;z-index:6;background:#1d233066;display:flex;justify-content:center;align-items:flex-start;padding:24px 16px;overflow:auto}
 #lessons[hidden]{display:none}
+#library[hidden]{display:none}
 #lessons .sheet{width:100%;max-width:760px;background:#fff;border-radius:18px;padding:18px 20px 22px}
+#library .sheet{width:100%;max-width:760px;background:#fff;border-radius:18px;padding:18px 20px 22px}
 #lessons .top{display:flex;align-items:center;gap:12px}
+#library .top{display:flex;align-items:center;gap:12px}
 #lessons h2{flex:1;margin:0;font:600 22px/1.2 Georgia,"Times New Roman",serif}
+#library h2{flex:1;margin:0;font:600 22px/1.2 Georgia,"Times New Roman",serif}
 #lessons h3{margin:20px 0 6px;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+#library h3{margin:20px 0 6px;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 #lessons .row{display:flex;align-items:center;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+#library .row{display:flex;align-items:center;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
 #lessons .row .n{width:28px;color:var(--muted);font-variant-numeric:tabular-nums}
+#library .row .n{width:28px;color:var(--muted);font-variant-numeric:tabular-nums}
 #lessons .row .t{flex:1}
+#library .row .t{flex:1}
 #lessons .row .t small{display:block;color:var(--muted);font-size:13px}
+#library .row .t small{display:block;color:var(--muted);font-size:13px}
 #lessons .kind{margin:12px 0 2px;font-size:13px;font-weight:600;color:var(--accent)}
+#library .kind{margin:12px 0 2px;font-size:13px;font-weight:600;color:var(--accent)}
 #trainer{max-width:820px;margin:16px auto;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:#fff}
 #trainer[hidden]{display:none}
 #trainer h3{margin:0 0 6px;font-size:18px}
@@ -132,6 +143,10 @@ footer{border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area
 #trainer .fb{min-height:24px;font-size:17px}
 body.hide #score svg{opacity:.06}
 #lessons .row.next{background:#f4f1ea;border-radius:10px;padding-left:8px;padding-right:8px}
+#library .sheet{max-width:820px}
+#library input[type=search]{width:100%;box-sizing:border-box;margin:10px 0 0;height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;font-size:16px}
+#library .row .lv{color:var(--muted);font-size:13px;white-space:nowrap}
+#library .row .tag{font-size:12px;color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:1px 6px;margin-left:6px;vertical-align:middle}
 .stars{font-size:15px;letter-spacing:2px;color:#9aa3b2;white-space:nowrap}
 .stars b{color:var(--accent);font-weight:400}
 .w.on,.b.on{background:var(--accent)}
@@ -151,6 +166,7 @@ body.hide #score svg{opacity:.06}
   <div class="tempo"><button id="slower" aria-label="Slower">−</button><b id="bpmv">100</b><small>bpm</small><button id="faster" aria-label="Faster">+</button></div>
   <span class="grow"></span>
   <button id="lessonsbtn">Lessons</button>
+  <button id="librarybtn">Library</button>
   <button id="progress">Progress</button>
   <button id="midi"><i></i><span>Connect piano</span></button>
   <button id="more" aria-label="More settings" aria-expanded="false">⋯</button>
@@ -177,6 +193,13 @@ body.hide #score svg{opacity:.06}
   <div class="top"><h2>Lessons</h2><span class="muted" id="lversion" style="font-size:13px"></span><button id="lclose">Close</button></div>
   <p class="muted">The levels and their parts (technique, pieces, ear tests and sight reading) follow the <a href="https://www.rcmusic.com/syllabi" target="_blank" rel="noopener">RCM Piano Syllabus</a> (2022 edition), from Preparatory A to Level 6. Technique and pieces have three steps: <b>listen</b>, <b>Wait for me</b>, then <b>Play along</b> at the target tempo. Finger numbers: 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger.</p>
   <div id="llist"></div>
+</div></div>
+<div id="library" hidden role="dialog" aria-modal="true" aria-label="Library"><div class="sheet">
+  <div class="top"><h2>Library</h2><label class="btn">Add a score<input id="libfile" type="file" accept=".musicxml,.xml,.mxl" hidden></label><button id="libclose">Close</button></div>
+  <p class="muted">Practise a piece as a whole, from the first bar to the last, without the lesson steps. Choose Listen, Play along or Wait for me, the hands and the tempo as usual; your progress is saved for each piece. Add your own MusicXML scores (.musicxml, .xml, .mxl) and they stay in <b>My scores</b> on this device.</p>
+  <input id="libsearch" type="search" placeholder="Search by title or composer" aria-label="Search the library">
+  <div id="libmine"></div>
+  <div id="libcourse"></div>
 </div></div>
 <div id="prog" hidden role="dialog" aria-modal="true" aria-labelledby="ptitle"><div class="sheet">
   <div class="top"><h2 id="ptitle">Progress</h2><button id="pclose">Close</button></div>
@@ -911,6 +934,85 @@ async function loadScore(data, name) {
   }
 }
 
+/* ---------- library: any score as a whole piece, outside the lesson steps ---------- */
+// "My scores" (files the learner opened) live in IndexedDB: they can be larger than localStorage allows.
+const idb = {
+  db: null,
+  open() {
+    return this.db ||= new Promise((res, rej) => {
+      if (!window.indexedDB) return rej(new Error('no indexedDB'));
+      const q = indexedDB.open('pianoreader', 1);
+      q.onupgradeneeded = () => q.result.createObjectStore('scores', {keyPath: 'id'});
+      q.onsuccess = () => res(q.result); q.onerror = () => rej(q.error);
+    });
+  },
+  async run(mode, fn) {
+    const db = await this.open();
+    return new Promise((res, rej) => { const t = db.transaction('scores', mode), r = fn(t.objectStore('scores')); t.oncomplete = () => res(r.result); t.onerror = () => rej(t.error); });
+  },
+  all() { return this.guard(this.run('readonly', st => st.getAll()), []); },
+  get(id) { return this.guard(this.run('readonly', st => st.get(id)), null); },
+  guard(p, fallback) { return Promise.race([p.catch(() => fallback), new Promise(r => setTimeout(() => r(fallback), 4000))]); },   // never block the window on storage
+  put(rec) { return this.run('readwrite', st => st.put(rec)); },
+  del(id) { return this.run('readwrite', st => st.delete(id)); },
+};
+async function addMine(file, data) {      // keep a score the learner opened (once per file); returns its id
+  try {
+    const all = await idb.all(), same = all.find(r => r.file === file && r.data.length === data.length);
+    if (same) return same.id;
+    const id = 'u' + Date.now();
+    await idb.put({id, file, name: title || file.replace(/\.[^.]+$/, ''), data, added: Date.now()});
+    return id;
+  } catch { return null; }
+}
+async function openWhole(src) {           // src: {course: lesson id} or {mine: id}: the whole score, no lesson steps
+  leaveTrainer();
+  let xml, name, bpm = 0;
+  if (src.course) {
+    const c = await getCourse(), L = c.lessons.find(l => l.id === src.course); if (!L?.file) return false;
+    xml = await fetch('lessons/' + L.file).then(r => { if (!r.ok) throw new Error(r.status); return r.text(); }); name = L.title; bpm = L.bpm;
+  } else {
+    const rec = await idb.get(src.mine); if (!rec) return false;
+    xml = rec.data; name = rec.name;
+  }
+  if (!await loadScore(xml, name)) return false;
+  lesson = null; showLesson(); store.set('score', src);
+  if (bpm && !store.get('tempo:' + title, 0)) setBpm(bpm, false);
+  S.loop = $('loop').checked = false; save();
+  for (const id of ['library', 'lessons', 'panel', 'card']) $(id).hidden = true;
+  info(); return true;
+}
+async function openLibrary() {
+  const c = await getCourse(), mine = await idb.all(), q = $('libsearch').value.trim().toLowerCase();
+  const plain = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();    // "hassler" finds "Hässler"
+  const hit = (t, by) => !q || plain(t + ' ' + by).includes(plain(q));
+  const row = (t, sub, actions) => {
+    const r = document.createElement('div'); r.className = 'row';
+    r.innerHTML = '<span class="t"><b></b><small></small></span>';
+    r.querySelector('b').textContent = t; r.querySelector('small').textContent = sub;
+    actions.forEach(a => r.append(a)); return r;
+  };
+  const btn = (label, fn, cls) => { const b = document.createElement('button'); b.textContent = label; if (cls) b.className = cls; b.onclick = fn; return b; };
+  const fail = () => { $('status').textContent = 'Could not open this score. Check the internet connection.'; };
+  const m = $('libmine'); m.innerHTML = '';
+  const own = mine.filter(r => hit(r.name, r.file)).sort((a, b) => b.added - a.added);
+  m.insertAdjacentHTML('beforeend', `<h3>My scores · ${mine.length}</h3>`);
+  if (!mine.length) m.insertAdjacentHTML('beforeend', '<p class="muted">Nothing here yet. Choose <b>Add a score</b> to open a MusicXML file; it is kept on this device.</p>');
+  for (const r of own) {
+    const del = btn('Remove', () => { if (!del.dataset.armed) { del.dataset.armed = 1; del.textContent = 'Tap again'; return; } idb.del(r.id).then(openLibrary); });
+    m.append(row(r.name, r.file, [btn('Practise', () => openWhole({mine: r.id}).catch(fail), 'primary'), del]));
+  }
+  const k = $('libcourse'); k.innerHTML = '';
+  c.levels.forEach((lv, li) => {
+    const ps = c.lessons.filter(L => L.level === li && L.kind === 'piece' && L.file && hit(L.title, L.composer || ''));
+    if (!ps.length) return;
+    k.insertAdjacentHTML('beforeend', `<h3>${lv} · ${ps.length} piece${ps.length > 1 ? 's' : ''}</h3>`);
+    for (const L of ps) k.append(row(L.title, `${L.composer || 'Traditional'} · ${{right: 'right hand', left: 'left hand', both: 'both hands'}[L.hands]}`, [btn('Practise', () => openWhole({course: L.id}).catch(fail))]));
+  });
+  if (q && !own.length && !k.children.length) k.innerHTML = '<p class="muted">No piece matches your search.</p>';
+  $('card').hidden = true; $('prog').hidden = true; $('lessons').hidden = true; $('library').hidden = false;
+}
+
 /* ---------- lessons (levels and parts follow the RCM Piano Syllabus, 2022 edition) ---------- */
 let course = null, lesson = null;
 const lessonsDone = () => store.get('lessons', null) || {};
@@ -922,6 +1024,7 @@ async function getCourse() {
 }
 function setSeg(id, k, v) { S[k] = v; save(); $(id).querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === v)); dimHands(); }
 function enterLesson(L) {
+  $('library').hidden = true;
   lesson = L; store.set('score', {lesson: L.id});
   $('lessons').hidden = true; $('panel').hidden = true; $('card').hidden = true; $('lesson').classList.remove('min');
 }
@@ -1037,7 +1140,7 @@ async function openLessons() {
       row.append(b); list.append(row);
     }
   });
-  $('card').hidden = true; $('prog').hidden = true; $('lessons').hidden = false;
+  $('card').hidden = true; $('prog').hidden = true; $('library').hidden = true; $('lessons').hidden = false;
   $('lversion').textContent = `${c.lessons.length} lessons · ${$('version').textContent}`;
   list.querySelector('.row.next')?.scrollIntoView({block: 'center'});   // show where you are
 }
@@ -1531,15 +1634,21 @@ function zoom(d) {
 }
 $('zin').onclick = () => zoom(0.15); $('zout').onclick = () => zoom(-0.15);
 $('sample').onclick = () => { leaveTrainer(); lesson = null; showLesson(); store.set('score', null); loadScore(SAMPLE); $('panel').hidden = true; };
-$('file').onchange = e => {
+function openFile(e) {                   // Open score / Add a score: show the file and keep it in My scores
   const f = e.target.files[0]; if (!f) return;
   const r = new FileReader();
   r.onload = async () => {
-    if (await loadScore(r.result, f.name.replace(/\.[^.]+$/, ''))) { leaveTrainer(); lesson = null; showLesson(); store.set('score', {name: f.name, data: r.result}); $('panel').hidden = true; }
+    if (await loadScore(r.result, f.name.replace(/\.[^.]+$/, ''))) {
+      leaveTrainer(); lesson = null; showLesson();
+      const id = await addMine(f.name, r.result);
+      store.set('score', id ? {mine: id} : {name: f.name, data: r.result});
+      $('panel').hidden = true; $('library').hidden = true;
+    }
   };
   /\.mxl$/i.test(f.name) ? r.readAsBinaryString(f) : r.readAsText(f);
   e.target.value = '';
-};
+}
+$('file').onchange = openFile; $('libfile').onchange = openFile;
 $('kb').addEventListener('pointerdown', e => { const m = e.target.dataset.m; if (m) { e.preventDefault(); press(+m, true, e.timeStamp); } });
 $('midi').onclick = () => connectMidi(false);
 let resizeT = 0;
@@ -1553,6 +1662,10 @@ $('showfing').onchange = e => {
   const was = playing; pause(false); osmd.EngravingRules.RenderFingerings = S.fingers; osmd.render(); gotoStep(pos, true); drawHeat(); if (was) play(true);
 };
 $('lessonsbtn').onclick = openLessons;
+$('librarybtn').onclick = () => openLibrary().catch(() => {});
+$('libclose').onclick = () => { $('library').hidden = true; };
+$('library').onclick = e => { if (e.target === $('library')) $('library').hidden = true; };
+$('libsearch').oninput = () => openLibrary().catch(() => {});
 $('lclose').onclick = () => { $('lessons').hidden = true; };
 $('lessons').onclick = e => { if (e.target === $('lessons')) $('lessons').hidden = true; };
 $('progress').onclick = openProgress;
@@ -1568,7 +1681,7 @@ $('preset').onclick = e => {            // two taps, so progress is not wiped by
 osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay('score', {autoResize: true, autoBeam: true, backend: 'svg', drawTitle: true, drawPartNames: false, followCursor: false});
 window._pr = {get steps() { return steps; }, get pos() { return pos; }, get playing() { return playing; }, press};
 const saved = store.get('score', null);
-(saved?.lesson ? startLesson(saved.lesson).catch(() => false) : saved?.data ? loadScore(saved.data, saved.name.replace(/\.[^.]+$/, '')) : Promise.resolve(false))
+(saved?.lesson ? startLesson(saved.lesson).catch(() => false) : saved?.course || saved?.mine ? openWhole(saved).catch(() => false) : saved?.data ? loadScore(saved.data, saved.name.replace(/\.[^.]+$/, '')) : Promise.resolve(false))
   .then(ok => ok || loadScore(SAMPLE).then(() => { if (!store.get('lessons', null)) openLessons().catch(() => {}); }));
 keepAwake(); autoConnect();
 </script>

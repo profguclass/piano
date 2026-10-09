@@ -72,4 +72,33 @@ MUSESCORE = [
     score_file('passacaglia', 'passacaglia.mxl', 7, 'Passacaglia (Handel-Halvorsen), easy version', 'Georg Friedrich Handel / Johan Halvorsen', 90, 60, MS,
                'A long, brilliant theme-and-variations piece in an easy version. The same harmonic pattern returns again and again with new figures.',
                ['Learn it a few bars at a time with Loop.', 'Notice the repeated pattern underneath.']),
+    score_file('ode-kids', 'ode-kids.mxl', 2, 'Ode to Joy (piano for kids)', 'Ludwig van Beethoven', 96, 60, MS,
+               'Another easy setting of the Ode to Joy melody, for hands together.',
+               ['Practise each hand alone first.', 'Keep the left hand steady while the right hand sings.']),
+    score_file('mozart-minuet-k2', 'mozart-minuet-k2.mxl', 3, 'Minuet in F, K. 2', 'Wolfgang Amadeus Mozart', 100, 60, MS,
+               'One of the first pieces Mozart wrote, at the age of five. A graceful minuet in F major (one flat, B♭).',
+               ['Play it lightly and with a gentle lilt on beat 1.', 'Every B is B♭ in this key.']),
+    score_file('first-noel', 'first-noel.mxl', 3, 'The First Noel', 'Traditional (English carol)', 90, 60, MS,
+               'The Christmas carol with its words under the melody, in 3/4, with a simple left-hand accompaniment.',
+               ['Sing the words as you play to feel the phrases.', 'Count three beats in each bar.']),
+    score_file('canon-in-c', 'canon-in-c.mxl', 5, 'Canon in C', 'Johann Pachelbel (arr. Iori Yagami)', 72, 50, MS,
+               "Pachelbel's Canon in the key of C: the same eight-chord pattern in the bass while the right hand builds up the melody.",
+               ['Listen for the bass pattern that repeats all the time.', 'Learn a few bars at a time with Repeat bars.']),
+    score_file('chopin-nocturne-9-2', 'chopin-nocturne-9-2.mxl', 5, 'Nocturne in E-flat, Op. 9 No. 2 (easy)', 'Frédéric Chopin', 60, 40, MS,
+               'The most famous nocturne in an easy piano version: a singing right hand over a flowing left hand, in E♭ major (three flats).',
+               ['Three flats: B♭, E♭ and A♭.', 'Play the melody like a singer, with a flowing left hand underneath.']),
+    score_file('mozart-symphony-40', 'mozart-symphony-40.mxl', 5, 'Symphony No. 40, theme (easy piano)', 'Wolfgang Amadeus Mozart', 100, 60, MS,
+               "The restless opening theme of Mozart's great G minor symphony, in an easy piano arrangement (two flats).",
+               ['Two flats: B♭ and E♭.', 'Keep the left-hand chords light and steady.']),
+    score_file('chopin-prelude-7', 'chopin-prelude-7.mxl', 6, 'Prelude in A major, Op. 28 No. 7', 'Frédéric Chopin', 66, 45, MS,
+               'A tiny gem of 16 bars in A major (three sharps): a dance-like melody in dotted rhythm.',
+               ['Three sharps: F♯, C♯ and G♯.', 'Play the dotted rhythms lightly and exactly.']),
 ]
+
+
+# Technical studies: Hanon's exercises 1-30, condensed (the first and the last bar of each exercise, each hand an octave apart).
+HANON = score_file('hanon-1-30', 'hanon-1-30.mxl', 4, 'Hanon exercises 1-30 (condensed)', 'Charles-Louis Hanon', 80, 50, MS,
+                   'The first and last bar of the "Virtuoso Pianist" exercises by Hanon, 1-30: the same finger patterns move up the keyboard. Both hands play together, an octave apart. Practise slowly and evenly, then speed up gradually.',
+                   ['Curve your fingers and keep the hand still: only the fingers move.', 'Start slowly with Wait for me, then build up the tempo.', 'Each bar of sixteenth notes should sound perfectly even.'])
+HANON['kind'] = 'technique'
+MUSESCORE.append(HANON)

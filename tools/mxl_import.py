@@ -70,6 +70,49 @@ def reduce_staves(root):
                 end = t
 
 
+M = {'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'A': 9, 'B': 11}
+
+
+def _midi(n):
+    p = n.find('pitch')
+    return (int(p.findtext('octave')) + 1) * 12 + M[p.findtext('step')] + int(p.findtext('alter') or 0)
+
+
+def voices_to_staves(root):
+    """A single staff that holds both hands as voice 1 (right) and voice 2 (left) becomes a piano grand staff;
+    each bar gets the clef that suits its notes."""
+    if any(int(s.text) > 1 for s in root.iter('staves')): return
+    voices = {n.findtext('voice') for n in root.iter('note') if n.find('pitch') is not None}
+    if not {'1', '2'} <= voices: return
+    last = {1: None, 2: None}
+    for part in root.findall('part'):
+        for m in part.findall('measure'):
+            low = {1: [], 2: []}
+            for n in m.findall('note'):
+                v = int(n.findtext('voice') or 1)
+                if v not in (1, 2): v = 2
+                if n.find('pitch') is not None: low[v].append(_midi(n))
+                st = n.find('staff')
+                if st is None:
+                    st = ET.Element('staff')
+                    idx = max([i for i, c in enumerate(n) if c.tag in ('voice', 'type', 'dot', 'accidental', 'time-modification', 'stem', 'notehead')] + [0])
+                    n.insert(idx + 1, st)
+                st.text = str(v)
+            attrs = m.find('attributes')
+            clefs = {v: ('G' if low[v] and min(low[v]) >= 60 else 'F') if low[v] else last[v] or 'F' for v in (1, 2)}
+            changed = [v for v in (1, 2) if clefs[v] != last[v]]
+            if changed:
+                if attrs is None:
+                    attrs = ET.Element('attributes'); m.insert(next((i for i, c in enumerate(m) if c.tag in ('note', 'backup', 'forward')), len(m)), attrs)
+                for c in attrs.findall('clef'): attrs.remove(c)
+                if last[1] is None:
+                    ET.SubElement(attrs, 'staves').text = '2'
+                for v in changed:
+                    c = ET.SubElement(attrs, 'clef', {'number': str(v)})
+                    ET.SubElement(c, 'sign').text = clefs[v]; ET.SubElement(c, 'line').text = '2' if clefs[v] == 'G' else '4'
+                last.update(clefs)
+
+
 def tidy(root, title, composer, rights):
     for tag in ('credit', 'defaults', 'movement-title', 'movement-number'):
         for el in root.findall(tag): root.remove(el)
@@ -93,5 +136,6 @@ def tidy(root, title, composer, rights):
 def convert_mxl(path, title, composer, rights):
     root = read_root(path)
     reduce_staves(root)
+    voices_to_staves(root)
     tidy(root, title, composer, rights)
     return '<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(root, encoding='unicode') + '\n'

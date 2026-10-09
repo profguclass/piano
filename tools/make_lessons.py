@@ -1041,6 +1041,8 @@ if __name__ == '__main__':
         with open(os.path.join(root, fname), 'w', encoding='utf-8', newline='\n') as f:
             f.write(xml)
         entry = {k: L[k] for k in ('id', 'level', 'kind', 'title', 'hands', 'bpm', 'wait', 'learn', 'tips')} | {'file': fname}
+        if 'composer' in L and 'src' not in L and 'mxl' not in L:
+            entry['composer'] = L['composer']
         if 'src' in L or 'mxl' in L:
             entry |= {'composer': L['composer'], 'license': L['license'], 'source': L['url']}
         course['lessons'].append(entry)

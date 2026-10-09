@@ -16,7 +16,7 @@ After that the app reconnects by itself.
 The notes the app plays (the other hand, Listen mode) then sound **on the piano itself**. To use the tablet speaker instead: ⋯ → *Sound from: Tablet*.
 
 ## Lessons
-Tap **Lessons** for a 161-lesson course. Its levels and the parts of each level follow the
+Tap **Lessons** for a 194-lesson course. Its levels and the parts of each level follow the
 [RCM Piano Syllabus, 2022 edition](https://www.rcmusic.com/syllabi) (with its September 2026 errata), from **Preparatory A** to **Level 6**:
 
 | | Technique | Pieces | Ear tests | Sight reading |
@@ -41,6 +41,9 @@ Tap **Lessons** for a 161-lesson course. Its levels and the parts of each level 
   traditional or public-domain arrangements — the syllabus's own repertoire books are not reproduced.
 
 Lesson scores are in [`lessons/`](lessons/) and are built by [`tools/make_lessons.py`](tools/make_lessons.py) (`python tools/make_lessons.py`).
+
+## Library: practise a piece as a whole
+Tap **Library** to practise any piece from the first bar to the last, outside the lesson steps. It lists every piece in the course (searchable by title or composer, grouped by level) and a **My scores** shelf: use **Add a score** (or **Open score**) to open your own MusicXML file (`.musicxml`, `.xml`, `.mxl`) and it stays on the device in the browser's own storage (IndexedDB), ready for next time. Listen, Play along, Wait for me, the hands, the tempo, Repeat bars and Progress all work as usual; the app returns to the piece you were practising when you reopen it.
 
 ## Classical repertoire and credits
 Besides the course's own arrangements, each level has classical pieces from the [Mutopia Project](https://www.mutopiaproject.org),
@@ -132,25 +135,33 @@ Built on [OpenSheetMusicDisplay](https://github.com/opensheetmusicdisplay/opensh
 All app code is in `index.html`.
 
 ## Free MusicXML scores
-These public-domain pieces were supplied as MusicXML by their arrangers (almost all on [MuseScore.com](https://musescore.com), where they are free to download) and are used as they are, with titles and credits added by [`tools/mxl_import.py`](tools/mxl_import.py); the files are in [`tools/sources/musicxml/`](tools/sources/musicxml/). Scores with extra empty staves are reduced to two.
+These public-domain pieces were supplied as MusicXML by their arrangers (almost all on [MuseScore.com](https://musescore.com), where they are free to download) and are used as they are, with titles and credits added by [`tools/mxl_import.py`](tools/mxl_import.py); the files are in [`tools/sources/musicxml/`](tools/sources/musicxml/). Scores with extra empty staves are reduced to two, and a single staff holding both hands (Hanon) becomes a piano grand staff.
 
 | Level | Piece | Composer | Source |
 |---|---|---|---|
 | Level 1 | Andante in G minor | Georg Philipp Telemann | Sao Mai Center for the Blind |
+| Level 1 | Ode to Joy (piano for kids) | Ludwig van Beethoven | [MuseScore](https://www.musescore.com/score/182061) |
 | Level 2 | Minuet in G (BWV Anh. 114), second edition | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://api.musescore.com/score/2086106) |
 | Level 2 | Minuet in G (BWV Anh. 114), third edition | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://musescore.com/classicman/scores/62312) |
 | Level 2 | Minuet in G minor (BWV Anh. 115), with fingering | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://api.musescore.com/score/2086136) |
 | Level 2 | Greensleeves (easy arrangement) | Traditional (English) | Sao Mai Center for the Blind |
+| Level 2 | Minuet in F, K. 2 | Wolfgang Amadeus Mozart | Sao Mai Center for the Blind |
+| Level 2 | The First Noel | Traditional (English carol) | [MuseScore](https://musescore.com/user/25721336/scores/4820621) |
+| Level 3 | Hanon exercises 1-30 (condensed) | Charles-Louis Hanon | MuseScore (CC0 / public domain) |
 | Level 3 | Canon in D (easy) | Johann Pachelbel | [MuseScore](https://musescore.com/score/1376056) |
 | Level 3 | Für Elise (beginner version) | Ludwig van Beethoven | [MuseScore](https://musescore.com/classicman/scores/33816) |
 | Level 3 | Swan Lake theme | Pyotr Ilyich Tchaikovsky | Sao Mai Center for the Blind |
 | Level 4 | Clair de lune (easy) | Claude Debussy | [MuseScore](https://musescore.com/user/31902283/scores/10568761) |
 | Level 4 | Symphony No. 5 (easy piano) | Ludwig van Beethoven | [MuseScore](https://musescore.com/user/29460332/scores/5869298) |
 | Level 4 | The Blue Danube | Johann Strauss II | [MuseScore](https://musescore.com/user/27824718/scores/4941073) |
+| Level 4 | Canon in C | Johann Pachelbel (arr. Iori Yagami) | [MuseScore](https://musescore.com/user/17067096/scores/4809537) |
+| Level 4 | Nocturne in E-flat, Op. 9 No. 2 (easy) | Frédéric Chopin | Sao Mai Center for the Blind |
+| Level 4 | Symphony No. 40, theme (easy piano) | Wolfgang Amadeus Mozart | Sao Mai Center for the Blind |
 | Level 5 | Gymnopédie No. 1 | Erik Satie | [MuseScore](https://musescore.com/user/19710/scores/4766391) |
 | Level 5 | The Swan (Le Cygne) | Camille Saint-Saëns | [MuseScore](https://musescore.com/user/27524722/scores/4901201) |
 | Level 5 | The Entertainer | Scott Joplin | [MuseScore](https://api.musescore.com/score/1352881) |
 | Level 5 | Waltz in A minor (B. 150) | Frédéric Chopin | [MuseScore](https://musescore.com/score/1749181) |
+| Level 5 | Prelude in A major, Op. 28 No. 7 | Frédéric Chopin | [MuseScore](https://musescore.com/user/19710/scores/60121) |
 | Level 6 | Prelude in E minor, Op. 28 No. 4 | Frédéric Chopin | Sao Mai Center for the Blind |
 | Level 6 | Prelude in C major (BWV 846) | Johann Sebastian Bach | [MuseScore](https://musescore.com/user/101554/scores/117279) |
 | Level 6 | Prelude in C minor (BWV 999) | Johann Sebastian Bach | [MuseScore](https://musescore.com/score/4526) |
