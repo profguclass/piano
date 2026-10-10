@@ -9,9 +9,9 @@ SAO = 'Public domain music; free MusicXML from the Sao Mai Center for the Blind'
 PETZOLD = 'Christian Petzold (Notebook for Anna Magdalena Bach)'
 
 
-def score_file(id, mxl, level, title, composer, bpm, wait, license, learn, tips):
-    return dict(id=id, mxl=mxl, level=level, kind='piece', title=title, composer=composer, hands='both', bpm=bpm, wait=wait,
-                license=license, learn=learn, tips=tips)
+def score_file(id, mxl, level, title, composer, bpm, wait, license, learn, tips, hands='both', mode='auto'):
+    return dict(id=id, mxl=mxl, level=level, kind='piece', title=title, composer=composer, hands=hands, bpm=bpm, wait=wait,
+                license=license, learn=learn, tips=tips, mode=mode)
 
 
 MUSESCORE = [
@@ -102,3 +102,56 @@ HANON = score_file('hanon-1-30', 'hanon-1-30.mxl', 4, 'Hanon exercises 1-30 (con
                    ['Curve your fingers and keep the hand still: only the fingers move.', 'Start slowly with Wait for me, then build up the tempo.', 'Each bar of sixteenth notes should sound perfectly even.'])
 HANON['kind'] = 'technique'
 MUSESCORE.append(HANON)
+
+
+# ---------- more free scores: chants, a folk song and Chopin nocturnes ----------
+FREE = 'Public domain music; free MusicXML score'
+CPDL = 'Public domain music; edition freely distributable (Choral Public Domain Library, cpdl.org)'
+CPDL_BY = "Public domain music; edition CC BY 4.0, (c) 2019 Freshman Chorus of St. John's College of Annapolis, via the Choral Public Domain Library (cpdl.org)"
+CHANT = 'Gregorian chant'
+CHANT_TIPS = ['Chant has no strict beat: let the notes flow in a gentle, even pace.', 'Play legato, as if singing one long breath.']
+
+MUSESCORE += [
+    score_file('regina-coeli', 'regina-coeli.mxl', 1, 'Regina caeli (Gregorian chant)', CHANT, 60, 45, FREE,
+               'The Easter antiphon "Regina caeli, laetare, alleluia": a short chant line for the right hand, with the words under the notes.',
+               CHANT_TIPS, hands='right', mode='melody'),
+    score_file('veni-creator', 'veni-creator.mxl', 1, 'Veni Creator Spiritus (Gregorian chant)', 'Gregorian chant (words: Rabanus Maurus)', 60, 45, FREE,
+               'The Pentecost hymn in its chant melody (mode 7, Mixolydian): a flowing line over a small range, right hand alone.',
+               CHANT_TIPS, hands='right', mode='melody'),
+    score_file('ave-verum', 'ave-verum.mxl', 2, 'Ave verum corpus (Gregorian chant)', CHANT, 65, 45, FREE,
+               'The Eucharistic hymn as a chant melody, for the right hand, with the Latin words under the notes.',
+               CHANT_TIPS, hands='right', mode='melody'),
+    score_file('veni-sancte', 'veni-sancte.mxl', 2, 'Veni Sancte Spiritus (Gregorian chant)', 'Stephen Langton (d. 1228), chant melody', 60, 45, CPDL_BY,
+               'The "Golden Sequence" of Pentecost in the Dorian mode: a long right-hand line, several notes to a syllable.',
+               CHANT_TIPS, hands='right', mode='melody'),
+    score_file('our-father', 'our-father.mxl', 2, 'Our Father (Gregorian chant, left hand)', 'Anonymous chant', 60, 45, CPDL,
+               'A chant in A major (three sharps) for the left hand alone, in the bass clef: a good way to read the lower staff.',
+               ['Three sharps: F♯, C♯ and G♯.', 'Left hand: the thumb (1) is on the highest note.'] + CHANT_TIPS[:1], hands='left', mode='melody'),
+    score_file('adoro-te', 'adoro-te.mxl', 2, 'Adoro te devote (Gregorian chant)', 'Gregorian chant (words: Thomas Aquinas)', 70, 50, FREE,
+               'The hymn of St Thomas Aquinas as a chant: a longer right-hand melody with the Latin words, in long bars of eight beats.',
+               ['Count in quarter notes; the bars are long (8 beats).'] + CHANT_TIPS, hands='right', mode='melody'),
+    score_file('arirang', 'arirang.mxl', 3, 'Arirang (Korean folk song, easy piano)', 'Traditional Korean (arr. Eugene Sia)', 80, 55, FREE,
+               'The best-loved Korean folk song, in 3/4 with a gentle left-hand accompaniment and the words under the melody.',
+               ['One sharp: F♯.', 'Sing "Arirang, arirang, arariyo" as you play to feel the phrases.']),
+    score_file('sanctus', 'sanctus.mxl', 4, 'Sanctus (Kyriale XVII, Gregorian chant)', 'Gregorian chant', 80, 55, FREE,
+               'The Sanctus of Mass XVII for the right hand in E major (four sharps), with the Latin words under the notes.',
+               ['Four sharps: F♯, C♯, G♯ and D♯.', 'Chant has no strict beat: keep the notes flowing evenly.'], hands='right'),
+    score_file('chopin-nocturne-9-2-pedal', 'chopin-nocturne-9-2-pedal.mxl', 5, 'Nocturne in E-flat, Op. 9 No. 2 (easy, with pedal marks)', 'Frédéric Chopin', 60, 40, FREE,
+               'Another easy arrangement of the famous nocturne, with the dynamics and the pedal marks written in (Ped. and ✱ under the bass staff).',
+               ['Press the pedal where "Ped." is shown and lift at ✱.', 'Three flats: B♭, E♭ and A♭.']),
+    score_file('chopin-nocturne-9-2-fuller', 'chopin-nocturne-9-2-fuller.mxl', 7, 'Nocturne in E-flat, Op. 9 No. 2 (fuller version)', 'Frédéric Chopin', 60, 40, FREE,
+               'A fuller, easier-than-the-original version of the whole nocturne: 65 bars with the ornamented return of the tune.',
+               ['Practise the left-hand broken chords alone until they are smooth.', 'Let the melody sing above them.']),
+    score_file('chopin-nocturne-15', 'chopin-nocturne-15.mxl', 6, 'Nocturne in E minor (file title: Nocturne No. 15)', 'Frédéric Chopin', 60, 40, FREE,
+               'A slow, plaintive nocturne in E minor (one sharp): a simple melody over a repeating left-hand pattern.',
+               ['One sharp: F♯.', 'Keep the left-hand chords soft and even.']),
+    score_file('chopin-nocturne-20-melody', 'chopin-nocturne-20-melody.mxl', 6, 'Nocturne No. 20 in C-sharp minor, melody', 'Frédéric Chopin', 65, 45, FREE,
+               'The melody of the posthumous nocturne ("Lento con gran espressione") for the right hand alone, with its dynamics, runs and ornaments.',
+               ['Practise the fast runs slowly in Wait for me first.', 'Shape the long phrases with the dynamics in the score.'], hands='right', mode='melody'),
+    score_file('chopin-nocturne-20-reminiscence', 'chopin-nocturne-20-reminiscence.mxl', 7, 'Nocturne No. 20, "Reminiscence" (arranged in D minor)', 'Frédéric Chopin', 50, 36, FREE,
+               'The posthumous nocturne for two hands, in a transposition to D minor (one flat), with its dynamics.',
+               ['One flat: B♭.', 'Learn each hand alone before putting them together.']),
+    score_file('chopin-nocturne-13', 'chopin-nocturne-13.mxl', 7, 'Nocturne in C minor, Op. 48 No. 1', 'Frédéric Chopin (arr. G. Lees)', 52, 36, FREE,
+               'A dramatic nocturne in C minor (three flats) as a lead sheet: the melody, with chords in a few places, and chord symbols above the staff. The notes from middle C up are for the right hand, the lower ones for the left.',
+               ['Three flats: B♭, E♭ and A♭.', 'Add your own left-hand chords from the chord symbols once the melody is secure.'], mode='pitch'),
+]

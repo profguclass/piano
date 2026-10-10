@@ -17,6 +17,8 @@ from midi_to_musicxml import convert
 from repertoire import REPERTOIRE
 from repertoire_files import MUSESCORE
 from mxl_import import convert_mxl, read_root
+from levels import MOVES
+import difficulty
 from xml.sax.saxutils import escape
 
 DIV = 4                                   # divisions per quarter note
@@ -1004,7 +1006,8 @@ MUSICIANSHIP = [
 KIND_ORDER = {'technique': 0, 'piece': 1, 'ear': 2, 'sight': 3}
 
 if __name__ == '__main__':
-    root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'lessons')
+    here = os.path.dirname(os.path.abspath(__file__))
+    root = os.path.join(here, '..', 'lessons')
     os.makedirs(root, exist_ok=True)
     for old in os.listdir(root):                           # files are renumbered on every build
         if old.endswith('.musicxml'):
@@ -1017,8 +1020,26 @@ if __name__ == '__main__':
     scored += TECHNIQUE
     scored += REPERTOIRE
     scored += MUSESCORE
+    for L in scored:                                       # level decisions made in review (tools/levels.py)
+        if L['id'] in MOVES: L['level'] = MOVES[L['id']][0]
+    xmls = {}
+    for L in scored:                                       # every score is built first, so pieces can be ordered by difficulty
+        if 'mxl' in L:                    # a free MusicXML score, used as it is (tools/sources/musicxml/)
+            src = os.path.join(here, 'sources', 'musicxml', L['mxl'])
+            L['url'] = (read_root(src).findtext('identification/source') or '').replace('http://', 'https://')
+            xml = convert_mxl(src, L['title'], L['composer'], L['license'] + (f". Source: {L['url']}" if L['url'] else ''), L.get('mode', 'auto'))
+        elif 'src' in L:                  # a classical piece converted from its Mutopia MIDI file
+            src = os.path.join(here, 'sources', 'mutopia', L['src'])
+            xml, info = convert(src, L['title'], L['composer'], pickup=L['pickup'],
+                                rights=f"{L['license']}. Edition: Mutopia Project, {L['url']}")
+        else:
+            xml = score(L['title'], L['rh'], L['lh'], L['bpm'], time=L.get('time', (4, 4)), fifths=L.get('fifths', 0),
+                        composer=L.get('composer', 'Traditional'), pickup=L.get('pickup', False))
+        xmls[L['id']] = xml
+        L['hard'] = difficulty.score(difficulty.metrics_xml(xml, L['bpm'])) if L['kind'] == 'piece' else 0
     allx = scored + MUSICIANSHIP
-    allx.sort(key=lambda L: (L['level'], KIND_ORDER[L['kind']]))  # stable: keeps the order written above
+    # within a level: technique, pieces (easiest first), ear tests, sight reading
+    allx.sort(key=lambda L: (L['level'], KIND_ORDER[L['kind']], L.get('hard', 0)))
     course = {'syllabus': 'Structure follows the RCM Piano Syllabus, 2022 edition (rcmusic.com/syllabi)', 'levels': LEVELS, 'lessons': []}
     n = 0
     for L in allx:
@@ -1027,19 +1048,8 @@ if __name__ == '__main__':
             continue
         n += 1
         fname = f'{n:02d}-{L["id"]}.musicxml'
-        if 'mxl' in L:                    # a free MusicXML score, used as it is (tools/sources/musicxml/)
-            src = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'sources', 'musicxml', L['mxl'])
-            L['url'] = (read_root(src).findtext('identification/source') or '').replace('http://', 'https://')
-            xml = convert_mxl(src, L['title'], L['composer'], L['license'] + (f". Source: {L['url']}" if L['url'] else ''))
-        elif 'src' in L:                  # a classical piece converted from its Mutopia MIDI file
-            src = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'sources', 'mutopia', L['src'])
-            xml, info = convert(src, L['title'], L['composer'], pickup=L['pickup'],
-                                rights=f"{L['license']}. Edition: Mutopia Project, {L['url']}")
-        else:
-            xml = score(L['title'], L['rh'], L['lh'], L['bpm'], time=L.get('time', (4, 4)), fifths=L.get('fifths', 0),
-                        composer=L.get('composer', 'Traditional'), pickup=L.get('pickup', False))
         with open(os.path.join(root, fname), 'w', encoding='utf-8', newline='\n') as f:
-            f.write(xml)
+            f.write(xmls[L['id']])
         entry = {k: L[k] for k in ('id', 'level', 'kind', 'title', 'hands', 'bpm', 'wait', 'learn', 'tips')} | {'file': fname}
         if 'composer' in L and 'src' not in L and 'mxl' not in L:
             entry['composer'] = L['composer']

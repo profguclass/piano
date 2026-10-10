@@ -16,7 +16,7 @@ After that the app reconnects by itself.
 The notes the app plays (the other hand, Listen mode) then sound **on the piano itself**. To use the tablet speaker instead: ⋯ → *Sound from: Tablet*.
 
 ## Lessons
-Tap **Lessons** for a 194-lesson course. Its levels and the parts of each level follow the
+Tap **Lessons** for a 208-lesson course. Its levels and the parts of each level follow the
 [RCM Piano Syllabus, 2022 edition](https://www.rcmusic.com/syllabi) (with its September 2026 errata), from **Preparatory A** to **Level 6**:
 
 | | Technique | Pieces | Ear tests | Sight reading |
@@ -30,6 +30,7 @@ Tap **Lessons** for a 194-lesson course. Its levels and the parts of each level 
 | **Level 5** | scales hands together A, E, F, A♭; A, E, F minor; formula patterns A major / A minor; chromatic hands together from A and F; tonic triads with I–V–I; dominant 7th chords; arpeggios | Burgmüller Op. 100 Nos. 4–8, 10, 11; Schumann *Little Study*; Tchaikovsky *March of the Wooden Soldiers*; Bach *Polonaise* Anh. 117b | intervals (melodic then harmonic, up to the octave), chords (incl. dominant 7th), progressions I–IV–I / I–V–I, playback up to 8 notes | rhythm of a melody; eight-bar passage hands together, or a lead sheet |
 | **Level 6** | scales hands together G, E, B, D♭; G, E, B, C♯ minor; formula patterns E major / E minor; chromatic two octaves from E and D♭; tonic triads with I–V–I; dominant and diminished 7th chords; tonic, dominant 7th and diminished 7th arpeggios | Burgmüller Op. 100 Nos. 9, 12, 13, 15–18; Schumann *May, Dear May*, *First Loss*, *Reaper's Song*, *Of Foreign Lands and Peoples*; Bach Little Preludes BWV 928, 924, Prelude BWV 999 | intervals from minor 2nd to octave, chords (incl. diminished 7th), progressions in major and minor, playback over the whole scale | rhythm of a melody; eight-bar passage (up to three sharps/flats), or a lead sheet |
 
+- **Order and levels**: inside a level the pieces run from the easiest to the hardest, by an estimate made from the notes themselves (notes per second at the target tempo, independence of the hands, key signature, chromatic notes, stretch, chords, short note values, length: [`tools/difficulty.py`](tools/difficulty.py)). Pieces that the estimate and a look at the music place in a different level from their first one are listed with the reason in [`tools/levels.py`](tools/levels.py).
 - **Technique and pieces**: three steps — **Listen**, **Wait for me**, **Play along** at the target tempo (90% correct, 70% on time).
   Technique tempos are the syllabus metronome marks. In the exam technique is played from memory: practise with ⋯ → *Hide the notes*.
 - The formula pattern is one common form (similar motion up, contrary out and in, similar down); check the exact shape with your syllabus book.
@@ -146,34 +147,48 @@ Built on [OpenSheetMusicDisplay](https://github.com/opensheetmusicdisplay/opensh
 All app code is in `index.html`.
 
 ## Free MusicXML scores
-These public-domain pieces were supplied as MusicXML by their arrangers (almost all on [MuseScore.com](https://musescore.com), where they are free to download) and are used as they are, with titles and credits added by [`tools/mxl_import.py`](tools/mxl_import.py); the files are in [`tools/sources/musicxml/`](tools/sources/musicxml/). Scores with extra empty staves are reduced to two, and a single staff holding both hands (Hanon) becomes a piano grand staff.
+These public-domain pieces were supplied as MusicXML by their arrangers (mostly on [MuseScore.com](https://musescore.com), where they are free to download) and are used as they are, with titles and credits added by [`tools/mxl_import.py`](tools/mxl_import.py); the files are in [`tools/sources/musicxml/`](tools/sources/musicxml/). Scores with extra empty staves are reduced to two, a single staff holding both hands (Hanon) becomes a piano grand staff, a single melodic line (the chants) gets an empty second staff, and a staff of chord stacks (Chopin Op. 48 No. 1) is split between the hands at middle C. *Veni Sancte Spiritus* is licensed CC BY 4.0 by its editors (see the table); *Our Father* comes from the Choral Public Domain Library, whose edition may be freely distributed.
 
 | Level | Piece | Composer | Source |
 |---|---|---|---|
-| Level 1 | Andante in G minor | Georg Philipp Telemann | Sao Mai Center for the Blind |
+| Preparatory B | Veni Creator Spiritus (Gregorian chant) | Gregorian chant (words: Rabanus Maurus) | free MusicXML |
+| Preparatory B | Regina caeli (Gregorian chant) | Gregorian chant | free MusicXML |
+| Level 1 | Veni Sancte Spiritus (Gregorian chant) | Stephen Langton (d. 1228), chant melody | Choral Public Domain Library (CC BY 4.0, St. John's College Freshman Chorus) |
+| Level 1 | Adoro te devote (Gregorian chant) | Gregorian chant (words: Thomas Aquinas) | free MusicXML |
+| Level 1 | Ave verum corpus (Gregorian chant) | Gregorian chant | free MusicXML |
+| Level 1 | Our Father (Gregorian chant, left hand) | Anonymous chant | Choral Public Domain Library (freely distributable) |
 | Level 1 | Ode to Joy (piano for kids) | Ludwig van Beethoven | [MuseScore](https://www.musescore.com/score/182061) |
-| Level 2 | Minuet in G (BWV Anh. 114), second edition | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://api.musescore.com/score/2086106) |
-| Level 2 | Minuet in G (BWV Anh. 114), third edition | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://musescore.com/classicman/scores/62312) |
-| Level 2 | Minuet in G minor (BWV Anh. 115), with fingering | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://api.musescore.com/score/2086136) |
-| Level 2 | Greensleeves (easy arrangement) | Traditional (English) | Sao Mai Center for the Blind |
-| Level 2 | Minuet in F, K. 2 | Wolfgang Amadeus Mozart | Sao Mai Center for the Blind |
+| Level 2 | Sanctus (Kyriale XVII, Gregorian chant) | Gregorian chant | free MusicXML |
+| Level 2 | Arirang (Korean folk song, easy piano) | Traditional Korean (arr. Eugene Sia) | free MusicXML |
+| Level 2 | Greensleeves (easy arrangement) | Traditional (English) | free MusicXML |
 | Level 2 | The First Noel | Traditional (English carol) | [MuseScore](https://musescore.com/user/25721336/scores/4820621) |
+| Level 2 | Minuet in F, K. 2 | Wolfgang Amadeus Mozart | free MusicXML |
+| Level 2 | Andante in G minor | Georg Philipp Telemann | Sao Mai Center for the Blind |
 | Level 3 | Hanon exercises 1-30 (condensed) | Charles-Louis Hanon | MuseScore (CC0 / public domain) |
+| Level 3 | Swan Lake theme | Pyotr Ilyich Tchaikovsky | free MusicXML |
+| Level 3 | Minuet in G (BWV Anh. 114), second edition | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://api.musescore.com/score/2086106) |
+| Level 3 | Minuet in G (BWV Anh. 114), third edition | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://musescore.com/classicman/scores/62312) |
+| Level 3 | Minuet in G minor (BWV Anh. 115), with fingering | Christian Petzold (Notebook for Anna Magdalena Bach) | [MuseScore](https://api.musescore.com/score/2086136) |
 | Level 3 | Canon in D (easy) | Johann Pachelbel | [MuseScore](https://musescore.com/score/1376056) |
-| Level 3 | Für Elise (beginner version) | Ludwig van Beethoven | [MuseScore](https://musescore.com/classicman/scores/33816) |
-| Level 3 | Swan Lake theme | Pyotr Ilyich Tchaikovsky | Sao Mai Center for the Blind |
 | Level 4 | Clair de lune (easy) | Claude Debussy | [MuseScore](https://musescore.com/user/31902283/scores/10568761) |
-| Level 4 | Symphony No. 5 (easy piano) | Ludwig van Beethoven | [MuseScore](https://musescore.com/user/29460332/scores/5869298) |
+| Level 4 | Nocturne in E-flat, Op. 9 No. 2 (easy, with pedal marks) | Frédéric Chopin | free MusicXML |
 | Level 4 | The Blue Danube | Johann Strauss II | [MuseScore](https://musescore.com/user/27824718/scores/4941073) |
 | Level 4 | Canon in C | Johann Pachelbel (arr. Iori Yagami) | [MuseScore](https://musescore.com/user/17067096/scores/4809537) |
-| Level 4 | Nocturne in E-flat, Op. 9 No. 2 (easy) | Frédéric Chopin | Sao Mai Center for the Blind |
-| Level 4 | Symphony No. 40, theme (easy piano) | Wolfgang Amadeus Mozart | Sao Mai Center for the Blind |
-| Level 5 | Gymnopédie No. 1 | Erik Satie | [MuseScore](https://musescore.com/user/19710/scores/4766391) |
+| Level 4 | Nocturne in E minor (file title: Nocturne No. 15) | Frédéric Chopin | free MusicXML |
+| Level 4 | The Entertainer | Scott Joplin | [MuseScore](https://api.musescore.com/score/1352881) |
+| Level 4 | Symphony No. 5 (easy piano) | Ludwig van Beethoven | [MuseScore](https://musescore.com/user/29460332/scores/5869298) |
+| Level 4 | Symphony No. 40, theme (easy piano) | Wolfgang Amadeus Mozart | free MusicXML |
+| Level 4 | Nocturne in E-flat, Op. 9 No. 2 (easy) | Frédéric Chopin | free MusicXML |
+| Level 4 | Für Elise (beginner version) | Ludwig van Beethoven | [MuseScore](https://musescore.com/classicman/scores/33816) |
+| Level 5 | Passacaglia (Handel-Halvorsen), easy version | Georg Friedrich Handel / Johan Halvorsen | [MuseScore](https://musescore.com/user/37309912/scores/6790392) |
 | Level 5 | The Swan (Le Cygne) | Camille Saint-Saëns | [MuseScore](https://musescore.com/user/27524722/scores/4901201) |
-| Level 5 | The Entertainer | Scott Joplin | [MuseScore](https://api.musescore.com/score/1352881) |
-| Level 5 | Waltz in A minor (B. 150) | Frédéric Chopin | [MuseScore](https://musescore.com/score/1749181) |
+| Level 5 | Nocturne No. 20 in C-sharp minor, melody | Frédéric Chopin | free MusicXML |
 | Level 5 | Prelude in A major, Op. 28 No. 7 | Frédéric Chopin | [MuseScore](https://musescore.com/user/19710/scores/60121) |
-| Level 6 | Prelude in E minor, Op. 28 No. 4 | Frédéric Chopin | Sao Mai Center for the Blind |
+| Level 5 | Nocturne in E-flat, Op. 9 No. 2 (fuller version) | Frédéric Chopin | free MusicXML |
+| Level 5 | Waltz in A minor (B. 150) | Frédéric Chopin | [MuseScore](https://musescore.com/score/1749181) |
+| Level 5 | Gymnopédie No. 1 | Erik Satie | [MuseScore](https://musescore.com/user/19710/scores/4766391) |
 | Level 6 | Prelude in C major (BWV 846) | Johann Sebastian Bach | [MuseScore](https://musescore.com/user/101554/scores/117279) |
+| Level 6 | Nocturne No. 20, "Reminiscence" (arranged in D minor) | Frédéric Chopin | free MusicXML |
+| Level 6 | Prelude in E minor, Op. 28 No. 4 | Frédéric Chopin | free MusicXML |
 | Level 6 | Prelude in C minor (BWV 999) | Johann Sebastian Bach | [MuseScore](https://musescore.com/score/4526) |
-| Level 6 | Passacaglia (Handel-Halvorsen), easy version | Georg Friedrich Handel / Johan Halvorsen | [MuseScore](https://musescore.com/user/37309912/scores/6790392) |
+| Level 6 | Nocturne in C minor, Op. 48 No. 1 | Frédéric Chopin (arr. G. Lees) | free MusicXML |
