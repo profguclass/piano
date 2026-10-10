@@ -1494,7 +1494,7 @@ if __name__ == '__main__':
     xmls = {}
     for L in scored:                                       # every score is built first, so pieces can be ordered by difficulty
         if 'mxl' in L:                    # a free MusicXML score, used as it is (tools/sources/musicxml/)
-            src = os.path.join(here, 'sources', 'musicxml', L['mxl'])
+            src = os.path.join(here, 'sources', L.get('dir', 'musicxml'), L['mxl'])
             L['url'] = (read_root(src).findtext('identification/source') or '').replace('http://', 'https://')
             xml = convert_mxl(src, L['title'], L['composer'], L['license'] + (f". Source: {L['url']}" if L['url'] else ''), L.get('mode', 'auto'))
         elif 'src' in L:                  # a classical piece converted from its Mutopia MIDI file
@@ -1520,7 +1520,7 @@ if __name__ == '__main__':
         with open(os.path.join(root, fname), 'w', encoding='utf-8', newline='\n') as f:
             f.write(xmls[L['id']])
         entry = {k: L[k] for k in ('id', 'level', 'kind', 'title', 'hands', 'bpm', 'wait', 'learn', 'tips')} | {'file': fname}
-        for k in ('syl', 'why'):
+        for k in ('syl', 'why', 'collection'):
             if k in L: entry[k] = L[k]
         if 'composer' in L and 'src' not in L and 'mxl' not in L:
             entry['composer'] = L['composer']

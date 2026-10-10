@@ -9,9 +9,9 @@ SAO = 'Public domain music; free MusicXML from the Sao Mai Center for the Blind'
 PETZOLD = 'Christian Petzold (Notebook for Anna Magdalena Bach)'
 
 
-def score_file(id, mxl, level, title, composer, bpm, wait, license, learn, tips, hands='both', mode='auto'):
+def score_file(id, mxl, level, title, composer, bpm, wait, license, learn, tips, hands='both', mode='auto', dir='musicxml', collection=None):
     return dict(id=id, mxl=mxl, level=level, kind='piece', title=title, composer=composer, hands=hands, bpm=bpm, wait=wait,
-                license=license, learn=learn, tips=tips, mode=mode)
+                license=license, learn=learn, tips=tips, mode=mode, dir=dir, **({'collection': collection} if collection else {}))
 
 
 MUSESCORE = [
@@ -154,4 +154,29 @@ MUSESCORE += [
     score_file('chopin-nocturne-13', 'chopin-nocturne-13.mxl', 7, 'Nocturne in C minor, Op. 48 No. 1', 'Frédéric Chopin (arr. G. Lees)', 52, 36, FREE,
                'A dramatic nocturne in C minor (three flats) as a lead sheet: the melody, with chords in a few places, and chord symbols above the staff. The notes from middle C up are for the right hand, the lower ones for the left.',
                ['Three flats: B♭, E♭ and A♭.', 'Add your own left-hand chords from the chord symbols once the melody is secure.'], mode='pitch'),
+]
+
+
+# ---------- Gregorian chant collection (shown together under Library; scores in tools/sources/gregorian/) ----------
+CHANT_FREE = 'Public domain chant; free MusicXML score (MuseScore)'
+ORGAN_TIPS = ['The right hand sings the chant; the left hand adds a quiet organ accompaniment (organum comitans).', 'Keep the accompaniment softer than the melody.']
+for _L in MUSESCORE:
+    if _L['id'] in ('regina-coeli', 'veni-creator', 'ave-verum', 'veni-sancte', 'our-father', 'adoro-te', 'sanctus'):
+        _L['collection'] = 'gregorian'
+MUSESCORE += [
+    score_file('laudes-divinae', 'laudes-divinae-gregorian-chant.mxl', 1, 'Laudes divinae (Gregorian chant)', CHANT, 60, 45, CHANT_FREE,
+               'A short Latin praise hymn in the chant style: a simple, singing line with the words under the notes.',
+               CHANT_TIPS, hands='right', mode='melody', dir='gregorian', collection='gregorian'),
+    score_file('sanctus-xviii-melody', 'sanctus-missa-xviii-nova-organi-harmonia-gregorian-chant.mxl', 3, 'Sanctus, Mass XVIII (chant with organ harmony)', CHANT, 70, 50, CHANT_FREE,
+               'The Sanctus of Mass XVIII (Deus genitor alme) with the "new organ harmony" accompaniment.',
+               ORGAN_TIPS, dir='gregorian', collection='gregorian'),
+    score_file('sanctus-xviii-comitans', 'sanctus-missa-xviii-organum-comitans-gregorian-chant.mxl', 3, 'Sanctus, Mass XVIII (chant with organum comitans)', CHANT, 70, 50, CHANT_FREE,
+               'The same Sanctus with the traditional accompaniment, a little fuller than the other version.',
+               ORGAN_TIPS, dir='gregorian', collection='gregorian'),
+    score_file('sanctus-missa-i', 'sanctus-missa-i-lux-et-origo-organum-comitans.mxl', 3, 'Sanctus, Mass I "Lux et origo" (chant with organum comitans)', CHANT, 70, 50, CHANT_FREE,
+               'The Sanctus of the Easter Mass I, with a gentle organ accompaniment under the chant.',
+               ORGAN_TIPS, dir='gregorian', collection='gregorian'),
+    score_file('salve-regina', 'salve-regina-gregorian-chant.mxl', 4, 'Salve Regina (Gregorian chant, with accompaniment)', CHANT, 50, 40, CHANT_FREE,
+               'The great Marian antiphon, with its long, flowing melody and a quiet organ accompaniment.',
+               ORGAN_TIPS, mode='parts', dir='gregorian', collection='gregorian'),
 ]

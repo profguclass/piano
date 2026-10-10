@@ -248,6 +248,40 @@ def split_by_pitch(root, split=60):
     _grand_staff_attributes(root)
 
 
+def merge_parts(root):
+    """A chant with an organ accompaniment written as several parts: the first part's top voice (the chant) becomes the right hand and the
+    last part (the organ bass) the left hand; any other voices in between are left out so the score fits a grand staff."""
+    parts = root.findall('part'); main, low = parts[0], parts[-1]
+    div = 1
+    for m, lm in zip(main.findall('measure'), low.findall('measure')):
+        a = m.find('attributes')
+        if a is not None and a.find('divisions') is not None: div = int(a.findtext('divisions'))
+        items, end, _ = _timeline(m); litems, lend, _ = _timeline(lm)
+        end = max(end, lend)
+        keep = [el for el in m if el.tag not in ('note', 'backup', 'forward')]
+        for el in list(m): m.remove(el)
+        for el in keep: m.append(el)
+        for k, (seq, staff, voice) in enumerate(((items, 1, '1'), (litems, 2, '5'))):
+            if k:
+                b = ET.SubElement(m, 'backup'); ET.SubElement(b, 'duration').text = str(end)
+            t = 0
+            for el, start, d in seq:
+                if k == 0 and (el.findtext('voice') or '1') != '1': continue
+                chord = el.find('chord') is not None
+                if not chord and start > t:
+                    for r in rest_notes(start - t, div, staff, voice): m.append(r)
+                    t = start
+                _clean(el); _set(el, staff, voice); m.append(el)
+                if not chord: t = start + d
+            if t < end:
+                for r in rest_notes(end - t, div, staff, voice): m.append(r)
+    for part in parts[1:-1] + [low]:
+        sp = root.find(f"part-list/score-part[@id='{part.get('id')}']")
+        if sp is not None: root.find('part-list').remove(sp)
+        root.remove(part)
+    _grand_staff_attributes(root)
+
+
 def tidy(root, title, composer, rights):
     for tag in ('credit', 'defaults', 'movement-title', 'movement-number'):
         for el in root.findall(tag): root.remove(el)
@@ -273,6 +307,7 @@ def convert_mxl(path, title, composer, rights, mode='auto'):
     'pitch' (one staff of chord stacks is split between the hands at middle C)."""
     root = read_root(path)
     if mode == 'melody': melody_to_grand(root)
+    elif mode == 'parts': merge_parts(root)
     elif mode == 'pitch': split_by_pitch(root)
     else:
         reduce_staves(root)

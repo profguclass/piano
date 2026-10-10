@@ -1398,11 +1398,17 @@ async function openLibrary() {
     m.append(row(r.name, r.file, [btn('Practise', () => openWhole({mine: r.id}).catch(fail), 'primary'), del]));
   }
   const k = $('libcourse'); k.innerHTML = '';
+  const hands = L => ({right: 'right hand', left: 'left hand', both: 'both hands'}[L.hands]);
+  const chants = c.lessons.filter(L => L.collection === 'gregorian' && L.file && hit(L.title, 'Gregorian chant plainchant ' + (L.composer || ''))).sort((a, b) => a.level - b.level || a.title.localeCompare(b.title));
+  if (chants.length) {
+    k.insertAdjacentHTML('beforeend', `<h3>Gregorian chant · ${chants.length} piece${chants.length > 1 ? 's' : ''}</h3>`);
+    for (const L of chants) k.append(row(L.title, `${c.levels[L.level]} · ${hands(L)}`, [btn('Practise', () => openWhole({course: L.id}).catch(fail))]));
+  }
   c.levels.forEach((lv, li) => {
-    const ps = c.lessons.filter(L => L.level === li && L.kind === 'piece' && L.file && hit(L.title, L.composer || ''));
+    const ps = c.lessons.filter(L => L.level === li && L.kind === 'piece' && L.file && L.collection !== 'gregorian' && hit(L.title, L.composer || ''));
     if (!ps.length) return;
     k.insertAdjacentHTML('beforeend', `<h3>${lv} · ${ps.length} piece${ps.length > 1 ? 's' : ''}</h3>`);
-    for (const L of ps) k.append(row(L.title, `${L.composer || 'Traditional'} · ${{right: 'right hand', left: 'left hand', both: 'both hands'}[L.hands]}`, [btn('Practise', () => openWhole({course: L.id}).catch(fail))]));
+    for (const L of ps) k.append(row(L.title, `${L.composer || 'Traditional'} · ${hands(L)}`, [btn('Practise', () => openWhole({course: L.id}).catch(fail))]));
   });
   if (q && !own.length && !k.children.length) k.innerHTML = '<p class="muted">No piece matches your search.</p>';
   $('card').hidden = true; $('prog').hidden = true; $('lessons').hidden = true; $('today').hidden = true; $('library').hidden = false;
