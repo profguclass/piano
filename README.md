@@ -16,7 +16,7 @@ After that the app reconnects by itself.
 The notes the app plays (the other hand, Listen mode) then sound **on the piano itself**. To use the tablet speaker instead: ⋯ → *Sound from: Tablet*.
 
 ## Lessons
-Tap **Lessons** for a 318-lesson course. Its levels and the parts of each level follow the
+Tap **Lessons** for a 370-lesson course. Its levels and the parts of each level follow the
 [RCM Piano Syllabus, 2022 edition](https://www.rcmusic.com/syllabi) (with its September 2026 errata), from **Preparatory A** to **Level 10**:
 
 | | Technique | Pieces | Ear tests | Sight reading |
@@ -79,7 +79,6 @@ The same goes for *Away with Melancholy* (Mozart), *Ode to Joy* (Beethoven, with
 | Level 3 | Chorale, Op. 68 No. 4 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=782) |
 | Level 3 | Melody, Op. 68 No. 1 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=647) |
 | Level 3 | Little Piece, Op. 68 No. 5 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=653) |
-| Level 3 | Humming Song, Op. 68 No. 3 | Robert Schumann (Album for the Young) | CC BY-SA 3.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=651) |
 | Level 3 | Poor Orphan Child, Op. 68 No. 6 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=687) |
 | Level 3 | Morning Prayer, Op. 39 No. 1 | Pyotr Ilyich Tchaikovsky (Album for the Young) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2032) |
 | Level 3 | Candour (La Candeur), Op. 100 No. 1 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=202) |
@@ -124,8 +123,10 @@ The same goes for *Away with Melancholy* (Mozart), *Ode to Joy* (Beethoven, with
 | Level 5 | Farewell (L'Adieu), Op. 100 No. 12 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=223) |
 | Level 5 | The Chatterbox (La Babillarde), Op. 100 No. 17 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=229) |
 | Level 5 | The Limpid Stream (Le Courant Limpide), Op. 100 No. 7 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=216) |
+| Level 6 | Humming Song, Op. 68 No. 3 | Robert Schumann (Album for the Young) | CC BY-SA 3.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=651) |
 | Level 6 | Of Foreign Lands and Peoples, Op. 15 No. 1 | Robert Schumann (Scenes from Childhood) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=354) |
 | Level 6 | Sonatina in C, Op. 20 No. 1: II. Andante | Friedrich Kuhlau | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=233) |
+| Level 6 | Little Prelude in D minor, BWV 926 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=69) |
 | Level 6 | Restlessness (Inquiétude), Op. 100 No. 18 | Friedrich Burgmüller (25 Easy Studies) | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=230) |
 | Level 6 | Prelude in D minor (BWV 999) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=60) |
 | Level 6 | Sonatina in C, Op. 20 No. 1: I. Allegro | Friedrich Kuhlau | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=232) |
@@ -133,6 +134,10 @@ The same goes for *Away with Melancholy* (Mozart), *Ode to Joy* (Beethoven, with
 | Level 7 | Two-part Invention No. 8 in F major, BWV 779 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=61) |
 | Level 7 | Album Leaf, Op. 12 No. 7 | Edvard Grieg | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2194) |
 | Level 7 | Two-part Invention No. 4 in D minor, BWV 775 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=67) |
+| Level 7 | Sonata in G, Hob. XVI:27: II. Minuet and Trio | Joseph Haydn | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=186) |
+| Level 7 | Venetian Boat Song, Op. 30 No. 6 (Song without Words) | Felix Mendelssohn | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1741) |
+| Level 7 | Für Elise, WoO 59 | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=931) |
+| Level 7 | Sonata in E-flat, Hob. XVI:28: III. Presto | Joseph Haydn | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=212) |
 | Level 7 | Sonatina in C, Op. 20 No. 1: III. Rondo | Friedrich Kuhlau | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=234) |
 | Level 8 | Two-part Invention No. 10 in G major, BWV 781 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=62) |
 | Level 8 | Two-part Invention No. 7 in E minor, BWV 778 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=73) |
@@ -142,25 +147,72 @@ The same goes for *Away with Melancholy* (Mozart), *Ode to Joy* (Beethoven, with
 | Level 8 | Two-part Invention No. 5 in E-flat major, BWV 776 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=55) |
 | Level 8 | Two-part Invention No. 9 in F minor, BWV 780 | Johann Sebastian Bach | CC BY-SA 3.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=171) |
 | Level 8 | Two-part Invention No. 3 in D major, BWV 774 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=70) |
+| Level 8 | Nocturne in B-flat (No. 5), H 37 | John Field | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2137) |
 | Level 8 | Gnossienne No. 3 | Erik Satie | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2131) |
+| Level 8 | Knecht Ruprecht, Op. 68 No. 12 | Robert Schumann (Album for the Young) | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=784) |
+| Level 8 | Venetian Gondola Song, Op. 19 No. 6 (Song without Words) | Felix Mendelssohn | CC BY 3.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1679) |
 | Level 8 | Duetto in F major, BWV 803 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=360) |
+| Level 8 | Sonata in G, Op. 49 No. 2: II. Tempo di Menuetto | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=777) |
 | Level 8 | Prelude in E major, Op. 28 No. 9 | Frédéric Chopin | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2168) |
+| Level 8 | Waltz in B minor, Op. 69 No. 2 | Frédéric Chopin | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=511) |
+| Level 8 | Sonata in G minor, Op. 49 No. 1: I. Andante | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=912) |
+| Level 8 | Sonata in G, Op. 49 No. 2: I. Allegro | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=776) |
 | Level 8 | Two-part Invention No. 6 in E major, BWV 777 | Johann Sebastian Bach | CC BY-SA 3.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=159) |
+| Level 8 | Sonata in G minor, Op. 49 No. 1: II. Rondo | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=913) |
+| Level 8 | Sonata in G, Hob. XVI:27: III. Finale | Joseph Haydn | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=187) |
 | Level 9 | Sinfonia No. 1 in C major, BWV 787 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=142) |
 | Level 9 | Sinfonia No. 5 in E-flat major, BWV 791 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=204) |
+| Level 9 | Sonata in G, Op. 79: II. Andante | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=956) |
 | Level 9 | Sinfonia No. 4 in D minor, BWV 790 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=172) |
+| Level 9 | Fugue in C major, BWV 952 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=254) |
 | Level 9 | Sinfonia No. 3 in D major, BWV 789 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=143) |
+| Level 9 | Fugue in C minor, BWV 847 | Johann Sebastian Bach | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1941) |
 | Level 9 | Sinfonia No. 6 in E major, BWV 792 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=173) |
+| Level 9 | Prelude in C minor, BWV 847 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=550) |
 | Level 9 | Sinfonia No. 2 in C minor, BWV 788 | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=140) |
 | Level 9 | Nocturne in E-flat, Op. 9 No. 2 | Frédéric Chopin | CC BY-SA 3.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1590) |
 | Level 9 | Mazurka in F-sharp minor, Op. 6 No. 1 | Frédéric Chopin | CC BY 3.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1687) |
 | Level 9 | Prelude in F-sharp major, Op. 28 No. 13 | Frédéric Chopin | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2174) |
+| Level 9 | Sonata in G, Op. 79: I. Presto alla tedesca | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=955) |
+| Level 9 | Moment musical in F minor, Op. 94 No. 3 | Franz Schubert | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1023) |
 | Level 9 | Prelude in D-flat major, Op. 28 No. 15 ("Raindrop") | Frédéric Chopin | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=471) |
+| Level 9 | Sonata in G, Op. 79: III. Vivace | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=957) |
+| Level 9 | Song without Words, Op. 85 No. 1 | Felix Mendelssohn | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1744) |
+| Level 9 | Waltz in D-flat, Op. 64 No. 1 ("Minute") | Frédéric Chopin | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=483) |
+| Level 10 | Fugue in E minor, BWV 855 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=546) |
+| Level 10 | Fugue in G minor, BWV 861 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=805) |
 | Level 10 | Fugue in C major, BWV 846 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=4) |
+| Level 10 | Prelude in F major, BWV 856 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=963) |
+| Level 10 | Prelude in E minor, BWV 855 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=545) |
+| Level 10 | Prelude in G minor, BWV 861 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=806) |
+| Level 10 | Prelude in C minor, BWV 871 (Well-Tempered Clavier II) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=316) |
+| Level 10 | Fugue in C minor, BWV 871 (Well-Tempered Clavier II) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=9) |
+| Level 10 | Fugue in D major, BWV 850 (Well-Tempered Clavier I) | Johann Sebastian Bach | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2233) |
+| Level 10 | Prelude in A-flat major, BWV 862 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1045) |
+| Level 10 | Fugue in D minor, BWV 851 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=988) |
+| Level 10 | Fugue in C major, BWV 870 (Well-Tempered Clavier II) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=209) |
+| Level 10 | Fugue in F major, BWV 856 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=964) |
+| Level 10 | Fugue in A-flat major, BWV 862 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1375) |
+| Level 10 | Prelude in C major, BWV 870 (Well-Tempered Clavier II) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2223) |
+| Level 10 | Nocturne in E minor, Op. posth. 72 No. 1 | Frédéric Chopin | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=509) |
+| Level 10 | Sonata in F, Op. 10 No. 2: II. Allegretto | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=993) |
 | Level 10 | Prelude in A-flat major, Op. 28 No. 17 | Frédéric Chopin | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2190) |
+| Level 10 | Prelude in D minor, BWV 875 (Well-Tempered Clavier II) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=974) |
+| Level 10 | Sonata in F minor, Op. 2 No. 1: II. Adagio | Ludwig van Beethoven | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2070) |
+| Level 10 | Prelude in D minor, BWV 851 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=538) |
+| Level 10 | Sonata in C minor, Op. 10 No. 1: I. Allegro molto | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=778) |
+| Level 10 | Sonata in F minor, Op. 2 No. 1: III. Menuetto | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1276) |
+| Level 10 | Sonata in F minor, Op. 2 No. 1: I. Allegro | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1211) |
+| Level 10 | Prelude in D major, BWV 850 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1496) |
 | Level 10 | Clair de lune (Suite bergamasque) | Claude Debussy | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1778) |
+| Level 10 | Sonata in C minor, Op. 10 No. 1: III. Finale: Prestissimo | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=779) |
+| Level 10 | Sonata in F minor, Op. 2 No. 1: IV. Prestissimo | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1277) |
+| Level 10 | Sonata in F, Op. 10 No. 2: III. Presto | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=994) |
+| Level 10 | Sonata in F, Op. 10 No. 2: I. Allegro | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=992) |
 | Level 10 | Nocturne in B-flat minor, Op. 9 No. 1 | Frédéric Chopin | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=582) |
+| Level 10 | Impromptu in E-flat, Op. 90 No. 2 | Franz Schubert | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1551) |
 | Level 10 | Wedding Day at Troldhaugen, Op. 65 No. 6 | Edvard Grieg | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=781) |
+| Level 10 | Prelude in C-sharp minor, Op. 45 | Frédéric Chopin | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1776) |
 
 ## Finger numbers
 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger. The finger for the current note is shown above (right hand) and
