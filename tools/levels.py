@@ -79,6 +79,7 @@ SYLLABUS = {
     'chopin-nocturne-9-1': ('Level 10', 'Complete list: Nocturne in B flat Minor, op. 9, no. 1 (Chopin)'),
     'clair-de-lune': ('Level 10', 'Complete list: Suite bergamasque, Clair de lune (no. 3) (Debussy)'),
     'troldhaugen': ('Level 10', 'Complete list: Wedding Day at Troldhaugen (no. 6), Lyric Pieces, op. 65 (Grieg)'),
+    'humming-68-3': ('Level 6', 'Complete list: Trällerliedchen (Humming Song) (no. 3), op. 68 (Schumann)'),
     'foreign-lands': ('Level 6', 'List C: Of Foreign Lands and Peoples, op. 15, no. 1 (Schumann)'),
     'chopin-prelude-4': ('Level 7', 'Complete list: Prelude in E Minor, op. 28, no. 4 (Chopin)'),
     'chopin-nocturne-20-reminiscence': ('Level 9', 'Complete list: Nocturne in C sharp Minor, op. posth., B 49 (Chopin); this edition is arranged in D minor'),
@@ -88,7 +89,6 @@ SYLLABUS = {
 # id: (level, reason). Not listed in the syllabus's levels 1-6: placed by comparison with listed pieces.
 COMPARISON = {
     # Schumann, Album for the Young: Melody (no. 1) is Level 3, Soldier's March (no. 2) Level 2, Happy Farmer (no. 10) Level 4
-    'humming-68-3': (4, 'next to Schumann Melody (no. 1), Level 3: a slow, chordal piece'),
     'chorale-68-4': (4, 'next to Schumann Melody (no. 1), Level 3: slow four-part chords'),
     'little-piece-68-5': (4, 'next to Schumann Melody (no. 1), Level 3'),
     'orphan-68-6': (4, 'next to Schumann Melody (no. 1), Level 3: slow, with wide chords'),
