@@ -524,9 +524,17 @@ function staffFor(m) {
 // Where a step's notes sit on the score (in OSMD units), and which system (line of music) they are on.
 function stepX(i) {
   const st = steps[i], ms = st && osmd.GraphicSheet.MeasureList[st.bar]; if (!ms?.[0]) return null;
-  let x = null;                          // the leftmost entry of that moment: a whole-bar rest in the other hand sits mid-bar
-  for (const gm of ms) for (const se of gm?.staffEntries || [])
-    if (Math.abs(se.getAbsoluteTimestamp().RealValue - st.abs) < 1e-6) x = Math.min(x ?? Infinity, se.PositionAndShape.AbsolutePosition.x);
+  let x = null, xr = null, prev = null, next = null;   // x of the moment's note entry; a rest in the other hand can sit mid-bar,
+  for (const gm of ms) for (const se of gm?.staffEntries || []) {   // so a moment with no note of its own is placed between its neighbours
+    const t = se.getAbsoluteTimestamp().RealValue, px = se.PositionAndShape.AbsolutePosition.x;
+    if (Math.abs(t - st.abs) < 1e-6) xr = Math.min(xr ?? Infinity, px);
+    if (!se.graphicalVoiceEntries?.some(v => v.notes?.some(n => !n.sourceNote?.isRest?.()))) continue;
+    if (Math.abs(t - st.abs) < 1e-6) x = Math.min(x ?? Infinity, px);
+    else if (t < st.abs && (!prev || t > prev.t)) prev = {t, x: px};
+    else if (t > st.abs && (!next || t < next.t)) next = {t, x: px};
+  }
+  if (x === null && prev && next) x = prev.x + (next.x - prev.x) * (st.abs - prev.t) / (next.t - prev.t);
+  x ??= xr;
   const a = ms[0].PositionAndShape;
   return {x: x ?? a.AbsolutePosition.x + 1, start: a.AbsolutePosition.x, end: a.AbsolutePosition.x + a.Size.width, sys: a.AbsolutePosition.y};
 }
