@@ -260,8 +260,8 @@ body.hide #score svg{opacity:.06}
   <p><button id="rpshare" class="primary">Share</button> <button id="rpcopy">Copy text</button> <button id="rpcsv">Download CSV</button></p>
 </div></div>
 <div id="library" hidden role="dialog" aria-modal="true" aria-label="Library"><div class="sheet">
-  <div class="top"><h2>Library</h2><label class="btn">Add a score<input id="libfile" type="file" accept=".musicxml,.xml,.mxl" hidden></label><label class="btn">Add chants<input id="libchants" type="file" accept=".musicxml,.xml,.mxl" multiple hidden></label><button id="libclose">Close</button></div>
-  <p class="muted">Practise a piece as a whole, from the first bar to the last, without the lesson steps. Choose Listen, Play along or Wait for me, the hands and the tempo as usual; your progress is saved for each piece. Add your own MusicXML scores (.musicxml, .xml, .mxl) and they stay in <b>My scores</b> on this device.</p>
+  <div class="top"><h2>Library</h2><label class="btn">Add a score<input id="libfile" type="file" accept=".musicxml,.xml,.mxl" multiple hidden></label><label class="btn">Add chants<input id="libchants" type="file" accept=".musicxml,.xml,.mxl" multiple hidden></label><button id="libclose">Close</button></div>
+  <p class="muted">Practise a piece as a whole, from the first bar to the last, without the lesson steps. Choose Listen, Play along or Wait for me, the hands and the tempo as usual; your progress is saved for each piece. Add your own MusicXML scores (.musicxml, .xml, .mxl; you can choose several at once) and they stay in <b>My scores</b> on this device.</p>
   <input id="libsearch" type="search" placeholder="Search by title or composer" aria-label="Search the library">
   <div id="libmine"></div>
   <div id="libcourse"></div>
@@ -2149,20 +2149,23 @@ function openFile(e) {                   // Open score / Add a score: show the f
   /\.mxl$/i.test(f.name) ? r.readAsBinaryString(f) : r.readAsText(f);
   e.target.value = '';
 }
-async function addChants(e) {            // Add chants: many MusicXML files at once, kept on this device in the Gregorian chant collection
-  const files = [...e.target.files]; e.target.value = ''; if (!files.length) return;
+async function addMany(files, collection) {   // many MusicXML files at once, kept on this device (My scores, or the Gregorian chant collection)
   const have = await idb.all(); let n = 0;
   for (const f of files) {
     const data = await new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = () => res(null); /\.mxl$/i.test(f.name) ? r.readAsBinaryString(f) : r.readAsText(f); });
     if (!data) continue;
     const name = (/\.mxl$/i.test(f.name) ? '' : (data.match(/<work-title>([^<]*)</) || [])[1]) || f.name.replace(/\.[^.]+$/, '');
-    const old = have.find(r => r.file === f.name && r.collection === 'gregorian');
-    try { await idb.put({id: old ? old.id : 'g' + Date.now() + '-' + n, file: f.name, name, data, added: Date.now(), collection: 'gregorian'}); n++; } catch {}
+    const old = have.find(r => r.file === f.name && r.collection === collection && r.data.length === data.length);
+    if (old) { n++; continue; }
+    const rec = {id: 'm' + Date.now() + '-' + n, file: f.name, name, data, added: Date.now()};
+    if (collection) rec.collection = collection;
+    try { await idb.put(rec); n++; } catch {}
   }
-  $('status').textContent = n ? `Added ${n} chant${n > 1 ? 's' : ''} to the Gregorian chant collection.` : 'Could not add those files.';
+  $('status').textContent = n ? `Added ${n} score${n > 1 ? 's' : ''} ${collection ? 'to the Gregorian chant collection' : 'to My scores'}.` : 'Could not add those files.';
   openLibrary();
 }
-$('file').onchange = openFile; $('libfile').onchange = openFile; $('libchants').onchange = addChants;
+function addChants(e) { const f = [...e.target.files]; e.target.value = ''; if (f.length) addMany(f, 'gregorian'); }
+$('file').onchange = openFile; $('libfile').onchange = e => { if (e.target.files.length > 1) { const f = [...e.target.files]; e.target.value = ''; addMany(f, null); } else openFile(e); }; $('libchants').onchange = addChants;
 $('kb').addEventListener('pointerdown', e => { const m = e.target.dataset.m; if (m) { e.preventDefault(); press(+m, true, e.timeStamp); } });
 $('midi').onclick = () => connectMidi(false);
 let resizeT = 0;
