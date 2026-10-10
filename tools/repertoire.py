@@ -131,3 +131,88 @@ REPERTOIRE = [
     piece('prelude-999', '60-0.mid', 7, 'Prelude in D minor (BWV 999)', 'Johann Sebastian Bach', 70, 45, PD,
           'Originally for lute (in C minor; this edition is in D minor): steady broken chords in 3/4 over a moving bass.', ['Keep the broken chords perfectly even.']),
 ]
+
+
+# ---------- Levels 5-10 from the RCM Piano Syllabus 2022 lists (Mutopia Project) ----------
+BYSA40, BY30 = 'CC BY-SA 4.0', 'CC BY 3.0'
+BACH, CHOPIN, SCHUMANN = 'Johann Sebastian Bach', 'Frédéric Chopin', 'Robert Schumann (Album for the Young)'
+INV_TIPS = ['Practise each hand alone first: both hands play the same theme in turn.', 'Listen for the theme as it moves from hand to hand, and keep the other hand quiet.']
+SIN_TIPS = ['Three voices: learn each one alone, then two at a time.', 'Let the entry of each voice be heard.']
+PRE_TIPS = ['Learn it in short sections, each hand alone first.', 'Shape the long phrases with the dynamics.']
+
+REPERTOIRE += [
+    # ---------- Level 5 ----------
+    piece('schumann-68-7', '691-0.mid', 6, 'Hunting Song, Op. 68 No. 7', SCHUMANN, 120, 70, BYSA30,
+          'A galloping 6/8 hunting piece with horn calls in the right hand and a lively left hand.', ['Count in two big beats: "ONE-two-three TWO-two-three".', 'Keep the horn calls bright and the left hand lighter.'], pickup=0.5),
+    piece('schumann-68-9', '675-0.mid', 6, 'Little Folk Song, Op. 68 No. 9', SCHUMANN, 88, 60, BYSA25,
+          'A simple folk-like tune in a minor-flavoured key, with a steady accompaniment.', ['Sing the tune in your head as you play.', 'Keep the accompaniment quiet.']),
+    piece('schumann-68-11', '783-0.mid', 6, 'Sicilienne, Op. 68 No. 11', SCHUMANN, 96, 60, BYSA25,
+          'A gently rocking Sicilian dance in 6/8, beginning with a pickup note.', ['Feel the lilt: long-short-long.', 'Start with the pickup note on the last eighth of the bar.'], pickup=0.5),
+    # ---------- Level 6 ----------
+    piece('kuhlau-20-1-i', '232-0.mid', 7, 'Sonatina in C, Op. 20 No. 1: I. Allegro', 'Friedrich Kuhlau', 120, 70, PD,
+          'The first movement of a classic sonatina, with rapid triplet figures in the right hand over a steady bass.', ['Practise the triplet runs slowly with Wait for me.', 'Keep the left hand steady and light.']),
+    piece('kuhlau-20-1-ii', '233-0.mid', 7, 'Sonatina in C, Op. 20 No. 1: II. Andante', 'Friedrich Kuhlau', 76, 50, PD,
+          'A lyrical slow movement in 6/8 (F major) after the lively Allegro.', ['Sing the melody; keep the accompaniment even.'], pickup=0.5),
+    piece('kuhlau-20-1-iii', '234-0.mid', 8, 'Sonatina in C, Op. 20 No. 1: III. Rondo', 'Friedrich Kuhlau', 132, 80, PD,
+          'A bright rondo finale: a returning theme between contrasting episodes.', ['Learn the theme first; it returns several times.', 'Practise the episodes in sections.'], pickup=0.5),
+    # ---------- Level 7 ----------
+    piece('invention-1', '40-0.mid', 8, 'Two-part Invention No. 1 in C major, BWV 772', BACH, 66, 45, BYSA30,
+          'The first of the two-part inventions: a short theme passed between the hands, and answered upside down.', INV_TIPS),
+    piece('invention-4', '67-0.mid', 8, 'Two-part Invention No. 4 in D minor, BWV 775', BACH, 80, 50, PD,
+          'A quick invention in 3/8 in D minor: a rushing theme in sixteenth notes.', INV_TIPS),
+    piece('invention-8', '61-0.mid', 8, 'Two-part Invention No. 8 in F major, BWV 779', BACH, 72, 50, PD,
+          'A cheerful invention in F major in 3/4: a leaping theme answered in the left hand.', INV_TIPS),
+    piece('grieg-album-leaf', '2194-0.mid', 8, 'Album Leaf, Op. 12 No. 7', 'Edvard Grieg', 76, 50, BYSA40,
+          'A tender lyric piece in E minor: a singing melody over soft chords, starting with a pickup.', ['Let the melody sing and keep the chords soft.', 'Start with the pickup on the last eighth of the bar.'], pickup=0.5),
+    # ---------- Level 8 ----------
+    piece('invention-2', '58-0.mid', 9, 'Two-part Invention No. 2 in C minor, BWV 773', BACH, 56, 40, PD,
+          'A flowing invention in C minor with a smooth sixteenth-note theme.', INV_TIPS),
+    piece('invention-3', '70-0.mid', 9, 'Two-part Invention No. 3 in D major, BWV 774', BACH, 84, 55, PD,
+          'A light, dancing invention in 3/8, starting with a pickup.', INV_TIPS, pickup=0.5),
+    piece('invention-5', '55-0.mid', 9, 'Two-part Invention No. 5 in E-flat major, BWV 776', BACH, 64, 45, PD,
+          'A stately invention in E♭ major with a lively sixteenth-note figure.', INV_TIPS),
+    piece('invention-6', '159-0.mid', 9, 'Two-part Invention No. 6 in E major, BWV 777', BACH, 84, 55, BYSA30,
+          'A bright invention in E major (four sharps) in 3/8.', INV_TIPS),
+    piece('invention-7', '73-0.mid', 9, 'Two-part Invention No. 7 in E minor, BWV 778', BACH, 60, 45, PD,
+          'A serious invention in E minor with a descending, chromatic theme.', INV_TIPS),
+    piece('invention-9', '171-0.mid', 9, 'Two-part Invention No. 9 in F minor, BWV 780', BACH, 56, 40, BYSA30,
+          'The "sighing" invention in F minor (four flats), full of expressive falling figures.', INV_TIPS),
+    piece('invention-10', '62-0.mid', 9, 'Two-part Invention No. 10 in G major, BWV 781', BACH, 66, 45, PD,
+          'A bubbling invention in 9/8 (three groups of three eighth notes per bar).', INV_TIPS),
+    piece('invention-11', '71-0.mid', 9, 'Two-part Invention No. 11 in G minor, BWV 782', BACH, 66, 45, PD,
+          'A lyrical invention in G minor with a long, graceful theme.', INV_TIPS),
+    piece('duetto-f', '360-0.mid', 9, 'Duetto in F major, BWV 803', BACH, 96, 60, PD,
+          'One of the four duets from the third part of the Clavier-Übung: two lively lines in a free fugal style.', INV_TIPS),
+    piece('chopin-prelude-6', '469-0.mid', 9, 'Prelude in B minor, Op. 28 No. 6', CHOPIN, 66, 45, PD,
+          'A sombre prelude: a mournful melody in the left hand over repeated chords in the right.', PRE_TIPS),
+    piece('chopin-prelude-9', '2168-0.mid', 9, 'Prelude in E major, Op. 28 No. 9', CHOPIN, 54, 40, BYSA40,
+          'A slow, solemn prelude of only twelve bars in four sharps, with rich chords.', PRE_TIPS),
+    piece('gnossienne-3', '2131-0.mid', 9, 'Gnossienne No. 3', 'Erik Satie', 60, 45, BYSA40,
+          'A slow, mysterious dance with a swaying left hand and a melody in the right.', ['Play very quietly and slowly.', 'Keep the left-hand pattern perfectly even.']),
+    # ---------- Level 9 ----------
+    piece('sinfonia-1', '142-0.mid', 10, 'Sinfonia No. 1 in C major, BWV 787', BACH, 66, 45, PD, 'The first three-part invention: three voices in imitation.', SIN_TIPS),
+    piece('sinfonia-2', '140-0.mid', 10, 'Sinfonia No. 2 in C minor, BWV 788', BACH, 54, 40, PD, 'A flowing three-part invention in C minor in 12/8.', SIN_TIPS),
+    piece('sinfonia-3', '143-0.mid', 10, 'Sinfonia No. 3 in D major, BWV 789', BACH, 72, 50, PD, 'A bright three-part invention in D major.', SIN_TIPS),
+    piece('sinfonia-4', '172-0.mid', 10, 'Sinfonia No. 4 in D minor, BWV 790', BACH, 66, 45, PD, 'A restless three-part invention in D minor.', SIN_TIPS),
+    piece('sinfonia-5', '204-0.mid', 10, 'Sinfonia No. 5 in E-flat major, BWV 791', BACH, 66, 45, PD, 'A graceful three-part invention in 3/4 in E♭ major.', SIN_TIPS),
+    piece('sinfonia-6', '173-0.mid', 10, 'Sinfonia No. 6 in E major, BWV 792', BACH, 58, 40, PD, 'A flowing three-part invention in 9/8 in E major.', SIN_TIPS),
+    piece('chopin-prelude-13', '2174-0.mid', 10, 'Prelude in F-sharp major, Op. 28 No. 13', CHOPIN, 54, 40, BYSA40,
+          'A calm, singing prelude in six sharps, with a long melody over a gentle accompaniment.', PRE_TIPS),
+    piece('chopin-prelude-15', '471-0.mid', 10, 'Prelude in D-flat major, Op. 28 No. 15 ("Raindrop")', CHOPIN, 60, 45, PD,
+          'The "Raindrop" prelude: a repeated note keeps sounding through the calm opening and the dark middle section.', PRE_TIPS),
+    piece('chopin-mazurka-6-1', '1687-0.mid', 10, 'Mazurka in F-sharp minor, Op. 6 No. 1', CHOPIN, 120, 70, BY30,
+          'A Polish dance in 3/4 with accents on the second and third beats.', ['Feel the accent on beats 2 and 3.', 'Keep the left hand light.']),
+    piece('chopin-nocturne-9-2-full', '1590-0.mid', 10, 'Nocturne in E-flat, Op. 9 No. 2', CHOPIN, 56, 40, BYSA30,
+          'The complete famous nocturne in 12/8, with its decorated returns of the melody. Begins with a pickup.', PRE_TIPS, pickup=0.5),
+    # ---------- Level 10 ----------
+    piece('wtc-fugue-1', '4-0.mid', 11, 'Fugue in C major, BWV 846 (Well-Tempered Clavier I)', BACH, 66, 45, PD,
+          'The famous four-voice fugue in C: the subject enters in each voice in turn.', SIN_TIPS + ['Follow the subject every time it enters.']),
+    piece('chopin-prelude-17', '2190-0.mid', 11, 'Prelude in A-flat major, Op. 28 No. 17', CHOPIN, 60, 45, BYSA40,
+          'A long, rich prelude in four flats, with a singing melody over repeated chords.', PRE_TIPS),
+    piece('chopin-nocturne-9-1', '582-0.mid', 11, 'Nocturne in B-flat minor, Op. 9 No. 1', CHOPIN, 52, 36, BYSA25,
+          'A dark, expressive nocturne in five flats, beginning with a long pickup.', PRE_TIPS, pickup=3.0),
+    piece('clair-de-lune', '1778-0.mid', 11, 'Clair de lune (Suite bergamasque)', 'Claude Debussy', 60, 40, PD,
+          'Debussy\'s famous moonlit piece in D♭ major in 9/8: floating arpeggios and a soft melody.', ['Play very softly and let the pedal blur the harmonies gently.', 'Keep the arpeggios smooth and even.']),
+    piece('troldhaugen', '781-0.mid', 11, 'Wedding Day at Troldhaugen, Op. 65 No. 6', 'Edvard Grieg', 108, 70, PD,
+          'Grieg\'s lively wedding march: bold chords, rapid figures and a joyful melody.', ['Learn it in sections of eight bars.', 'Keep the chords crisp and the tune bright.']),
+]

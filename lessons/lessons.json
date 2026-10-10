@@ -3216,6 +3216,25 @@
    "source": "https://api.musescore.com/score/1352881"
   },
   {
+   "id": "schumann-68-9",
+   "level": 6,
+   "kind": "piece",
+   "title": "Little Folk Song, Op. 68 No. 9",
+   "hands": "both",
+   "bpm": 88,
+   "wait": 60,
+   "learn": "A simple folk-like tune in a minor-flavoured key, with a steady accompaniment.",
+   "tips": [
+    "Sing the tune in your head as you play.",
+    "Keep the accompaniment quiet."
+   ],
+   "file": "151-schumann-68-9.musicxml",
+   "syl": "Level 5 · Complete list: Little Folk Song (no. 9), op. 68 (Schumann)",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=675"
+  },
+  {
    "id": "wooden-soldiers",
    "level": 6,
    "kind": "piece",
@@ -3227,7 +3246,7 @@
    "tips": [
     "Keep the dotted rhythms sharp and the tempo steady."
    ],
-   "file": "151-wooden-soldiers.musicxml",
+   "file": "152-wooden-soldiers.musicxml",
    "why": "next to Tchaikovsky Polka (no. 10), Level 5: a march with chords in both hands",
    "composer": "Pyotr Ilyich Tchaikovsky (Album for the Young)",
    "license": "Public Domain",
@@ -3246,7 +3265,7 @@
     "Three flats: B♭, E♭ and A♭.",
     "Play the melody like a singer, with a flowing left hand underneath."
    ],
-   "file": "152-chopin-nocturne-9-2.musicxml",
+   "file": "153-chopin-nocturne-9-2.musicxml",
    "why": "an easy version of a famous nocturne (the original is above Level 6)",
    "composer": "Frédéric Chopin",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
@@ -3265,7 +3284,7 @@
     "Learn it a few bars at a time with Loop.",
     "Notice the repeated pattern underneath."
    ],
-   "file": "153-passacaglia.musicxml",
+   "file": "154-passacaglia.musicxml",
    "why": "a long piece, but an easy version",
    "composer": "Georg Friedrich Handel / Johan Halvorsen",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
@@ -3283,7 +3302,7 @@
    "tips": [
     "Lean gently on the first note of each slur."
    ],
-   "file": "154-douce-plainte.musicxml",
+   "file": "155-douce-plainte.musicxml",
    "why": "near Burgmüller no. 21, Level 5: a lyrical study with chords",
    "composer": "Friedrich Burgmüller (25 Easy Studies)",
    "license": "Public Domain",
@@ -3301,7 +3320,7 @@
    "tips": [
     "Keep the fingers close to the keys for speed."
    ],
-   "file": "155-bergeronnette.musicxml",
+   "file": "156-bergeronnette.musicxml",
    "why": "near Burgmüller no. 21, Level 5: repeated notes at speed",
    "composer": "Friedrich Burgmüller (25 Easy Studies)",
    "license": "Public Domain",
@@ -3320,11 +3339,30 @@
     "Keep the left-hand broken chords smooth and even.",
     "Shape the long melody like a singer."
    ],
-   "file": "156-le-cygne.musicxml",
+   "file": "157-le-cygne.musicxml",
    "why": "a melody over rolling broken chords",
    "composer": "Camille Saint-Saëns",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
    "source": "https://musescore.com/user/27524722/scores/4901201"
+  },
+  {
+   "id": "schumann-68-7",
+   "level": 6,
+   "kind": "piece",
+   "title": "Hunting Song, Op. 68 No. 7",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "A galloping 6/8 hunting piece with horn calls in the right hand and a lively left hand.",
+   "tips": [
+    "Count in two big beats: \"ONE-two-three TWO-two-three\".",
+    "Keep the horn calls bright and the left hand lighter."
+   ],
+   "file": "158-schumann-68-7.musicxml",
+   "syl": "Level 5 · Complete list: Hunting Song (no. 7), op. 68 (Schumann)",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 3.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=691"
   },
   {
    "id": "chopin-nocturne-20-melody",
@@ -3339,7 +3377,7 @@
     "Practise the fast runs slowly in Wait for me first.",
     "Shape the long phrases with the dynamics in the score."
    ],
-   "file": "157-chopin-nocturne-20-melody.musicxml",
+   "file": "159-chopin-nocturne-20-melody.musicxml",
    "why": "a single line, with fast runs and ornaments",
    "composer": "Frédéric Chopin",
    "license": "Public domain music; free MusicXML score",
@@ -3357,7 +3395,7 @@
    "tips": [
     "Practise hands separately until each line is smooth."
    ],
-   "file": "158-prelude-928.musicxml",
+   "file": "160-prelude-928.musicxml",
    "why": "next to Little Prelude BWV 939, Level 5",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -3375,7 +3413,7 @@
    "tips": [
     "Let the harmony changes shape the music."
    ],
-   "file": "159-prelude-924.musicxml",
+   "file": "161-prelude-924.musicxml",
    "why": "next to Little Prelude BWV 939, Level 5",
    "composer": "Johann Sebastian Bach",
    "license": "CC BY-SA 3.0",
@@ -3394,7 +3432,7 @@
     "Practise slowly and hands separately first.",
     "Aim for crisp, even sixteenths."
    ],
-   "file": "160-handel-sonatina.musicxml",
+   "file": "162-handel-sonatina.musicxml",
    "syl": "Level 5 · Complete list: Sonatina in B flat Major, HWV 585 (Handel)",
    "composer": "George Frideric Handel",
    "license": "Public Domain",
@@ -3413,11 +3451,30 @@
     "Feel one beat per bar once it is secure.",
     "Keep the repeated notes light."
    ],
-   "file": "161-clementi-36-1-iii.musicxml",
+   "file": "163-clementi-36-1-iii.musicxml",
    "why": "the fast finale of the same sonatina; the finales of nos. 2 and 3 are Levels 4 and 5",
    "composer": "Muzio Clementi",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=804"
+  },
+  {
+   "id": "schumann-68-11",
+   "level": 6,
+   "kind": "piece",
+   "title": "Sicilienne, Op. 68 No. 11",
+   "hands": "both",
+   "bpm": 96,
+   "wait": 60,
+   "learn": "A gently rocking Sicilian dance in 6/8, beginning with a pickup note.",
+   "tips": [
+    "Feel the lilt: long-short-long.",
+    "Start with the pickup note on the last eighth of the bar."
+   ],
+   "file": "164-schumann-68-11.musicxml",
+   "syl": "Level 5 · Complete list: Siciliano (no. 11), op. 68 (Schumann)",
+   "composer": "Robert Schumann (Album for the Young)",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=783"
   },
   {
    "id": "gracieuse",
@@ -3431,7 +3488,7 @@
    "tips": [
     "Play lightly and gracefully, never heavy."
    ],
-   "file": "162-gracieuse.musicxml",
+   "file": "165-gracieuse.musicxml",
    "why": "near Burgmüller no. 21, Level 5: ornaments and light chords",
    "composer": "Friedrich Burgmüller (25 Easy Studies)",
    "license": "Public Domain",
@@ -3449,7 +3506,7 @@
    "tips": [
     "Keep the gallop rhythm steady."
    ],
-   "file": "163-la-chasse.musicxml",
+   "file": "166-la-chasse.musicxml",
    "why": "near Burgmüller no. 21, Level 5: a lively hunting piece",
    "composer": "Friedrich Burgmüller (25 Easy Studies)",
    "license": "Public Domain",
@@ -3467,7 +3524,7 @@
    "tips": [
     "Watch the key signature: F♯, C♯, G♯ and D♯."
    ],
-   "file": "164-may-68-13.musicxml",
+   "file": "167-may-68-13.musicxml",
    "why": "next to Schumann Hunting Song (no. 7), Level 5",
    "composer": "Robert Schumann (Album for the Young)",
    "license": "CC BY-SA 2.5",
@@ -3485,7 +3542,7 @@
    "tips": [
     "Bring out the melody notes above the accompaniment."
    ],
-   "file": "165-adieu.musicxml",
+   "file": "168-adieu.musicxml",
    "why": "near Burgmüller no. 21, Level 5",
    "composer": "Friedrich Burgmüller (25 Easy Studies)",
    "license": "Public Domain",
@@ -3503,7 +3560,7 @@
    "tips": [
     "Practise slowly in short groups, then join them."
    ],
-   "file": "166-babillarde.musicxml",
+   "file": "169-babillarde.musicxml",
    "why": "near Burgmüller no. 21, Level 5: fast and chattering",
    "composer": "Friedrich Burgmüller (25 Easy Studies)",
    "license": "Public Domain",
@@ -3521,7 +3578,7 @@
    "tips": [
     "Keep the right hand soft and even; let the left hand sing."
    ],
-   "file": "167-courant-limpide.musicxml",
+   "file": "170-courant-limpide.musicxml",
    "why": "a fast, even study: more than Ballade (Level 4), near Harmony of the Angels (no. 21), Level 5",
    "composer": "Friedrich Burgmüller (25 Easy Studies)",
    "license": "Public Domain",
@@ -3678,7 +3735,7 @@
     "The syllabus tempo is ♩ = 60 in sixteenth notes, the same speed as eighth notes at 120.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "168-scales-6-major.musicxml",
+   "file": "171-scales-6-major.musicxml",
    "composer": "Technique"
   },
   {
@@ -3693,7 +3750,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "169-scales-6-harmonic.musicxml",
+   "file": "172-scales-6-harmonic.musicxml",
    "composer": "Technique"
   },
   {
@@ -3708,7 +3765,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "170-scales-6-melodic.musicxml",
+   "file": "173-scales-6-melodic.musicxml",
    "composer": "Technique"
   },
   {
@@ -3723,7 +3780,7 @@
    "tips": [
     "Check the exact shape with your syllabus book: this is one common form of the pattern."
    ],
-   "file": "171-formula-6.musicxml",
+   "file": "174-formula-6.musicxml",
    "composer": "Technique"
   },
   {
@@ -3738,7 +3795,7 @@
    "tips": [
     "Keep the hands exactly together; listen for an even, smooth sound."
    ],
-   "file": "172-chromatic-6.musicxml",
+   "file": "175-chromatic-6.musicxml",
    "composer": "Technique"
   },
   {
@@ -3751,7 +3808,7 @@
    "wait": 50,
    "learn": "Broken tonic triads hands together over two octaves, ending with I–V–I.",
    "tips": [],
-   "file": "173-tonic-triads-6.musicxml",
+   "file": "176-tonic-triads-6.musicxml",
    "composer": "Technique"
   },
   {
@@ -3764,7 +3821,7 @@
    "wait": 50,
    "learn": "Minor tonic triads hands together, ending with i–V–i.",
    "tips": [],
-   "file": "174-tonic-triads-6m.musicxml",
+   "file": "177-tonic-triads-6m.musicxml",
    "composer": "Technique"
   },
   {
@@ -3779,7 +3836,7 @@
    "tips": [
     "Hands separately: the right hand plays first, then the left hand."
    ],
-   "file": "175-dominant-7-6.musicxml",
+   "file": "178-dominant-7-6.musicxml",
    "composer": "Technique"
   },
   {
@@ -3795,7 +3852,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "The fingering shown is one choice; with black keys you may adjust it so the thumb stays on white keys."
    ],
-   "file": "176-diminished-7-6.musicxml",
+   "file": "179-diminished-7-6.musicxml",
    "composer": "Technique"
   },
   {
@@ -3810,7 +3867,7 @@
    "tips": [
     "Hands separately: the right hand plays first, then the left hand."
    ],
-   "file": "177-sevenths-6s.musicxml",
+   "file": "180-sevenths-6s.musicxml",
    "composer": "Technique"
   },
   {
@@ -3825,7 +3882,7 @@
    "tips": [
     "Hands separately: the right hand plays first, then the left hand."
    ],
-   "file": "178-arpeggios-6.musicxml",
+   "file": "181-arpeggios-6.musicxml",
    "composer": "Technique"
   },
   {
@@ -3840,7 +3897,7 @@
    "tips": [
     "Hands separately: the right hand plays first, then the left hand."
    ],
-   "file": "179-arpeggios-6m.musicxml",
+   "file": "182-arpeggios-6m.musicxml",
    "composer": "Technique"
   },
   {
@@ -3856,7 +3913,7 @@
     "Hands separately: the right hand plays first, then the left hand.",
     "Fingering 1 2 3 4 suits white-key chords; with black keys, adjust so the thumb lands on white keys."
    ],
-   "file": "180-seventh-arpeggios-6.musicxml",
+   "file": "183-seventh-arpeggios-6.musicxml",
    "composer": "Technique"
   },
   {
@@ -3871,11 +3928,29 @@
    "tips": [
     "Voice the melody on top; keep the inner notes very soft."
    ],
-   "file": "181-foreign-lands.musicxml",
+   "file": "184-foreign-lands.musicxml",
    "syl": "Level 6 · List C: Of Foreign Lands and Peoples, op. 15, no. 1 (Schumann)",
    "composer": "Robert Schumann (Scenes from Childhood)",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=354"
+  },
+  {
+   "id": "kuhlau-20-1-ii",
+   "level": 7,
+   "kind": "piece",
+   "title": "Sonatina in C, Op. 20 No. 1: II. Andante",
+   "hands": "both",
+   "bpm": 76,
+   "wait": 50,
+   "learn": "A lyrical slow movement in 6/8 (F major) after the lively Allegro.",
+   "tips": [
+    "Sing the melody; keep the accompaniment even."
+   ],
+   "file": "185-kuhlau-20-1-ii.musicxml",
+   "why": "the slow movement of the Level 6 sonatina",
+   "composer": "Friedrich Kuhlau",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=233"
   },
   {
    "id": "chopin-waltz-am",
@@ -3890,7 +3965,7 @@
     "Play beat 1 of the left hand a little stronger.",
     "Follow the fingering written in the score."
    ],
-   "file": "182-chopin-waltz-am.musicxml",
+   "file": "186-chopin-waltz-am.musicxml",
    "syl": "Level 6 · List C: Waltz in A Minor, op. posth., B 150 (Chopin)",
    "composer": "Frédéric Chopin",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
@@ -3908,7 +3983,7 @@
    "tips": [
     "Keep the hand changes rhythmically exact."
    ],
-   "file": "183-inquietude.musicxml",
+   "file": "187-inquietude.musicxml",
    "why": "the hardest of the set: a fast, restless study",
    "composer": "Friedrich Burgmüller (25 Easy Studies)",
    "license": "Public Domain",
@@ -3927,7 +4002,7 @@
     "Three flats: B♭, E♭ and A♭.",
     "Keep the broken chords perfectly even."
    ],
-   "file": "184-prelude-999-c.musicxml",
+   "file": "188-prelude-999-c.musicxml",
    "syl": "Level 6 · Complete list: Prelude in C Minor, BWV 999 (Bach)",
    "composer": "Johann Sebastian Bach",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
@@ -3945,11 +4020,30 @@
    "tips": [
     "Keep the broken chords perfectly even."
    ],
-   "file": "185-prelude-999.musicxml",
+   "file": "189-prelude-999.musicxml",
    "syl": "Level 6 · Complete list: Prelude in C Minor, BWV 999 (Bach; this edition is in D minor)",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=60"
+  },
+  {
+   "id": "kuhlau-20-1-i",
+   "level": 7,
+   "kind": "piece",
+   "title": "Sonatina in C, Op. 20 No. 1: I. Allegro",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "The first movement of a classic sonatina, with rapid triplet figures in the right hand over a steady bass.",
+   "tips": [
+    "Practise the triplet runs slowly with Wait for me.",
+    "Keep the left hand steady and light."
+   ],
+   "file": "190-kuhlau-20-1-i.musicxml",
+   "syl": "Level 6 · Complete list: Sonatina in C Major, op. 20, no. 1: 1st movement (Kuhlau)",
+   "composer": "Friedrich Kuhlau",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=232"
   },
   {
    "id": "ear-6",
@@ -4114,7 +4208,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 76.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "186-scales-7-major.musicxml",
+   "file": "191-scales-7-major.musicxml",
    "composer": "Technique"
   },
   {
@@ -4129,7 +4223,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "187-scales-7-harmonic.musicxml",
+   "file": "192-scales-7-harmonic.musicxml",
    "composer": "Technique"
   },
   {
@@ -4144,7 +4238,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "188-scales-7-melodic.musicxml",
+   "file": "193-scales-7-melodic.musicxml",
    "composer": "Technique"
   },
   {
@@ -4159,7 +4253,7 @@
    "tips": [
     "Check the exact shape with your syllabus book: this is one common form of the pattern."
    ],
-   "file": "189-formula-7.musicxml",
+   "file": "194-formula-7.musicxml",
    "composer": "Technique"
   },
   {
@@ -4174,7 +4268,7 @@
    "tips": [
     "Keep the hands exactly together."
    ],
-   "file": "190-chromatic-7.musicxml",
+   "file": "195-chromatic-7.musicxml",
    "composer": "Technique"
   },
   {
@@ -4190,7 +4284,7 @@
     "Right hand: root position 1 2 3 5, first inversion 1 2 4 5, second 1 3 4 5.",
     "Syllabus tempo: sixteenth notes at ♩ = 60."
    ],
-   "file": "191-four-note-7.musicxml",
+   "file": "196-four-note-7.musicxml",
    "composer": "Technique"
   },
   {
@@ -4205,7 +4299,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 60."
    ],
-   "file": "192-four-note-7m.musicxml",
+   "file": "197-four-note-7m.musicxml",
    "composer": "Technique"
   },
   {
@@ -4220,7 +4314,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 60."
    ],
-   "file": "193-dominant-7-7.musicxml",
+   "file": "198-dominant-7-7.musicxml",
    "composer": "Technique"
   },
   {
@@ -4236,7 +4330,7 @@
     "Both hands press and release together.",
     "Syllabus tempo: sixteenth notes at ♩ = 80 for each chord."
    ],
-   "file": "194-dominant-7-7s.musicxml",
+   "file": "199-dominant-7-7s.musicxml",
    "composer": "Technique"
   },
   {
@@ -4252,7 +4346,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 60.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "195-diminished-7-7.musicxml",
+   "file": "200-diminished-7-7.musicxml",
    "composer": "Technique"
   },
   {
@@ -4267,7 +4361,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 80 for each chord."
    ],
-   "file": "196-diminished-7-7s.musicxml",
+   "file": "201-diminished-7-7s.musicxml",
    "composer": "Technique"
   },
   {
@@ -4283,7 +4377,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 60.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "197-arpeggios-7.musicxml",
+   "file": "202-arpeggios-7.musicxml",
    "composer": "Technique"
   },
   {
@@ -4299,7 +4393,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 60.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "198-arpeggios-7m.musicxml",
+   "file": "203-arpeggios-7m.musicxml",
    "composer": "Technique"
   },
   {
@@ -4315,7 +4409,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 60.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "199-arpeggios-7-dom.musicxml",
+   "file": "204-arpeggios-7-dom.musicxml",
    "composer": "Technique"
   },
   {
@@ -4331,7 +4425,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 60.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "200-arpeggios-7-dim.musicxml",
+   "file": "205-arpeggios-7-dim.musicxml",
    "composer": "Technique"
   },
   {
@@ -4347,11 +4441,30 @@
     "Three sharps: F♯, C♯ and G♯.",
     "Play the dotted rhythms lightly and exactly."
    ],
-   "file": "201-chopin-prelude-7.musicxml",
+   "file": "206-chopin-prelude-7.musicxml",
    "why": "next to Prelude op. 28 no. 4 (Level 7): chords and dotted rhythms",
    "composer": "Frédéric Chopin",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
    "source": "https://musescore.com/user/19710/scores/60121"
+  },
+  {
+   "id": "invention-1",
+   "level": 8,
+   "kind": "piece",
+   "title": "Two-part Invention No. 1 in C major, BWV 772",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "The first of the two-part inventions: a short theme passed between the hands, and answered upside down.",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "207-invention-1.musicxml",
+   "syl": "Level 7 · Complete list: Two-part Invention No. 1 in C Major, BWV 772",
+   "composer": "Johann Sebastian Bach",
+   "license": "CC BY-SA 3.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=40"
   },
   {
    "id": "chopin-nocturne-9-2-fuller",
@@ -4366,11 +4479,68 @@
     "Practise the left-hand broken chords alone until they are smooth.",
     "Let the melody sing above them."
    ],
-   "file": "202-chopin-nocturne-9-2-fuller.musicxml",
+   "file": "208-chopin-nocturne-9-2-fuller.musicxml",
    "why": "an easier version of the Level 9 nocturne (op. 9, no. 2)",
    "composer": "Frédéric Chopin",
    "license": "Public domain music; free MusicXML score",
    "source": ""
+  },
+  {
+   "id": "invention-8",
+   "level": 8,
+   "kind": "piece",
+   "title": "Two-part Invention No. 8 in F major, BWV 779",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 50,
+   "learn": "A cheerful invention in F major in 3/4: a leaping theme answered in the left hand.",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "209-invention-8.musicxml",
+   "syl": "Level 7 · Complete list: Two-part Invention No. 8 in F Major, BWV 779",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=61"
+  },
+  {
+   "id": "grieg-album-leaf",
+   "level": 8,
+   "kind": "piece",
+   "title": "Album Leaf, Op. 12 No. 7",
+   "hands": "both",
+   "bpm": 76,
+   "wait": 50,
+   "learn": "A tender lyric piece in E minor: a singing melody over soft chords, starting with a pickup.",
+   "tips": [
+    "Let the melody sing and keep the chords soft.",
+    "Start with the pickup on the last eighth of the bar."
+   ],
+   "file": "210-grieg-album-leaf.musicxml",
+   "syl": "Level 7 · List C: Album Leaf, op. 12, no. 7 (Grieg)",
+   "composer": "Edvard Grieg",
+   "license": "CC BY-SA 4.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2194"
+  },
+  {
+   "id": "invention-4",
+   "level": 8,
+   "kind": "piece",
+   "title": "Two-part Invention No. 4 in D minor, BWV 775",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "A quick invention in 3/8 in D minor: a rushing theme in sixteenth notes.",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "211-invention-4.musicxml",
+   "syl": "Level 7 · Complete list: Two-part Invention No. 4 in D Minor, BWV 775",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=67"
   },
   {
    "id": "chopin-prelude-4",
@@ -4385,11 +4555,30 @@
     "Practise the left-hand chords alone until they are even and quiet.",
     "Let the melody breathe above them."
    ],
-   "file": "203-chopin-prelude-4.musicxml",
+   "file": "212-chopin-prelude-4.musicxml",
    "syl": "Level 7 · Complete list: Prelude in E Minor, op. 28, no. 4 (Chopin)",
    "composer": "Frédéric Chopin",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
    "source": ""
+  },
+  {
+   "id": "kuhlau-20-1-iii",
+   "level": 8,
+   "kind": "piece",
+   "title": "Sonatina in C, Op. 20 No. 1: III. Rondo",
+   "hands": "both",
+   "bpm": 132,
+   "wait": 80,
+   "learn": "A bright rondo finale: a returning theme between contrasting episodes.",
+   "tips": [
+    "Learn the theme first; it returns several times.",
+    "Practise the episodes in sections."
+   ],
+   "file": "213-kuhlau-20-1-iii.musicxml",
+   "why": "the rondo finale of the same sonatina, a step above its Level 6 first movement",
+   "composer": "Friedrich Kuhlau",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=234"
   },
   {
    "id": "ear-7",
@@ -4596,7 +4785,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 88.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "204-scales-8-major.musicxml",
+   "file": "214-scales-8-major.musicxml",
    "composer": "Technique"
   },
   {
@@ -4611,7 +4800,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "205-scales-8-harmonic.musicxml",
+   "file": "215-scales-8-harmonic.musicxml",
    "composer": "Technique"
   },
   {
@@ -4626,7 +4815,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "206-scales-8-melodic.musicxml",
+   "file": "216-scales-8-melodic.musicxml",
    "composer": "Technique"
   },
   {
@@ -4641,7 +4830,7 @@
    "tips": [
     "Check the exact shape with your syllabus book: this is one common form of the pattern."
    ],
-   "file": "207-formula-8.musicxml",
+   "file": "217-formula-8.musicxml",
    "composer": "Technique"
   },
   {
@@ -4654,7 +4843,7 @@
    "wait": 55,
    "learn": "Two-octave chromatic scales, hands together.",
    "tips": [],
-   "file": "208-chromatic-8.musicxml",
+   "file": "218-chromatic-8.musicxml",
    "composer": "Technique"
   },
   {
@@ -4669,7 +4858,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 80."
    ],
-   "file": "209-four-note-8.musicxml",
+   "file": "219-four-note-8.musicxml",
    "composer": "Technique"
   },
   {
@@ -4684,7 +4873,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 80."
    ],
-   "file": "210-four-note-8m.musicxml",
+   "file": "220-four-note-8m.musicxml",
    "composer": "Technique"
   },
   {
@@ -4699,7 +4888,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 80."
    ],
-   "file": "211-dominant-7-8.musicxml",
+   "file": "221-dominant-7-8.musicxml",
    "composer": "Technique"
   },
   {
@@ -4714,7 +4903,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 100 for each chord."
    ],
-   "file": "212-dominant-7-8s.musicxml",
+   "file": "222-dominant-7-8s.musicxml",
    "composer": "Technique"
   },
   {
@@ -4730,7 +4919,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 80.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "213-diminished-7-8.musicxml",
+   "file": "223-diminished-7-8.musicxml",
    "composer": "Technique"
   },
   {
@@ -4745,7 +4934,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 100 for each chord."
    ],
-   "file": "214-diminished-7-8s.musicxml",
+   "file": "224-diminished-7-8s.musicxml",
    "composer": "Technique"
   },
   {
@@ -4761,7 +4950,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 69.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "215-arpeggios-8.musicxml",
+   "file": "225-arpeggios-8.musicxml",
    "composer": "Technique"
   },
   {
@@ -4777,7 +4966,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 69.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "216-arpeggios-8m.musicxml",
+   "file": "226-arpeggios-8m.musicxml",
    "composer": "Technique"
   },
   {
@@ -4793,7 +4982,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 69.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "217-arpeggios-8-dom.musicxml",
+   "file": "227-arpeggios-8-dom.musicxml",
    "composer": "Technique"
   },
   {
@@ -4809,8 +4998,122 @@
     "Syllabus tempo: sixteenth notes at ♩ = 69.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "218-arpeggios-8-dim.musicxml",
+   "file": "228-arpeggios-8-dim.musicxml",
    "composer": "Technique"
+  },
+  {
+   "id": "invention-10",
+   "level": 9,
+   "kind": "piece",
+   "title": "Two-part Invention No. 10 in G major, BWV 781",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "A bubbling invention in 9/8 (three groups of three eighth notes per bar).",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "229-invention-10.musicxml",
+   "syl": "Level 8 · Complete list: Two-part Invention No. 10 in G Major, BWV 781",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=62"
+  },
+  {
+   "id": "invention-7",
+   "level": 9,
+   "kind": "piece",
+   "title": "Two-part Invention No. 7 in E minor, BWV 778",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 45,
+   "learn": "A serious invention in E minor with a descending, chromatic theme.",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "230-invention-7.musicxml",
+   "syl": "Level 8 · Complete list: Two-part Invention No. 7 in E Minor, BWV 778",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=73"
+  },
+  {
+   "id": "chopin-prelude-6",
+   "level": 9,
+   "kind": "piece",
+   "title": "Prelude in B minor, Op. 28 No. 6",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "A sombre prelude: a mournful melody in the left hand over repeated chords in the right.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "Shape the long phrases with the dynamics."
+   ],
+   "file": "231-chopin-prelude-6.musicxml",
+   "syl": "Level 8 · Complete list: Prelude in B Minor, op. 28, no. 6 (Chopin)",
+   "composer": "Frédéric Chopin",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=469"
+  },
+  {
+   "id": "invention-2",
+   "level": 9,
+   "kind": "piece",
+   "title": "Two-part Invention No. 2 in C minor, BWV 773",
+   "hands": "both",
+   "bpm": 56,
+   "wait": 40,
+   "learn": "A flowing invention in C minor with a smooth sixteenth-note theme.",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "232-invention-2.musicxml",
+   "syl": "Level 8 · Complete list: Two-part Invention No. 2 in C Minor, BWV 773",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=58"
+  },
+  {
+   "id": "invention-11",
+   "level": 9,
+   "kind": "piece",
+   "title": "Two-part Invention No. 11 in G minor, BWV 782",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "A lyrical invention in G minor with a long, graceful theme.",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "233-invention-11.musicxml",
+   "syl": "Level 8 · Complete list: Two-part Invention No. 11 in G Minor, BWV 782",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=71"
+  },
+  {
+   "id": "invention-5",
+   "level": 9,
+   "kind": "piece",
+   "title": "Two-part Invention No. 5 in E-flat major, BWV 776",
+   "hands": "both",
+   "bpm": 64,
+   "wait": 45,
+   "learn": "A stately invention in E♭ major with a lively sixteenth-note figure.",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "234-invention-5.musicxml",
+   "syl": "Level 8 · Complete list: Two-part Invention No. 5 in E flat Major, BWV 776",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=55"
   },
   {
    "id": "gymnopedie-1",
@@ -4825,11 +5128,125 @@
     "Play the bass note, then the chord, evenly.",
     "Keep it quiet and unhurried."
    ],
-   "file": "219-gymnopedie-1.musicxml",
+   "file": "235-gymnopedie-1.musicxml",
    "why": "next to Satie Gnossienne no. 3 (Level 8): slow, but long, with wide chords and unusual harmony",
    "composer": "Erik Satie",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
    "source": "https://musescore.com/user/19710/scores/4766391"
+  },
+  {
+   "id": "invention-9",
+   "level": 9,
+   "kind": "piece",
+   "title": "Two-part Invention No. 9 in F minor, BWV 780",
+   "hands": "both",
+   "bpm": 56,
+   "wait": 40,
+   "learn": "The \"sighing\" invention in F minor (four flats), full of expressive falling figures.",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "236-invention-9.musicxml",
+   "syl": "Level 8 · Complete list: Two-part Invention No. 9 in F Minor, BWV 780",
+   "composer": "Johann Sebastian Bach",
+   "license": "CC BY-SA 3.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=171"
+  },
+  {
+   "id": "invention-3",
+   "level": 9,
+   "kind": "piece",
+   "title": "Two-part Invention No. 3 in D major, BWV 774",
+   "hands": "both",
+   "bpm": 84,
+   "wait": 55,
+   "learn": "A light, dancing invention in 3/8, starting with a pickup.",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "237-invention-3.musicxml",
+   "syl": "Level 8 · Complete list: Two-part Invention No. 3 in D Major, BWV 774",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=70"
+  },
+  {
+   "id": "gnossienne-3",
+   "level": 9,
+   "kind": "piece",
+   "title": "Gnossienne No. 3",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 45,
+   "learn": "A slow, mysterious dance with a swaying left hand and a melody in the right.",
+   "tips": [
+    "Play very quietly and slowly.",
+    "Keep the left-hand pattern perfectly even."
+   ],
+   "file": "238-gnossienne-3.musicxml",
+   "syl": "Level 8 · Complete list: Gnossienne No. 3 (Satie)",
+   "composer": "Erik Satie",
+   "license": "CC BY-SA 4.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2131"
+  },
+  {
+   "id": "duetto-f",
+   "level": 9,
+   "kind": "piece",
+   "title": "Duetto in F major, BWV 803",
+   "hands": "both",
+   "bpm": 96,
+   "wait": 60,
+   "learn": "One of the four duets from the third part of the Clavier-Übung: two lively lines in a free fugal style.",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "239-duetto-f.musicxml",
+   "syl": "Level 8 · Complete list: Duetto in F Major, BWV 803",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=360"
+  },
+  {
+   "id": "chopin-prelude-9",
+   "level": 9,
+   "kind": "piece",
+   "title": "Prelude in E major, Op. 28 No. 9",
+   "hands": "both",
+   "bpm": 54,
+   "wait": 40,
+   "learn": "A slow, solemn prelude of only twelve bars in four sharps, with rich chords.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "Shape the long phrases with the dynamics."
+   ],
+   "file": "240-chopin-prelude-9.musicxml",
+   "syl": "Level 8 · Complete list: Prelude in E Major, op. 28, no. 9 (Chopin)",
+   "composer": "Frédéric Chopin",
+   "license": "CC BY-SA 4.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2168"
+  },
+  {
+   "id": "invention-6",
+   "level": 9,
+   "kind": "piece",
+   "title": "Two-part Invention No. 6 in E major, BWV 777",
+   "hands": "both",
+   "bpm": 84,
+   "wait": 55,
+   "learn": "A bright invention in E major (four sharps) in 3/8.",
+   "tips": [
+    "Practise each hand alone first: both hands play the same theme in turn.",
+    "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
+   ],
+   "file": "241-invention-6.musicxml",
+   "syl": "Level 8 · Complete list: Two-part Invention No. 6 in E Major, BWV 777",
+   "composer": "Johann Sebastian Bach",
+   "license": "CC BY-SA 3.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=159"
   },
   {
    "id": "ear-8",
@@ -5066,7 +5483,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 104.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "220-scales-9-major.musicxml",
+   "file": "242-scales-9-major.musicxml",
    "composer": "Technique"
   },
   {
@@ -5081,7 +5498,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "221-scales-9-harmonic.musicxml",
+   "file": "243-scales-9-harmonic.musicxml",
    "composer": "Technique"
   },
   {
@@ -5096,7 +5513,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "222-scales-9-melodic.musicxml",
+   "file": "244-scales-9-melodic.musicxml",
    "composer": "Technique"
   },
   {
@@ -5111,7 +5528,7 @@
    "tips": [
     "Check the exact shape with your syllabus book: this is one common form of the pattern."
    ],
-   "file": "223-formula-9.musicxml",
+   "file": "245-formula-9.musicxml",
    "composer": "Technique"
   },
   {
@@ -5124,7 +5541,7 @@
    "wait": 60,
    "learn": "Four-octave chromatic scales hands together; the syllabus lets you start on any note from C to F.",
    "tips": [],
-   "file": "224-chromatic-9.musicxml",
+   "file": "246-chromatic-9.musicxml",
    "composer": "Technique"
   },
   {
@@ -5141,7 +5558,7 @@
     "The syllabus lets you play broken legato octaves if your hands are small.",
     "Syllabus tempo: sixteenth notes at staccato ♩ = 60."
    ],
-   "file": "225-octaves-9.musicxml",
+   "file": "247-octaves-9.musicxml",
    "composer": "Technique"
   },
   {
@@ -5156,7 +5573,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 104."
    ],
-   "file": "226-four-note-9.musicxml",
+   "file": "248-four-note-9.musicxml",
    "composer": "Technique"
   },
   {
@@ -5171,7 +5588,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 104."
    ],
-   "file": "227-four-note-9m.musicxml",
+   "file": "249-four-note-9m.musicxml",
    "composer": "Technique"
   },
   {
@@ -5186,7 +5603,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 80 for each chord."
    ],
-   "file": "228-four-note-9s.musicxml",
+   "file": "250-four-note-9s.musicxml",
    "composer": "Technique"
   },
   {
@@ -5201,7 +5618,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 104."
    ],
-   "file": "229-dominant-7-9.musicxml",
+   "file": "251-dominant-7-9.musicxml",
    "composer": "Technique"
   },
   {
@@ -5216,7 +5633,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 104 for each chord."
    ],
-   "file": "230-dominant-7-9s.musicxml",
+   "file": "252-dominant-7-9s.musicxml",
    "composer": "Technique"
   },
   {
@@ -5232,7 +5649,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 104.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "231-diminished-7-9.musicxml",
+   "file": "253-diminished-7-9.musicxml",
    "composer": "Technique"
   },
   {
@@ -5247,7 +5664,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 104 for each chord."
    ],
-   "file": "232-diminished-7-9s.musicxml",
+   "file": "254-diminished-7-9s.musicxml",
    "composer": "Technique"
   },
   {
@@ -5263,7 +5680,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 84.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "233-arpeggios-9.musicxml",
+   "file": "255-arpeggios-9.musicxml",
    "composer": "Technique"
   },
   {
@@ -5279,7 +5696,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 84.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "234-arpeggios-9m.musicxml",
+   "file": "256-arpeggios-9m.musicxml",
    "composer": "Technique"
   },
   {
@@ -5295,7 +5712,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 84.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "235-arpeggios-9-dom.musicxml",
+   "file": "257-arpeggios-9-dom.musicxml",
    "composer": "Technique"
   },
   {
@@ -5311,8 +5728,103 @@
     "Syllabus tempo: sixteenth notes at ♩ = 84.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "236-arpeggios-9-dim.musicxml",
+   "file": "258-arpeggios-9-dim.musicxml",
    "composer": "Technique"
+  },
+  {
+   "id": "sinfonia-1",
+   "level": 10,
+   "kind": "piece",
+   "title": "Sinfonia No. 1 in C major, BWV 787",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "The first three-part invention: three voices in imitation.",
+   "tips": [
+    "Three voices: learn each one alone, then two at a time.",
+    "Let the entry of each voice be heard."
+   ],
+   "file": "259-sinfonia-1.musicxml",
+   "syl": "Level 9 · Complete list: Sinfonia No. 1 in C Major, BWV 787",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=142"
+  },
+  {
+   "id": "sinfonia-5",
+   "level": 10,
+   "kind": "piece",
+   "title": "Sinfonia No. 5 in E-flat major, BWV 791",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "A graceful three-part invention in 3/4 in E♭ major.",
+   "tips": [
+    "Three voices: learn each one alone, then two at a time.",
+    "Let the entry of each voice be heard."
+   ],
+   "file": "260-sinfonia-5.musicxml",
+   "syl": "Level 9 · Complete list: Sinfonia No. 5 in E flat Major, BWV 791",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=204"
+  },
+  {
+   "id": "sinfonia-4",
+   "level": 10,
+   "kind": "piece",
+   "title": "Sinfonia No. 4 in D minor, BWV 790",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "A restless three-part invention in D minor.",
+   "tips": [
+    "Three voices: learn each one alone, then two at a time.",
+    "Let the entry of each voice be heard."
+   ],
+   "file": "261-sinfonia-4.musicxml",
+   "syl": "Level 9 · Complete list: Sinfonia No. 4 in D Minor, BWV 790",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=172"
+  },
+  {
+   "id": "sinfonia-3",
+   "level": 10,
+   "kind": "piece",
+   "title": "Sinfonia No. 3 in D major, BWV 789",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 50,
+   "learn": "A bright three-part invention in D major.",
+   "tips": [
+    "Three voices: learn each one alone, then two at a time.",
+    "Let the entry of each voice be heard."
+   ],
+   "file": "262-sinfonia-3.musicxml",
+   "syl": "Level 9 · Complete list: Sinfonia No. 3 in D Major, BWV 789",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=143"
+  },
+  {
+   "id": "sinfonia-6",
+   "level": 10,
+   "kind": "piece",
+   "title": "Sinfonia No. 6 in E major, BWV 792",
+   "hands": "both",
+   "bpm": 58,
+   "wait": 40,
+   "learn": "A flowing three-part invention in 9/8 in E major.",
+   "tips": [
+    "Three voices: learn each one alone, then two at a time.",
+    "Let the entry of each voice be heard."
+   ],
+   "file": "263-sinfonia-6.musicxml",
+   "syl": "Level 9 · Complete list: Sinfonia No. 6 in E Major, BWV 792",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=173"
   },
   {
    "id": "chopin-nocturne-20-reminiscence",
@@ -5327,11 +5839,106 @@
     "One flat: B♭.",
     "Learn each hand alone before putting them together."
    ],
-   "file": "237-chopin-nocturne-20-reminiscence.musicxml",
+   "file": "264-chopin-nocturne-20-reminiscence.musicxml",
    "syl": "Level 9 · Complete list: Nocturne in C sharp Minor, op. posth., B 49 (Chopin); this edition is arranged in D minor",
    "composer": "Frédéric Chopin",
    "license": "Public domain music; free MusicXML score",
    "source": ""
+  },
+  {
+   "id": "sinfonia-2",
+   "level": 10,
+   "kind": "piece",
+   "title": "Sinfonia No. 2 in C minor, BWV 788",
+   "hands": "both",
+   "bpm": 54,
+   "wait": 40,
+   "learn": "A flowing three-part invention in C minor in 12/8.",
+   "tips": [
+    "Three voices: learn each one alone, then two at a time.",
+    "Let the entry of each voice be heard."
+   ],
+   "file": "265-sinfonia-2.musicxml",
+   "syl": "Level 9 · Complete list: Sinfonia No. 2 in C Minor, BWV 788",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=140"
+  },
+  {
+   "id": "chopin-nocturne-9-2-full",
+   "level": 10,
+   "kind": "piece",
+   "title": "Nocturne in E-flat, Op. 9 No. 2",
+   "hands": "both",
+   "bpm": 56,
+   "wait": 40,
+   "learn": "The complete famous nocturne in 12/8, with its decorated returns of the melody. Begins with a pickup.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "Shape the long phrases with the dynamics."
+   ],
+   "file": "266-chopin-nocturne-9-2-full.musicxml",
+   "syl": "Level 9 · Complete list: Nocturne in E flat Major, op. 9, no. 2 (Chopin)",
+   "composer": "Frédéric Chopin",
+   "license": "CC BY-SA 3.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1590"
+  },
+  {
+   "id": "chopin-mazurka-6-1",
+   "level": 10,
+   "kind": "piece",
+   "title": "Mazurka in F-sharp minor, Op. 6 No. 1",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "A Polish dance in 3/4 with accents on the second and third beats.",
+   "tips": [
+    "Feel the accent on beats 2 and 3.",
+    "Keep the left hand light."
+   ],
+   "file": "267-chopin-mazurka-6-1.musicxml",
+   "syl": "Level 9 · Complete list: Mazurka in F sharp Minor, op. 6, no. 1 (Chopin)",
+   "composer": "Frédéric Chopin",
+   "license": "CC BY 3.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1687"
+  },
+  {
+   "id": "chopin-prelude-13",
+   "level": 10,
+   "kind": "piece",
+   "title": "Prelude in F-sharp major, Op. 28 No. 13",
+   "hands": "both",
+   "bpm": 54,
+   "wait": 40,
+   "learn": "A calm, singing prelude in six sharps, with a long melody over a gentle accompaniment.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "Shape the long phrases with the dynamics."
+   ],
+   "file": "268-chopin-prelude-13.musicxml",
+   "syl": "Level 9 · Complete list: Prelude in F sharp Major, op. 28, no. 13 (Chopin)",
+   "composer": "Frédéric Chopin",
+   "license": "CC BY-SA 4.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2174"
+  },
+  {
+   "id": "chopin-prelude-15",
+   "level": 10,
+   "kind": "piece",
+   "title": "Prelude in D-flat major, Op. 28 No. 15 (\"Raindrop\")",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 45,
+   "learn": "The \"Raindrop\" prelude: a repeated note keeps sounding through the calm opening and the dark middle section.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "Shape the long phrases with the dynamics."
+   ],
+   "file": "269-chopin-prelude-15.musicxml",
+   "syl": "Level 9 · Complete list: Prelude in D flat Major, op. 28, no. 15 (Chopin)",
+   "composer": "Frédéric Chopin",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=471"
   },
   {
    "id": "chopin-nocturne-13",
@@ -5346,7 +5953,7 @@
     "Three flats: B♭, E♭ and A♭.",
     "Add your own left-hand chords from the chord symbols once the melody is secure."
    ],
-   "file": "238-chopin-nocturne-13.musicxml",
+   "file": "270-chopin-nocturne-13.musicxml",
    "why": "not on the syllabus lists: a lead sheet of a dramatic nocturne with fast ornaments",
    "composer": "Frédéric Chopin (arr. G. Lees)",
    "license": "Public domain music; free MusicXML score",
@@ -5572,7 +6179,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 120.",
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "239-scales-10-major.musicxml",
+   "file": "271-scales-10-major.musicxml",
    "composer": "Technique"
   },
   {
@@ -5587,7 +6194,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "240-scales-10-harmonic.musicxml",
+   "file": "272-scales-10-harmonic.musicxml",
    "composer": "Technique"
   },
   {
@@ -5602,7 +6209,7 @@
    "tips": [
     "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
    ],
-   "file": "241-scales-10-melodic.musicxml",
+   "file": "273-scales-10-melodic.musicxml",
    "composer": "Technique"
   },
   {
@@ -5619,7 +6226,7 @@
     "Check the exact form with your syllabus book.",
     "Syllabus tempo: sixteenth notes at ♩ = 104."
    ],
-   "file": "242-thirds-10.musicxml",
+   "file": "274-thirds-10.musicxml",
    "composer": "Technique"
   },
   {
@@ -5636,7 +6243,7 @@
     "Check the exact form with your syllabus book.",
     "Syllabus tempo: sixteenth notes at ♩ = 104."
    ],
-   "file": "243-sixths-10.musicxml",
+   "file": "275-sixths-10.musicxml",
    "composer": "Technique"
   },
   {
@@ -5652,7 +6259,7 @@
     "The syllabus lets you play broken legato octaves if your hands are small.",
     "Syllabus tempo: sixteenth notes at staccato ♩ = 80."
    ],
-   "file": "244-octaves-10.musicxml",
+   "file": "276-octaves-10.musicxml",
    "composer": "Technique"
   },
   {
@@ -5667,7 +6274,7 @@
    "tips": [
     "Use 1–5 on white keys and 1–4 on black keys."
    ],
-   "file": "245-chromatic-octaves-10.musicxml",
+   "file": "277-chromatic-octaves-10.musicxml",
    "composer": "Technique"
   },
   {
@@ -5683,7 +6290,7 @@
     "The syllabus offers a broken \"alternate-note\" pattern; this lesson uses the plain broken chord.",
     "Syllabus tempo: sixteenth notes at ♩ = 96."
    ],
-   "file": "246-four-note-10.musicxml",
+   "file": "278-four-note-10.musicxml",
    "composer": "Technique"
   },
   {
@@ -5698,7 +6305,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 96."
    ],
-   "file": "247-four-note-10m.musicxml",
+   "file": "279-four-note-10m.musicxml",
    "composer": "Technique"
   },
   {
@@ -5713,7 +6320,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 120 for each chord."
    ],
-   "file": "248-four-note-10s.musicxml",
+   "file": "280-four-note-10s.musicxml",
    "composer": "Technique"
   },
   {
@@ -5728,7 +6335,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 96."
    ],
-   "file": "249-dominant-7-10.musicxml",
+   "file": "281-dominant-7-10.musicxml",
    "composer": "Technique"
   },
   {
@@ -5743,7 +6350,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 120 for each chord."
    ],
-   "file": "250-dominant-7-10s.musicxml",
+   "file": "282-dominant-7-10s.musicxml",
    "composer": "Technique"
   },
   {
@@ -5759,7 +6366,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 96.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "251-diminished-7-10.musicxml",
+   "file": "283-diminished-7-10.musicxml",
    "composer": "Technique"
   },
   {
@@ -5774,7 +6381,7 @@
    "tips": [
     "Syllabus tempo: sixteenth notes at ♩ = 120 for each chord."
    ],
-   "file": "252-diminished-7-10s.musicxml",
+   "file": "284-diminished-7-10s.musicxml",
    "composer": "Technique"
   },
   {
@@ -5790,7 +6397,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 92.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "253-arpeggios-10.musicxml",
+   "file": "285-arpeggios-10.musicxml",
    "composer": "Technique"
   },
   {
@@ -5806,7 +6413,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 92.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "254-arpeggios-10m.musicxml",
+   "file": "286-arpeggios-10m.musicxml",
    "composer": "Technique"
   },
   {
@@ -5822,7 +6429,7 @@
     "Syllabus tempo: sixteenth notes at ♩ = 92.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "255-arpeggios-10-dom.musicxml",
+   "file": "287-arpeggios-10-dom.musicxml",
    "composer": "Technique"
   },
   {
@@ -5838,8 +6445,28 @@
     "Syllabus tempo: sixteenth notes at ♩ = 92.",
     "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
    ],
-   "file": "256-arpeggios-10-dim.musicxml",
+   "file": "288-arpeggios-10-dim.musicxml",
    "composer": "Technique"
+  },
+  {
+   "id": "wtc-fugue-1",
+   "level": 11,
+   "kind": "piece",
+   "title": "Fugue in C major, BWV 846 (Well-Tempered Clavier I)",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "The famous four-voice fugue in C: the subject enters in each voice in turn.",
+   "tips": [
+    "Three voices: learn each one alone, then two at a time.",
+    "Let the entry of each voice be heard.",
+    "Follow the subject every time it enters."
+   ],
+   "file": "289-wtc-fugue-1.musicxml",
+   "syl": "Level 10 · Complete list: Prelude and Fugue in C Major, BWV 846 (the fugue)",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=4"
   },
   {
    "id": "prelude-846",
@@ -5854,11 +6481,87 @@
     "Keep every note the same length and volume.",
     "Listen to how the harmony changes bar by bar."
    ],
-   "file": "257-prelude-846.musicxml",
+   "file": "290-prelude-846.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in C Major, BWV 846 (the prelude)",
    "composer": "Johann Sebastian Bach",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
    "source": "https://musescore.com/user/101554/scores/117279"
+  },
+  {
+   "id": "chopin-prelude-17",
+   "level": 11,
+   "kind": "piece",
+   "title": "Prelude in A-flat major, Op. 28 No. 17",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 45,
+   "learn": "A long, rich prelude in four flats, with a singing melody over repeated chords.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "Shape the long phrases with the dynamics."
+   ],
+   "file": "291-chopin-prelude-17.musicxml",
+   "syl": "Level 10 · Complete list: Prelude in A flat Major, op. 28, no. 17 (Chopin)",
+   "composer": "Frédéric Chopin",
+   "license": "CC BY-SA 4.0",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2190"
+  },
+  {
+   "id": "clair-de-lune",
+   "level": 11,
+   "kind": "piece",
+   "title": "Clair de lune (Suite bergamasque)",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "Debussy's famous moonlit piece in D♭ major in 9/8: floating arpeggios and a soft melody.",
+   "tips": [
+    "Play very softly and let the pedal blur the harmonies gently.",
+    "Keep the arpeggios smooth and even."
+   ],
+   "file": "292-clair-de-lune.musicxml",
+   "syl": "Level 10 · Complete list: Suite bergamasque, Clair de lune (no. 3) (Debussy)",
+   "composer": "Claude Debussy",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1778"
+  },
+  {
+   "id": "chopin-nocturne-9-1",
+   "level": 11,
+   "kind": "piece",
+   "title": "Nocturne in B-flat minor, Op. 9 No. 1",
+   "hands": "both",
+   "bpm": 52,
+   "wait": 36,
+   "learn": "A dark, expressive nocturne in five flats, beginning with a long pickup.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "Shape the long phrases with the dynamics."
+   ],
+   "file": "293-chopin-nocturne-9-1.musicxml",
+   "syl": "Level 10 · Complete list: Nocturne in B flat Minor, op. 9, no. 1 (Chopin)",
+   "composer": "Frédéric Chopin",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=582"
+  },
+  {
+   "id": "troldhaugen",
+   "level": 11,
+   "kind": "piece",
+   "title": "Wedding Day at Troldhaugen, Op. 65 No. 6",
+   "hands": "both",
+   "bpm": 108,
+   "wait": 70,
+   "learn": "Grieg's lively wedding march: bold chords, rapid figures and a joyful melody.",
+   "tips": [
+    "Learn it in sections of eight bars.",
+    "Keep the chords crisp and the tune bright."
+   ],
+   "file": "294-troldhaugen.musicxml",
+   "syl": "Level 10 · Complete list: Wedding Day at Troldhaugen (no. 6), Lyric Pieces, op. 65 (Grieg)",
+   "composer": "Edvard Grieg",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=781"
   },
   {
    "id": "ear-10",
