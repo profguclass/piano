@@ -8,7 +8,11 @@
   "Level 3",
   "Level 4",
   "Level 5",
-  "Level 6"
+  "Level 6",
+  "Level 7",
+  "Level 8",
+  "Level 9",
+  "Level 10"
  ],
  "lessons": [
   {
@@ -3874,44 +3878,6 @@
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=354"
   },
   {
-   "id": "chopin-prelude-7",
-   "level": 7,
-   "kind": "piece",
-   "title": "Prelude in A major, Op. 28 No. 7",
-   "hands": "both",
-   "bpm": 66,
-   "wait": 45,
-   "learn": "A tiny gem of 16 bars in A major (three sharps): a dance-like melody in dotted rhythm.",
-   "tips": [
-    "Three sharps: F♯, C♯ and G♯.",
-    "Play the dotted rhythms lightly and exactly."
-   ],
-   "file": "182-chopin-prelude-7.musicxml",
-   "why": "not on the Level 1-6 lists; chords and dotted rhythms",
-   "composer": "Frédéric Chopin",
-   "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
-   "source": "https://musescore.com/user/19710/scores/60121"
-  },
-  {
-   "id": "chopin-nocturne-9-2-fuller",
-   "level": 7,
-   "kind": "piece",
-   "title": "Nocturne in E-flat, Op. 9 No. 2 (fuller version)",
-   "hands": "both",
-   "bpm": 60,
-   "wait": 40,
-   "learn": "A fuller, easier-than-the-original version of the whole nocturne: 65 bars with the ornamented return of the tune.",
-   "tips": [
-    "Practise the left-hand broken chords alone until they are smooth.",
-    "Let the melody sing above them."
-   ],
-   "file": "183-chopin-nocturne-9-2-fuller.musicxml",
-   "why": "a fuller version of the same nocturne",
-   "composer": "Frédéric Chopin",
-   "license": "Public domain music; free MusicXML score",
-   "source": ""
-  },
-  {
    "id": "chopin-waltz-am",
    "level": 7,
    "kind": "piece",
@@ -3924,87 +3890,11 @@
     "Play beat 1 of the left hand a little stronger.",
     "Follow the fingering written in the score."
    ],
-   "file": "184-chopin-waltz-am.musicxml",
+   "file": "182-chopin-waltz-am.musicxml",
    "syl": "Level 6 · List C: Waltz in A Minor, op. posth., B 150 (Chopin)",
    "composer": "Frédéric Chopin",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
    "source": "https://musescore.com/score/1749181"
-  },
-  {
-   "id": "gymnopedie-1",
-   "level": 7,
-   "kind": "piece",
-   "title": "Gymnopédie No. 1",
-   "hands": "both",
-   "bpm": 60,
-   "wait": 40,
-   "learn": "A slow, floating waltz in D major (2 sharps). The left hand alternates a low bass with a chord; the right hand sings above it.",
-   "tips": [
-    "Play the bass note, then the chord, evenly.",
-    "Keep it quiet and unhurried."
-   ],
-   "file": "185-gymnopedie-1.musicxml",
-   "why": "not on the Level 1-6 lists: slow, but long, with wide chords and unusual harmony",
-   "composer": "Erik Satie",
-   "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
-   "source": "https://musescore.com/user/19710/scores/4766391"
-  },
-  {
-   "id": "prelude-846",
-   "level": 7,
-   "kind": "piece",
-   "title": "Prelude in C major (BWV 846)",
-   "hands": "both",
-   "bpm": 66,
-   "wait": 45,
-   "learn": "The first prelude of the Well-Tempered Clavier: broken chords in an even flow.",
-   "tips": [
-    "Keep every note the same length and volume.",
-    "Listen to how the harmony changes bar by bar."
-   ],
-   "file": "186-prelude-846.musicxml",
-   "why": "above the Level 6 lists: even broken chords throughout (the first Well-Tempered Clavier prelude)",
-   "composer": "Johann Sebastian Bach",
-   "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
-   "source": "https://musescore.com/user/101554/scores/117279"
-  },
-  {
-   "id": "chopin-nocturne-20-reminiscence",
-   "level": 7,
-   "kind": "piece",
-   "title": "Nocturne No. 20, \"Reminiscence\" (arranged in D minor)",
-   "hands": "both",
-   "bpm": 50,
-   "wait": 36,
-   "learn": "The posthumous nocturne for two hands, in a transposition to D minor (one flat), with its dynamics.",
-   "tips": [
-    "One flat: B♭.",
-    "Learn each hand alone before putting them together."
-   ],
-   "file": "187-chopin-nocturne-20-reminiscence.musicxml",
-   "why": "above the Level 6 lists: the full nocturne with ornaments",
-   "composer": "Frédéric Chopin",
-   "license": "Public domain music; free MusicXML score",
-   "source": ""
-  },
-  {
-   "id": "chopin-prelude-4",
-   "level": 7,
-   "kind": "piece",
-   "title": "Prelude in E minor, Op. 28 No. 4",
-   "hands": "both",
-   "bpm": 50,
-   "wait": 36,
-   "learn": "A slow, deeply expressive prelude: a mournful melody over repeated chords that slowly change.",
-   "tips": [
-    "Practise the left-hand chords alone until they are even and quiet.",
-    "Let the melody breathe above them."
-   ],
-   "file": "188-chopin-prelude-4.musicxml",
-   "why": "above the Level 6 lists: chords of up to six notes and wide stretches",
-   "composer": "Frédéric Chopin",
-   "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
-   "source": ""
   },
   {
    "id": "inquietude",
@@ -4018,7 +3908,7 @@
    "tips": [
     "Keep the hand changes rhythmically exact."
    ],
-   "file": "189-inquietude.musicxml",
+   "file": "183-inquietude.musicxml",
    "why": "the hardest of the set: a fast, restless study",
    "composer": "Friedrich Burgmüller (25 Easy Studies)",
    "license": "Public Domain",
@@ -4037,7 +3927,7 @@
     "Three flats: B♭, E♭ and A♭.",
     "Keep the broken chords perfectly even."
    ],
-   "file": "190-prelude-999-c.musicxml",
+   "file": "184-prelude-999-c.musicxml",
    "syl": "Level 6 · Complete list: Prelude in C Minor, BWV 999 (Bach)",
    "composer": "Johann Sebastian Bach",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
@@ -4055,30 +3945,11 @@
    "tips": [
     "Keep the broken chords perfectly even."
    ],
-   "file": "191-prelude-999.musicxml",
+   "file": "185-prelude-999.musicxml",
    "syl": "Level 6 · Complete list: Prelude in C Minor, BWV 999 (Bach; this edition is in D minor)",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=60"
-  },
-  {
-   "id": "chopin-nocturne-13",
-   "level": 7,
-   "kind": "piece",
-   "title": "Nocturne in C minor, Op. 48 No. 1",
-   "hands": "both",
-   "bpm": 52,
-   "wait": 36,
-   "learn": "A dramatic nocturne in C minor (three flats) as a lead sheet: the melody, with chords in a few places, and chord symbols above the staff. The notes from middle C up are for the right hand, the lower ones for the left.",
-   "tips": [
-    "Three flats: B♭, E♭ and A♭.",
-    "Add your own left-hand chords from the chord symbols once the melody is secure."
-   ],
-   "file": "192-chopin-nocturne-13.musicxml",
-   "why": "above the Level 6 lists: a lead sheet of a dramatic nocturne with fast ornaments",
-   "composer": "Frédéric Chopin (arr. G. Lees)",
-   "license": "Public domain music; free MusicXML score",
-   "source": ""
   },
   {
    "id": "ear-6",
@@ -4229,6 +4100,1973 @@
     ]
    },
    "learn": "Tap the rhythm of a melody, then play an eight-bar passage hands together in keys up to three sharps or flats, or read a lead sheet and make up the accompaniment."
+  },
+  {
+   "id": "scales-7-major",
+   "level": 8,
+   "kind": "technique",
+   "title": "Scales hands together, two octaves: C, D, F, A♭ and G♭ major",
+   "hands": "both",
+   "bpm": 76,
+   "wait": 50,
+   "learn": "Two-octave major scales hands together at the Level 7 tempo. G♭ major has six flats: the same black keys as F♯ major.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 76.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "186-scales-7-major.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "scales-7-harmonic",
+   "level": 8,
+   "kind": "technique",
+   "title": "Harmonic minor scales hands together: C, D, F, G♯ and F♯",
+   "hands": "both",
+   "bpm": 76,
+   "wait": 50,
+   "learn": "G♯ minor has five sharps; its harmonic form raises F♯ to F double-sharp (the same key as G).",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "187-scales-7-harmonic.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "scales-7-melodic",
+   "level": 8,
+   "kind": "technique",
+   "title": "Melodic minor scales hands together: C, D, F, G♯ and F♯",
+   "hands": "both",
+   "bpm": 76,
+   "wait": 50,
+   "learn": "Melodic minor: the 6th and 7th are raised going up and natural coming down.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "188-scales-7-melodic.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "formula-7",
+   "level": 8,
+   "kind": "technique",
+   "title": "Formula patterns: D major and D harmonic minor",
+   "hands": "both",
+   "bpm": 76,
+   "wait": 50,
+   "learn": "The formula pattern over two octaves in D major and D harmonic minor.",
+   "tips": [
+    "Check the exact shape with your syllabus book: this is one common form of the pattern."
+   ],
+   "file": "189-formula-7.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "chromatic-7",
+   "level": 8,
+   "kind": "technique",
+   "title": "Chromatic scales hands together, two octaves: from D and from G♭",
+   "hands": "both",
+   "bpm": 76,
+   "wait": 50,
+   "learn": "Two-octave chromatic scales, hands together.",
+   "tips": [
+    "Keep the hands exactly together."
+   ],
+   "file": "190-chromatic-7.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "four-note-7",
+   "level": 8,
+   "kind": "technique",
+   "title": "Tonic four-note chords, broken: C, D, F, A♭ and G♭ major",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "A four-note tonic chord is root, third, fifth and the root again. Play it broken, in root position and both inversions, up two octaves and down, then end with I–IV–V–I.",
+   "tips": [
+    "Right hand: root position 1 2 3 5, first inversion 1 2 4 5, second 1 3 4 5.",
+    "Syllabus tempo: sixteenth notes at ♩ = 60."
+   ],
+   "file": "191-four-note-7.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "four-note-7m",
+   "level": 8,
+   "kind": "technique",
+   "title": "Tonic four-note chords, broken: C, D, F, G♯ and F♯ minor",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "The same in minor keys, ending with i–iv–V–i.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 60."
+   ],
+   "file": "192-four-note-7m.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "dominant-7-7",
+   "level": 8,
+   "kind": "technique",
+   "title": "Dominant 7th chords, broken: C, D, F, A♭ and G♭ major",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "Dominant 7th chords, hands together, two octaves, root position and all inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 60."
+   ],
+   "file": "193-dominant-7-7.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "dominant-7-7s",
+   "level": 8,
+   "kind": "technique",
+   "title": "Dominant 7th chords, solid: C, D, F, A♭ and G♭ major",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "The same chords played solid (blocked), hands together.",
+   "tips": [
+    "Both hands press and release together.",
+    "Syllabus tempo: sixteenth notes at ♩ = 80 for each chord."
+   ],
+   "file": "194-dominant-7-7s.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "diminished-7-7",
+   "level": 8,
+   "kind": "technique",
+   "title": "Leading-tone diminished 7th chords, broken: C, D, F, G♯ and F♯ minor",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "Diminished 7th chords built on the raised 7th, hands together, two octaves, in all inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 60.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "195-diminished-7-7.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "diminished-7-7s",
+   "level": 8,
+   "kind": "technique",
+   "title": "Leading-tone diminished 7th chords, solid: C, D, F, G♯ and F♯ minor",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "The same chords solid, hands together.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 80 for each chord."
+   ],
+   "file": "196-diminished-7-7s.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-7",
+   "level": 8,
+   "kind": "technique",
+   "title": "Arpeggios: C, D, F, A♭ and G♭ major",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "Tonic arpeggios over two octaves, hands together, in root position and both inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 60.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "197-arpeggios-7.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-7m",
+   "level": 8,
+   "kind": "technique",
+   "title": "Arpeggios: C, D, F, G♯ and F♯ minor",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "Minor tonic arpeggios, two octaves, root position and both inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 60.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "198-arpeggios-7m.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-7-dom",
+   "level": 8,
+   "kind": "technique",
+   "title": "Dominant 7th arpeggios: C, D, F, A♭ and G♭ major",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "Four-note arpeggios on the dominant 7th, two octaves, root position.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 60.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "199-arpeggios-7-dom.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-7-dim",
+   "level": 8,
+   "kind": "technique",
+   "title": "Diminished 7th arpeggios: C, D, F, G♯ and F♯ minor",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "Four-note arpeggios on the leading-tone diminished 7th, two octaves, root position.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 60.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "200-arpeggios-7-dim.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "chopin-prelude-7",
+   "level": 8,
+   "kind": "piece",
+   "title": "Prelude in A major, Op. 28 No. 7",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "A tiny gem of 16 bars in A major (three sharps): a dance-like melody in dotted rhythm.",
+   "tips": [
+    "Three sharps: F♯, C♯ and G♯.",
+    "Play the dotted rhythms lightly and exactly."
+   ],
+   "file": "201-chopin-prelude-7.musicxml",
+   "why": "next to Prelude op. 28 no. 4 (Level 7): chords and dotted rhythms",
+   "composer": "Frédéric Chopin",
+   "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
+   "source": "https://musescore.com/user/19710/scores/60121"
+  },
+  {
+   "id": "chopin-nocturne-9-2-fuller",
+   "level": 8,
+   "kind": "piece",
+   "title": "Nocturne in E-flat, Op. 9 No. 2 (fuller version)",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "A fuller, easier-than-the-original version of the whole nocturne: 65 bars with the ornamented return of the tune.",
+   "tips": [
+    "Practise the left-hand broken chords alone until they are smooth.",
+    "Let the melody sing above them."
+   ],
+   "file": "202-chopin-nocturne-9-2-fuller.musicxml",
+   "why": "an easier version of the Level 9 nocturne (op. 9, no. 2)",
+   "composer": "Frédéric Chopin",
+   "license": "Public domain music; free MusicXML score",
+   "source": ""
+  },
+  {
+   "id": "chopin-prelude-4",
+   "level": 8,
+   "kind": "piece",
+   "title": "Prelude in E minor, Op. 28 No. 4",
+   "hands": "both",
+   "bpm": 50,
+   "wait": 36,
+   "learn": "A slow, deeply expressive prelude: a mournful melody over repeated chords that slowly change.",
+   "tips": [
+    "Practise the left-hand chords alone until they are even and quiet.",
+    "Let the melody breathe above them."
+   ],
+   "file": "203-chopin-prelude-4.musicxml",
+   "syl": "Level 7 · Complete list: Prelude in E Minor, op. 28, no. 4 (Chopin)",
+   "composer": "Frédéric Chopin",
+   "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
+   "source": ""
+  },
+  {
+   "id": "ear-7",
+   "level": 8,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "intervals",
+    "chords",
+    "progressions",
+    "playback"
+   ],
+   "intervals": [
+    "m2",
+    "M2",
+    "m3",
+    "M3",
+    "P4",
+    "P5",
+    "m6",
+    "M6",
+    "m7",
+    "M7",
+    "P8"
+   ],
+   "intervalStyle": "melodic-harmonic",
+   "chords": {
+    "style": "solid",
+    "qualities": [
+     "major",
+     "minor",
+     "aug",
+     "dom7",
+     "dim7"
+    ]
+   },
+   "progressions": {
+    "minor": true,
+    "sets": {
+     "major": [
+      [
+       "I",
+       "IV",
+       "I"
+      ],
+      [
+       "I",
+       "V",
+       "I"
+      ],
+      [
+       "I",
+       "IV",
+       "V"
+      ]
+     ],
+     "minor": [
+      [
+       "i",
+       "iv",
+       "i"
+      ],
+      [
+       "i",
+       "V",
+       "i"
+      ],
+      [
+       "i",
+       "iv",
+       "V"
+      ]
+     ]
+    }
+   },
+   "playback": {
+    "pool": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "keys": [
+     "D",
+     "F",
+     "Dm",
+     "Fm"
+    ],
+    "starts": [
+     0,
+     2,
+     4,
+     7
+    ],
+    "length": [
+     8,
+     9,
+     10
+    ],
+    "plays": 3
+   },
+   "learn": "Name any interval from a minor 2nd to the octave (melodic, then harmonic); tell major, minor, augmented, dominant 7th and diminished 7th chords apart; recognise I–IV–I, I–V–I and I–IV–V (and in minor); play back a melody of up to ten notes on the whole scale."
+  },
+  {
+   "id": "sight-7",
+   "level": 8,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing",
+    "leadsheet"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e",
+     "rq"
+    ],
+    "bars": 4,
+    "melodic": true
+   },
+   "playing": {
+    "style": "together",
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "A",
+     "F",
+     "Bb",
+     "Eb",
+     "Am",
+     "Em",
+     "Bm",
+     "Dm",
+     "Gm",
+     "Cm"
+    ],
+    "bars": 8,
+    "values": [
+     "q",
+     "h",
+     "ee",
+     "q.e"
+    ]
+   },
+   "leadsheet": {
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "A",
+     "F",
+     "Bb",
+     "Eb",
+     "Am",
+     "Dm",
+     "Em",
+     "Gm"
+    ],
+    "bars": 8,
+    "chords": [
+     "I",
+     "IV",
+     "V",
+     "V7",
+     "vi"
+    ]
+   },
+   "learn": "Tap a four-bar rhythm, then play an eight-bar passage comparable to Level 4 (up to three sharps or flats), or read a lead sheet and make up the accompaniment."
+  },
+  {
+   "id": "scales-8-major",
+   "level": 9,
+   "kind": "technique",
+   "title": "Scales hands together, four octaves: C, D, E, B♭, E♭ and G♭ major",
+   "hands": "both",
+   "bpm": 88,
+   "wait": 55,
+   "learn": "Four-octave major scales hands together: the hands play an octave apart over four octaves.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 88.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "204-scales-8-major.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "scales-8-harmonic",
+   "level": 9,
+   "kind": "technique",
+   "title": "Harmonic minor scales, four octaves: C, D, E, B♭, E♭ and F♯",
+   "hands": "both",
+   "bpm": 88,
+   "wait": 55,
+   "learn": "Four-octave harmonic minor scales hands together.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "205-scales-8-harmonic.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "scales-8-melodic",
+   "level": 9,
+   "kind": "technique",
+   "title": "Melodic minor scales, four octaves: C, D, E, B♭, E♭ and F♯",
+   "hands": "both",
+   "bpm": 88,
+   "wait": 55,
+   "learn": "Four-octave melodic minor scales hands together.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "206-scales-8-melodic.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "formula-8",
+   "level": 9,
+   "kind": "technique",
+   "title": "Formula patterns, four octaves: E♭ major and E♭ harmonic minor",
+   "hands": "both",
+   "bpm": 88,
+   "wait": 55,
+   "learn": "The formula pattern over four octaves.",
+   "tips": [
+    "Check the exact shape with your syllabus book: this is one common form of the pattern."
+   ],
+   "file": "207-formula-8.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "chromatic-8",
+   "level": 9,
+   "kind": "technique",
+   "title": "Chromatic scales hands together, two octaves: from E♭ and from E",
+   "hands": "both",
+   "bpm": 88,
+   "wait": 55,
+   "learn": "Two-octave chromatic scales, hands together.",
+   "tips": [],
+   "file": "208-chromatic-8.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "four-note-8",
+   "level": 9,
+   "kind": "technique",
+   "title": "Tonic four-note chords, broken: C, D, E, B♭, E♭ and G♭ major",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "Broken four-note tonic chords over two octaves, ending with I–IV–V⁶⁴–V–I (the cadential 6/4 resolves to the dominant).",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 80."
+   ],
+   "file": "209-four-note-8.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "four-note-8m",
+   "level": 9,
+   "kind": "technique",
+   "title": "Tonic four-note chords, broken: C, D, E, B♭, E♭ and F♯ minor",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "The same in the Level 8 minor keys.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 80."
+   ],
+   "file": "210-four-note-8m.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "dominant-7-8",
+   "level": 9,
+   "kind": "technique",
+   "title": "Dominant 7th chords, broken: C, D, E, B♭, E♭ and G♭ major",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "Broken dominant 7ths, hands together, two octaves, all inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 80."
+   ],
+   "file": "211-dominant-7-8.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "dominant-7-8s",
+   "level": 9,
+   "kind": "technique",
+   "title": "Dominant 7th chords, solid: C, D, E, B♭, E♭ and G♭ major",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 65,
+   "learn": "The same chords solid, hands together.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 100 for each chord."
+   ],
+   "file": "212-dominant-7-8s.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "diminished-7-8",
+   "level": 9,
+   "kind": "technique",
+   "title": "Leading-tone diminished 7th chords, broken: C, D, E, B♭, E♭ and F♯ minor",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 50,
+   "learn": "Broken diminished 7ths, hands together, two octaves.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 80.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "213-diminished-7-8.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "diminished-7-8s",
+   "level": 9,
+   "kind": "technique",
+   "title": "Leading-tone diminished 7th chords, solid: C, D, E, B♭, E♭ and F♯ minor",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 65,
+   "learn": "The same chords solid, hands together.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 100 for each chord."
+   ],
+   "file": "214-diminished-7-8s.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-8",
+   "level": 9,
+   "kind": "technique",
+   "title": "Arpeggios, four octaves: C, D, E, B♭, E♭ and G♭ major",
+   "hands": "both",
+   "bpm": 69,
+   "wait": 45,
+   "learn": "Four-octave tonic arpeggios, hands together, root position and inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 69.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "215-arpeggios-8.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-8m",
+   "level": 9,
+   "kind": "technique",
+   "title": "Arpeggios, four octaves: C, D, E, B♭, E♭ and F♯ minor",
+   "hands": "both",
+   "bpm": 69,
+   "wait": 45,
+   "learn": "Four-octave minor tonic arpeggios, root position and inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 69.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "216-arpeggios-8m.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-8-dom",
+   "level": 9,
+   "kind": "technique",
+   "title": "Dominant 7th arpeggios, four octaves: C, D, E, B♭, E♭ and G♭ major",
+   "hands": "both",
+   "bpm": 69,
+   "wait": 45,
+   "learn": "Four-octave dominant 7th arpeggios, root position.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 69.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "217-arpeggios-8-dom.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-8-dim",
+   "level": 9,
+   "kind": "technique",
+   "title": "Diminished 7th arpeggios, four octaves: C, D, E, B♭, E♭ and F♯ minor",
+   "hands": "both",
+   "bpm": 69,
+   "wait": 45,
+   "learn": "Four-octave diminished 7th arpeggios, root position.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 69.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "218-arpeggios-8-dim.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "gymnopedie-1",
+   "level": 9,
+   "kind": "piece",
+   "title": "Gymnopédie No. 1",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "A slow, floating waltz in D major (2 sharps). The left hand alternates a low bass with a chord; the right hand sings above it.",
+   "tips": [
+    "Play the bass note, then the chord, evenly.",
+    "Keep it quiet and unhurried."
+   ],
+   "file": "219-gymnopedie-1.musicxml",
+   "why": "next to Satie Gnossienne no. 3 (Level 8): slow, but long, with wide chords and unusual harmony",
+   "composer": "Erik Satie",
+   "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
+   "source": "https://musescore.com/user/19710/scores/4766391"
+  },
+  {
+   "id": "ear-8",
+   "level": 9,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "intervals",
+    "chords",
+    "progressions",
+    "playback"
+   ],
+   "intervals": [
+    "m2",
+    "M2",
+    "m3",
+    "M3",
+    "P4",
+    "TT",
+    "P5",
+    "m6",
+    "M6",
+    "m7",
+    "M7",
+    "P8"
+   ],
+   "intervalStyle": "melodic-harmonic",
+   "chords": {
+    "style": "solid",
+    "qualities": [
+     "major",
+     "minor",
+     "aug",
+     "dom7",
+     "dim7"
+    ]
+   },
+   "progressions": {
+    "minor": true,
+    "sets": {
+     "major": [
+      [
+       "I",
+       "IV",
+       "V",
+       "I"
+      ],
+      [
+       "I",
+       "IV",
+       "V",
+       "vi"
+      ],
+      [
+       "I",
+       "vi",
+       "IV",
+       "V"
+      ],
+      [
+       "I",
+       "vi",
+       "IV",
+       "I"
+      ]
+     ],
+     "minor": [
+      [
+       "i",
+       "iv",
+       "V",
+       "i"
+      ],
+      [
+       "i",
+       "iv",
+       "V",
+       "VI"
+      ],
+      [
+       "i",
+       "VI",
+       "iv",
+       "V"
+      ],
+      [
+       "i",
+       "VI",
+       "iv",
+       "i"
+      ]
+     ]
+    }
+   },
+   "playback": {
+    "pool": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "keys": [
+     "Bb",
+     "E",
+     "Cm",
+     "Em"
+    ],
+    "starts": [
+     0,
+     2,
+     4,
+     7
+    ],
+    "length": [
+     9,
+     10,
+     11
+    ],
+    "plays": 3
+   },
+   "learn": "Name intervals including the augmented 4th / diminished 5th, tell five chord qualities apart, recognise four-chord progressions such as I–vi–IV–V, and play back a melody of up to eleven notes."
+  },
+  {
+   "id": "sight-8",
+   "level": 9,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing",
+    "leadsheet"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e",
+     "rq"
+    ],
+    "bars": 4,
+    "melodic": true
+   },
+   "playing": {
+    "style": "accomp",
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "A",
+     "E",
+     "F",
+     "Bb",
+     "Eb",
+     "Ab",
+     "Am",
+     "Em",
+     "Bm",
+     "F#m",
+     "Dm",
+     "Gm",
+     "Cm",
+     "Fm"
+    ],
+    "bars": [
+     8,
+     10,
+     12
+    ],
+    "values": [
+     "q",
+     "h",
+     "ee",
+     "q.e",
+     "rq"
+    ]
+   },
+   "leadsheet": {
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "A",
+     "F",
+     "Bb",
+     "Eb",
+     "Am",
+     "Dm",
+     "Em",
+     "Gm",
+     "Cm"
+    ],
+    "bars": 8,
+    "chords": [
+     "I",
+     "ii",
+     "IV",
+     "V",
+     "V7",
+     "vi"
+    ]
+   },
+   "learn": "Tap a four-bar rhythm, then play a passage of eight to twelve bars comparable to Level 5 (up to four sharps or flats) with an accompaniment in the left hand, or read a lead sheet."
+  },
+  {
+   "id": "scales-9-major",
+   "level": 10,
+   "kind": "technique",
+   "title": "Scales, four octaves: C, D♭, D, E♭, E and F major",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "Four-octave major scales hands together at ♩ = 104 in sixteenth notes.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 104.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "220-scales-9-major.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "scales-9-harmonic",
+   "level": 10,
+   "kind": "technique",
+   "title": "Harmonic minor scales, four octaves: C, C♯, D, E♭, E and F",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "Four-octave harmonic minor scales.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "221-scales-9-harmonic.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "scales-9-melodic",
+   "level": 10,
+   "kind": "technique",
+   "title": "Melodic minor scales, four octaves: C, C♯, D, E♭, E and F",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "Four-octave melodic minor scales.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "222-scales-9-melodic.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "formula-9",
+   "level": 10,
+   "kind": "technique",
+   "title": "Formula patterns, four octaves: F and D♭ major, F and C♯ harmonic minor",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "The formula pattern over four octaves.",
+   "tips": [
+    "Check the exact shape with your syllabus book: this is one common form of the pattern."
+   ],
+   "file": "223-formula-9.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "chromatic-9",
+   "level": 10,
+   "kind": "technique",
+   "title": "Chromatic scales, four octaves: from C and from F",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "Four-octave chromatic scales hands together; the syllabus lets you start on any note from C to F.",
+   "tips": [],
+   "file": "224-chromatic-9.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "octaves-9",
+   "level": 10,
+   "kind": "technique",
+   "title": "Scales in octaves: F and D♭ major, F and C♯ minor",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 45,
+   "learn": "Each note is played as an octave, both hands, two octaves. Staccato, from the wrist.",
+   "tips": [
+    "Keep the hand open in the shape of an octave and play from the wrist, not from the arm.",
+    "The syllabus lets you play broken legato octaves if your hands are small.",
+    "Syllabus tempo: sixteenth notes at staccato ♩ = 60."
+   ],
+   "file": "225-octaves-9.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "four-note-9",
+   "level": 10,
+   "kind": "technique",
+   "title": "Tonic four-note chords, broken: C, D♭, D, E♭, E and F major",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "Broken four-note tonic chords over two octaves, ending with I–VI–IV–V⁶₄–V⁸⁻⁷–I.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 104."
+   ],
+   "file": "226-four-note-9.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "four-note-9m",
+   "level": 10,
+   "kind": "technique",
+   "title": "Tonic four-note chords, broken: C, C♯, D, E♭, E and F minor",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "The same in minor keys.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 104."
+   ],
+   "file": "227-four-note-9m.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "four-note-9s",
+   "level": 10,
+   "kind": "technique",
+   "title": "Tonic four-note chords, solid: C, D♭, D, E♭, E and F major",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "The same chords played solid (blocked), hands together.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 80 for each chord."
+   ],
+   "file": "228-four-note-9s.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "dominant-7-9",
+   "level": 10,
+   "kind": "technique",
+   "title": "Dominant 7th chords, broken: C, D♭, D, E♭, E and F major",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "Broken dominant 7ths, hands together, two octaves, all inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 104."
+   ],
+   "file": "229-dominant-7-9.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "dominant-7-9s",
+   "level": 10,
+   "kind": "technique",
+   "title": "Dominant 7th chords, solid: C, D♭, D, E♭, E and F major",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "The same chords solid.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 104 for each chord."
+   ],
+   "file": "230-dominant-7-9s.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "diminished-7-9",
+   "level": 10,
+   "kind": "technique",
+   "title": "Leading-tone diminished 7th chords: C, C♯, D, E♭, E and F minor",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "Broken diminished 7ths, two octaves.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 104.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "231-diminished-7-9.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "diminished-7-9s",
+   "level": 10,
+   "kind": "technique",
+   "title": "Leading-tone diminished 7th chords, solid: C, C♯, D, E♭, E and F minor",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "The same chords solid.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 104 for each chord."
+   ],
+   "file": "232-diminished-7-9s.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-9",
+   "level": 10,
+   "kind": "technique",
+   "title": "Arpeggios, four octaves: C, D♭, D, E♭, E and F major",
+   "hands": "both",
+   "bpm": 84,
+   "wait": 55,
+   "learn": "Four-octave tonic arpeggios, root position and inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 84.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "233-arpeggios-9.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-9m",
+   "level": 10,
+   "kind": "technique",
+   "title": "Arpeggios, four octaves: C, C♯, D, E♭, E and F minor",
+   "hands": "both",
+   "bpm": 84,
+   "wait": 55,
+   "learn": "Four-octave minor tonic arpeggios, root position and inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 84.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "234-arpeggios-9m.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-9-dom",
+   "level": 10,
+   "kind": "technique",
+   "title": "Dominant 7th arpeggios, four octaves: C, D♭, D, E♭, E and F major",
+   "hands": "both",
+   "bpm": 84,
+   "wait": 55,
+   "learn": "Four-octave dominant 7th arpeggios, root position and inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 84.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "235-arpeggios-9-dom.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-9-dim",
+   "level": 10,
+   "kind": "technique",
+   "title": "Diminished 7th arpeggios, four octaves: C, C♯, D, E♭, E and F minor",
+   "hands": "both",
+   "bpm": 84,
+   "wait": 55,
+   "learn": "Four-octave diminished 7th arpeggios, root position and inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 84.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "236-arpeggios-9-dim.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "chopin-nocturne-20-reminiscence",
+   "level": 10,
+   "kind": "piece",
+   "title": "Nocturne No. 20, \"Reminiscence\" (arranged in D minor)",
+   "hands": "both",
+   "bpm": 50,
+   "wait": 36,
+   "learn": "The posthumous nocturne for two hands, in a transposition to D minor (one flat), with its dynamics.",
+   "tips": [
+    "One flat: B♭.",
+    "Learn each hand alone before putting them together."
+   ],
+   "file": "237-chopin-nocturne-20-reminiscence.musicxml",
+   "syl": "Level 9 · Complete list: Nocturne in C sharp Minor, op. posth., B 49 (Chopin); this edition is arranged in D minor",
+   "composer": "Frédéric Chopin",
+   "license": "Public domain music; free MusicXML score",
+   "source": ""
+  },
+  {
+   "id": "chopin-nocturne-13",
+   "level": 10,
+   "kind": "piece",
+   "title": "Nocturne in C minor, Op. 48 No. 1",
+   "hands": "both",
+   "bpm": 52,
+   "wait": 36,
+   "learn": "A dramatic nocturne in C minor (three flats) as a lead sheet: the melody, with chords in a few places, and chord symbols above the staff. The notes from middle C up are for the right hand, the lower ones for the left.",
+   "tips": [
+    "Three flats: B♭, E♭ and A♭.",
+    "Add your own left-hand chords from the chord symbols once the melody is secure."
+   ],
+   "file": "238-chopin-nocturne-13.musicxml",
+   "why": "not on the syllabus lists: a lead sheet of a dramatic nocturne with fast ornaments",
+   "composer": "Frédéric Chopin (arr. G. Lees)",
+   "license": "Public domain music; free MusicXML score",
+   "source": ""
+  },
+  {
+   "id": "ear-9",
+   "level": 10,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "intervals",
+    "chords",
+    "progressions",
+    "playback"
+   ],
+   "intervals": [
+    "m2",
+    "M2",
+    "m3",
+    "M3",
+    "P4",
+    "TT",
+    "P5",
+    "m6",
+    "M6",
+    "m7",
+    "M7",
+    "P8"
+   ],
+   "intervalStyle": "melodic-harmonic",
+   "chords": {
+    "style": "solid",
+    "qualities": [
+     "major4",
+     "minor4",
+     "aug",
+     "dom7",
+     "dim7"
+    ]
+   },
+   "progressions": {
+    "minor": true,
+    "length": 4,
+    "chords": {
+     "major": [
+      "I",
+      "IV",
+      "V",
+      "vi"
+     ],
+     "minor": [
+      "i",
+      "iv",
+      "V",
+      "VI"
+     ]
+    }
+   },
+   "playback": {
+    "pool": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "A",
+     "E",
+     "F",
+     "Bb",
+     "Eb",
+     "Ab",
+     "Am",
+     "Em",
+     "Bm",
+     "F#m",
+     "Dm",
+     "Gm",
+     "Cm",
+     "Fm"
+    ],
+    "starts": [
+     0,
+     2,
+     4,
+     7
+    ],
+    "length": [
+     7,
+     8,
+     9
+    ],
+    "plays": 3,
+    "twoPart": true
+   },
+   "learn": "Name intervals, four-note major and minor chords (root position or first inversion), augmented, dominant 7th and diminished 7th chords, recognise four-chord progressions on I, IV, V and vi, and play back the upper part of a two-part phrase of up to nine notes."
+  },
+  {
+   "id": "sight-9",
+   "level": 10,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing",
+    "leadsheet"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e",
+     "rq"
+    ],
+    "bars": 6,
+    "melodic": true
+   },
+   "playing": {
+    "style": "accomp",
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "A",
+     "E",
+     "B",
+     "F",
+     "Bb",
+     "Eb",
+     "Ab",
+     "Db",
+     "Am",
+     "Em",
+     "Bm",
+     "F#m",
+     "C#m",
+     "G#m",
+     "Dm",
+     "Gm",
+     "Cm",
+     "Fm",
+     "Bbm"
+    ],
+    "bars": [
+     12,
+     14,
+     16
+    ],
+    "values": [
+     "q",
+     "h",
+     "ee",
+     "q.e",
+     "rq"
+    ]
+   },
+   "leadsheet": {
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "A",
+     "E",
+     "F",
+     "Bb",
+     "Eb",
+     "Ab",
+     "Am",
+     "Em",
+     "Bm",
+     "Dm",
+     "Gm",
+     "Cm",
+     "Fm"
+    ],
+    "bars": 16,
+    "chords": [
+     "I",
+     "ii",
+     "IV",
+     "V",
+     "V7",
+     "vi"
+    ]
+   },
+   "learn": "Tap a four- to six-bar rhythm, then play a passage of up to sixteen bars comparable to Level 6 (up to five sharps or flats), or read a lead sheet and make up the accompaniment."
+  },
+  {
+   "id": "scales-10-major",
+   "level": 11,
+   "kind": "technique",
+   "title": "Scales, four octaves: G♭, G, A♭, A, B♭ and B major",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "Four-octave major scales hands together at ♩ = 120 in sixteenth notes.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 120.",
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "239-scales-10-major.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "scales-10-harmonic",
+   "level": 11,
+   "kind": "technique",
+   "title": "Harmonic minor scales, four octaves: F♯, G, G♯, A, B♭ and B",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "Four-octave harmonic minor scales.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "240-scales-10-harmonic.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "scales-10-melodic",
+   "level": 11,
+   "kind": "technique",
+   "title": "Melodic minor scales, four octaves: F♯, G, G♯, A, B♭ and B",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "Four-octave melodic minor scales.",
+   "tips": [
+    "In the exam technique is played from memory: when it feels easy, turn on ⋯ → Hide the notes."
+   ],
+   "file": "241-scales-10-melodic.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "thirds-10",
+   "level": 11,
+   "kind": "technique",
+   "title": "Scales separated by a 3rd: G♭, G and A♭ major",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "The hands play the same scale a third apart (a tenth, as written), over four octaves.",
+   "tips": [
+    "Learn each hand alone first.",
+    "Check the exact form with your syllabus book.",
+    "Syllabus tempo: sixteenth notes at ♩ = 104."
+   ],
+   "file": "242-thirds-10.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "sixths-10",
+   "level": 11,
+   "kind": "technique",
+   "title": "Scales separated by a 6th: A, B♭ and B major",
+   "hands": "both",
+   "bpm": 104,
+   "wait": 60,
+   "learn": "The hands play the same scale a sixth apart, over four octaves.",
+   "tips": [
+    "Learn each hand alone first.",
+    "Check the exact form with your syllabus book.",
+    "Syllabus tempo: sixteenth notes at ♩ = 104."
+   ],
+   "file": "243-sixths-10.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "octaves-10",
+   "level": 11,
+   "kind": "technique",
+   "title": "Scales in octaves: B♭ and B major and minor",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "Each note is played as an octave, both hands, two octaves, staccato.",
+   "tips": [
+    "The syllabus lets you play broken legato octaves if your hands are small.",
+    "Syllabus tempo: sixteenth notes at staccato ♩ = 80."
+   ],
+   "file": "244-octaves-10.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "chromatic-octaves-10",
+   "level": 11,
+   "kind": "technique",
+   "title": "Chromatic scales in octaves: from F♯ and from B",
+   "hands": "both",
+   "bpm": 80,
+   "wait": 55,
+   "learn": "The chromatic scale played in octaves, both hands, two octaves.",
+   "tips": [
+    "Use 1–5 on white keys and 1–4 on black keys."
+   ],
+   "file": "245-chromatic-octaves-10.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "four-note-10",
+   "level": 11,
+   "kind": "technique",
+   "title": "Tonic four-note chords, broken: G♭, G, A♭, A, B♭ and B major",
+   "hands": "both",
+   "bpm": 96,
+   "wait": 60,
+   "learn": "Broken four-note tonic chords, two octaves, ending with I–VI–IV–V⁶₄–V⁸⁻⁷–I.",
+   "tips": [
+    "The syllabus offers a broken \"alternate-note\" pattern; this lesson uses the plain broken chord.",
+    "Syllabus tempo: sixteenth notes at ♩ = 96."
+   ],
+   "file": "246-four-note-10.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "four-note-10m",
+   "level": 11,
+   "kind": "technique",
+   "title": "Tonic four-note chords, broken: F♯, G, A♭, A, B♭ and B minor",
+   "hands": "both",
+   "bpm": 96,
+   "wait": 60,
+   "learn": "The same in minor keys.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 96."
+   ],
+   "file": "247-four-note-10m.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "four-note-10s",
+   "level": 11,
+   "kind": "technique",
+   "title": "Tonic four-note chords, solid: G♭, G, A♭, A, B♭ and B major",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "The same chords played solid (blocked), hands together.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 120 for each chord."
+   ],
+   "file": "248-four-note-10s.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "dominant-7-10",
+   "level": 11,
+   "kind": "technique",
+   "title": "Dominant 7th chords, broken: G♭, G, A♭, A, B♭ and B major",
+   "hands": "both",
+   "bpm": 96,
+   "wait": 60,
+   "learn": "Broken dominant 7ths, hands together, two octaves.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 96."
+   ],
+   "file": "249-dominant-7-10.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "dominant-7-10s",
+   "level": 11,
+   "kind": "technique",
+   "title": "Dominant 7th chords, solid: G♭, G, A♭, A, B♭ and B major",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "The same chords solid.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 120 for each chord."
+   ],
+   "file": "250-dominant-7-10s.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "diminished-7-10",
+   "level": 11,
+   "kind": "technique",
+   "title": "Leading-tone diminished 7th chords: F♯, G, A♭, A, B♭ and B minor",
+   "hands": "both",
+   "bpm": 96,
+   "wait": 60,
+   "learn": "Broken diminished 7ths, two octaves.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 96.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "251-diminished-7-10.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "diminished-7-10s",
+   "level": 11,
+   "kind": "technique",
+   "title": "Leading-tone diminished 7th chords, solid: F♯, G, A♭, A, B♭ and B minor",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "The same chords solid.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 120 for each chord."
+   ],
+   "file": "252-diminished-7-10s.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-10",
+   "level": 11,
+   "kind": "technique",
+   "title": "Arpeggios, four octaves: G♭, G, A♭, A, B♭ and B major",
+   "hands": "both",
+   "bpm": 92,
+   "wait": 60,
+   "learn": "Four-octave tonic arpeggios, root position and inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 92.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "253-arpeggios-10.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-10m",
+   "level": 11,
+   "kind": "technique",
+   "title": "Arpeggios, four octaves: F♯, G, A♭, A, B♭ and B minor",
+   "hands": "both",
+   "bpm": 92,
+   "wait": 60,
+   "learn": "Four-octave minor tonic arpeggios, root position and inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 92.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "254-arpeggios-10m.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-10-dom",
+   "level": 11,
+   "kind": "technique",
+   "title": "Dominant 7th arpeggios, four octaves: G♭, G, A♭, A, B♭ and B major",
+   "hands": "both",
+   "bpm": 92,
+   "wait": 60,
+   "learn": "Four-octave dominant 7th arpeggios, root position and inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 92.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "255-arpeggios-10-dom.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "arpeggios-10-dim",
+   "level": 11,
+   "kind": "technique",
+   "title": "Diminished 7th arpeggios, four octaves: F♯, G, A♭, A, B♭ and B minor",
+   "hands": "both",
+   "bpm": 92,
+   "wait": 60,
+   "learn": "Four-octave diminished 7th arpeggios, root position and inversions.",
+   "tips": [
+    "Syllabus tempo: sixteenth notes at ♩ = 92.",
+    "The fingering shown is one standard choice; where it is not printed, the app suggests one. Your teacher may prefer another."
+   ],
+   "file": "256-arpeggios-10-dim.musicxml",
+   "composer": "Technique"
+  },
+  {
+   "id": "prelude-846",
+   "level": 11,
+   "kind": "piece",
+   "title": "Prelude in C major (BWV 846)",
+   "hands": "both",
+   "bpm": 66,
+   "wait": 45,
+   "learn": "The first prelude of the Well-Tempered Clavier: broken chords in an even flow.",
+   "tips": [
+    "Keep every note the same length and volume.",
+    "Listen to how the harmony changes bar by bar."
+   ],
+   "file": "257-prelude-846.musicxml",
+   "syl": "Level 10 · Complete list: Prelude and Fugue in C Major, BWV 846 (the prelude)",
+   "composer": "Johann Sebastian Bach",
+   "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
+   "source": "https://musescore.com/user/101554/scores/117279"
+  },
+  {
+   "id": "ear-10",
+   "level": 11,
+   "kind": "ear",
+   "title": "Ear tests",
+   "tests": [
+    "intervals",
+    "chords",
+    "progressions",
+    "playback"
+   ],
+   "intervals": [
+    "m2",
+    "M2",
+    "m3",
+    "M3",
+    "P4",
+    "TT",
+    "P5",
+    "m6",
+    "M6",
+    "m7",
+    "M7",
+    "P8",
+    "m9",
+    "M9"
+   ],
+   "intervalStyle": "either",
+   "chords": {
+    "style": "solid",
+    "qualities": [
+     "major4",
+     "minor4",
+     "aug",
+     "dom7",
+     "dim7",
+     "maj7",
+     "min7"
+    ]
+   },
+   "progressions": {
+    "minor": true,
+    "length": 5,
+    "cadential": true,
+    "chords": {
+     "major": [
+      "I",
+      "IV",
+      "V",
+      "vi"
+     ],
+     "minor": [
+      "i",
+      "iv",
+      "V",
+      "VI"
+     ]
+    }
+   },
+   "playback": {
+    "pool": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "A",
+     "E",
+     "F",
+     "Bb",
+     "Eb",
+     "Ab",
+     "Am",
+     "Em",
+     "Bm",
+     "F#m",
+     "Dm",
+     "Gm",
+     "Cm",
+     "Fm"
+    ],
+    "starts": [
+     0,
+     2,
+     4,
+     7
+    ],
+    "length": [
+     8,
+     9,
+     10
+    ],
+    "plays": 3,
+    "twoPart": true
+   },
+   "learn": "Name intervals up to a major 9th (played once, as two notes or together), major and minor four-note chords, seventh chords of five kinds, five-chord progressions including the cadential I⁶₄, and play back a melody. (In the exam you also harmonise it with left-hand chords: try that yourself after the melody.)"
+  },
+  {
+   "id": "sight-10",
+   "level": 11,
+   "kind": "sight",
+   "title": "Sight reading",
+   "tests": [
+    "rhythm",
+    "playing",
+    "leadsheet"
+   ],
+   "rhythm": {
+    "meters": [
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "values": [
+     "q",
+     "h",
+     "h.",
+     "ee",
+     "q.e",
+     "rq"
+    ],
+    "bars": 6,
+    "melodic": true
+   },
+   "playing": {
+    "style": "accomp",
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "A",
+     "E",
+     "B",
+     "F",
+     "Bb",
+     "Eb",
+     "Ab",
+     "Db",
+     "Am",
+     "Em",
+     "Bm",
+     "F#m",
+     "C#m",
+     "G#m",
+     "Dm",
+     "Gm",
+     "Cm",
+     "Fm",
+     "Bbm"
+    ],
+    "bars": 16,
+    "values": [
+     "q",
+     "h",
+     "ee",
+     "q.e",
+     "rq"
+    ]
+   },
+   "leadsheet": {
+    "keys": [
+     "C",
+     "G",
+     "D",
+     "A",
+     "E",
+     "F",
+     "Bb",
+     "Eb",
+     "Ab",
+     "Am",
+     "Em",
+     "Bm",
+     "Dm",
+     "Gm",
+     "Cm",
+     "Fm"
+    ],
+    "bars": 16,
+    "chords": [
+     "I",
+     "ii",
+     "IV",
+     "V",
+     "V7",
+     "vi"
+    ]
+   },
+   "learn": "Tap a four- to six-bar rhythm, then play a sixteen-bar passage comparable to Level 7 (up to five sharps or flats) or read a lead sheet and make up the accompaniment."
   }
  ]
 }

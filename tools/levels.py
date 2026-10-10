@@ -6,10 +6,10 @@
    or collection's pieces, or pieces of the same kind), using the estimate in tools/difficulty.py as a second opinion.
    The reason is given for each.
 
-Level numbers used by the course: 0 Preparatory A, 1 Preparatory B, 2 Level 1 ... 7 Level 6.
+Level numbers used by the course: 0 Preparatory A, 1 Preparatory B, 2 Level 1 ... 11 Level 10.
 Inside a level, make_lessons.py orders the pieces from the easiest to the hardest by the same estimate.
 """
-LEVEL_INDEX = {'Preparatory A': 0, 'Preparatory B': 1, 'Level 1': 2, 'Level 2': 3, 'Level 3': 4, 'Level 4': 5, 'Level 5': 6, 'Level 6': 7}
+LEVEL_INDEX = {'Preparatory A': 0, 'Preparatory B': 1, 'Level 1': 2, 'Level 2': 3, 'Level 3': 4, 'Level 4': 5, 'Level 5': 6, 'Level 6': 7, 'Level 7': 8, 'Level 8': 9, 'Level 9': 10, 'Level 10': 11}
 
 # id: (level the syllabus gives it, where in the syllabus)
 SYLLABUS = {
@@ -45,6 +45,9 @@ SYLLABUS = {
     'prelude-999': ('Level 6', 'Complete list: Prelude in C Minor, BWV 999 (Bach; this edition is in D minor)'),
     'prelude-999-c': ('Level 6', 'Complete list: Prelude in C Minor, BWV 999 (Bach)'),
     'foreign-lands': ('Level 6', 'List C: Of Foreign Lands and Peoples, op. 15, no. 1 (Schumann)'),
+    'chopin-prelude-4': ('Level 7', 'Complete list: Prelude in E Minor, op. 28, no. 4 (Chopin)'),
+    'chopin-nocturne-20-reminiscence': ('Level 9', 'Complete list: Nocturne in C sharp Minor, op. posth., B 49 (Chopin); this edition is arranged in D minor'),
+    'prelude-846': ('Level 10', 'Complete list: Prelude and Fugue in C Major, BWV 846 (the prelude)'),
 }
 
 # id: (level, reason). Not listed in the syllabus's levels 1-6: placed by comparison with listed pieces.
@@ -97,19 +100,16 @@ COMPARISON = {
     'mozart-symphony-40': (5, 'a well-known theme in an easy arrangement'),
     'entertainer': (6, 'syncopation over a steady left hand, in an easy version'),
     'le-cygne': (6, 'a melody over rolling broken chords'),
-    'chopin-prelude-7': (7, 'not on the Level 1-6 lists; chords and dotted rhythms'),
     'chopin-nocturne-15': (6, 'slow, with a repeating left-hand pattern'),
     'chopin-nocturne-20-melody': (6, 'a single line, with fast runs and ornaments'),
     'chopin-nocturne-9-2': (6, 'an easy version of a famous nocturne (the original is above Level 6)'),
     'chopin-nocturne-9-2-pedal': (6, 'an easy version of a famous nocturne (the original is above Level 6)'),
-    'chopin-nocturne-9-2-fuller': (7, 'a fuller version of the same nocturne'),
     'passacaglia': (6, 'a long piece, but an easy version'),
-    # beyond the Level 6 lists: the hardest pieces of this course
-    'gymnopedie-1': (7, 'not on the Level 1-6 lists: slow, but long, with wide chords and unusual harmony'),
-    'prelude-846': (7, 'above the Level 6 lists: even broken chords throughout (the first Well-Tempered Clavier prelude)'),
-    'chopin-prelude-4': (7, 'above the Level 6 lists: chords of up to six notes and wide stretches'),
-    'chopin-nocturne-20-reminiscence': (7, 'above the Level 6 lists: the full nocturne with ornaments'),
-    'chopin-nocturne-13': (7, 'above the Level 6 lists: a lead sheet of a dramatic nocturne with fast ornaments'),
+    # beyond the Level 6 lists
+    'chopin-prelude-7': (8, 'next to Prelude op. 28 no. 4 (Level 7): chords and dotted rhythms'),
+    'chopin-nocturne-9-2-fuller': (8, 'an easier version of the Level 9 nocturne (op. 9, no. 2)'),
+    'gymnopedie-1': (9, 'next to Satie Gnossienne no. 3 (Level 8): slow, but long, with wide chords and unusual harmony'),
+    'chopin-nocturne-13': (10, 'not on the syllabus lists: a lead sheet of a dramatic nocturne with fast ornaments'),
     'greensleeves-easy': (3, 'a slow tune in 3/4 with a simple left hand'),
     'arirang': (3, 'a folk tune with a light accompaniment'),
     'first-noel': (3, 'a carol tune with a simple left hand'),
