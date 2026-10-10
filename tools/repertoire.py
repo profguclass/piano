@@ -346,3 +346,37 @@ REPERTOIRE += [
     piece('beethoven-111-i', '1022-0.mid', 11, 'Sonata in C minor, Op. 111: I. Maestoso – Allegro con brio ed appassionato', LVB, 112, 70, PD,
           "Beethoven's last piano sonata: a stern, dramatic introduction and a powerful, driving Allegro.", BSON, pickup=0.125),
 ]
+
+# ---------- More Bach for beginners (Mutopia Project) ----------
+CHOR_TIPS = ['Four voices at once: play the top line alone first, then add the bass.', 'Play each chord change smoothly and listen to how the voices move.']
+BOUR_TIPS = ['Feel the dance in two big beats per bar.', 'Begin with the pickup on the last beat.']
+REPERTOIRE += [
+    piece('bwv510', '1006-0.mid', 4, 'Chorale "Gib dich zufrieden und sei stille" in F, BWV 510', BACH, 70, 45, PD,
+          'A simple, peaceful chorale from the Anna Magdalena Notebook: a gentle tune with a flowing bass. Begins with a pickup.', CHOR_TIPS, pickup=2.0),
+    piece('bwv511', '1009-0.mid', 4, 'Chorale "Gib dich zufrieden und sei stille" in D minor, BWV 511', BACH, 70, 45, PD,
+          'The same hymn in D minor, from the Anna Magdalena Notebook. Begins with a pickup.', CHOR_TIPS, pickup=0.5),
+    piece('bwv512', '1010-0.mid', 5, 'Chorale "Gib dich zufrieden und sei stille" in E minor, BWV 512', BACH, 70, 45, PD,
+          'A third setting of the hymn, in E minor. Begins with a pickup.', CHOR_TIPS, pickup=0.5),
+    piece('aria-516', '1622-0.mid', 5, 'Aria "Warum betrübst du dich", BWV 516', BACH, 76, 50, PD,
+          'A tuneful sacred song from the Anna Magdalena Notebook, with a singing melody over a walking bass. Begins with a pickup.', ['Sing the melody in your head.', 'Keep the bass steady and quiet.'], pickup=1.0),
+    piece('bwv269', '378-0.mid', 5, 'Chorale "Aus meines Herzens Grunde", BWV 269', BACH, 72, 45, PD,
+          'A four-part chorale in 3/4: a hymn tune with Bach\'s rich harmony. Begins with a pickup.', CHOR_TIPS, pickup=1.0),
+    piece('bwv347', '379-0.mid', 5, 'Chorale "Ich dank dir, lieber Herre", BWV 347', BACH, 72, 45, PD,
+          'A four-part chorale in 4/4. Begins with a pickup.', CHOR_TIPS, pickup=1.0),
+    piece('bwv454', '2106-0.mid', 6, 'Chorale "Ermuntre dich, mein schwacher Geist", BWV 454', BACH, 72, 45, PD,
+          'A chorale in 3/4 with a flowing bass line.', CHOR_TIPS),
+    piece('bwv462', '2009-0.mid', 6, 'Chorale "Gott, wie gross ist deine Güte", BWV 462', BACH, 72, 45, PD,
+          'A calm four-part chorale in 4/4.', CHOR_TIPS),
+    piece('bwv259', '2126-0.mid', 6, 'Chorale "Ach, was soll ich Sünder machen", BWV 259', BACH, 72, 45, BYSA40,
+          'A chorale in 4/4 with rich harmonies.', CHOR_TIPS),
+    piece('english-1-bourree-1', '85-0.mid', 7, 'English Suite No. 1: Bourrée I, BWV 806', BACH, 100, 60, PD,
+          'A lively French dance in two beats per bar. Begins with a pickup.', BOUR_TIPS, pickup=1.0),
+    piece('english-1-bourree-2', '86-0.mid', 7, 'English Suite No. 1: Bourrée II, BWV 806', BACH, 100, 60, PD,
+          'The contrasting second bourrée, in the minor. Begins with a pickup.', BOUR_TIPS, pickup=1.0),
+    piece('english-2-bourree-1', '82-0.mid', 8, 'English Suite No. 2: Bourrée I, BWV 807', BACH, 104, 65, PD,
+          'A brisk bourrée in A minor. Begins with a pickup.', BOUR_TIPS, pickup=1.0),
+    piece('english-2-bourree-2', '83-0.mid', 8, 'English Suite No. 2: Bourrée II, BWV 807', BACH, 104, 65, PD,
+          'The second bourrée, in A major. Begins with a pickup.', BOUR_TIPS, pickup=1.0),
+    piece('wtc1-846-prelude', '5-0.mid', 8, 'Prelude in C major, BWV 846 (Well-Tempered Clavier I)', BACH, 66, 45, PD,
+          'The famous prelude: one broken chord after another, in a steady stream.', ['Learn the chords first, then play them broken.', 'Keep the pattern even and let the harmonies change gently.']),
+]
