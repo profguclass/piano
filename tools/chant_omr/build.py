@@ -24,8 +24,8 @@ def chant_tokens(spec, shift=0):
     return seq
 
 
-def build(title, spec, bpm=60, composer='Gregorian chant', shift=None, perbar=8):
-    seq = chant_tokens(spec)
+def build(title, spec, bpm=60, composer='Gregorian chant', shift=None, perbar=8, seq=None):
+    if seq is None: seq = chant_tokens(spec)
     notes = []                                  # (dia, dotted, flat, bar_after)
     for clef, kf, t in seq:
         flat_on = kf
