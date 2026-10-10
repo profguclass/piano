@@ -1453,7 +1453,8 @@ function showLesson() {
   el.innerHTML = `<div class="lt"><div style="flex:1"><div class="lv">${course.levels[L.level]} · lesson ${n + 1} of ${course.lessons.length} · ${sub}</div><h2></h2></div>
     <button data-a="min" aria-label="Show or hide the lesson">▾</button><button data-a="list">All lessons</button></div>
     <div class="body"><p class="learn"></p><ul>${(L.tips || []).map(() => '<li></li>').join('')}</ul>
-    ${L.source ? `<p class="muted" style="font-size:13px">${L.composer.replace(/</g, '')} · ${L.license} · <a href="${L.source}" target="_blank" rel="noopener">Mutopia Project edition</a></p>` : ''}
+    ${L.syl || L.why ? `<p class="muted" style="font-size:13px">${L.syl ? 'RCM syllabus 2022 · ' + L.syl : 'Not on the syllabus lists for this level: ' + L.why}</p>` : ''}
+    ${L.source ? `<p class="muted" style="font-size:13px">${L.composer.replace(/</g, '')} · ${L.license} · <a href="${L.source}" target="_blank" rel="noopener">${/mutopia/.test(L.source) ? 'Mutopia Project edition' : 'Source of the score'}</a></p>` : ''}
     <div class="steps">${steps}${isDone(L, d) && nx ? '<button data-a="next" class="primary"><b>Next lesson →</b><small></small></button>' : ''}</div></div>`;
   el.querySelector('h2').textContent = L.title;
   el.querySelector('.learn').textContent = L.learn;

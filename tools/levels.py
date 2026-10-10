@@ -1,65 +1,122 @@
-"""Level decisions from the review of the course (tools/difficulty.py): where a piece sits in a different level
-from the one it was first given, with the reason.  Level numbers: 0 Preparatory A, 1 Preparatory B, 2 Level 1 ... 7 Level 6.
+"""Where each piece sits in the course, based on the RCM Piano Syllabus, 2022 Edition (piano-syllabus-2022-edition.pdf).
 
+1. SYLLABUS: pieces that the syllabus itself lists, at the level of the list they are on (repertoire Lists A-C, "Complete
+   Repertoire" and etudes). The level follows the syllabus exactly.
+2. COMPARISON: pieces the syllabus does not list. They are placed next to listed pieces of similar difficulty (the same composer's
+   or collection's pieces, or pieces of the same kind), using the estimate in tools/difficulty.py as a second opinion.
+   The reason is given for each.
+
+Level numbers used by the course: 0 Preparatory A, 1 Preparatory B, 2 Level 1 ... 7 Level 6.
 Inside a level, make_lessons.py orders the pieces from the easiest to the hardest by the same estimate.
 """
-MOVES = {
-    # (new level, why)
-    'chorale-68-4': (3, 'slow four-part block chords: easy to play, but chords in both hands'),
-    'waltz-am': (3, 'only eight bars of a simple oom-pah-pah waltz'),
-    'melody-68-1': (3, 'a plain tune over a simple accompaniment'),
-    'first-noel': (3, 'a carol tune with a simple left hand'),
-    'minuet-f-lmozart': (3, 'short and mostly hand-position playing'),
-    'arirang': (3, 'a folk tune with a light accompaniment'),
-    'aria-f-131': (3, 'two flowing lines in F major, no chords'),
-    'aria-515': (3, 'two flowing lines in D minor, no chords'),
-    'chorale-514': (3, 'two flowing lines in C major'),
-    'greensleeves-easy': (3, 'a slow tune in 3/4 with a simple left hand'),
-    'nachtmusik': (3, 'short opening theme with simple chords'),
-    'telemann-andante': (3, 'slow 2/4 in G minor, two flats'),
-    'sanctus': (3, 'a single chant line, but in four sharps'),
-    'anh113': (4, 'a busy left hand: a minuet with a real bass melody'),
-    'anh114': (4, 'the classic first minuet: both hands move independently'),
-    'anh114-b': (4, 'same piece as the Anh. 114 minuet'),
-    'anh114-c': (4, 'same piece as the Anh. 114 minuet'),
-    'anh115': (4, 'minor key, two flats, both hands independent'),
-    'anh115-b': (4, 'same piece as the Anh. 115 minuet'),
-    'fur-elise': (4, 'the opening only, but fast sixteenth notes and hand changes'),
+LEVEL_INDEX = {'Preparatory A': 0, 'Preparatory B': 1, 'Level 1': 2, 'Level 2': 3, 'Level 3': 4, 'Level 4': 5, 'Level 5': 6, 'Level 6': 7}
+
+# id: (level the syllabus gives it, where in the syllabus)
+SYLLABUS = {
+    'minuet-f-lmozart': ('Preparatory B', 'List A: Minuet in F Major, attr. L. Mozart (Notebook for Nannerl)'),
+    'hassler-minuet': ('Level 1', 'List A: Minuet in C Major, op. 38, no. 4 (Hässler)'),
+    'telemann-andante': ('Level 1', 'List A: Andante in G Minor (Telemann)'),
+    'chorale-514': ('Level 1', 'Complete list: Chorale, BWV 514 (Notenbuch der Anna Magdalena Bach)'),
+    'aria-f-131': ('Level 1', 'Complete list: Aria in F Major, BWV Anh. 131'),
+    'mozart-minuet-k2': ('Level 1', 'Complete list: Minuet in F Major, K 2 (W.A. Mozart)'),
+    'aria-515': ('Level 2', 'Complete list: Aria in D Minor, BWV 515'),
+    'march-68-2': ('Level 2', 'List B: Soldier\'s March, op. 68, no. 2 (Schumann)'),
+    'anh114': ('Level 3', 'List A: Minuet in G Major, BWV Anh. 114 (Petzold)'),
+    'anh114-b': ('Level 3', 'List A: Minuet in G Major, BWV Anh. 114 (Petzold)'),
+    'anh114-c': ('Level 3', 'List A: Minuet in G Major, BWV Anh. 114 (Petzold)'),
+    'anh115': ('Level 3', 'List A: Minuet in G Minor, BWV Anh. 115 (Petzold)'),
+    'anh115-b': ('Level 3', 'List A: Minuet in G Minor, BWV Anh. 115 (Petzold)'),
+    'melody-68-1': ('Level 3', 'Complete list: Melody, op. 68, no. 1 (Schumann)'),
+    'morning-prayer': ('Level 3', 'Complete list: Morning Prayer, op. 39, no. 1 (Tchaikovsky)'),
+    'clementi-36-1-i': ('Level 3', 'List B: Sonatina in C Major, op. 36, no. 1: I (Clementi)'),
+    'arabesque': ('Level 3', 'Etudes: Arabesque, op. 100, no. 2 (Burgmüller)'),
+    'anh113': ('Level 4', 'Complete list: Minuet in F Major, BWV Anh. 113'),
+    'anh116': ('Level 4', 'Complete list: Minuet in G Major, BWV Anh. 116'),
+    'anh120': ('Level 4', 'Complete list: Minuet in A Minor, BWV Anh. 120'),
+    'anh121': ('Level 4', 'Complete list: Minuet in C Minor, BWV Anh. 121'),
+    'farmer-68-10': ('Level 4', 'List C: The Happy Farmer, op. 68, no. 10 (Schumann)'),
+    'horseman-68-8': ('Level 4', 'Complete list: The Wild Horseman, op. 68, no. 8 (Schumann)'),
+    'petite-etude-68-14': ('Level 4', 'Complete list: Little Study, op. 68, no. 14 (Schumann)'),
+    'first-loss-68-16': ('Level 4', 'Complete list: The First Loss, op. 68, no. 16 (Schumann)'),
+    'old-french-song': ('Level 4', 'Complete list: Old French Song, op. 39, no. 16 (Tchaikovsky)'),
+    'ballade-burgmuller': ('Level 4', 'Etudes: Ballade, op. 100, no. 15 (Burgmüller)'),
+    'handel-sonatina': ('Level 5', 'Complete list: Sonatina in B flat Major, HWV 585 (Handel)'),
+    'chopin-waltz-am': ('Level 6', 'List C: Waltz in A Minor, op. posth., B 150 (Chopin)'),
+    'prelude-999': ('Level 6', 'Complete list: Prelude in C Minor, BWV 999 (Bach; this edition is in D minor)'),
+    'prelude-999-c': ('Level 6', 'Complete list: Prelude in C Minor, BWV 999 (Bach)'),
+    'foreign-lands': ('Level 6', 'List C: Of Foreign Lands and Peoples, op. 15, no. 1 (Schumann)'),
+}
+
+# id: (level, reason). Not listed in the syllabus's levels 1-6: placed by comparison with listed pieces.
+COMPARISON = {
+    # Schumann, Album for the Young: Melody (no. 1) is Level 3, Soldier's March (no. 2) Level 2, Happy Farmer (no. 10) Level 4
+    'humming-68-3': (4, 'next to Schumann Melody (no. 1), Level 3: a slow, chordal piece'),
+    'chorale-68-4': (4, 'next to Schumann Melody (no. 1), Level 3: slow four-part chords'),
+    'little-piece-68-5': (4, 'next to Schumann Melody (no. 1), Level 3'),
+    'orphan-68-6': (4, 'next to Schumann Melody (no. 1), Level 3: slow, with wide chords'),
+    'reapers-song-68-18': (5, 'next to Schumann Wild Horseman (no. 8), Level 4: a lively march-like piece'),
+    'may-68-13': (6, 'next to Schumann Hunting Song (no. 7), Level 5'),
+    # Tchaikovsky, Album for the Young: Morning Prayer Level 3, Old French Song and Doll's Funeral Level 4, Polka Level 5
+    'wooden-soldiers': (6, 'next to Tchaikovsky Polka (no. 10), Level 5: a march with chords in both hands'),
+    # Bach, Notebook for Anna Magdalena Bach: the minuets Anh. 113, 116, 120, 121 and the Polonaise Anh. 128 are Level 4
+    'anh118': (5, 'next to the Anh. 113, 116, 120, 121 minuets, Level 4'),
+    'polonaise-117a': (5, 'next to the Polonaise in D minor, BWV Anh. 128, Level 4'),
+    'polonaise-117b': (5, 'next to the Polonaise in D minor, BWV Anh. 128, Level 4'),
+    # Bach, Little Preludes: BWV 939 is Level 5, BWV 926, 934 and 941 are Level 6
+    'prelude-924': (6, 'next to Little Prelude BWV 939, Level 5'),
+    'prelude-928': (6, 'next to Little Prelude BWV 939, Level 5'),
+    # Clementi, Sonatina op. 36 no. 1: only the first movement is on the list (Level 3)
+    'clementi-36-1-ii': (5, 'the slow movement after the Level 3 first movement'),
+    'clementi-36-1-iii': (6, 'the fast finale of the same sonatina; the finales of nos. 2 and 3 are Levels 4 and 5'),
+    # Burgmüller, 25 Easy Studies op. 100: Arabesque (no. 2) is Level 3, Ballade (no. 15) Level 4, no. 21 Level 5
+    'candeur': (4, 'next to Burgmüller Arabesque, Level 3: a flowing study with simple harmony'),
+    'innocence': (4, 'next to Burgmüller Arabesque, Level 3: a flowing study with broken chords'),
+    'progres': (5, 'a fast study of five-finger patterns, between Arabesque (Level 3) and Ballade (Level 4)'),
+    'petite-reunion': (5, 'next to Burgmüller Ballade, Level 4'),
+    'pastorale': (5, 'next to Burgmüller Ballade, Level 4: chords in 6/8'),
+    'tendre-fleur': (5, 'next to Burgmüller Ballade, Level 4: a lyrical study'),
+    'consolation': (5, 'next to Burgmüller Ballade, Level 4: arpeggios in the left hand'),
+    'courant-limpide': (6, 'a fast, even study: more than Ballade (Level 4), near Harmony of the Angels (no. 21), Level 5'),
+    'gracieuse': (6, 'near Burgmüller no. 21, Level 5: ornaments and light chords'),
+    'bergeronnette': (6, 'near Burgmüller no. 21, Level 5: repeated notes at speed'),
+    'adieu': (6, 'near Burgmüller no. 21, Level 5'),
+    'douce-plainte': (6, 'near Burgmüller no. 21, Level 5: a lyrical study with chords'),
+    'babillarde': (6, 'near Burgmüller no. 21, Level 5: fast and chattering'),
+    'la-chasse': (6, 'near Burgmüller no. 21, Level 5: a lively hunting piece'),
+    'inquietude': (7, 'the hardest of the set: a fast, restless study'),
+    # simplified arrangements of famous pieces
     'swan-lake': (4, 'a simple tune over chords in two sharps'),
-    'little-piece-68-5': (4, 'a slow chordal piece'),
-    'humming-68-3': (4, 'a slow chordal piece'),
-    'morning-prayer': (4, 'a slow chordal piece'),
-    'sonatina-c': (4, 'a short classical-style piece'),
+    'sonatina-c': (4, 'a short classical-style piece like the Level 3 sonatina movements'),
+    'fur-elise': (4, 'the opening only, but fast sixteenth notes and hand changes'),
     'fur-elise-beginner': (5, 'the whole piece, simplified'),
-    'orphan-68-6': (5, 'slow, but with wide chords'),
-    'clair-de-lune-easy': (5, 'slow 9/8 in an easy version'),
-    'farmer-68-10': (5, 'a lively piece in a familiar position'),
-    'chopin-nocturne-15': (5, 'slow, with a repeating left-hand pattern'),
-    'polonaise-117b': (5, 'a short baroque dance'),
-    'entertainer': (5, 'syncopation over a steady left hand, in an easy version'),
-    'progres': (5, 'a fast study of simple five-finger patterns'),
-    'petite-reunion': (5, 'a short lively piece in a fixed hand position'),
-    'candeur': (5, 'a flowing study with simple harmony'),
-    'old-french-song': (5, 'a simple tune with chords'),
-    'blue-danube': (5, 'a waltz tune with an oom-pah-pah left hand'),
+    'canon-easy': (5, 'a repeating bass pattern under a growing melody'),
     'canon-in-c': (5, 'a repeating bass pattern under a growing melody'),
+    'clair-de-lune-easy': (5, 'slow 9/8 in an easy version'),
+    'blue-danube': (5, 'a waltz tune with an oom-pah-pah left hand'),
     'beethoven-5': (5, 'a short motif repeated in an easy arrangement'),
     'mozart-symphony-40': (5, 'a well-known theme in an easy arrangement'),
-    'horseman-68-8': (5, 'a lively piece in a fixed hand position'),
-    'consolation': (6, 'flowing arpeggios in the left hand'),
-    'first-loss-68-16': (6, 'expressive, with changing harmony'),
-    'foreign-lands': (6, 'a gentle melody in two voices'),
-    'reapers-song-68-18': (6, 'a march-like piece in a fixed position'),
-    'passacaglia': (6, 'a long piece, but an easy version'),
-    'douce-plainte': (6, 'a lyrical study with chords'),
-    'tendre-fleur': (6, 'a lyrical study with broken chords'),
-    'bergeronnette': (6, 'a fast study with repeated notes'),
-    'innocence': (6, 'a flowing study with broken chords'),
-    'wooden-soldiers': (6, 'a march with chords in both hands'),
-    'chopin-prelude-7': (6, 'only 16 bars, but chords and dotted rhythms'),
+    'entertainer': (6, 'syncopation over a steady left hand, in an easy version'),
     'le-cygne': (6, 'a melody over rolling broken chords'),
+    'chopin-prelude-7': (7, 'not on the Level 1-6 lists; chords and dotted rhythms'),
+    'chopin-nocturne-15': (6, 'slow, with a repeating left-hand pattern'),
     'chopin-nocturne-20-melody': (6, 'a single line, with fast runs and ornaments'),
-    'chopin-nocturne-9-2-fuller': (6, 'a fuller arrangement of a famous nocturne'),
-    'prelude-928': (6, 'broken chords in an even flow'),
-    'prelude-924': (6, 'broken chords in an even flow'),
+    'chopin-nocturne-9-2': (6, 'an easy version of a famous nocturne (the original is above Level 6)'),
+    'chopin-nocturne-9-2-pedal': (6, 'an easy version of a famous nocturne (the original is above Level 6)'),
+    'chopin-nocturne-9-2-fuller': (7, 'a fuller version of the same nocturne'),
+    'passacaglia': (6, 'a long piece, but an easy version'),
+    # beyond the Level 6 lists: the hardest pieces of this course
+    'gymnopedie-1': (7, 'not on the Level 1-6 lists: slow, but long, with wide chords and unusual harmony'),
+    'prelude-846': (7, 'above the Level 6 lists: even broken chords throughout (the first Well-Tempered Clavier prelude)'),
+    'chopin-prelude-4': (7, 'above the Level 6 lists: chords of up to six notes and wide stretches'),
+    'chopin-nocturne-20-reminiscence': (7, 'above the Level 6 lists: the full nocturne with ornaments'),
+    'chopin-nocturne-13': (7, 'above the Level 6 lists: a lead sheet of a dramatic nocturne with fast ornaments'),
+    'greensleeves-easy': (3, 'a slow tune in 3/4 with a simple left hand'),
+    'arirang': (3, 'a folk tune with a light accompaniment'),
+    'first-noel': (3, 'a carol tune with a simple left hand'),
+    'sanctus': (3, 'a single chant line, but in four sharps'),
+    'waltz-am': (3, 'only eight bars of a simple oom-pah-pah waltz'),
+    'nachtmusik': (3, 'short opening theme with simple chords'),
 }
+
+MOVES = {i: (LEVEL_INDEX[lv], 'RCM syllabus 2022, ' + lv + ': ' + where) for i, (lv, where) in SYLLABUS.items()}
+MOVES |= {i: (lv, 'placed by comparison: ' + why) for i, (lv, why) in COMPARISON.items()}

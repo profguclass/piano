@@ -17,7 +17,7 @@ from midi_to_musicxml import convert
 from repertoire import REPERTOIRE
 from repertoire_files import MUSESCORE
 from mxl_import import convert_mxl, read_root
-from levels import MOVES
+from levels import MOVES, SYLLABUS, COMPARISON
 import difficulty
 from xml.sax.saxutils import escape
 
@@ -1020,8 +1020,10 @@ if __name__ == '__main__':
     scored += TECHNIQUE
     scored += REPERTOIRE
     scored += MUSESCORE
-    for L in scored:                                       # level decisions made in review (tools/levels.py)
+    for L in scored:                                       # levels from the RCM syllabus, or by comparison with it (tools/levels.py)
         if L['id'] in MOVES: L['level'] = MOVES[L['id']][0]
+        if L['id'] in SYLLABUS: L['syl'] = SYLLABUS[L['id']][0] + ' · ' + SYLLABUS[L['id']][1]
+        elif L['id'] in COMPARISON: L['why'] = COMPARISON[L['id']][1]
     xmls = {}
     for L in scored:                                       # every score is built first, so pieces can be ordered by difficulty
         if 'mxl' in L:                    # a free MusicXML score, used as it is (tools/sources/musicxml/)
@@ -1051,6 +1053,8 @@ if __name__ == '__main__':
         with open(os.path.join(root, fname), 'w', encoding='utf-8', newline='\n') as f:
             f.write(xmls[L['id']])
         entry = {k: L[k] for k in ('id', 'level', 'kind', 'title', 'hands', 'bpm', 'wait', 'learn', 'tips')} | {'file': fname}
+        for k in ('syl', 'why'):
+            if k in L: entry[k] = L[k]
         if 'composer' in L and 'src' not in L and 'mxl' not in L:
             entry['composer'] = L['composer']
         if 'src' in L or 'mxl' in L:
