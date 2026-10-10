@@ -310,3 +310,39 @@ REPERTOIRE += [
     piece('k457-2', '357-0.mid', 11, 'Sonata in C minor, K. 457: II. Adagio', MOZ, 56, 40, PD, 'A deeply expressive slow movement in E-flat major with ornamented repeats.', ['Sing the melody and let the long notes ring.']),
     piece('k457-3', '358-0.mid', 11, 'Sonata in C minor, K. 457: III. Allegro assai', MOZ, 126, 70, PD, 'A driving, restless finale in 3/4. Begins with a pickup.', SON_TIPS, pickup=1.0),
 ]
+
+# ---------- More Beethoven piano sonatas (Mutopia Project) ----------
+LVB = 'Ludwig van Beethoven'
+BSON = ['Learn it in short sections, each hand alone first.', 'These are concert pieces: take them slowly and use Wait for me.']
+REPERTOIRE += [
+    piece('beethoven-13-i', '299-0.mid', 11, 'Sonata in C minor, Op. 13 "Pathétique": I. Grave – Allegro di molto e con brio', LVB, 112, 70, PD,
+          'A solemn, dramatic introduction followed by a stormy Allegro.', BSON),
+    piece('beethoven-13-ii', '295-0.mid', 11, 'Sonata in C minor, Op. 13 "Pathétique": II. Adagio cantabile', LVB, 54, 40, PD,
+          'One of the best-loved slow movements: a long, singing melody over a gentle triplet accompaniment.', ['Sing the melody and keep the accompaniment quiet and even.']),
+    piece('beethoven-13-iii', '296-0.mid', 11, 'Sonata in C minor, Op. 13 "Pathétique": III. Rondo: Allegro', LVB, 112, 70, PD,
+          'A flowing rondo finale in C minor. Begins with a pickup.', BSON, pickup=1.5),
+    piece('beethoven-27-2-i', '276-0.mid', 11, 'Sonata in C-sharp minor, Op. 27 No. 2 "Moonlight": I. Adagio sostenuto', LVB, 54, 40, BYSA25,
+          'The famous opening: a steady triplet accompaniment under a quiet, mournful melody.', ['Keep the triplets perfectly even and very soft.', 'Let the melody sing above them.']),
+    piece('beethoven-27-2-ii', '276-1.mid', 11, 'Sonata in C-sharp minor, Op. 27 No. 2 "Moonlight": II. Allegretto', LVB, 100, 60, BYSA25,
+          'A short, graceful minuet in D-flat major between the two stormy movements. Begins with a pickup.', BSON, pickup=1.0),
+    piece('beethoven-27-2-iii', '276-2.mid', 11, 'Sonata in C-sharp minor, Op. 27 No. 2 "Moonlight": III. Presto agitato', LVB, 140, 80, BYSA25,
+          'The stormy finale: rushing arpeggios in the right hand and fierce chords in the left.', BSON),
+    piece('beethoven-31-2-i', '1509-0.mid', 11, 'Sonata in D minor, Op. 31 No. 2 "Tempest": I. Largo – Allegro', LVB, 120, 70, PD,
+          'A dramatic movement alternating slow, searching arpeggios with fast, stormy music.', BSON),
+    piece('beethoven-31-2-ii', '1510-0.mid', 11, 'Sonata in D minor, Op. 31 No. 2 "Tempest": II. Adagio', LVB, 60, 40, PD,
+          'A slow, serene movement in B-flat major.', ['Keep the melody singing and the bass notes soft.']),
+    piece('beethoven-57-ii', '288-0.mid', 11, 'Sonata in F minor, Op. 57 "Appassionata": II. Andante con moto', LVB, 72, 50, PD,
+          'A calm theme with four variations, rising gradually in intensity.', BSON),
+    piece('beethoven-57-iii', '937-0.mid', 11, 'Sonata in F minor, Op. 57 "Appassionata": III. Allegro ma non troppo – Presto', LVB, 132, 75, PD,
+          'A furious perpetual-motion finale.', BSON),
+    piece('beethoven-78-i', '1137-0.mid', 11, 'Sonata in F-sharp major, Op. 78: I. Adagio cantabile – Allegro ma non troppo', LVB, 100, 60, PD,
+          'A short, lyrical sonata Beethoven was fond of; a gentle introduction leads to a graceful Allegro.', BSON),
+    piece('beethoven-78-ii', '1161-0.mid', 11, 'Sonata in F-sharp major, Op. 78: II. Allegro vivace', LVB, 132, 75, PD,
+          'A quick, playful finale.', BSON),
+    piece('beethoven-90-i', '906-0.mid', 11, 'Sonata in E minor, Op. 90: I. Mit Lebhaftigkeit', LVB, 126, 70, PD,
+          'A restless movement with a stern opening and a more lyrical second theme. Begins with a pickup.', BSON, pickup=1.0),
+    piece('beethoven-90-ii', '909-0.mid', 11, 'Sonata in E minor, Op. 90: II. Nicht zu geschwind', LVB, 100, 60, PD,
+          'A long, gentle rondo with a singing theme. Begins with a pickup.', BSON, pickup=0.5),
+    piece('beethoven-111-i', '1022-0.mid', 11, 'Sonata in C minor, Op. 111: I. Maestoso – Allegro con brio ed appassionato', LVB, 112, 70, PD,
+          "Beethoven's last piano sonata: a stern, dramatic introduction and a powerful, driving Allegro.", BSON, pickup=0.125),
+]

@@ -196,6 +196,7 @@ The same goes for *Away with Melancholy* (Mozart), *Ode to Joy* (Beethoven, with
 | Level 9 | Song without Words, Op. 85 No. 1 | Felix Mendelssohn | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1744) |
 | Level 9 | Sonata in A, K. 331: Variation IV | Wolfgang Amadeus Mozart | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=618) |
 | Level 9 | Waltz in D-flat, Op. 64 No. 1 ("Minute") | Frédéric Chopin | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=483) |
+| Level 10 | Sonata in C-sharp minor, Op. 27 No. 2 "Moonlight": II. Allegretto | Ludwig van Beethoven | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=276) |
 | Level 10 | Fugue in G minor, K. 154 (385k) | Wolfgang Amadeus Mozart | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=425) |
 | Level 10 | Fugue in E minor, BWV 855 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=546) |
 | Level 10 | Fugue in G minor, BWV 861 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=805) |
@@ -215,25 +216,39 @@ The same goes for *Away with Melancholy* (Mozart), *Ode to Joy* (Beethoven, with
 | Level 10 | Nocturne in E minor, Op. posth. 72 No. 1 | Frédéric Chopin | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=509) |
 | Level 10 | Sonata in F, Op. 10 No. 2: II. Allegretto | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=993) |
 | Level 10 | Prelude in A-flat major, Op. 28 No. 17 | Frédéric Chopin | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2190) |
+| Level 10 | Sonata in D minor, Op. 31 No. 2 "Tempest": II. Adagio | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1510) |
 | Level 10 | Prelude in D minor, BWV 875 (Well-Tempered Clavier II) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=974) |
+| Level 10 | Sonata in C minor, Op. 13 "Pathétique": III. Rondo: Allegro | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=296) |
 | Level 10 | Sonata in F minor, Op. 2 No. 1: II. Adagio | Ludwig van Beethoven | CC BY-SA 4.0 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2070) |
 | Level 10 | Prelude in D minor, BWV 851 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=538) |
 | Level 10 | Sonata in C minor, Op. 10 No. 1: I. Allegro molto | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=778) |
+| Level 10 | Sonata in C minor, Op. 13 "Pathétique": I. Grave – Allegro di molto e con brio | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=299) |
 | Level 10 | Sonata in C minor, K. 457: II. Adagio | Wolfgang Amadeus Mozart | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=357) |
 | Level 10 | Sonata in F minor, Op. 2 No. 1: III. Menuetto | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1276) |
 | Level 10 | Sonata in F minor, Op. 2 No. 1: I. Allegro | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1211) |
+| Level 10 | Sonata in C minor, Op. 13 "Pathétique": II. Adagio cantabile | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=295) |
 | Level 10 | Prelude in D major, BWV 850 (Well-Tempered Clavier I) | Johann Sebastian Bach | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1496) |
+| Level 10 | Sonata in C-sharp minor, Op. 27 No. 2 "Moonlight": I. Adagio sostenuto | Ludwig van Beethoven | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=276) |
 | Level 10 | Sonata in C minor, K. 457: III. Allegro assai | Wolfgang Amadeus Mozart | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=358) |
 | Level 10 | Clair de lune (Suite bergamasque) | Claude Debussy | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1778) |
 | Level 10 | Sonata in C minor, Op. 10 No. 1: III. Finale: Prestissimo | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=779) |
+| Level 10 | Sonata in E minor, Op. 90: I. Mit Lebhaftigkeit | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=906) |
 | Level 10 | Sonata in C minor, K. 457: I. Molto allegro | Wolfgang Amadeus Mozart | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=356) |
+| Level 10 | Sonata in F minor, Op. 57 "Appassionata": II. Andante con moto | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=288) |
+| Level 10 | Sonata in C minor, Op. 111: I. Maestoso – Allegro con brio ed appassionato | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1022) |
+| Level 10 | Sonata in E minor, Op. 90: II. Nicht zu geschwind | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=909) |
+| Level 10 | Sonata in D minor, Op. 31 No. 2 "Tempest": I. Largo – Allegro | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1509) |
+| Level 10 | Sonata in F-sharp major, Op. 78: I. Adagio cantabile – Allegro ma non troppo | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1137) |
 | Level 10 | Sonata in F minor, Op. 2 No. 1: IV. Prestissimo | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1277) |
 | Level 10 | Sonata in F, Op. 10 No. 2: III. Presto | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=994) |
 | Level 10 | Sonata in F, Op. 10 No. 2: I. Allegro | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=992) |
 | Level 10 | Nocturne in B-flat minor, Op. 9 No. 1 | Frédéric Chopin | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=582) |
 | Level 10 | Impromptu in E-flat, Op. 90 No. 2 | Franz Schubert | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1551) |
+| Level 10 | Sonata in F-sharp major, Op. 78: II. Allegro vivace | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1161) |
 | Level 10 | Wedding Day at Troldhaugen, Op. 65 No. 6 | Edvard Grieg | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=781) |
 | Level 10 | Prelude in C-sharp minor, Op. 45 | Frédéric Chopin | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1776) |
+| Level 10 | Sonata in F minor, Op. 57 "Appassionata": III. Allegro ma non troppo – Presto | Ludwig van Beethoven | Public Domain | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=937) |
+| Level 10 | Sonata in C-sharp minor, Op. 27 No. 2 "Moonlight": III. Presto agitato | Ludwig van Beethoven | CC BY-SA 2.5 | [Mutopia](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=276) |
 
 ## Finger numbers
 1 = thumb, 2 = index, 3 = middle, 4 = ring, 5 = little finger. The finger for the current note is shown above (right hand) and

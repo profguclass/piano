@@ -7237,6 +7237,24 @@
    "composer": "Technique"
   },
   {
+   "id": "beethoven-27-2-ii",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in C-sharp minor, Op. 27 No. 2 \"Moonlight\": II. Allegretto",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "A short, graceful minuet in D-flat major between the two stormy movements. Begins with a pickup.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "332-beethoven-27-2-ii.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=276"
+  },
+  {
    "id": "fugue-k154",
    "level": 11,
    "kind": "piece",
@@ -7249,7 +7267,7 @@
     "Practise each hand alone first: both hands play the same theme in turn.",
     "Listen for the theme as it moves from hand to hand, and keep the other hand quiet."
    ],
-   "file": "332-fugue-k154.musicxml",
+   "file": "333-fugue-k154.musicxml",
    "composer": "Wolfgang Amadeus Mozart",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=425"
@@ -7267,7 +7285,7 @@
     "Learn each voice alone, then two at a time.",
     "Follow the subject every time it enters."
    ],
-   "file": "333-wtc1-855-fugue.musicxml",
+   "file": "334-wtc1-855-fugue.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in E minor, BWV 855",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7286,7 +7304,7 @@
     "Learn each voice alone, then two at a time.",
     "Follow the subject every time it enters."
    ],
-   "file": "334-wtc1-861-fugue.musicxml",
+   "file": "335-wtc1-861-fugue.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in G minor, BWV 861",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7306,7 +7324,7 @@
     "Let the entry of each voice be heard.",
     "Follow the subject every time it enters."
    ],
-   "file": "335-wtc-fugue-1.musicxml",
+   "file": "336-wtc-fugue-1.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in C Major, BWV 846 (the fugue)",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7325,7 +7343,7 @@
     "Learn it in short sections, hands separately first.",
     "Keep the rhythm even and let the harmony shape the phrases."
    ],
-   "file": "336-wtc1-856-prelude.musicxml",
+   "file": "337-wtc1-856-prelude.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in F major, BWV 856",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7344,7 +7362,7 @@
     "Keep every note the same length and volume.",
     "Listen to how the harmony changes bar by bar."
    ],
-   "file": "337-prelude-846.musicxml",
+   "file": "338-prelude-846.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in C Major, BWV 846 (the prelude)",
    "composer": "Johann Sebastian Bach",
    "license": "Public domain music; free MusicXML arrangement from MuseScore.com",
@@ -7363,7 +7381,7 @@
     "Learn it in short sections, hands separately first.",
     "Keep the rhythm even and let the harmony shape the phrases."
    ],
-   "file": "338-wtc1-855-prelude.musicxml",
+   "file": "339-wtc1-855-prelude.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in E minor, BWV 855",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7382,7 +7400,7 @@
     "Learn it in short sections, hands separately first.",
     "Keep the rhythm even and let the harmony shape the phrases."
    ],
-   "file": "339-wtc1-861-prelude.musicxml",
+   "file": "340-wtc1-861-prelude.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in G minor, BWV 861",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7401,7 +7419,7 @@
     "Learn it in short sections, hands separately first.",
     "Keep the rhythm even and let the harmony shape the phrases."
    ],
-   "file": "340-wtc2-871-prelude.musicxml",
+   "file": "341-wtc2-871-prelude.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in C minor, BWV 871",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7420,7 +7438,7 @@
     "Learn each voice alone, then two at a time.",
     "Follow the subject every time it enters."
    ],
-   "file": "341-wtc2-871-fugue.musicxml",
+   "file": "342-wtc2-871-fugue.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in C minor, BWV 871",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7439,7 +7457,7 @@
     "Learn each voice alone, then two at a time.",
     "Follow the subject every time it enters."
    ],
-   "file": "342-wtc1-850-fugue.musicxml",
+   "file": "343-wtc1-850-fugue.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in D major, BWV 850",
    "composer": "Johann Sebastian Bach",
    "license": "CC BY-SA 4.0",
@@ -7458,7 +7476,7 @@
     "Learn it in short sections, hands separately first.",
     "Keep the rhythm even and let the harmony shape the phrases."
    ],
-   "file": "343-wtc1-862-prelude.musicxml",
+   "file": "344-wtc1-862-prelude.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in A flat major, BWV 862",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7477,7 +7495,7 @@
     "Learn each voice alone, then two at a time.",
     "Follow the subject every time it enters."
    ],
-   "file": "344-wtc1-851-fugue.musicxml",
+   "file": "345-wtc1-851-fugue.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in D minor, BWV 851",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7496,7 +7514,7 @@
     "Learn each voice alone, then two at a time.",
     "Follow the subject every time it enters."
    ],
-   "file": "345-wtc2-870-fugue.musicxml",
+   "file": "346-wtc2-870-fugue.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in C major, BWV 870",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7515,7 +7533,7 @@
     "Learn each voice alone, then two at a time.",
     "Follow the subject every time it enters."
    ],
-   "file": "346-wtc1-856-fugue.musicxml",
+   "file": "347-wtc1-856-fugue.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in F major, BWV 856",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7534,7 +7552,7 @@
     "Learn each voice alone, then two at a time.",
     "Follow the subject every time it enters."
    ],
-   "file": "347-wtc1-862-fugue.musicxml",
+   "file": "348-wtc1-862-fugue.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in A flat major, BWV 862",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7553,7 +7571,7 @@
     "Learn it in short sections, hands separately first.",
     "Keep the rhythm even and let the harmony shape the phrases."
    ],
-   "file": "348-wtc2-870-prelude.musicxml",
+   "file": "349-wtc2-870-prelude.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in C major, BWV 870",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7572,7 +7590,7 @@
     "Practise the left hand until it is smooth and quiet.",
     "Let the melody breathe above it."
    ],
-   "file": "349-chopin-nocturne-72-1.musicxml",
+   "file": "350-chopin-nocturne-72-1.musicxml",
    "syl": "Level 10 · Complete list: Nocturne in E Minor, op. posth. 72, no. 1",
    "composer": "Frédéric Chopin",
    "license": "CC BY-SA 4.0",
@@ -7591,7 +7609,7 @@
     "Learn the themes first, then the passages that connect them.",
     "Practise hands separately and keep the left hand light."
    ],
-   "file": "350-beethoven-10-2-ii.musicxml",
+   "file": "351-beethoven-10-2-ii.musicxml",
    "syl": "Level 10 · Complete list: Sonata in F Major, op. 10, no. 2: 2nd and 3rd movements",
    "composer": "Ludwig van Beethoven",
    "license": "Public Domain",
@@ -7610,11 +7628,28 @@
     "Learn it in short sections, each hand alone first.",
     "Shape the long phrases with the dynamics."
    ],
-   "file": "351-chopin-prelude-17.musicxml",
+   "file": "352-chopin-prelude-17.musicxml",
    "syl": "Level 10 · Complete list: Prelude in A flat Major, op. 28, no. 17 (Chopin)",
    "composer": "Frédéric Chopin",
    "license": "CC BY-SA 4.0",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2190"
+  },
+  {
+   "id": "beethoven-31-2-ii",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in D minor, Op. 31 No. 2 \"Tempest\": II. Adagio",
+   "hands": "both",
+   "bpm": 60,
+   "wait": 40,
+   "learn": "A slow, serene movement in B-flat major.",
+   "tips": [
+    "Keep the melody singing and the bass notes soft."
+   ],
+   "file": "353-beethoven-31-2-ii.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1510"
   },
   {
    "id": "wtc2-875-prelude",
@@ -7629,11 +7664,29 @@
     "Learn it in short sections, hands separately first.",
     "Keep the rhythm even and let the harmony shape the phrases."
    ],
-   "file": "352-wtc2-875-prelude.musicxml",
+   "file": "354-wtc2-875-prelude.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in D Minor, BWV 875",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=974"
+  },
+  {
+   "id": "beethoven-13-iii",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in C minor, Op. 13 \"Pathétique\": III. Rondo: Allegro",
+   "hands": "both",
+   "bpm": 112,
+   "wait": 70,
+   "learn": "A flowing rondo finale in C minor. Begins with a pickup.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "355-beethoven-13-iii.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=296"
   },
   {
    "id": "beethoven-2-1-ii",
@@ -7648,7 +7701,7 @@
     "Learn the themes first, then the passages that connect them.",
     "Practise hands separately and keep the left hand light."
    ],
-   "file": "353-beethoven-2-1-ii.musicxml",
+   "file": "356-beethoven-2-1-ii.musicxml",
    "syl": "Level 10 · Complete list: Sonata in F Minor, op. 2, no. 1: 1st and 2nd movements",
    "composer": "Ludwig van Beethoven",
    "license": "CC BY-SA 4.0",
@@ -7667,7 +7720,7 @@
     "Learn it in short sections, hands separately first.",
     "Keep the rhythm even and let the harmony shape the phrases."
    ],
-   "file": "354-wtc1-851-prelude.musicxml",
+   "file": "357-wtc1-851-prelude.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in D minor, BWV 851",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
@@ -7686,11 +7739,29 @@
     "Learn the themes first, then the passages that connect them.",
     "Practise hands separately and keep the left hand light."
    ],
-   "file": "355-beethoven-10-1-i.musicxml",
+   "file": "358-beethoven-10-1-i.musicxml",
    "syl": "Level 10 · Complete list: Sonata in C Minor, op. 10, no. 1: 1st and 2nd movements",
    "composer": "Ludwig van Beethoven",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=778"
+  },
+  {
+   "id": "beethoven-13-i",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in C minor, Op. 13 \"Pathétique\": I. Grave – Allegro di molto e con brio",
+   "hands": "both",
+   "bpm": 112,
+   "wait": 70,
+   "learn": "A solemn, dramatic introduction followed by a stormy Allegro.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "359-beethoven-13-i.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=299"
   },
   {
    "id": "k457-2",
@@ -7704,7 +7775,7 @@
    "tips": [
     "Sing the melody and let the long notes ring."
    ],
-   "file": "356-k457-2.musicxml",
+   "file": "360-k457-2.musicxml",
    "composer": "Wolfgang Amadeus Mozart",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=357"
@@ -7722,7 +7793,7 @@
     "Learn the themes first, then the passages that connect them.",
     "Practise hands separately and keep the left hand light."
    ],
-   "file": "357-beethoven-2-1-iii.musicxml",
+   "file": "361-beethoven-2-1-iii.musicxml",
    "syl": "Level 10 · Complete list: Sonata in F Minor, op. 2, no. 1: 3rd and 4th movements",
    "composer": "Ludwig van Beethoven",
    "license": "Public Domain",
@@ -7741,11 +7812,28 @@
     "Learn the themes first, then the passages that connect them.",
     "Practise hands separately and keep the left hand light."
    ],
-   "file": "358-beethoven-2-1-i.musicxml",
+   "file": "362-beethoven-2-1-i.musicxml",
    "syl": "Level 10 · Complete list: Sonata in F Minor, op. 2, no. 1: 1st and 2nd movements",
    "composer": "Ludwig van Beethoven",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1211"
+  },
+  {
+   "id": "beethoven-13-ii",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in C minor, Op. 13 \"Pathétique\": II. Adagio cantabile",
+   "hands": "both",
+   "bpm": 54,
+   "wait": 40,
+   "learn": "One of the best-loved slow movements: a long, singing melody over a gentle triplet accompaniment.",
+   "tips": [
+    "Sing the melody and keep the accompaniment quiet and even."
+   ],
+   "file": "363-beethoven-13-ii.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=295"
   },
   {
    "id": "wtc1-850-prelude",
@@ -7760,11 +7848,29 @@
     "Learn it in short sections, hands separately first.",
     "Keep the rhythm even and let the harmony shape the phrases."
    ],
-   "file": "359-wtc1-850-prelude.musicxml",
+   "file": "364-wtc1-850-prelude.musicxml",
    "syl": "Level 10 · Complete list: Prelude and Fugue in D major, BWV 850",
    "composer": "Johann Sebastian Bach",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1496"
+  },
+  {
+   "id": "beethoven-27-2-i",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in C-sharp minor, Op. 27 No. 2 \"Moonlight\": I. Adagio sostenuto",
+   "hands": "both",
+   "bpm": 54,
+   "wait": 40,
+   "learn": "The famous opening: a steady triplet accompaniment under a quiet, mournful melody.",
+   "tips": [
+    "Keep the triplets perfectly even and very soft.",
+    "Let the melody sing above them."
+   ],
+   "file": "365-beethoven-27-2-i.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=276"
   },
   {
    "id": "k457-3",
@@ -7779,7 +7885,7 @@
     "Learn it in short sections, each hand alone first.",
     "Keep the left-hand accompaniment lighter than the melody."
    ],
-   "file": "360-k457-3.musicxml",
+   "file": "366-k457-3.musicxml",
    "composer": "Wolfgang Amadeus Mozart",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=358"
@@ -7797,7 +7903,7 @@
     "Play very softly and let the pedal blur the harmonies gently.",
     "Keep the arpeggios smooth and even."
    ],
-   "file": "361-clair-de-lune.musicxml",
+   "file": "367-clair-de-lune.musicxml",
    "syl": "Level 10 · Complete list: Suite bergamasque, Clair de lune (no. 3) (Debussy)",
    "composer": "Claude Debussy",
    "license": "Public Domain",
@@ -7816,11 +7922,29 @@
     "Learn the themes first, then the passages that connect them.",
     "Practise hands separately and keep the left hand light."
    ],
-   "file": "362-beethoven-10-1-iii.musicxml",
+   "file": "368-beethoven-10-1-iii.musicxml",
    "syl": "Level 10 · Complete list: Sonata in C Minor, op. 10, no. 1: 2nd and 3rd movements",
    "composer": "Ludwig van Beethoven",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=779"
+  },
+  {
+   "id": "beethoven-90-i",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in E minor, Op. 90: I. Mit Lebhaftigkeit",
+   "hands": "both",
+   "bpm": 126,
+   "wait": 70,
+   "learn": "A restless movement with a stern opening and a more lyrical second theme. Begins with a pickup.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "369-beethoven-90-i.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=906"
   },
   {
    "id": "k457-1",
@@ -7835,10 +7959,100 @@
     "Learn it in short sections, each hand alone first.",
     "Keep the left-hand accompaniment lighter than the melody."
    ],
-   "file": "363-k457-1.musicxml",
+   "file": "370-k457-1.musicxml",
    "composer": "Wolfgang Amadeus Mozart",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=356"
+  },
+  {
+   "id": "beethoven-57-ii",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in F minor, Op. 57 \"Appassionata\": II. Andante con moto",
+   "hands": "both",
+   "bpm": 72,
+   "wait": 50,
+   "learn": "A calm theme with four variations, rising gradually in intensity.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "371-beethoven-57-ii.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=288"
+  },
+  {
+   "id": "beethoven-111-i",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in C minor, Op. 111: I. Maestoso – Allegro con brio ed appassionato",
+   "hands": "both",
+   "bpm": 112,
+   "wait": 70,
+   "learn": "Beethoven's last piano sonata: a stern, dramatic introduction and a powerful, driving Allegro.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "372-beethoven-111-i.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1022"
+  },
+  {
+   "id": "beethoven-90-ii",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in E minor, Op. 90: II. Nicht zu geschwind",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "A long, gentle rondo with a singing theme. Begins with a pickup.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "373-beethoven-90-ii.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=909"
+  },
+  {
+   "id": "beethoven-31-2-i",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in D minor, Op. 31 No. 2 \"Tempest\": I. Largo – Allegro",
+   "hands": "both",
+   "bpm": 120,
+   "wait": 70,
+   "learn": "A dramatic movement alternating slow, searching arpeggios with fast, stormy music.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "374-beethoven-31-2-i.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1509"
+  },
+  {
+   "id": "beethoven-78-i",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in F-sharp major, Op. 78: I. Adagio cantabile – Allegro ma non troppo",
+   "hands": "both",
+   "bpm": 100,
+   "wait": 60,
+   "learn": "A short, lyrical sonata Beethoven was fond of; a gentle introduction leads to a graceful Allegro.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "375-beethoven-78-i.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1137"
   },
   {
    "id": "beethoven-2-1-iv",
@@ -7853,7 +8067,7 @@
     "Learn the themes first, then the passages that connect them.",
     "Practise hands separately and keep the left hand light."
    ],
-   "file": "364-beethoven-2-1-iv.musicxml",
+   "file": "376-beethoven-2-1-iv.musicxml",
    "syl": "Level 10 · Complete list: Sonata in F Minor, op. 2, no. 1: 3rd and 4th movements",
    "composer": "Ludwig van Beethoven",
    "license": "Public Domain",
@@ -7872,7 +8086,7 @@
     "Learn the themes first, then the passages that connect them.",
     "Practise hands separately and keep the left hand light."
    ],
-   "file": "365-beethoven-10-2-iii.musicxml",
+   "file": "377-beethoven-10-2-iii.musicxml",
    "syl": "Level 10 · Complete list: Sonata in F Major, op. 10, no. 2: 2nd and 3rd movements",
    "composer": "Ludwig van Beethoven",
    "license": "Public Domain",
@@ -7891,7 +8105,7 @@
     "Learn the themes first, then the passages that connect them.",
     "Practise hands separately and keep the left hand light."
    ],
-   "file": "366-beethoven-10-2-i.musicxml",
+   "file": "378-beethoven-10-2-i.musicxml",
    "syl": "Level 10 · Complete list: Sonata in F Major, op. 10, no. 2: 1st and 2nd movements",
    "composer": "Ludwig van Beethoven",
    "license": "Public Domain",
@@ -7910,7 +8124,7 @@
     "Learn it in short sections, each hand alone first.",
     "Shape the long phrases with the dynamics."
    ],
-   "file": "367-chopin-nocturne-9-1.musicxml",
+   "file": "379-chopin-nocturne-9-1.musicxml",
    "syl": "Level 10 · Complete list: Nocturne in B flat Minor, op. 9, no. 1 (Chopin)",
    "composer": "Frédéric Chopin",
    "license": "CC BY-SA 2.5",
@@ -7929,11 +8143,29 @@
     "Learn it in sections.",
     "Shape the phrases with the dynamics."
    ],
-   "file": "368-schubert-impromptu-90-2.musicxml",
+   "file": "380-schubert-impromptu-90-2.musicxml",
    "syl": "Level 10 · Complete list: Vier Impromptus für Klavier, op. 90, D 899: Impromptu in E flat Major (no. 2)",
    "composer": "Franz Schubert",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1551"
+  },
+  {
+   "id": "beethoven-78-ii",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in F-sharp major, Op. 78: II. Allegro vivace",
+   "hands": "both",
+   "bpm": 132,
+   "wait": 75,
+   "learn": "A quick, playful finale.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "381-beethoven-78-ii.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1161"
   },
   {
    "id": "troldhaugen",
@@ -7948,7 +8180,7 @@
     "Learn it in sections of eight bars.",
     "Keep the chords crisp and the tune bright."
    ],
-   "file": "369-troldhaugen.musicxml",
+   "file": "382-troldhaugen.musicxml",
    "syl": "Level 10 · Complete list: Wedding Day at Troldhaugen (no. 6), Lyric Pieces, op. 65 (Grieg)",
    "composer": "Edvard Grieg",
    "license": "Public Domain",
@@ -7967,11 +8199,47 @@
     "Practise the left hand until it is smooth and quiet.",
     "Let the melody breathe above it."
    ],
-   "file": "370-chopin-prelude-45.musicxml",
+   "file": "383-chopin-prelude-45.musicxml",
    "syl": "Level 10 · Complete list: Prelude in C sharp Minor, op. 45",
    "composer": "Frédéric Chopin",
    "license": "Public Domain",
    "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1776"
+  },
+  {
+   "id": "beethoven-57-iii",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in F minor, Op. 57 \"Appassionata\": III. Allegro ma non troppo – Presto",
+   "hands": "both",
+   "bpm": 132,
+   "wait": 75,
+   "learn": "A furious perpetual-motion finale.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "384-beethoven-57-iii.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "Public Domain",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=937"
+  },
+  {
+   "id": "beethoven-27-2-iii",
+   "level": 11,
+   "kind": "piece",
+   "title": "Sonata in C-sharp minor, Op. 27 No. 2 \"Moonlight\": III. Presto agitato",
+   "hands": "both",
+   "bpm": 140,
+   "wait": 80,
+   "learn": "The stormy finale: rushing arpeggios in the right hand and fierce chords in the left.",
+   "tips": [
+    "Learn it in short sections, each hand alone first.",
+    "These are concert pieces: take them slowly and use Wait for me."
+   ],
+   "file": "385-beethoven-27-2-iii.musicxml",
+   "composer": "Ludwig van Beethoven",
+   "license": "CC BY-SA 2.5",
+   "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=276"
   },
   {
    "id": "ear-10",
