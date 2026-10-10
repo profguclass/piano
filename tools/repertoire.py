@@ -273,3 +273,40 @@ REPERTOIRE += [
     piece('beethoven-10-2-ii', '993-0.mid', 11, 'Sonata in F, Op. 10 No. 2: II. Allegretto', 'Ludwig van Beethoven', 104, 65, PD, 'A movement from a classical sonata, with its themes and contrasts.', ['Learn the themes first, then the passages that connect them.', 'Practise hands separately and keep the left hand light.'], pickup=1.0),
     piece('beethoven-10-2-iii', '994-0.mid', 11, 'Sonata in F, Op. 10 No. 2: III. Presto', 'Ludwig van Beethoven', 140, 80, PD, 'A movement from a classical sonata, with its themes and contrasts.', ['Learn the themes first, then the passages that connect them.', 'Practise hands separately and keep the left hand light.'], pickup=0.5),
 ]
+
+# ---------- Mozart's solo piano pieces (Mutopia Project) ----------
+MOZ = 'Wolfgang Amadeus Mozart'
+VAR_TIPS = ['Learn the theme first; each variation keeps its shape.', 'Practise each variation hands separately, then together.']
+SON_TIPS = ['Learn it in short sections, each hand alone first.', 'Keep the left-hand accompaniment lighter than the melody.']
+REPERTOIRE += [
+    piece('k545-1', '998-0.mid', 8, 'Sonata in C, K. 545 ("Sonata facile"): I. Allegro', MOZ, 120, 70, BYSA30,
+          'The most famous easy sonata: a bright theme over a running Alberti bass, then a contrasting second theme in G.', SON_TIPS),
+    piece('k545-2', '1007-0.mid', 8, 'Sonata in C, K. 545: II. Andante', MOZ, 66, 45, BYSA30,
+          'A calm, song-like slow movement in G major in 3/4.', ['Sing the melody and keep the accompaniment quiet.']),
+    piece('k545-3', '1027-0.mid', 8, 'Sonata in C, K. 545: III. Rondo', MOZ, 120, 70, BYSA30,
+          'A graceful rondo finale: a light returning theme between short episodes. Begins with a pickup.', ['Keep it light and even.', 'Start with the pickup on the last beat.'], pickup=1.0),
+    piece('gigue-k574', '239-0.mid', 8, 'Gigue in G, K. 574', MOZ, 96, 60, PD,
+          'A short, lively gigue in 6/8 with two voices in imitation. Begins with a pickup.', INV_TIPS, pickup=0.5),
+    piece('marche-funebre-k453a', '446-0.mid', 8, 'Marche funèbre del Signor Maestro Contrapunto, K. 453a', MOZ, 66, 45, PD,
+          'A short, solemn march in C minor.', ['Keep the march steady and the chords even.']),
+    piece('k331-tema', '614-0.mid', 9, 'Sonata in A, K. 331: Theme (Andante grazioso)', MOZ, 76, 50, PD,
+          'A gentle siciliano theme in 6/8, the opening of the famous A major sonata.', ['Feel the lilt of 6/8.', 'Keep the left hand soft.']),
+    piece('k331-var1', '615-0.mid', 9, 'Sonata in A, K. 331: Variation I', MOZ, 76, 50, PD, 'The theme decorated with flowing sixteenth-note figures in the right hand.', VAR_TIPS),
+    piece('k331-var2', '616-0.mid', 10, 'Sonata in A, K. 331: Variation II', MOZ, 76, 50, PD, 'The decorated theme now moves to a flowing triplet accompaniment.', VAR_TIPS),
+    piece('k331-var3', '617-0.mid', 10, 'Sonata in A, K. 331: Variation III', MOZ, 76, 50, PD, 'Triplet figures in the left hand beneath the theme.', VAR_TIPS),
+    piece('k331-var4', '618-0.mid', 10, 'Sonata in A, K. 331: Variation IV', MOZ, 76, 50, PD, 'A turn to A minor with hands crossing between registers.', VAR_TIPS),
+    piece('k331-var5', '619-0.mid', 10, 'Sonata in A, K. 331: Variation V (Adagio)', MOZ, 56, 40, PD, 'A slow, richly ornamented variation.', VAR_TIPS),
+    piece('k331-var6', '620-0.mid', 10, 'Sonata in A, K. 331: Variation VI (Allegro)', MOZ, 120, 70, PD, 'A brisk finale to the variations in 4/4.', VAR_TIPS),
+    piece('k331-menuetto', '613-0.mid', 9, 'Sonata in A, K. 331: Menuetto', MOZ, 120, 70, PD, 'A graceful minuet with a contrasting trio.', SON_TIPS),
+    piece('rondo-alla-turca', '108-0.mid', 10, 'Rondo alla Turca (Sonata in A, K. 331: III)', MOZ, 126, 70, PD,
+          'The famous Turkish march: rapid ornamented figures in A minor, then a bold A major theme with big chords.', ['Practise the opening ornament slowly and evenly.', 'Keep the left-hand chords crisp and light.']),
+    piece('k309-1', '1379-0.mid', 10, 'Sonata in C, K. 309: I. Allegro con spirito', MOZ, 120, 70, PD,
+          'A bright, energetic sonata movement in C major with clear contrasting themes.', SON_TIPS),
+    piece('fantasy-k397', '2034-0.mid', 10, 'Fantasy in D minor, K. 397', MOZ, 66, 45, PD,
+          'A free, dramatic fantasy: a mysterious arpeggiated opening, an adagio, then a bright Allegretto in D major.', ['Play the free sections with flexible time, then settle into the Allegretto.', 'Take each section separately.']),
+    piece('fugue-k153', '424-0.mid', 10, 'Fugue in E-flat, K. 153 (375f)', MOZ, 72, 50, PD, 'A two-voice fugue: follow the subject as it enters in each hand.', INV_TIPS, pickup=0.25),
+    piece('fugue-k154', '425-0.mid', 11, 'Fugue in G minor, K. 154 (385k)', MOZ, 72, 50, PD, 'A short, serious fugue in G minor.', INV_TIPS),
+    piece('k457-1', '356-0.mid', 11, 'Sonata in C minor, K. 457: I. Molto allegro', MOZ, 126, 70, PD, 'A stormy, dramatic first movement in C minor.', SON_TIPS),
+    piece('k457-2', '357-0.mid', 11, 'Sonata in C minor, K. 457: II. Adagio', MOZ, 56, 40, PD, 'A deeply expressive slow movement in E-flat major with ornamented repeats.', ['Sing the melody and let the long notes ring.']),
+    piece('k457-3', '358-0.mid', 11, 'Sonata in C minor, K. 457: III. Allegro assai', MOZ, 126, 70, PD, 'A driving, restless finale in 3/4. Begins with a pickup.', SON_TIPS, pickup=1.0),
+]
