@@ -1390,7 +1390,7 @@ async function openLibrary() {
   const btn = (label, fn, cls) => { const b = document.createElement('button'); b.textContent = label; if (cls) b.className = cls; b.onclick = fn; return b; };
   const fail = () => { $('status').textContent = 'Could not open this score. Check the internet connection.'; };
   const m = $('libmine'); m.innerHTML = '';
-  const mychants = mine.filter(r => r.collection === 'gregorian' && hit(r.name, r.file + ' Gregorian chant plainchant')).sort((a, b) => a.file.localeCompare(b.file));
+  const mychants = mine.filter(r => r.collection === 'gregorian' && hit(r.name, r.file + ' Gregorian chant plainchant')).sort((a, b) => a.name.localeCompare(b.name));
   mine = mine.filter(r => r.collection !== 'gregorian');
   const own = mine.filter(r => hit(r.name, r.file)).sort((a, b) => b.added - a.added);
   m.insertAdjacentHTML('beforeend', `<h3>My scores · ${mine.length}</h3>`);
