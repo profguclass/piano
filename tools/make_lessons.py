@@ -1027,6 +1027,98 @@ def rh_only(bars):
     return ' | '.join(bars), ' | '.join([''] * len(bars))
 
 
+# ----- technical studies: short original exercises built from a motif moved step by step through a key -----
+SDUR = {16: 'w', 12: 'h.', 8: 'h', 6: 'q.', 4: 'q', 3: 'e.', 2: 'e', 1: 's'}
+
+
+class Key:
+    """Scale notes of a key from a low octave, indexed by scale degree (0 = the tonic in that octave)."""
+    def __init__(self, key, octave, form='natural'):
+        self.key = key
+        self.notes = place(scale_names(key, 'harmonic' if form == 'harmonic' else 'natural'), octave, 50)
+
+    def __call__(self, d):
+        return self.notes[d]
+
+
+def harmony(d):                          # the chord under a melody note: I, IV or V by its scale degree
+    d %= 7
+    return 0 if d in (0, 2) else 3 if d in (3, 5) else 4
+
+
+def lh_bar(K, root, pattern, beats=4, low=7):
+    """One bar of left hand on the chord with this root degree, `low` = the tonic's index for the bass octave."""
+    r, t, f = K(low + root), K(low + root + 2), K(low + root + 4)
+    o = K(low + root + 7)
+    if pattern == 'whole': return f'{r}{SDUR[beats * 4]}'
+    if pattern == 'block':
+        half = beats * 2 if beats % 2 == 0 else None
+        return f'{r}+{t}+{f}h {r}+{t}+{f}h' if beats == 4 else f'{r}+{t}+{f}h.'
+    if pattern == 'waltz': return f'{r}q {t}+{f}q {t}+{f}q'
+    if pattern == 'alberti': return ' '.join(f'{x}e' for x in [r, f, t, f] * (beats // 2))
+    if pattern == 'broken': return ' '.join(f'{x}e' for x in [r, t, f, t] * (beats // 2))
+    if pattern == 'octaves': return ' '.join(f'{r}+{o}q' for _ in range(beats))
+    if pattern == 'stride': return ' '.join(f'{r}q {t}+{f}+{o}q!' for _ in range(beats // 2))
+    if pattern == 'bass': return f'{r}h {f}h' if beats == 4 else f'{r}h.'
+    raise ValueError(pattern)
+
+
+def motif_study(key, motif, unit, bars, lh='block', rh_oct=4, lh_oct=2, beats=4, start=0, stac=False, form='natural', dyad=None):
+    """The motif (scale steps from its first note) repeated, rising one step each time for half the study and falling back,
+    ending on the tonic. The left hand plays the chord of each bar."""
+    K, L = Key(key, rh_oct - 1, form), Key(key, lh_oct, form)     # index 7 = the tonic in octave rh_oct
+    per_bar = beats * 4 // unit
+    reps = per_bar // len(motif)
+    assert reps * len(motif) == per_bar, (motif, unit)
+    half = (bars - 1) // 2
+    starts = [start + i for i in range(half)] + [start + half - i for i in range(bars - 1 - half)]
+    rbars, lbars = [], []
+    st = '!' if stac else ''
+    for b, d0 in enumerate(starts):
+        notes = []
+        for r in range(reps):
+            for m in motif:
+                d = d0 + m + (r if reps > 1 and len(motif) < 4 else 0)
+                n = K(7 + d)
+                if dyad: n = f'{n}+{K(7 + d + dyad)}'
+                notes.append(f'{n}{SDUR[unit]}{st}')
+        rbars.append(' '.join(notes))
+        lbars.append(lh_bar(L, harmony(d0), lh, beats))
+    rbars.append(f'{K(7 + start)}+{K(9 + start)}+{K(11 + start)}{SDUR[beats * 4]}' if not dyad else f'{K(7)}+{K(9)}{SDUR[beats * 4]}')
+    lbars.append(f'{L(7)}+{L(14)}{SDUR[beats * 4]}')
+    return keyed(rbars, key), lbars
+
+
+def hands_in_turn(key, motif_r, motif_l, unit=4, pairs=4, beats=4):
+    """The right hand plays a bar, the left hand answers it, the motif climbing a step each time."""
+    K, L = Key(key, 3), Key(key, 2)
+    rb, lb = [], []
+    rest = f'r{SDUR[beats * 4]}'
+    for i in range(pairs):
+        d = [0, 1, 2, 1][i % 4]
+        rb += [' '.join(f'{K(7 + d + m)}{SDUR[unit]}' for m in motif_r), rest]
+        lb += [rest, ' '.join(f'{L(7 + d + m)}{SDUR[unit]}' for m in motif_l)]
+    rb.append(f'{K(7)}{SDUR[beats * 4]}'); lb.append(f'{L(7)}{SDUR[beats * 4]}')
+    return keyed(rb, key), lb
+
+
+def alternating(key, unit=1, bars=8):
+    """Toccata study: the hands alternate note by note, a broken chord shared between them."""
+    K, L = Key(key, 3), Key(key, 2)
+    rb, lb = [], []
+    prog = [0, 3, 4, 0, 5, 3, 4, 0]
+    pairs = 16 // (2 * unit)
+    for b in range(bars):
+        root = prog[b % len(prog)]
+        rn = [K(7 + root + x) for x in (2, 4, 7, 4)]
+        ln = [L(7 + root + x) for x in (0, 4)]
+        rb.append(' '.join(f'r{SDUR[unit]} {rn[i % 4]}{SDUR[unit]}' for i in range(pairs)))
+        lb.append(' '.join(f'{ln[i % 2]}{SDUR[unit]} r{SDUR[unit]}' for i in range(pairs)))
+    rb.append(f'{K(7)}+{K(9)}+{K(11)}w'); lb.append(f'{L(7)}+{L(14)}w')
+    return keyed(rb, key), lb
+
+
+STUDY_TIP = 'An original study written for this course: practise slowly with Wait for me, then speed it up with Play along.'
 def tech(id, level, title, learn, tips, sections, bpm, wait, time=(4, 4), together=None, ht=None):
     if ht:                                # hands together: [(rh_bars, lh_bars)] played in turn
         rh = ' | '.join(b for r, l in ht for b in r); lh = ' | '.join(b for r, l in ht for b in l)
@@ -1453,6 +1545,61 @@ TECHNIQUE += [
     tech('rsl-symmetric-8', 9, 'C whole-tone and C half-whole diminished scales (RSL Grade 8)',
          'Two scales built from one repeating step pattern: the whole-tone scale (six notes, every step a whole tone, as in Debussy) and the half-whole diminished scale (eight notes, half step then whole step, common in jazz).',
          [RSL_TIP, 'Two octaves, hands together an octave apart.'], [], 176, 90, ht=[sym_scale('whole'), sym_scale('dim')]),
+    # ---------- technical studies (original, for every level) ----------
+    tech('study-a1', 0, 'Study: walking fingers (right hand)', 'Every finger in turn, up and down the C five-finger position, in quarter notes. Keep the hand still and let the fingers do the walking.',
+         [STUDY_TIP, 'Curve the fingers and play on the fingertips.'], [], 92, 60,
+         together=rh_only(['C4q:1 D4q:2 E4q:3 F4q:4', 'G4q:5 F4q:4 E4q:3 D4q:2', 'C4q:1 E4q:3 D4q:2 F4q:4', 'E4q:3 G4q:5 F4q:4 D4q:2',
+                           'E4q:3 F4q:4 G4q:5 E4q:3', 'D4q:2 E4q:3 F4q:4 D4q:2', 'C4q:1 D4q:2 E4q:3 D4q:2', 'C4w:1'])),
+    tech('study-a2', 0, 'Study: walking fingers (left hand)', 'The same walk for the left hand, C position: finger 5 on C, thumb on G.',
+         [STUDY_TIP, 'Say the finger numbers aloud as you play.'], [], 92, 60,
+         together=(' | '.join([''] * 8), ' | '.join(['C3q:5 D3q:4 E3q:3 F3q:2', 'G3q:1 F3q:2 E3q:3 D3q:4', 'C3q:5 E3q:3 D3q:4 F3q:2', 'E3q:3 G3q:1 F3q:2 D3q:4',
+                                                   'E3q:3 F3q:2 G3q:1 E3q:3', 'D3q:4 E3q:3 F3q:2 D3q:4', 'C3q:5 D3q:4 E3q:3 D3q:4', 'C3w:5']))),
+    tech('study-b1', 1, 'Study: hands take turns', 'A short tune passed between the hands in G position: the right hand plays a bar, the left hand answers it.',
+         [STUDY_TIP, 'Keep the beat going across the change of hands.'], [], 80, 55, ht=[hands_in_turn('G', [0, 1, 2, 3], [4, 3, 2, 1])]),
+    tech('study-b2', 1, 'Study: legato and staccato', 'Smooth groups of three, then short detached notes: listen for the difference.',
+         [STUDY_TIP, 'Staccato notes have a dot: let the key spring back up at once.'], [], 80, 55,
+         together=('C4q:1 D4q:2 E4h:3 | E4q:3! E4q:3! E4h:3 | D4q:2 E4q:3 F4h:4 | F4q:4! F4q:4! F4h:4 | E4q:3 F4q:4 G4h:5 | G4q:5! F4q:4! E4q:3! D4q:2! | C4w:1',
+                   'C3w:5 | G3w:1 | G3w:1 | G3w:1 | C3w:5 | G3w:1 | C3w:5')),
+    tech('study-1a', 2, 'Study: broken-chord waltz', 'The left hand plays a bass note and two chords in each bar of 3/4; the right hand sings long notes above.',
+         [STUDY_TIP, 'Make the bass note a little stronger than the chords.'], [], 96, 60, time=(3, 4), ht=[motif_study('C', [0, 2, 4], 4, 8, 'waltz', beats=3)]),
+    tech('study-1b', 2, 'Study: five-note runs', 'Runs of five notes in eighth notes in the right hand, rising and falling through G major, over a held bass.',
+         [STUDY_TIP, 'Keep the eighths perfectly even.'], [], 76, 50, ht=[motif_study('G', [0, 1, 2, 3, 4, 3, 2, 1], 2, 8, 'whole')]),
+    tech('study-2a', 3, 'Study: Alberti bass', 'The left hand plays the Alberti pattern (low, high, middle, high) of the Classical style, under a simple tune.',
+         [STUDY_TIP, 'Keep the left hand light and even: it is the accompaniment.'], [], 84, 55, ht=[motif_study('F', [0, 2, 1, 0], 4, 8, 'alberti')]),
+    tech('study-2b', 3, 'Study: legato thirds', 'Two notes a third apart, played together and joined smoothly, climbing and falling through C major.',
+         [STUDY_TIP, 'Use fingers 1+3 and 2+4, and listen that both notes sound exactly together.'], [], 72, 50, ht=[motif_study('C', [0, 1], 4, 8, 'bass', dyad=2)]),
+    tech('study-3a', 4, 'Study: thumb under', 'Eight-note scale groups in D major: the thumb passes under smoothly on the way up and the hand crosses over on the way down.',
+         [STUDY_TIP, 'Move the thumb early, so the arm does not jump.'], [], 80, 55, ht=[motif_study('D', [0, 1, 2, 3, 4, 5, 6, 7], 2, 8, 'block')]),
+    tech('study-3b', 4, 'Study: staccato chords', 'Short, bouncing right-hand chords over a walking bass in B♭ major.',
+         [STUDY_TIP, 'Bounce from the wrist, not the arm.'], [], 96, 60, ht=[motif_study('Bb', [0, 1, 2, 1], 4, 8, 'broken', stac=True, dyad=2)]),
+    tech('study-4a', 5, 'Study: broken chords in sixteenths', 'Broken chords in sixteenth notes in the right hand, moving through E♭ major, over left-hand chords.',
+         [STUDY_TIP, 'Rotate the hand gently from side to side rather than lifting each finger.'], [], 72, 50, ht=[motif_study('Eb', [0, 2, 4, 2], 1, 8, 'block')]),
+    tech('study-4b', 5, 'Study: the hands alternate', 'A toccata-like study: the hands take turns note by note, a broken chord shared between them.',
+         [STUDY_TIP, 'Keep both hands close to the keys and the rhythm exactly even.'], [], 72, 50, ht=[alternating('A', 2)]),
+    tech('study-5a', 6, 'Study: running sixteenths (Czerny style)', 'A Czerny-style figure in sixteenth notes climbing through A major, over an Alberti bass.',
+         [STUDY_TIP, 'Practise in rhythms (long-short, short-long) to make the fingers even.'], [], 84, 55, ht=[motif_study('A', [0, 1, 2, 1, 0, 1, 2, 3], 1, 8, 'alberti')]),
+    tech('study-5b', 6, 'Study: trills', 'Two neighbouring notes alternating quickly, as in a trill, moving step by step through E minor.',
+         [STUDY_TIP, 'Use fingers 2 and 3 (or 1 and 3), and keep the hand relaxed.'], [], 72, 50, ht=[motif_study('Em', [0, 1, 0, 1, 0, 1, 0, -1], 1, 8, 'block', form='harmonic')]),
+    tech('study-6a', 7, 'Study: left-hand octaves', 'The left hand plays octaves on every beat while the right hand moves in eighth notes through E major.',
+         [STUDY_TIP, 'Keep the hand open in the octave shape and play from the wrist.'], [], 88, 55, ht=[motif_study('E', [0, 2, 1, 3, 2, 4, 3, 1], 2, 8, 'octaves')]),
+    tech('study-6b', 7, 'Study: scales and chords', 'A two-octave scale run in sixteenths answered by chords, in D♭ major.',
+         [STUDY_TIP, 'Plan the thumb passes on the black keys before you begin.'], [], 72, 50, ht=[motif_study('Db', [0, 1, 2, 3, 4, 5, 6, 7], 1, 8, 'block')]),
+    tech('study-7a', 8, 'Study: double thirds', 'Thirds in both notes at once, legato, in eighth notes through G major: preparation for scales in thirds.',
+         [STUDY_TIP, 'Fingering 1+3, 2+4, 3+5; keep the upper voice smooth.'], [], 72, 50, ht=[motif_study('G', [0, 1, 2, 1], 2, 8, 'block', dyad=2)]),
+    tech('study-7b', 8, 'Study: stride bass', 'The left hand jumps between a low bass note and a chord, the right hand sings a tune above.',
+         [STUDY_TIP, 'Look ahead and move early: the jump should never be late.'], [], 84, 55, ht=[motif_study('F', [0, 2, 4, 2], 4, 8, 'stride')]),
+    tech('study-8a', 9, 'Study: sixths', 'Broken and solid sixths in the right hand through B♭ major, over an Alberti bass.',
+         [STUDY_TIP, 'Keep the hand open and rotate between thumb and fifth finger.'], [], 72, 50, ht=[motif_study('Bb', [0, 1, 2, 1], 2, 8, 'alberti', dyad=5)]),
+    tech('study-8b', 9, 'Study: the hands alternate (fast)', 'The toccata study in sixteenths: the hands share a broken chord note by note.',
+         [STUDY_TIP, 'Start slowly; the faster it gets, the lighter it should feel.'], [], 72, 50, ht=[alternating('Eb', 1)]),
+    tech('study-9a', 10, 'Study: octaves in the right hand', 'Right-hand octaves moving by step in eighth notes, staccato, through C minor.',
+         [STUDY_TIP, 'Play from the wrist and keep the fifth finger firm.'], [], 72, 50, ht=[motif_study('Cm', [0, 1, 2, 1], 2, 8, 'whole', stac=True, dyad=7, form='harmonic')]),
+    tech('study-9b', 10, 'Study: arpeggio figures', 'Wide broken-chord figures in sixteenths through E major, over held left-hand chords.',
+         [STUDY_TIP, 'Let the arm follow the hand across the keyboard.'], [], 66, 45, ht=[motif_study('E', [0, 2, 4, 7], 1, 8, 'block')]),
+    tech('study-10a', 11, 'Study: double sixths', 'Sixths in sixteenth notes, legato, through A♭ major.',
+         [STUDY_TIP, 'Join the top notes with fingers 4 and 5; let the thumb slide.'], [], 60, 40, ht=[motif_study('Ab', [0, 1, 2, 1], 1, 8, 'block', dyad=5)]),
+    tech('study-10b', 11, 'Study: brilliant runs', 'A virtuoso figure climbing through B major in sixteenth notes over octave basses.',
+         [STUDY_TIP, 'Group the sixteenths in fours and feel the beat.'], [], 80, 50, ht=[motif_study('B', [0, 1, 2, 3, 4, 3, 2, 1], 1, 8, 'octaves')]),
 ]
 
 # Where each existing piece belongs in the syllabus levels.

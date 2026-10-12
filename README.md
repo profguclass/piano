@@ -48,6 +48,8 @@ Tap **Lessons** for a 370-lesson course. Its levels and the parts of each level 
 
 Lesson scores are in [`lessons/`](lessons/) and are built by [`tools/make_lessons.py`](tools/make_lessons.py) (`python tools/make_lessons.py`).
 
+**From other syllabuses.** Besides the RCM structure, the course now borrows from the RSL Classical Piano syllabus (2020, updated 2025) and the Trinity College London repertoire list (August 2026): pentatonic scales (RSL Debut–Grade 6), C major in thirds, the chromatic scale a minor third apart and the whole-tone and half-whole diminished scales (RSL Grades 7–8); in the ear tests a **Higher or lower** melodic-recall test (Preparatory) and a **Musical knowledge** quiz at every level (clefs, note values, keys, triads, terms, cadences, the parts of the piano); in sight reading an **Improvisation** test: a chord chart with a backing in the left hand, over which you make up your own melody. These extras do not hold up a level. Pieces that are also on the Trinity lists say so on the lesson card. Every level also has two original **technical studies** written for the course.
+
 ## Practice tools
 - **Today:** your practice streak (days in a row with at least a minute of practice), minutes today against a daily goal you can change, the last 7 days, and a plan: go on with the course, fix a weak spot, drill it, an ear test and a sight-reading exercise.
 - **Metronome and count-in** (in the ⋯ menu): a click on every beat while the music plays (not in Wait for me, where the tempo is yours) and one bar of clicks before it starts.

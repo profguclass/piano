@@ -644,7 +644,7 @@ function atEnd() {                       // returns true if playback should stop
   if (pos < e) { advance(); return false; }
   if (S.loop) { if (onPass()) return true; gotoStep(s); return false; }
   [...open].forEach(closeStep);
-  if (run) run.finished = true;
+  if (run) { run.finished = true; if (S.speedup && S.mode !== 'listen' && !drill) onPass(); }   // a clean run through the piece speeds up the next one too
   if (S.mode === 'listen') lessonStep('listen');
   pause(); gotoStep(0); info('Finished'); return true;
 }
@@ -1037,7 +1037,9 @@ const barAbs = b => osmd.Sheet.SourceMeasures[b]?.AbsoluteTimestamp?.RealValue ?
 function beatInfo(bar) {                 // beats in a bar and the length of one beat (in whole notes); 6/8, 9/8 and 12/8 count in dotted quarters
   const ts = osmd.Sheet.SourceMeasures[bar]?.ActiveTimeSignature, n = ts?.Numerator || 4, d = ts?.Denominator || 4;
   const compound = d === 8 && n % 3 === 0 && n > 3;
-  return {beats: compound ? n / 3 : n, len: (compound ? 3 : 1) / d};
+  const full = n / d, dur = osmd.Sheet.SourceMeasures[bar]?.Duration?.RealValue ?? full;
+  const shift = dur < full - 1e-6 ? full - dur : 0;      // a pickup bar: its first note is a late beat, not beat 1
+  return {beats: compound ? n / 3 : n, len: (compound ? 3 : 1) / d, shift};
 }
 function click(accent, delay = 0) {
   initAudio();
@@ -1050,17 +1052,23 @@ function scheduleClicks(i) {             // the clicks that fall inside this ste
   if (!S.click || S.mode === 'wait' || !playing || !steps[i]) return;
   const st = steps[i], b = beatInfo(st.bar), t0 = barAbs(st.bar), dur = stepDur(i);
   for (let k = 0; k < b.beats; k++) {
-    const tb = t0 + k * b.len;
+    const tb = t0 + k * b.len - b.shift;
     if (tb < st.abs - 1e-6 || tb >= st.abs + dur - 1e-6) continue;
     click(k === 0, (target - performance.now()) / 1000 + sec(tb - st.abs));
   }
 }
-function countIn(done) {
+function countIn(done) {                  // one bar of clicks; before a pickup, only the beats ahead of it (with a whole bar more if that is short)
   const b = beatInfo(steps[pos].bar), gap = sec(b.len) * 1000; let k = 0;
+  const pick = steps[pos].abs - barAbs(steps[pos].bar) < 1e-6 ? Math.round(b.shift / b.len) : 0;   // beats before a pickup's first note
+  const n = pick ? (pick < 2 ? b.beats + pick : pick) : b.beats;
   counting = true; need.clear(); paintNeed();
   const go = () => {
     if (!counting) return;
-    if (k < b.beats) { click(k === 0); info(`Count-in ${k + 1}`); k++; countTimer = setTimeout(go, gap); }
+    if (k < n) {
+      const beat = k % b.beats; click(beat === 0); info(`Count-in ${beat + 1}`); k++;
+      const early = k === n && pick ? Math.max(0, sec(pick * b.len - b.shift) * 1000) : 0;   // a pickup shorter than a beat comes in before the next click
+      countTimer = setTimeout(go, gap - early);
+    }
     else { counting = false; done(); }
   };
   go();
