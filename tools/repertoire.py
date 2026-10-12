@@ -380,3 +380,48 @@ REPERTOIRE += [
     piece('wtc1-846-prelude', '5-0.mid', 8, 'Prelude in C major, BWV 846 (Well-Tempered Clavier I)', BACH, 66, 45, PD,
           'The famous prelude: one broken chord after another, in a steady stream.', ['Learn the chords first, then play them broken.', 'Keep the pattern even and let the harmonies change gently.']),
 ]
+
+# ---------- more from the Mutopia Project (October 2026): Czerny studies, Haydn, Grieg, Couperin, Streabbog ----------
+CZ = 'Carl Czerny'
+CZ_TIPS = ['Practise hands separately and slowly first; then together with Wait for me.', 'Keep the fast notes even: try them in long-short and short-long rhythms.']
+def etude(*a, **k):
+    d = piece(*a, **k); d['kind'] = 'technique'; return d
+REPERTOIRE += [etude(f'czerny-840-{n}', f'{pid}-0.mid', lv, f'Melodious Study, Op. 840 No. {n}', CZ, bpm, wait, PD,
+                     'One of Czerny\'s 50 melodious studies: a short piece that trains one technical point while staying musical.', CZ_TIPS)
+               for n, pid, lv, bpm, wait in [(1, 2146, 4, 100, 60), (2, 2147, 4, 100, 60), (3, 2148, 4, 100, 60), (4, 2149, 5, 104, 60), (5, 2150, 5, 104, 60),
+                                             (6, 2151, 5, 104, 60), (7, 2152, 5, 104, 60), (8, 2153, 6, 108, 65), (9, 2154, 6, 108, 65), (10, 2177, 6, 108, 65)]]
+REPERTOIRE += [etude(f'czerny-821-{n}', f'{pid}-0.mid', lv, f'Eight-Bar Exercise, Op. 821 No. {n}', CZ, bpm, wait, PD,
+                     'One of Czerny\'s 160 eight-bar exercises: a compact study of a single figure, meant to be repeated until it is fluent and fast.', CZ_TIPS)
+               for n, pid, lv, bpm, wait in [(1, 2060, 7, 100, 55), (2, 2061, 7, 100, 55), (3, 2062, 7, 100, 55), (4, 2063, 7, 100, 55), (5, 2066, 7, 100, 55),
+                                             (6, 2067, 7, 100, 55), (7, 2068, 8, 108, 60), (8, 2069, 8, 108, 60), (9, 2072, 8, 108, 60), (10, 2073, 8, 108, 60),
+                                             (11, 2076, 8, 108, 60), (12, 2077, 8, 108, 60), (13, 2078, 8, 108, 60), (14, 2079, 9, 116, 65), (15, 2081, 9, 116, 65),
+                                             (16, 2082, 9, 116, 65), (17, 2083, 9, 116, 65), (18, 2084, 9, 116, 65), (19, 2085, 9, 116, 65)]]
+HAYDN, GRIEG = 'Joseph Haydn', 'Edvard Grieg'
+REPERTOIRE += [
+    piece('haydn-27-i', '185-0.mid', 9, 'Sonata in G, Hob. XVI:27: I. Allegro con brio', HAYDN, 120, 70, PD,
+          'The bright first movement of the sonata (on the Trinity Grade 8 list): crisp runs and a cheerful dialogue between the hands. Begins with a pickup.', SON_TIPS, pickup=0.5),
+    piece('haydn-28-i', '210-0.mid', 9, 'Sonata in E-flat, Hob. XVI:28: I. Allegro moderato', HAYDN, 104, 65, PD,
+          'A spacious first movement in E♭ major, full of ornaments and quick figures.', SON_TIPS),
+    piece('haydn-28-ii', '211-0.mid', 9, 'Sonata in E-flat, Hob. XVI:28: II. Menuetto', HAYDN, 108, 65, PD,
+          'A minuet with a contrasting trio. Begins with a pickup.', SON_TIPS, pickup=1.25),
+    piece('grieg-ases-death', '246-0.mid', 6, "Åse's Death (Peer Gynt, Op. 46 No. 2)", GRIEG, 60, 40, PD,
+          'A slow, solemn chorale-like piece in B minor from Peer Gynt: chords that swell and fade.', ['Play the chords exactly together and listen to the balance.', 'Shape each phrase: grow, then fade.']),
+    piece('grieg-mountain-king', '1888-0.mid', 7, 'In the Hall of the Mountain King (Peer Gynt, Op. 46 No. 4)', GRIEG, 120, 70, PD,
+          'The famous march of the trolls: one creeping tune repeated faster and louder to a wild ending.', ['Start very quietly and save the loud playing for the end.', 'Keep the staccato light.']),
+    piece('grieg-mountaineer', '1628-0.mid', 8, "The Mountaineer's Song, Op. 73 No. 7", GRIEG, 80, 50, PD,
+          'A late lyric piece with the open fifths and dance rhythms of Norwegian folk music.', ['Bring out the tune over the drone fifths.']),
+    piece('grieg-dwarfs', '2014-0.mid', 10, 'March of the Dwarfs, Op. 54 No. 3', GRIEG, 132, 75, PD,
+          'A brilliant, scampering march with a calm, singing middle section.', ['Learn the fast outer sections in short groups.', 'Make the middle section sing.']),
+    piece('couperin-allemande', '907-0.mid', 7, "Allemande (L'Art de toucher le clavecin)", 'François Couperin', 66, 45, 'CC BY 2.5',
+          'The allemande from Couperin\'s method for the harpsichord (on the Trinity Grade 6 list): two flowing lines in the French style.', ['Keep the two voices legato and independent.', 'Ornaments can be added once the notes are secure.']),
+] + [piece(f'couperin-prelude-{n}', f'907-{n}.mid', 8, f"Prelude No. {n} (L'Art de toucher le clavecin)", 'François Couperin', 60, 40, 'CC BY 2.5',
+           'One of the eight preludes from Couperin\'s harpsichord method, written to teach touch and style.', ['Play freely, with a little flexibility in the tempo.'])
+       for n in range(1, 9)] + [
+    piece('streabbog-valse', '2092-0.mid', 3, "Valse (Les étoiles d'or No. 1)", 'Louis Streabbog', 120, 70, 'CC BY-SA 4.0',
+          'A charming little waltz by a 19th-century teacher-composer: a tune over an oom-pah-pah accompaniment.', ['Light chords on beats 2 and 3; a firmer bass on beat 1.']),
+]
+
+# Levels checked against the difficulty estimate (tools/difficulty.py): halfway between the first placement and the estimate.
+LEVEL_FIX = {'streabbog-valse': 5, 'czerny-840-1': 7, 'czerny-840-2': 7, 'czerny-840-3': 7, 'czerny-840-4': 6, 'czerny-840-5': 8, 'czerny-840-6': 8, 'czerny-840-7': 7, 'czerny-840-8': 8, 'czerny-840-9': 7, 'czerny-840-10': 7, 'grieg-ases-death': 7, 'czerny-821-1': 8, 'czerny-821-5': 8, 'czerny-821-6': 8, 'grieg-mountain-king': 9, 'czerny-821-7': 7, 'czerny-821-10': 9, 'czerny-821-11': 9, 'czerny-821-13': 9, 'couperin-prelude-1': 6, 'couperin-prelude-3': 7, 'couperin-prelude-4': 7, 'couperin-prelude-2': 7, 'couperin-prelude-6': 9, 'couperin-prelude-5': 9, 'couperin-prelude-7': 9, 'grieg-mountaineer': 10, 'czerny-821-14': 10, 'czerny-821-15': 10, 'czerny-821-17': 8, 'haydn-28-i': 10, 'haydn-27-i': 10, 'grieg-dwarfs': 11}
+for _d in REPERTOIRE:
+    if _d['id'] in LEVEL_FIX: _d['level'] = LEVEL_FIX[_d['id']]

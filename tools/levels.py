@@ -217,4 +217,5 @@ TRINITY = {
     'invention-4': 'Grade 5', 'wtc1-846-prelude': 'Grade 5', 'prelude-846': 'Grade 5',
     'invention-6': 'Grade 6',
     'chopin-minute-waltz': 'Grade 8', 'clair-de-lune': 'Grade 8',
+    'haydn-27-i': 'Grade 8', 'couperin-allemande': 'Grade 6',
 }
