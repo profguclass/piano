@@ -209,3 +209,12 @@ COMPARISON = {
 
 MOVES = {i: (LEVEL_INDEX[lv], 'RCM syllabus 2022, ' + lv + ': ' + where) for i, (lv, where) in SYLLABUS.items()}
 MOVES |= {i: (lv, 'placed by comparison: ' + why) for i, (lv, why) in COMPARISON.items()}
+
+# The same pieces on other exam boards' lists (Trinity College London, Piano repertoire list from 2023, August 2026 update).
+TRINITY = {
+    'anh115': 'Grade 2', 'anh115-b': 'Grade 2',
+    'schumann-68-11': 'Grade 4',
+    'invention-4': 'Grade 5', 'wtc1-846-prelude': 'Grade 5', 'prelude-846': 'Grade 5',
+    'invention-6': 'Grade 6',
+    'chopin-minute-waltz': 'Grade 8', 'clair-de-lune': 'Grade 8',
+}
