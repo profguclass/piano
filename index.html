@@ -629,6 +629,7 @@ function play(resume, arm = !resume) {
   if (pos < s || pos > e || pos >= steps.length - 1 && !S.loop && pos !== 0) gotoStep(s);
   setPlaying(true); $('card').hidden = true;
   if (!resume || !run) startRun();
+  if (S.click && S.mode === 'wait' && !resume) setTimeout(() => info('The metronome is silent in Wait for me, because the music waits for you. Use Play along to practise with the click.'), 1600);
   if ((S.countin || (lesson?.kind === 'sight' && sightType === 'improvise')) && !resume && S.mode !== 'wait') { countIn(() => { target = performance.now(); tick(); }); return; }   // one bar of clicks, then the music
   if (arm && S.mode !== 'listen') {
     armed = true;
@@ -1042,8 +1043,12 @@ function beatInfo(bar) {                 // beats in a bar and the length of one
   return {beats: compound ? n / 3 : n, len: (compound ? 3 : 1) / d, shift};
 }
 function click(accent, delay = 0) {
+  if (midiOut && S.sound === 'piano') {   // the music sounds on the piano: click there too, or the tablet's audio delay puts the click behind the notes
+    const at = performance.now() + Math.max(0, delay) * 1000, n = accent ? 108 : 103;   // a short, very high note: C8 on beat 1, G7 on the others
+    try { midiOut.send([0x90, n, accent ? 100 : 70], at); midiOut.send([0x80, n, 0], at + 60); return; } catch { midiOut = null; }
+  }
   initAudio();
-  const t = actx.currentTime + Math.max(0.005, delay), o = actx.createOscillator(), g = actx.createGain();
+  const t = actx.currentTime + Math.max(0.005, delay + 0.02), o = actx.createOscillator(), g = actx.createGain();   // + 0.02: in step with the synth's notes
   o.type = 'square'; o.frequency.value = accent ? 1600 : 1100;
   g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(accent ? 0.45 : 0.28, t + 0.002); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
   o.connect(g).connect(master); o.start(t); o.stop(t + 0.06);
