@@ -26,6 +26,7 @@ DUR = {'w': 16, 'h': 8, 'q': 4, 'e': 2, 's': 1}
 TYPE = {'w': 'whole', 'h': 'half', 'q': 'quarter', 'e': 'eighth', 's': '16th'}
 TOKEN = re.compile(r'^(?P<p>r|[A-G](?:##|bb|[#b])?\d(?:\+[A-G](?:##|bb|[#b])?\d)*)(?P<d>[whqes])(?P<dot>\.)?(?::(?P<f>[1-5](?:\+[1-5])*))?(?P<st>!)?$')
 KEYMARK = re.compile(r'^\s*\[k=(-?\d)\]\s*')
+TIMEMARK = re.compile(r'^\s*\[t=(\d+)/(\d+)\]\s*')
 
 
 def notes_xml(bar, staff, voice, length):
@@ -65,12 +66,16 @@ def score(title, rh, lh, bpm, time=(4, 4), fifths=0, composer='Traditional', pic
     measures = []
     for i, (r, l) in enumerate(zip(rbars, lbars)):
         key = None                                        # [k=N] at the start of a bar changes the key
+        meter = None                                      # [t=N/D] at the start of a bar changes the time signature
         for which, bar in (('r', r), ('l', l)):
-            km = KEYMARK.match(bar)
-            if km:
-                key = int(km[1])
-                if which == 'r': r = bar[km.end():]
-                else: l = bar[km.end():]
+            while True:
+                km, tm = KEYMARK.match(bar), TIMEMARK.match(bar)
+                if km: key = int(km[1]); bar = bar[km.end():]
+                elif tm: meter = (int(tm[1]), int(tm[2])); bar = bar[tm.end():]
+                else: break
+            if which == 'r': r = bar
+            else: l = bar
+        if meter: full = meter[0] * 4 * DIV // meter[1]
         length = full
         if pickup and i == 0:                             # the opening bar is only as long as its notes
             length = notes_xml(r, 1, 1, 0)[1]
@@ -81,12 +86,13 @@ def score(title, rh, lh, bpm, time=(4, 4), fifths=0, composer='Traditional', pic
         attrs = ''
         if i == 0:
             attrs = (f'<attributes><divisions>{DIV}</divisions><key><fifths>{key if key is not None else fifths}</fifths></key>'
-                     f'<time><beats>{time[0]}</beats><beat-type>{time[1]}</beat-type></time><staves>2</staves>'
+                     f'<time><beats>{(meter or time)[0]}</beats><beat-type>{(meter or time)[1]}</beat-type></time><staves>2</staves>'
                      '<clef number="1"><sign>G</sign><line>2</line></clef><clef number="2"><sign>F</sign><line>4</line></clef></attributes>'
                      f'<direction placement="above"><direction-type><metronome><beat-unit>quarter</beat-unit><per-minute>{bpm}</per-minute>'
                      f'</metronome></direction-type><staff>1</staff><sound tempo="{bpm}"/></direction>')
-        if key is not None and i > 0:
-            attrs = f'<attributes><key><fifths>{key}</fifths></key></attributes>'
+        if (key is not None or meter) and i > 0:
+            attrs = ('<attributes>' + (f'<key><fifths>{key}</fifths></key>' if key is not None else '')
+                     + (f'<time><beats>{meter[0]}</beats><beat-type>{meter[1]}</beat-type></time>' if meter else '') + '</attributes>')
         end = '<barline location="right"><bar-style>light-heavy</bar-style></barline>' if i == n - 1 else ''
         num = f'number="0" implicit="yes"' if pickup and i == 0 else f'number="{i if pickup else i + 1}"'
         measures.append(f'<measure {num}>{attrs}{"".join(rx)}<backup><duration>{length}</duration></backup>{"".join(lx)}{end}</measure>')
