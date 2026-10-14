@@ -114,16 +114,28 @@ function figureXml(f) {
 }
 
 /* ---------- sound ---------- */
-let heardTimers = [];
-function stopHearing() { heardTimers.forEach(clearTimeout); heardTimers = []; }
-function hear(f, bpm = 84) {
-  stopHearing();
-  let at = 0; const beat = 60 / bpm;
-  for (const e of f.events) {
-    const ns = toNotes(e), dur = DUR[e.d || 'w'] / 2 * beat;
-    if (!e.rest) heardTimers.push(setTimeout(() => ns.forEach(n => tone(n.midi, Math.min(dur, 2.4) * 0.97, 0.5)), at * 1000));
-    at += dur;
-  }
+let heardTimers = [], heardStop = null;
+function stopHearing() { heardTimers.forEach(clearTimeout); heardTimers = []; if (heardStop) { const f = heardStop; heardStop = null; f(); } try { silence(); } catch {} }
+function hear(f, onStep, onEnd) {                 // play a figure chord by chord; tied notes sustain; a whole note never leaves a silent gap
+  stopHearing(); heardStop = onEnd || null;
+  const beat = Math.min(0.75, Math.max(0.45, 60 / (f.bpm || 84)));
+  const evs = f.events.map(e => ({e, ns: toNotes(e), dur: DUR[e.d || 'w'] / 2 * beat}));
+  evs.forEach((x, i) => { if (i) x.ns.forEach(n => { if (evs[i - 1].ns.some(m => m.tie && m.midi === n.midi)) n.stop = true; }); });   // second half of a tie: do not strike again
+  let at = 0;
+  evs.forEach((x, i) => {
+    const start = at; at += x.dur;
+    heardTimers.push(setTimeout(() => {
+      if (onStep) onStep(i);
+      if (x.e.rest) return;
+      x.ns.forEach(n => {
+        if (n.stop) return;
+        let d = x.dur, cur = n;
+        for (let j = i + 1; cur.tie && j < evs.length; j++) { const nx = evs[j].ns.find(y => y.midi === n.midi); if (!nx) break; d += evs[j].dur; cur = nx; }
+        tone(n.midi, d * 0.97, 0.6);
+      });
+    }, start * 1000));
+  });
+  heardTimers.push(setTimeout(() => { const f2 = heardStop; heardStop = null; if (f2) f2(); }, at * 1000 + 300));
 }
 
 /* ---------- the dialog ---------- */
@@ -139,7 +151,7 @@ async function drawFigure(el, f) {
   const o = new opensheetmusicdisplay.OpenSheetMusicDisplay(el, {autoResize: false, drawTitle: false, drawPartNames: false, drawComposer: false, drawCredits: false, backend: 'svg', autoBeam: true});
   Object.assign(o.EngravingRules, {PageTopMargin: 0.5, PageBottomMargin: 0.5, PageLeftMargin: 1, PageRightMargin: 1, VoiceSpacingMultiplierVexflow: f.spread || 1.6, VoiceSpacingAddendVexflow: f.add ?? 8});
   await o.load(figureXml(f)); o.zoom = f.zoom || 0.85; o.render();
-  const svg = el.querySelector('svg'); if (!svg) return;                // fit the paper to the music: no long empty staff lines or blank space
+  const svg = el.querySelector('svg'); if (!svg) return o;               // fit the paper to the music: no long empty staff lines or blank space
   const sr = svg.getBoundingClientRect(); let right = 0, bottom = 0;
   svg.querySelectorAll('path, text, rect, line').forEach(n => {
     const r = n.getBoundingClientRect(); if (!r.width && !r.height) return;
@@ -147,13 +159,22 @@ async function drawFigure(el, f) {
   });
   el.style.width = Math.min(el.parentNode.clientWidth || 9999, Math.ceil(right + 12)) + 'px';
   el.style.height = Math.ceil(bottom + 10) + 'px';
+  return o;
 }
 function figureBox(f, caption) {
   const box = document.createElement('div'); box.className = 'fig';
   box.innerHTML = `<div class="hfig"></div><div class="figbar"><button class="hear" aria-label="Hear this example">▶ Hear</button><span class="cap"></span></div>`;
   box.querySelector('.cap').innerHTML = caption || '';
-  box.querySelector('.hear').onclick = () => { try { initAudio(); } catch {} hear(f, f.bpm); };
-  requestAnimationFrame(() => drawFigure(box.querySelector('.hfig'), f).catch(err => { box.querySelector('.hfig').textContent = 'Could not draw this example.'; console.error(err); }));
+  const btn = box.querySelector('.hear'); let osm = null;
+  const done = () => { btn.textContent = '▶ Hear'; btn.classList.remove('playing'); try { osm?.cursor.hide(); } catch {} };
+  btn.onclick = () => {
+    if (btn.classList.contains('playing')) return stopHearing();
+    try { initAudio(); } catch {}
+    btn.textContent = '■ Stop'; btn.classList.add('playing');
+    try { osm?.cursor.reset(); osm?.cursor.show(); } catch {}
+    hear(f, i => { try { if (i) osm?.cursor.next(); } catch {} }, done);
+  };
+  requestAnimationFrame(() => drawFigure(box.querySelector('.hfig'), f).then(o => { osm = o; }).catch(err => { box.querySelector('.hfig').textContent = 'Could not draw this example.'; console.error(err); }));
   return box;
 }
 
