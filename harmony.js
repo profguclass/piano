@@ -115,13 +115,14 @@ function figureXml(f) {
 
 /* ---------- sound ---------- */
 let heardTimers = [], heardStop = null;
+let sentNotes = 0;
 const held = new Map();                                  // MIDI notes we switched on and still owe a note-off
 function offNote(m) { const h = held.get(m); if (!h) return; clearTimeout(h); held.delete(m); try { midiOut?.send([0x80, m, 0]); } catch {} }
 function playNote(m, dur, vel) {                         // to the piano by MIDI when it is the sound, else the tablet's synth; the note-off is sent when due, not scheduled ahead
   try {
     if (midiOut && S.sound === 'piano') {
       offNote(m);
-      midiOut.send([0x90, m, Math.round(30 + vel * 70)]); sentAt[m] = performance.now();
+      midiOut.send([0x90, m, Math.round(30 + vel * 70)]); sentAt[m] = performance.now(); sentNotes++;
       held.set(m, setTimeout(() => { held.delete(m); try { midiOut?.send([0x80, m, 0]); } catch {} }, Math.max(150, dur * 1000)));
       return;
     }
@@ -176,14 +177,17 @@ async function drawFigure(el, f) {
 }
 function figureBox(f, caption) {
   const box = document.createElement('div'); box.className = 'fig';
-  box.innerHTML = `<div class="hfig"></div><div class="figbar"><button class="hear" aria-label="Hear this example">▶ Hear</button><span class="cap"></span></div>`;
+  box.innerHTML = `<div class="hfig"></div><div class="figbar"><button class="hear" aria-label="Hear this example">▶ Hear</button><span class="cap"></span></div><div class="route"></div>`;
   box.querySelector('.cap').innerHTML = caption || '';
   const btn = box.querySelector('.hear'); let osm = null;
-  const done = () => { btn.textContent = '▶ Hear'; btn.classList.remove('playing'); try { osm?.cursor.hide(); } catch {} };
+  const route = box.querySelector('.route');
+  const done = () => { btn.textContent = '▶ Hear'; btn.classList.remove('playing'); try { osm?.cursor.hide(); } catch {} if (route.textContent) route.textContent += ` · ${sentNotes} notes sent`; };
   btn.onclick = () => {
     if (btn.classList.contains('playing')) return stopHearing();
     try {
-      if (!(midiOut && S.sound === 'piano')) { try { initAudio(); } catch {} }      // with the piano as the sound, no tablet audio is opened at all
+      const viaPiano = !!(midiOut && S.sound === 'piano'); sentNotes = 0;
+      route.textContent = viaPiano ? `Playing on the piano by MIDI (${midiOut.name || 'MIDI output'})` : `Playing on the tablet speaker (sound setting: ${S.sound}; piano output ${midiOut ? 'found' : 'not found'})`;
+      if (!viaPiano) { try { initAudio(); } catch {} }      // with the piano as the sound, no tablet audio is opened at all
       btn.textContent = '■ Stop'; btn.classList.add('playing');
       try { osm?.cursor.reset(); osm?.cursor.show(); } catch {}
       hear(f, i => { try { if (i) osm?.cursor.next(); } catch {} }, done);
