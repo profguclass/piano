@@ -161,7 +161,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
 async function drawFigure(el, f) {
   el.textContent = ''; el.style.width = ''; el.style.height = '';
-  const o = new opensheetmusicdisplay.OpenSheetMusicDisplay(el, {autoResize: false, drawTitle: false, drawPartNames: false, drawComposer: false, drawCredits: false, backend: 'svg', autoBeam: true});
+  const o = new opensheetmusicdisplay.OpenSheetMusicDisplay(el, {autoResize: false, drawTitle: false, drawPartNames: false, drawComposer: false, drawCredits: false, backend: 'svg', autoBeam: true, followCursor: false});
   Object.assign(o.EngravingRules, {PageTopMargin: 0.5, PageBottomMargin: 0.5, PageLeftMargin: 1, PageRightMargin: 1, VoiceSpacingMultiplierVexflow: f.spread || 1.6, VoiceSpacingAddendVexflow: f.add ?? 8});
   await o.load(figureXml(f)); o.zoom = f.zoom || 0.85; o.render();
   const svg = el.querySelector('svg'); if (!svg) return o;               // fit the paper to the music: no long empty staff lines or blank space
@@ -183,7 +183,7 @@ function figureBox(f, caption) {
   btn.onclick = () => {
     if (btn.classList.contains('playing')) return stopHearing();
     try {
-      try { initAudio(); } catch {}
+      if (!(midiOut && S.sound === 'piano')) { try { initAudio(); } catch {} }      // with the piano as the sound, no tablet audio is opened at all
       btn.textContent = '■ Stop'; btn.classList.add('playing');
       try { osm?.cursor.reset(); osm?.cursor.show(); } catch {}
       hear(f, i => { try { if (i) osm?.cursor.next(); } catch {} }, done);
