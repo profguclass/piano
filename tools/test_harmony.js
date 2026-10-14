@@ -11,6 +11,35 @@
     for (const [id, f] of Object.entries(c.figs)) {
       out.figures++;
       try { H.figureXml({id, ...f}); } catch (e) { out.problems.push(`${c.id}/${id}: ${e.message}`); continue; }
+            if (f.cp) {                                           // strict-counterpoint rules, written out independently of the example search
+        const P = n => H.parse(n.replace('~', '')).midi, cf = f.cp.cf.map(P), CONS = [0, 3, 4, 7, 8, 9], PERF = [0, 7];
+        const iv = (a, b) => (((a - b) % 12) + 12) % 12, tag = m => `${c.id}/${id}: ${m}`;
+        const per = f.cp.species === 1 ? 1 : f.cp.species === 2 ? 2 : f.cp.species === 3 ? 4 : 2;
+        // flat list of {midi, bar, pos, rest}
+        const notes = []; f.cp.bars.forEach((b, bi) => b.forEach((n, k) => notes.push({n, bar: bi, pos: k, midi: n === 'r' ? null : P(n), tie: n.endsWith('~')})));
+        const real = notes.filter(x => x.midi !== null), last = real[real.length - 1];
+        if (iv(real[real.length - 1].midi, cf[cf.length - 1]) !== 0) out.problems.push(tag('must end on the octave or unison'));
+        if (f.cp.species !== 4 && !PERF.includes(iv(real[0].midi, cf[0]))) out.problems.push(tag('must begin on a perfect consonance'));
+        const pen = real[real.length - 2]; if (iv(pen.midi, cf[cf.length - 2]) !== 9 || last.midi - pen.midi !== 1) out.problems.push(tag('penultimate note must be the major 6th, a step below the final note'));
+        const top = Math.max(...real.map(x => x.midi)); if (real.filter((x, i) => x.midi === top && !(real[i - 1] && real[i - 1].tie && real[i - 1].midi === x.midi)).length !== 1) out.problems.push(tag('the high point is not unique'));
+        const isStrong = x => f.cp.species === 1 || x.pos === 0 || (f.cp.species === 3 && x.pos === 2);
+        real.forEach((x, i) => {
+          const c0 = cf[x.bar], cons = CONS.includes(iv(x.midi, c0)), prev = real[i - 1], next = real[i + 1];
+          if (f.cp.species === 4) {
+            const tied = prev && prev.tie && prev.midi === x.midi && prev.bar === x.bar - 1;       // the second half of a tie
+            if (tied && !cons) { if (![10, 11, 5, 2, 1].includes(iv(x.midi, c0))) out.problems.push(tag(`bar ${x.bar + 1}: dissonant tie must be a 7th, 4th or 2nd`)); if (!next || next.bar !== x.bar || prev.midi - next.midi < 1 || prev.midi - next.midi > 2) out.problems.push(tag(`bar ${x.bar + 1}: the suspension does not resolve down by step`)); }
+            else if (!tied && !cons) out.problems.push(tag(`bar ${x.bar + 1}: dissonance on the weak beat`));
+          } else if (isStrong(x) || f.cp.species === 1) { if (!cons) out.problems.push(tag(`bar ${x.bar + 1}: dissonance on a strong beat`)); }
+          else if (!cons) { const passing = prev && next && Math.abs(x.midi - prev.midi) <= 2 && Math.abs(next.midi - x.midi) <= 2 && (x.midi - prev.midi) * (next.midi - x.midi) > 0; if (!passing) out.problems.push(tag(`bar ${x.bar + 1}: a weak-beat dissonance must be a passing tone`)); }
+          if (prev && f.cp.species !== 4) {                                                       // parallel 5ths/8ves between consecutive notes
+            const a = iv(prev.midi, cf[prev.bar]), b = iv(x.midi, c0), moved = prev.midi !== x.midi || cf[prev.bar] !== c0;
+            if (moved && a === b && PERF.includes(a) && (prev.bar !== x.bar)) out.problems.push(tag(`bar ${x.bar + 1}: parallel perfect intervals`));
+          }
+          if (prev && Math.abs(x.midi - prev.midi) === 6) out.problems.push(tag(`bar ${x.bar + 1}: tritone leap`));
+          if (prev && Math.abs(x.midi - prev.midi) > 9) out.problems.push(tag(`bar ${x.bar + 1}: leap larger than a 6th`));
+        });
+        if (f.cp.species === 1) for (let i = 1; i < real.length; i++) { const a = iv(real[i - 1].midi, cf[i - 1]), b = iv(real[i].midi, cf[i]), up = (real[i].midi - real[i - 1].midi) * (cf[i] - cf[i - 1]) > 0; if (PERF.includes(b) && up && i < real.length - 1) out.problems.push(tag(`bar ${i + 1}: perfect interval reached by similar motion`)); if (PERF.includes(a) && a === b && i > 0) out.problems.push(tag(`bar ${i + 1}: parallel perfect intervals`)); }
+      }
       if (!f.satb) continue;
       out.satb++;
       const evs = f.events.map(e => H.sortN(e.notes.map(n => typeof n === 'string' ? H.parse(n) : n)));

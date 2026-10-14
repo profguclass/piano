@@ -237,6 +237,17 @@ body.hide #score svg{opacity:.06}
 #harmony .hkeys .b{position:absolute;top:0;height:64%;background:var(--keyb);border-radius:0 0 4px 4px;z-index:1}
 #harmony .hkeys .on{background:var(--accent)}
 #harmony .hkeys .bad{background:var(--bad)}
+#harmony .gtools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0}
+#harmony .gtools input{flex:1;min-width:180px;min-height:48px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font:inherit;background:var(--surface);color:var(--ink)}
+#harmony .seg button.on{background:var(--accent);color:var(--accent-ink)}
+#harmony .gterm{border-top:1px solid var(--line);padding:10px 0}
+#harmony .gterm .gh{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+#harmony .gterm .gen{font-size:17px}
+#harmony .gterm .gko{font-size:17px;color:var(--accent)}
+#harmony .gterm p{margin:4px 0;font-size:15px}
+#harmony .gterm .gkd{color:var(--muted)}
+#harmony .gterm .glink{min-height:36px;font-size:13px;padding:0 10px;margin-top:2px}
+#harmony .hcard.gloss{background:var(--nextbg)}
 </style>
 </head>
 <body>
@@ -2400,7 +2411,7 @@ let harmonyLoad = null;
 function loadHarmony() {
   if (window.Harmony?.api && window._harmonyReady) return Promise.resolve();
   const add = src => new Promise((res, rej) => { const el = document.createElement('script'); el.src = src; el.onload = res; el.onerror = () => rej(new Error(src)); document.head.append(el); });
-  return harmonyLoad || (harmonyLoad = add('harmony.js').then(() => add('harmony-chapters.js')).then(() => { Harmony.wire(); window._harmonyReady = true; }).catch(e => { harmonyLoad = null; throw e; }));
+  return harmonyLoad || (harmonyLoad = add('harmony.js').then(() => add('harmony-chapters.js')).then(() => add('harmony-glossary.js')).then(() => { Harmony.wire(); window._harmonyReady = true; }).catch(e => { harmonyLoad = null; throw e; }));
 }
 $('harmonybtn').onclick = () => loadHarmony().then(() => Harmony.open()).catch(() => { $('status').textContent = 'The Harmony tutorial could not be loaded. Check your connection and try again.'; });
 

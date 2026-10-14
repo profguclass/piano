@@ -403,5 +403,82 @@ CH.push({id: 'harmonizing', title: 'Harmonizing a melody', blurb: 'Putting it al
   ],
   play: [progEx('Play the tune’s chords: I – IV – ii – V – I in {key}', ['I', 'IV', 'ii', 'V', 'I'], () => pick(['C', 'G', 'F']), 'major'), progEx('Play I – vi – ii – V in {key}', ['I', 'vi', 'ii', 'V'], () => pick(['C', 'G', 'F', 'D']), 'major'), progEx('Play I – IV – I⁶₄ – V – I in {key}', ['I', 'IV', 'I64', 'V', 'I'], () => pick(['C', 'G', 'F']), 'major', 'The I⁶₄ must have the fifth of the chord in the bass.')]});
 
+
+/* 14 --------------------------------------------------------------- */
+const CF = ['C3', 'D3', 'F3', 'E3', 'G3', 'F3', 'D3', 'C3'];                               // the cantus firmus used for all the species
+const simple = (cp, cf) => { const a = parse(cp.replace('~', '')), b = parse(cf), d = ((a.step - b.step) % 7 + 7) % 7; return d === 0 ? (a.midi === b.midi ? 1 : 8) : d + 1; };
+function cpFig(species, bars, o = {}) {                                                   // bars: the counterpoint notes of each bar ('r' = rest); returns a two-line figure with interval numbers above
+  const dur = {1: 'w', 2: 'h', 3: 'q', 4: 'h'}[species], cp = [], cf = [];
+  bars.forEach((nots, bi) => nots.forEach(n => cp.push(n === 'r' ? {rest: true, notes: [], d: dur} : {notes: [n], d: dur, sym: String(simple(n, CF[bi]))})));
+  CF.forEach(n => cf.push({notes: [n], d: 'w'}));
+  return {key: 'C', mode: 'major', clef: 'grand', bpm: 120, fs: 10, cp: {species, bars, cf: CF}, voices: [{staff: 1, voice: 1, stem: 'up', events: cp}, {staff: 2, voice: 2, stem: 'down', events: cf}], ...o};
+}
+const S1 = [['C4'], ['B3'], ['A3'], ['E4'], ['D4'], ['A3'], ['B3'], ['C4']];
+const S2 = [['C4', 'A3'], ['B3', 'C4'], ['D4', 'F4'], ['G4', 'E4'], ['D4', 'E4'], ['D4', 'C4'], ['D4', 'B3'], ['C4']];
+const S3 = [['G4', 'F4', 'E4', 'G4'], ['F4', 'E4', 'D4', 'B3'], ['A3', 'C4', 'D4', 'F4'], ['G4', 'A4', 'B4', 'C5'], ['G4', 'A4', 'B4', 'G4'], ['D5', 'C5', 'A4', 'G4'], ['F4', 'E4', 'D4', 'B3'], ['C4']];
+const S4 = [['r', 'G4~'], ['G4', 'F4~'], ['F4', 'A4~'], ['A4', 'G4~'], ['G4', 'E4~'], ['E4', 'D4~'], ['D4', 'B3'], ['C4']];
+const motion = (lo, up, label) => ({key: 'C', mode: 'major', clef: 'grand', bpm: 80, voices: [{staff: 1, voice: 1, stem: 'up', events: up.map((n, i) => ({notes: [n], d: 'h', sym: i ? label : ''}))}, {staff: 2, voice: 2, stem: 'down', events: lo.map(n => ({notes: [n], d: 'h'}))}]});
+const twoNotes = (lo, up) => ({key: 'C', mode: 'major', clef: 'grand', bpm: 80, voices: [{staff: 1, voice: 1, events: [{notes: [up], d: 'w'}]}, {staff: 2, voice: 2, events: [{notes: [lo], d: 'w'}]}]});
+const WHITE_UP = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'], WHITE_LO = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4'];
+const classify = (l1, u1, l2, u2) => { const dl = parse(l2).midi - parse(l1).midi, du = parse(u2).midi - parse(u1).midi; if (!dl || !du) return 'Oblique'; if ((dl > 0) !== (du > 0)) return 'Contrary'; return (parse(u1).midi - parse(l1).midi) === (parse(u2).midi - parse(l2).midi) ? 'Parallel' : 'Similar'; };
+const pairStep = i => { const a = parse(CF[i]), b = parse(S1[i][0]); return {label: `${nm(a)} + ${nm(b)}`, pcs: pcsOf([a, b]), names: [nm(a), nm(b)], bass: ((a.midi % 12) + 12) % 12}; };
+CH.push({id: 'counterpoint', title: 'Counterpoint', blurb: 'Independent melodies sounding together: the five species',
+  body: `<p><b>Counterpoint</b> (from the Latin <i>punctus contra punctum</i>, “note against note”) is the art of combining two or more <b>independent melodies</b> so that they sound well together. Harmony looks at the music <b>vertically</b>: the chords. Counterpoint looks at it <b>horizontally</b>: each line must be a good melody in its own right, and the lines must also fit each other. Chapter 9 (voice leading) was counterpoint in miniature; here the lines have more freedom and the rules are stated more strictly.</p>
+<p>The classic way to learn it, set down by <b>Johann Joseph Fux</b> in 1725 (<i>Gradus ad Parnassum</i>) and studied by Haydn, Mozart and Beethoven, is in five stages called <b>species</b>. In each you write a <b>counterpoint</b> (here above) against a given melody in long notes, the <b>cantus firmus</b> (“fixed song”, CF).</p>
+{{fig:cf|The cantus firmus used in every example: C D F E G F D C. It starts and ends on the tonic, rises to one high point (G) and ends by step (D to C).}}
+<h3>Intervals between the lines</h3>
+<table class="htab"><tr><th>Perfect consonances</th><td>unison, 5th, octave</td><td>open and stable; use at the start and end</td></tr><tr><th>Imperfect consonances</th><td>3rds and 6ths</td><td>sweet; the backbone of the writing</td></tr><tr><th>Dissonances</th><td>2nds, 7ths, tritone, and the 4th (between two voices)</td><td>tense; only when the rules allow</td></tr></table>
+<h3>Four kinds of motion</h3>
+<p>Two lines can move in four ways. <b>Contrary</b> and <b>oblique</b> motion keep the lines independent; <b>parallel</b> motion by 3rds or 6ths is fine for a short time; parallel 5ths and octaves are forbidden (Chapter 9).</p>
+{{fig:m_par|Parallel: both lines move the same way by the same interval.}}
+{{fig:m_sim|Similar: both move the same way, but the interval changes.}}
+{{fig:m_con|Contrary: the lines move in opposite directions.}}
+{{fig:m_obl|Oblique: one line stays, the other moves.}}
+<h3>First species: note against note</h3>
+<p>One counterpoint note to each note of the cantus firmus. The numbers above the staff show the interval with the cantus firmus.</p>
+<ul><li>Begin and end on a <b>perfect consonance</b> (the octave, fifth or unison at the start; the octave or unison at the end).</li><li>Use <b>only consonances</b> on every note.</li><li>No <b>parallel 5ths or octaves</b>; do not arrive at a perfect interval by similar motion; no more than three 3rds or 6ths in a row.</li><li>The line moves mostly by <b>step</b>, with small leaps; after a large leap, step back the other way; no tritone; one high point.</li><li>The last bars: the <b>major 6th</b> over the cantus firmus’s D, then the octave (here B then C).</li></ul>
+{{fig:s1|First species: 8 · 6 · 3 · 8 · 5 · 3 · 6 · 8.}}
+<h3>Second species: two notes against one</h3>
+<p>Two half notes to each cantus note. The <b>strong</b> (first) half of each bar must be a consonance. The <b>weak</b> half may be a dissonance only as a <b>passing tone</b>: reached and left by step in the same direction. Avoid parallel 5ths and octaves between consecutive strong beats.</p>
+{{fig:s2|Second species. In bar 2 the C (a 7th over D) is a passing tone between B and D.}}
+<h3>Third species: four notes against one</h3>
+<p>Four quarter notes to a bar. The first and third notes must be consonant; the second and fourth may be passing dissonances. Keep the line flowing, with a smooth curve and one high point (here D).</p>
+{{fig:s3|Third species: four notes to each note of the cantus firmus.}}
+<h3>Fourth species: syncopation</h3>
+<p>The counterpoint is <b>tied over the bar line</b>, so it is delayed against the cantus firmus. When the new bass note arrives, the tied note often becomes a dissonance, a <b>suspension</b>, and must then <b>resolve down by step</b> to a consonance. In two parts above a bass the usual suspensions are <b>4–3</b> and <b>7–6</b>. The numbers above the staff show them: bars 2 and 4 have 4–3 and bar 6 has 7–6.</p>
+{{fig:s4|Fourth species: the tied notes make the suspensions 4–3, 4–3 and 7–6. Compare with Chapter 10.}}
+<h3>Fifth species: florid counterpoint</h3>
+<p>All the earlier species combined: notes of different lengths, with suspensions, passing tones and <b>cambiata</b> figures, so the line sounds like real, flowing melody. This is the style of Palestrina and the starting point of Bach’s two-part inventions.</p>
+<h3>Counterpoint in real music</h3>
+<p>Composers use counterpoint in <b>imitation</b> (a line is repeated by another voice), the <b>canon</b> (strict imitation, as in a round such as <i>Frère Jacques</i>), the <b>invention</b> and the <b>fugue</b>. A good test: if you remove one line, the other should still make sense as a melody.</p>`,
+  figs: {
+    cf: {key: 'C', mode: 'major', clef: 'grand', bpm: 120, voices: [{staff: 2, voice: 2, events: CF.map(n => ({notes: [n], d: 'w'}))}, {staff: 1, voice: 1, events: CF.map(() => ({rest: true, notes: [], d: 'w'}))}]},
+    m_par: motion(['F3', 'G3'], ['A4', 'B4'], 'parallel'),
+    m_sim: motion(['C3', 'D3'], ['E4', 'A4'], 'similar'),
+    m_con: motion(['D3', 'C3'], ['F4', 'G4'], 'contrary'),
+    m_obl: motion(['C3', 'C3'], ['E4', 'G4'], 'oblique'),
+    s1: cpFig(1, S1), s2: cpFig(2, S2), s3: cpFig(3, S3), s4: cpFig(4, S4),
+  },
+  quiz: [
+    () => { const i = Math.floor(Math.random() * 7), j = pick([i + 1, i + 2, i + 3, i + 4].filter(x => x < 8)), lo = WHITE_LO[i], up = WHITE_UP[j], semis = parse(up).midi - parse(lo).midi, pcSemi = ((semis % 12) + 12) % 12;
+      const cons = [0, 3, 4, 7, 8, 9].includes(pcSemi); return ask('Is the interval between these two notes a consonance or a dissonance?', cons ? 'Consonance' : 'Dissonance', ['Consonance', 'Dissonance', 'Perfect consonance only', 'Neither'], cons ? 'It is a 3rd, 5th, 6th or octave (or unison).' : 'In counterpoint, 2nds, 7ths, tritones and 4ths between two voices are dissonant.', {fig: twoNotes(lo, up)}); },
+    () => { const i = Math.floor(Math.random() * 6), l1 = WHITE_LO[i], u1 = pick(WHITE_UP.slice(1, 6)), l2 = pick(WHITE_LO.filter(x => x !== l1)), u2 = pick(WHITE_UP.filter(x => x !== u1)); const ans = classify(l1, u1, l2, u2);
+      return ask('What kind of motion is this?', ans, ['Parallel', 'Similar', 'Contrary', 'Oblique'], {Parallel: 'Same direction, same interval.', Similar: 'Same direction, different interval.', Contrary: 'Opposite directions.', Oblique: 'One line stays still.'}[ans], {fig: {key: 'C', mode: 'major', clef: 'grand', bpm: 80, voices: [{staff: 1, voice: 1, events: [u1, u2].map(n => ({notes: [n], d: 'h'}))}, {staff: 2, voice: 2, events: [l1, l2].map(n => ({notes: [n], d: 'h'}))}]}}); },
+    bank([['What is a cantus firmus?', 'A given melody in long notes to write against', ['The highest line of a fugue', 'A kind of suspension', 'A cadence at the end of a phrase'], 'The Latin means “fixed song”.'],
+      ['In first species counterpoint, how many notes are written against each note of the cantus firmus?', 'One', ['Two', 'Four', 'As many as you like'], 'It is “note against note”.'],
+      ['Which intervals are perfect consonances?', 'Unison, 5th and octave', ['3rds and 6ths', '2nds and 7ths', 'The 4th and the tritone'], 'The 3rds and 6ths are imperfect consonances.'],
+      ['Which motion is forbidden between two voices when it leads to 5ths or octaves?', 'Parallel motion', ['Contrary motion', 'Oblique motion', 'Stepwise motion'], 'Parallel 5ths and octaves destroy the independence of the lines.'],
+      ['In second species, when may the weak half note be a dissonance?', 'As a passing tone, reached and left by step', ['Never', 'Whenever it is a leap', 'On the first beat'], 'Strong beats must always be consonant.'],
+      ['What is a suspension in fourth species?', 'A tied note that becomes a dissonance and resolves down by step', ['A note that leaps up', 'An interval of a 5th', 'A rest on the first beat'], 'The usual ones are 4–3 and 7–6.'],
+      ['Which species uses syncopation (notes tied over the bar line)?', 'Fourth', ['First', 'Second', 'Third'], 'It produces the suspensions.'],
+      ['What is florid counterpoint?', 'Fifth species: all the earlier species mixed', ['Counterpoint in three parts', 'Counterpoint without a cantus firmus', 'Another name for a fugue'], 'It is the most melodic and free species.'],
+      ['The usual last bars of a first-species counterpoint above the cantus firmus are…', 'A major 6th, then an octave', ['A 3rd, then a 5th', 'A 4th, then a unison', 'A 7th, then a 3rd'], 'B over D, then C over C.']]),
+  ],
+  play: [
+    () => ({title: 'First species: bars 1–4, both lines together', help: 'Play the cantus firmus note and the counterpoint note together: C+C, D+B, F+A, E+E. Any octave, but the cantus firmus must be the lowest.', steps: [0, 1, 2, 3].map(pairStep)}),
+    () => ({title: 'First species: bars 5–8, both lines together', help: 'The cantus firmus is the lowest note. The last two bars are the usual cadence: a major 6th, then the octave.', steps: [4, 5, 6, 7].map(pairStep)}),
+    () => { const kinds = [['major 3rd', 2, 4], ['perfect 5th', 4, 7], ['major 6th', 5, 9], ['minor 3rd', 2, 3]], bass = ['C', 'D', 'F', 'E', 'G'].sort(() => Math.random() - 0.5).slice(0, 4); return {title: 'Consonances above a cantus firmus', help: 'Play the bass note and the consonance above it, together.', steps: bass.map((b, i) => { const [name, d, sm] = kinds[i % kinds.length], a = R(b), t = above(a, d, sm); return {label: `${pn(b)} + ${name}`, pcs: pcsOf([a, t]), names: [pn(b), nm(t)], bass: ((a.midi % 12) + 12) % 12}; }) }; },
+  ]});
+
 window.Harmony.register(CH);
 })();

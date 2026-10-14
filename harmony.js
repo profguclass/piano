@@ -72,6 +72,7 @@ const pcsOf = notes => [...new Set(notes.map(n => ((n.midi % 12) + 12) % 12))];
 const DUR = {w: 8, h: 4, q: 2, e: 1}, TYPE = {w: 'whole', h: 'half', q: 'quarter', e: 'eighth'};   // 2 divisions per quarter note
 const toNotes = e => (e.notes || []).map(x => typeof x === 'string' ? parse(x) : x);
 function figureXml(f) {
+  if (f.voices) return voicesXml(f);
   const ts = f.ts || [4, 4], mlen = ts[0] * 8 / ts[1], clef = f.clef || 'grand', grand = clef === 'grand';
   const fifths = FIFTHS[f.mode || 'major'][f.key || 'C'];
   const evs = f.events.map(e => ({...e, d: e.d || 'w', notes: toNotes(e)}));
@@ -113,6 +114,40 @@ function figureXml(f) {
   return '<?xml version="1.0" encoding="UTF-8"?><score-partwise version="3.1"><part-list><score-part id="P1"><part-name>x</part-name></score-part></part-list><part id="P1">' + measures.join('') + '</part></score-partwise>';
 }
 
+/* A figure of independent lines (counterpoint): f.voices = [{staff, voice, events: [{notes, d, sym, rn}]}], each line with its own rhythm. */
+function voicesXml(f) {
+  const ts = f.ts || [4, 4], mlen = ts[0] * 8 / ts[1], fifths = FIFTHS[f.mode || 'major'][f.key || 'C'];
+  const esc = x => String(x).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const lines = f.voices.map(v => ({...v, evs: v.events.map(e => ({...e, d: e.d || 'w', notes: toNotes(e)}))}));
+  lines.forEach(v => { for (let i = 1; i < v.evs.length; i++) for (const n of v.evs[i - 1].notes) if (n.tie) { const t = v.evs[i].notes.find(x => x.midi === n.midi); if (t) t.tieStop = true; } });
+  const split = evs => {
+    const bars = []; let cur = [], t = 0;
+    for (const e of evs) { cur.push(e); t += DUR[e.d]; if (t === mlen) { bars.push(cur); cur = []; t = 0; } else if (t > mlen) throw new Error('bar overflow in ' + (f.id || 'figure')); }
+    if (cur.length) { while (t < mlen) { const d = ['w', 'h', 'q', 'e'].find(x => DUR[x] <= mlen - t); cur.push({rest: true, d, notes: []}); t += DUR[d]; } bars.push(cur); }
+    return bars;
+  };
+  const barsOf = lines.map(v => split(v.evs)), nb = Math.max(...barsOf.map(b => b.length));
+  barsOf.forEach(b => { while (b.length < nb) b.push([{rest: true, d: 'w', notes: []}]); });
+  const note = (p, d, v, chord) => `<note>${chord ? '<chord/>' : ''}<pitch><step>${LET[p.step]}</step>${p.alter ? `<alter>${p.alter}</alter>` : ''}<octave>${p.oct}</octave></pitch><duration>${DUR[d]}</duration>${p.tieStop ? '<tie type="stop"/>' : ''}${p.tie ? '<tie type="start"/>' : ''}<voice>${v.voice}</voice><type>${TYPE[d]}</type><stem>${v.stem || (v.staff === 1 ? 'up' : 'down')}</stem><staff>${v.staff}</staff>${p.tie || p.tieStop ? `<notations>${p.tieStop ? '<tied type="stop"/>' : ''}${p.tie ? '<tied type="start"/>' : ''}</notations>` : ''}</note>`;
+  const words = (txt, place, staff) => `<direction placement="${place}"><direction-type><words font-size="${f.fs || 10}">${esc(txt)}</words></direction-type><staff>${staff}</staff></direction>`;
+  let body = '';
+  for (let bi = 0; bi < nb; bi++) {
+    body += `<measure number="${bi + 1}">`;
+    if (bi === 0) body += `<attributes><divisions>2</divisions><key><fifths>${fifths}</fifths></key><time><beats>${ts[0]}</beats><beat-type>${ts[1]}</beat-type></time><staves>2</staves><clef number="1"><sign>G</sign><line>2</line></clef><clef number="2"><sign>F</sign><line>4</line></clef></attributes>`;
+    lines.forEach((v, vi) => {
+      if (vi) body += `<backup><duration>${mlen}</duration></backup>`;
+      for (const e of barsOf[vi][bi]) {
+        if (e.sym) body += words(e.sym, 'above', v.staff);
+        if (e.rn) body += words(e.rn, 'below', v.staff);
+        if (e.rest || !e.notes.length) body += `<note><rest/><duration>${DUR[e.d]}</duration><voice>${v.voice}</voice><type>${TYPE[e.d]}</type><staff>${v.staff}</staff></note>`;
+        else sortN(e.notes).forEach((p, i) => { body += note(p, e.d, v, i > 0); });
+      }
+    });
+    body += '</measure>';
+  }
+  return '<?xml version="1.0" encoding="UTF-8"?><score-partwise version="3.1"><part-list><score-part id="P1"><part-name>x</part-name></score-part></part-list><part id="P1">' + body + '</part></score-partwise>';
+}
+
 /* ---------- sound ---------- */
 let heardTimers = [], heardStop = null;
 let sentNotes = 0;
@@ -130,26 +165,36 @@ function playNote(m, dur, vel) {                         // to the piano by MIDI
   tone(m, dur, vel);
 }
 function stopHearing() { heardTimers.forEach(clearTimeout); heardTimers = []; [...held.keys()].forEach(offNote); if (heardStop) { const f = heardStop; heardStop = null; try { f(); } catch {} } }
-function hear(f, onStep, onEnd) {                 // play a figure chord by chord; tied notes sustain; a whole note never leaves a silent gap
-  stopHearing(); heardStop = onEnd || null;
-  const beat = Math.min(0.75, Math.max(0.45, 60 / (f.bpm || 84)));
-  const evs = f.events.map(e => ({e, ns: toNotes(e), dur: DUR[e.d || 'w'] / 2 * beat}));
-  evs.forEach((x, i) => { if (i) x.ns.forEach(n => { if (evs[i - 1].ns.some(m => m.tie && m.midi === n.midi)) n.stop = true; }); });   // second half of a tie: do not strike again
-  let at = 0;
-  evs.forEach((x, i) => {
-    const start = at; at += x.dur;
-    heardTimers.push(setTimeout(() => {
-      if (onStep) onStep(i);
+function planOf(f) {                              // [{t (in beats), notes: [{midi, beats}]}]: one step for every moment something begins (the highlight follows these)
+  const lines = f.voices ? f.voices.map(v => v.events) : [f.events], steps = new Map();
+  for (const events of lines) {
+    const evs = events.map(e => ({e, ns: toNotes(e), beats: DUR[e.d || 'w'] / 2})); let t = 0;
+    evs.forEach((x, i) => { x.t = t; t += x.beats; if (i) x.ns.forEach(n => { if (evs[i - 1].ns.some(m => m.tie && m.midi === n.midi)) n.stop = true; }); });
+    evs.forEach((x, i) => {
+      if (!steps.has(x.t)) steps.set(x.t, []);
       if (x.e.rest) return;
       x.ns.forEach(n => {
         if (n.stop) return;
-        let d = x.dur, cur = n;
-        for (let j = i + 1; cur.tie && j < evs.length; j++) { const nx = evs[j].ns.find(y => y.midi === n.midi); if (!nx) break; d += evs[j].dur; cur = nx; }
-        try { playNote(n.midi, d * 0.97, 0.6); } catch (e) { console.warn(e); }
+        let d = x.beats, cur = n;
+        for (let j = i + 1; cur.tie && j < evs.length; j++) { const nx = evs[j].ns.find(y => y.midi === n.midi); if (!nx) break; d += evs[j].beats; cur = nx; }
+        steps.get(x.t).push({midi: n.midi, beats: d});
       });
-    }, start * 1000));
+    });
+  }
+  return [...steps.entries()].sort((a, b) => a[0] - b[0]).map(([t, notes]) => ({t, notes}));
+}
+function hear(f, onStep, onEnd) {                 // play a figure; tied notes sustain; a whole note never leaves a silent gap
+  stopHearing(); heardStop = onEnd || null;
+  const beat = Math.min(0.75, Math.max(0.45, 60 / (f.bpm || 84))), plan = planOf(f);
+  let end = 0;
+  plan.forEach((st, i) => {
+    heardTimers.push(setTimeout(() => {
+      if (onStep) onStep(i);
+      st.notes.forEach(n => { try { playNote(n.midi, n.beats * beat * 0.97, 0.6); } catch (e) { console.warn(e); } });
+    }, st.t * beat * 1000));
+    st.notes.forEach(n => { end = Math.max(end, st.t + n.beats); });
   });
-  heardTimers.push(setTimeout(() => { const f2 = heardStop; heardStop = null; if (f2) f2(); }, at * 1000 + 300));
+  heardTimers.push(setTimeout(() => { const f2 = heardStop; heardStop = null; if (f2) f2(); }, end * beat * 1000 + 300));
 }
 
 /* ---------- the dialog ---------- */
@@ -204,6 +249,7 @@ function showList() {
   const body = $h('hbody');
   body.innerHTML = `<p class="muted">A short course in classical harmony: how chords are built, how they follow one another and how they are joined in four parts. Each chapter has examples to <b>hear</b>, a quiz and exercises to <b>play</b> on your piano (or the keys on screen). A chapter is done when you get 4 of 5 in its quiz. <b>${done} of ${chapters.length} done.</b></p><div class="hlist"></div>`;
   const list = body.querySelector('.hlist');
+  const g = document.createElement('button'); g.className = 'hcard gloss'; g.innerHTML = `<span class="n">Aa</span><span class="t"><b>Glossary · 용어집</b><small>Key terms in English and Korean · 영어와 한국어 핵심 용어</small></span><span class="st">${glossary.length}</span>`; g.onclick = showGlossary; list.append(g);
   chapters.forEach((c, i) => {
     const s = p[c.id] || {}, b = document.createElement('button'); b.className = 'hcard' + (s.done ? ' done' : '');
     b.innerHTML = `<span class="n">${i + 1}</span><span class="t"><b>${esc(c.title)}</b><small>${esc(c.blurb)}</small></span><span class="st">${s.done ? '✓' : s.quiz !== undefined ? `${s.quiz}/5` : ''}</span>`;
@@ -211,6 +257,38 @@ function showList() {
   });
 }
 
+let glossary = [];
+function showGlossary() {
+  stopHearing(); state.view = 'glossary'; state.ex = null; state.quiz = null;
+  $h('hback').hidden = false; $h('htitle').textContent = 'Glossary · 용어집';
+  const lang = store.get('harmonyLang', 'both'), body = $h('hbody');
+  body.innerHTML = `<p class="muted">Key terms of the course in English and Korean. Search in either language, and tap a chapter to read more. / 이 과정의 핵심 용어를 영어와 한국어로 정리했습니다. 두 언어 모두로 검색할 수 있습니다.</p>
+    <div class="gtools"><input id="hsearch" type="search" placeholder="Search · 검색" aria-label="Search the glossary"><div class="seg" id="hlang"><button data-v="both">Both · 둘 다</button><button data-v="en">English</button><button data-v="ko">한국어</button></div></div>
+    <p class="muted" id="hcount"></p><div id="glist"></div>`;
+  const list = $h('glist'), q = $h('hsearch');
+  const paint = () => {
+    const l = store.get('harmonyLang', 'both'), t = q.value.trim().toLowerCase();
+    $h('hlang').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === l));
+    const rows = glossary.filter(g => !t || g.slice(0, 4).join(' ').toLowerCase().includes(t)).sort((x, y) => x[0].toLowerCase().localeCompare(y[0].toLowerCase()));
+    $h('hcount').textContent = `${rows.length} of ${glossary.length} terms · ${rows.length}개 / 전체 ${glossary.length}개`;
+    list.innerHTML = '';
+    for (const [en, ko, ed, kd, ch] of rows) {
+      const d = document.createElement('div'); d.className = 'gterm';
+      d.innerHTML = `<div class="gh"><b class="gen"></b><b class="gko"></b></div><p class="ged"></p><p class="gkd"></p><button class="glink"></button>`;
+      d.querySelector('.gen').textContent = en; d.querySelector('.gko').textContent = ko;
+      d.querySelector('.ged').textContent = ed; d.querySelector('.gkd').textContent = kd;
+      d.querySelector('.gen').hidden = l === 'ko'; d.querySelector('.gko').hidden = l === 'en';
+      d.querySelector('.ged').hidden = l === 'ko'; d.querySelector('.gkd').hidden = l === 'en';
+      const c = chapters[ch - 1], bt = d.querySelector('.glink');
+      if (c) { bt.textContent = `Chapter ${ch} · ${c.title} →`; bt.onclick = () => showChapter(ch - 1); } else bt.remove();
+      list.append(d);
+    }
+    if (!rows.length) list.innerHTML = '<p class="muted">No matching term. · 일치하는 용어가 없습니다.</p>';
+  };
+  q.oninput = paint;
+  $h('hlang').onclick = e => { const b = e.target.closest('button'); if (!b) return; store.set('harmonyLang', b.dataset.v); paint(); };
+  paint(); $h('harmony').scrollTop = 0;
+}
 function showChapter(i) {
   stopHearing(); const c = chapters[i]; state.view = 'chapter'; state.chapter = i; state.ex = null; state.quiz = null;
   $h('hback').hidden = false; $h('htitle').textContent = `${i + 1} · ${c.title}`;
@@ -332,8 +410,8 @@ function wire() {
   $h('hback').onclick = () => showList();
 }
 window.Harmony = {
-  register(list) { chapters.length = 0; chapters.push(...list); }, _chapters: () => chapters, open, close, wire, isOpen: () => !$h('harmony').hidden, key: hKey,
-  api: {parse, nm, pn, mk, above, scale, rn, chordFromRoot, pcsOf, sortN, figureXml, QUAL, QNAME, FIFTHS, shiftOct, bump, ROMAN, DUR},
+  register(list) { chapters.length = 0; chapters.push(...list); }, registerGlossary(list) { glossary = list; }, _chapters: () => chapters, open, close, wire, isOpen: () => !$h('harmony').hidden, key: hKey,
+  api: {planOf, parse, nm, pn, mk, above, scale, rn, chordFromRoot, pcsOf, sortN, figureXml, QUAL, QNAME, FIFTHS, shiftOct, bump, ROMAN, DUR},
 };
 if (typeof module !== 'undefined') module.exports = window.Harmony;
 })();
