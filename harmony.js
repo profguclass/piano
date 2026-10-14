@@ -115,7 +115,20 @@ function figureXml(f) {
 
 /* ---------- sound ---------- */
 let heardTimers = [], heardStop = null;
-function stopHearing() { heardTimers.forEach(clearTimeout); heardTimers = []; if (heardStop) { const f = heardStop; heardStop = null; f(); } try { silence(); } catch {} }
+const held = new Map();                                  // MIDI notes we switched on and still owe a note-off
+function offNote(m) { const h = held.get(m); if (!h) return; clearTimeout(h); held.delete(m); try { midiOut?.send([0x80, m, 0]); } catch {} }
+function playNote(m, dur, vel) {                         // to the piano by MIDI when it is the sound, else the tablet's synth; the note-off is sent when due, not scheduled ahead
+  try {
+    if (midiOut && S.sound === 'piano') {
+      offNote(m);
+      midiOut.send([0x90, m, Math.round(30 + vel * 70)]); sentAt[m] = performance.now();
+      held.set(m, setTimeout(() => { held.delete(m); try { midiOut?.send([0x80, m, 0]); } catch {} }, Math.max(150, dur * 1000)));
+      return;
+    }
+  } catch (e) { console.warn('piano output failed, using the tablet sound', e); try { midiOut = null; } catch {} }
+  tone(m, dur, vel);
+}
+function stopHearing() { heardTimers.forEach(clearTimeout); heardTimers = []; [...held.keys()].forEach(offNote); if (heardStop) { const f = heardStop; heardStop = null; try { f(); } catch {} } }
 function hear(f, onStep, onEnd) {                 // play a figure chord by chord; tied notes sustain; a whole note never leaves a silent gap
   stopHearing(); heardStop = onEnd || null;
   const beat = Math.min(0.75, Math.max(0.45, 60 / (f.bpm || 84)));
@@ -131,7 +144,7 @@ function hear(f, onStep, onEnd) {                 // play a figure chord by chor
         if (n.stop) return;
         let d = x.dur, cur = n;
         for (let j = i + 1; cur.tie && j < evs.length; j++) { const nx = evs[j].ns.find(y => y.midi === n.midi); if (!nx) break; d += evs[j].dur; cur = nx; }
-        tone(n.midi, d * 0.97, 0.6);
+        try { playNote(n.midi, d * 0.97, 0.6); } catch (e) { console.warn(e); }
       });
     }, start * 1000));
   });
@@ -169,10 +182,12 @@ function figureBox(f, caption) {
   const done = () => { btn.textContent = '▶ Hear'; btn.classList.remove('playing'); try { osm?.cursor.hide(); } catch {} };
   btn.onclick = () => {
     if (btn.classList.contains('playing')) return stopHearing();
-    try { initAudio(); } catch {}
-    btn.textContent = '■ Stop'; btn.classList.add('playing');
-    try { osm?.cursor.reset(); osm?.cursor.show(); } catch {}
-    hear(f, i => { try { if (i) osm?.cursor.next(); } catch {} }, done);
+    try {
+      try { initAudio(); } catch {}
+      btn.textContent = '■ Stop'; btn.classList.add('playing');
+      try { osm?.cursor.reset(); osm?.cursor.show(); } catch {}
+      hear(f, i => { try { if (i) osm?.cursor.next(); } catch {} }, done);
+    } catch (err) { console.error(err); done(); box.querySelector('.cap').textContent = 'Could not play this example: ' + (err.message || err); }
   };
   requestAnimationFrame(() => drawFigure(box.querySelector('.hfig'), f).then(o => { osm = o; }).catch(err => { box.querySelector('.hfig').textContent = 'Could not draw this example.'; console.error(err); }));
   return box;
@@ -277,7 +292,7 @@ function paintSteps() {
 function wireKeys() {
   const kb = $h('hkeys');
   kb.querySelectorAll('div').forEach(k => {
-    k.addEventListener('pointerdown', e => { e.preventDefault(); const m = +k.dataset.m; try { tone(m, 0.7); } catch {} hKey(m); });
+    k.addEventListener('pointerdown', e => { e.preventDefault(); const m = +k.dataset.m; try { playNote(m, 0.7, 0.5); } catch {} hKey(m); });
   });
 }
 function flashKey(m, cls) { const k = document.querySelector(`#hkeys [data-m="${m}"]`); if (!k) return; k.classList.add(cls); setTimeout(() => k.classList.remove(cls), 220); }
