@@ -71,7 +71,7 @@
         if (q.fig) H.figureXml(q.fig);
       } catch (e) { out.problems.push(`${c.id} quiz: ${e.message}`); break; }
     }
-    for (const g of c.play) for (let k = 0; k < 60; k++) {
+    for (const g of (c.play || [])) for (let k = 0; k < 60; k++) {
       try { const e = g(); out.exercises++; if (!e.steps.length || e.steps.some(s => !s.pcs.length)) out.problems.push(`${c.id}: empty exercise ${e.title}`); } catch (e) { out.problems.push(`${c.id} play: ${e.message}`); break; }
     }
   }

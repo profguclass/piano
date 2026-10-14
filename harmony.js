@@ -24,9 +24,10 @@ const bump = (p, n) => mk(p.step, p.alter + n, p.oct);                          
 
 const QUAL = {
   major: [[2, 4], [4, 7]], minor: [[2, 3], [4, 7]], dim: [[2, 3], [4, 6]], aug: [[2, 4], [4, 8]],
+  sus2: [[1, 2], [4, 7]], sus4: [[3, 5], [4, 7]],
   dom7: [[2, 4], [4, 7], [6, 10]], maj7: [[2, 4], [4, 7], [6, 11]], min7: [[2, 3], [4, 7], [6, 10]], hdim7: [[2, 3], [4, 6], [6, 10]], dim7: [[2, 3], [4, 6], [6, 9]],
 };
-const QNAME = {major: 'major triad', minor: 'minor triad', dim: 'diminished triad', aug: 'augmented triad', dom7: 'dominant seventh', maj7: 'major seventh', min7: 'minor seventh', hdim7: 'half-diminished seventh', dim7: 'fully diminished seventh'};
+const QNAME = {sus2: 'suspended 2nd chord', sus4: 'suspended 4th chord', major: 'major triad', minor: 'minor triad', dim: 'diminished triad', aug: 'augmented triad', dom7: 'dominant seventh', maj7: 'major seventh', min7: 'minor seventh', hdim7: 'half-diminished seventh', dim7: 'fully diminished seventh'};
 const chordFromRoot = (root, q) => [root, ...QUAL[q].map(([d, s]) => above(root, d, s))];
 const sortN = a => [...a].sort((x, y) => x.midi - y.midi);
 
@@ -71,6 +72,18 @@ const pcsOf = notes => [...new Set(notes.map(n => ((n.midi % 12) + 12) % 12))];
 /* ---------- figures: a few chords or notes on a staff, drawn by OpenSheetMusicDisplay ---------- */
 const DUR = {w: 8, h: 4, q: 2, e: 1, 'h.': 6, 'q.': 3}, TYPE = {w: 'whole', h: 'half', q: 'quarter', e: 'eighth', 'h.': 'half', 'q.': 'quarter'};   // 'q.' is a dotted quarter   // 2 divisions per quarter note
 const toNotes = e => (e.notes || []).map(x => typeof x === 'string' ? parse(x) : x);
+function beamTags(items, ts) {                      // beam runs of eighth notes within a beat: 'begin' / 'continue' / 'end' (or '' for a single note)
+  const beat = ts[1] === 8 && ts[0] % 3 === 0 && ts[0] > 3 ? 3 : Math.max(1, 8 / ts[1]), tags = items.map(() => '');
+  let pos = 0, run = [];
+  const flush = () => { if (run.length > 1) run.forEach((k, j) => { tags[k] = j === 0 ? 'begin' : j === run.length - 1 ? 'end' : 'continue'; }); run = []; };
+  items.forEach((it, k) => {
+    const len = DUR[it.d];
+    if (it.d === 'e' && it.note) { if (run.length && Math.floor(pos / beat) !== Math.floor(items.__last / beat)) flush(); run.push(k); items.__last = pos; }
+    else flush();
+    pos += len;
+  });
+  flush(); return tags;
+}
 function figureXml(f) {
   if (f.voices) return voicesXml(f);
   const ts = f.ts || [4, 4], mlen = ts[0] * 8 / ts[1], clef = f.clef || 'grand', grand = clef === 'grand';
@@ -86,7 +99,7 @@ function figureXml(f) {
     : grand ? [{staff: 1, voice: 1}, {staff: 2, voice: 2}] : [{staff: 1, voice: 1}];
   const stf = s => grand ? `<staff>${s}</staff>` : '';
   const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
-  const note = (p, d, st, o = {}) => `<note>${o.chord ? '<chord/>' : ''}<pitch><step>${LET[p.step]}</step>${p.alter ? `<alter>${p.alter}</alter>` : ''}<octave>${p.oct}</octave></pitch><duration>${DUR[d]}</duration>${p.tieStop ? '<tie type="stop"/>' : ''}${p.tie ? '<tie type="start"/>' : ''}<voice>${st.voice}</voice><type>${TYPE[d]}</type>${d.endsWith('.') ? '<dot/>' : ''}${st.stem ? `<stem>${st.stem}</stem>` : ''}${stf(st.staff)}${p.tie || p.tieStop ? `<notations>${p.tieStop ? '<tied type="stop"/>' : ''}${p.tie ? '<tied type="start"/>' : ''}</notations>` : ''}</note>`;
+  const note = (p, d, st, o = {}) => `<note>${o.chord ? '<chord/>' : ''}<pitch><step>${LET[p.step]}</step>${p.alter ? `<alter>${p.alter}</alter>` : ''}<octave>${p.oct}</octave></pitch><duration>${DUR[d]}</duration>${p.tieStop ? '<tie type="stop"/>' : ''}${p.tie ? '<tie type="start"/>' : ''}<voice>${st.voice}</voice><type>${TYPE[d]}</type>${d.endsWith('.') ? '<dot/>' : ''}${st.stem ? `<stem>${st.stem}</stem>` : ''}${stf(st.staff)}${o.beam ? `<beam number="1">${o.beam}</beam>` : ''}${p.tie || p.tieStop ? `<notations>${p.tieStop ? '<tied type="stop"/>' : ''}${p.tie ? '<tied type="start"/>' : ''}</notations>` : ''}</note>`;
   const rest = (d, st) => `<note><rest/><duration>${DUR[d]}</duration><voice>${st.voice}</voice><type>${TYPE[d]}</type>${d.endsWith('.') ? '<dot/>' : ''}${stf(st.staff)}</note>`;
   const words = (txt, place, staff) => `<direction placement="${place}"><direction-type><words font-size="${f.fs || 11}">${esc(txt)}</words></direction-type>${staff ? `<staff>${staff}</staff>` : ''}</direction>`;
   const measures = bars.map((bar, bi) => {
@@ -95,18 +108,22 @@ function figureXml(f) {
       (grand ? '<clef number="1"><sign>G</sign><line>2</line></clef><clef number="2"><sign>F</sign><line>4</line></clef>' : clef === 'bass' ? '<clef><sign>F</sign><line>4</line></clef>' : '<clef><sign>G</sign><line>2</line></clef>') + '</attributes>';
     streams.forEach((st, si) => {
       if (si) x += `<backup><duration>${mlen}</duration></backup>`;
-      for (const e of bar) {
+      const mineOf = e => {
+        let mine;
+        if (e.rest) mine = [];
+        else if (satb) { const s2 = sortN(e.notes); if (s2.length !== 4) throw new Error('four voices needed'); mine = [s2[3 - si]]; }
+        else if (grand) mine = e.notes.filter(n => (n.midi >= 60) === (st.staff === 1));
+        else mine = e.notes;
+        return sortN(mine);
+      };
+      const tags = beamTags(bar.map(e => ({d: e.d, note: mineOf(e).length > 0})), ts);
+      for (const [ei, e] of bar.entries()) {
         if (si === 0) {
           if (e.sym) x += words(e.sym, 'above', grand ? 1 : 0);
           if (e.rn) x += words(e.rn, 'below', grand ? 2 : 0);
         }
-        let mine;
-        if (e.rest) mine = [];
-        else if (satb) { const s = sortN(e.notes); if (s.length !== 4) throw new Error('four voices needed'); mine = [s[3 - si]]; }
-        else if (grand) mine = e.notes.filter(n => (n.midi >= 60) === (st.staff === 1));
-        else mine = e.notes;
-        mine = sortN(mine);
-        if (!mine.length) x += rest(e.d, st); else mine.forEach((p, i) => { x += note(p, e.d, st, {chord: i > 0}); });
+        const mine = mineOf(e);
+        if (!mine.length) x += rest(e.d, st); else mine.forEach((p, i) => { x += note(p, e.d, st, {chord: i > 0, beam: i === 0 ? tags[ei] : ''}); });
       }
     });
     return x + '</measure>';
@@ -128,7 +145,7 @@ function voicesXml(f) {
   };
   const barsOf = lines.map(v => split(v.evs)), nb = Math.max(...barsOf.map(b => b.length));
   barsOf.forEach(b => { while (b.length < nb) b.push([{rest: true, d: 'w', notes: []}]); });
-  const note = (p, d, v, chord) => `<note>${chord ? '<chord/>' : ''}<pitch><step>${LET[p.step]}</step>${p.alter ? `<alter>${p.alter}</alter>` : ''}<octave>${p.oct}</octave></pitch><duration>${DUR[d]}</duration>${p.tieStop ? '<tie type="stop"/>' : ''}${p.tie ? '<tie type="start"/>' : ''}<voice>${v.voice}</voice><type>${TYPE[d]}</type>${d.endsWith('.') ? '<dot/>' : ''}<stem>${v.stem || (v.staff === 1 ? 'up' : 'down')}</stem><staff>${v.staff}</staff>${p.tie || p.tieStop ? `<notations>${p.tieStop ? '<tied type="stop"/>' : ''}${p.tie ? '<tied type="start"/>' : ''}</notations>` : ''}</note>`;
+  const note = (p, d, v, chord, beam) => `<note>${chord ? '<chord/>' : ''}<pitch><step>${LET[p.step]}</step>${p.alter ? `<alter>${p.alter}</alter>` : ''}<octave>${p.oct}</octave></pitch><duration>${DUR[d]}</duration>${p.tieStop ? '<tie type="stop"/>' : ''}${p.tie ? '<tie type="start"/>' : ''}<voice>${v.voice}</voice><type>${TYPE[d]}</type>${d.endsWith('.') ? '<dot/>' : ''}<stem>${v.stem || (v.staff === 1 ? 'up' : 'down')}</stem><staff>${v.staff}</staff>${beam ? `<beam number="1">${beam}</beam>` : ''}${p.tie || p.tieStop ? `<notations>${p.tieStop ? '<tied type="stop"/>' : ''}${p.tie ? '<tied type="start"/>' : ''}</notations>` : ''}</note>`;
   const words = (txt, place, staff) => `<direction placement="${place}"><direction-type><words font-size="${f.fs || 10}">${esc(txt)}</words></direction-type><staff>${staff}</staff></direction>`;
   let body = '';
   for (let bi = 0; bi < nb; bi++) {
@@ -136,11 +153,12 @@ function voicesXml(f) {
     if (bi === 0) body += `<attributes><divisions>2</divisions><key><fifths>${fifths}</fifths></key><time><beats>${ts[0]}</beats><beat-type>${ts[1]}</beat-type></time><staves>2</staves><clef number="1"><sign>G</sign><line>2</line></clef><clef number="2"><sign>F</sign><line>4</line></clef></attributes>`;
     lines.forEach((v, vi) => {
       if (vi) body += `<backup><duration>${mlen}</duration></backup>`;
-      for (const e of barsOf[vi][bi]) {
+      const evsBar = barsOf[vi][bi], tags = beamTags(evsBar.map(e => ({d: e.d, note: !(e.rest || !e.notes.length)})), ts);
+      for (const [ei, e] of evsBar.entries()) {
         if (e.sym) body += words(e.sym, 'above', v.staff);
         if (e.rn) body += words(e.rn, 'below', v.staff);
         if (e.rest || !e.notes.length) body += `<note><rest/><duration>${DUR[e.d]}</duration><voice>${v.voice}</voice><type>${TYPE[e.d]}</type>${e.d.endsWith('.') ? '<dot/>' : ''}<staff>${v.staff}</staff></note>`;
-        else sortN(e.notes).forEach((p, i) => { body += note(p, e.d, v, i > 0); });
+        else sortN(e.notes).forEach((p, i) => { body += note(p, e.d, v, i > 0, i === 0 ? tags[ei] : ''); });
       }
     });
     body += '</measure>';
@@ -208,7 +226,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 async function drawFigure(el, f) {
   el.textContent = ''; el.style.width = ''; el.style.height = '';
   const o = new opensheetmusicdisplay.OpenSheetMusicDisplay(el, {autoResize: false, drawTitle: false, drawPartNames: false, drawComposer: false, drawCredits: false, backend: 'svg', autoBeam: true, followCursor: false});
-  Object.assign(o.EngravingRules, {PageTopMargin: 0.5, PageBottomMargin: 0.5, PageLeftMargin: 1, PageRightMargin: 1, VoiceSpacingMultiplierVexflow: f.spread || 1.6, VoiceSpacingAddendVexflow: f.add ?? 8});
+  Object.assign(o.EngravingRules, {PageTopMargin: 0.5, PageBottomMargin: 0.5, PageLeftMargin: 1, PageRightMargin: 1, VoiceSpacingMultiplierVexflow: f.spread || 1.6, VoiceSpacingAddendVexflow: f.add ?? 8, AutoBeamNotes: true});
   await o.load(figureXml(f)); o.zoom = f.zoom || 0.85; o.render();
   const svg = el.querySelector('svg'); if (!svg) return o;               // fit the paper to the music: no long empty staff lines or blank space
   const sr = svg.getBoundingClientRect(); let right = 0, bottom = 0;
@@ -250,7 +268,9 @@ function showList() {
   body.innerHTML = `<p class="muted">A short course in classical harmony: how chords are built, how they follow one another and how they are joined in four parts. Each chapter has examples to <b>hear</b>, a quiz and exercises to <b>play</b> on your piano (or the keys on screen). A chapter is done when you get 4 of 5 in its quiz. <b>${done} of ${chapters.length} done.</b></p><div class="hlist"></div>`;
   const list = body.querySelector('.hlist');
   const g = document.createElement('button'); g.className = 'hcard gloss'; g.innerHTML = `<span class="n">Aa</span><span class="t"><b>Glossary · 용어집</b><small>Key terms in English and Korean · 영어와 한국어 핵심 용어</small></span><span class="st">${glossary.length}</span>`; g.onclick = showGlossary; list.append(g);
+  let lastPart = null;
   chapters.forEach((c, i) => {
+    if (c.part && c.part !== lastPart) { lastPart = c.part; const h = document.createElement('h3'); h.className = 'hpart'; h.textContent = c.part; list.append(h); }
     const s = p[c.id] || {}, b = document.createElement('button'); b.className = 'hcard' + (s.done ? ' done' : '');
     b.innerHTML = `<span class="n">${i + 1}</span><span class="t"><b>${esc(c.title)}</b><small>${esc(c.blurb)}</small></span><span class="st">${s.done ? '✓' : s.quiz !== undefined ? `${s.quiz}/5` : ''}</span>`;
     b.onclick = () => showChapter(i); list.append(b);
@@ -279,8 +299,8 @@ function showGlossary() {
       d.querySelector('.ged').textContent = ed; d.querySelector('.gkd').textContent = kd;
       d.querySelector('.gen').hidden = l === 'ko'; d.querySelector('.gko').hidden = l === 'en';
       d.querySelector('.ged').hidden = l === 'ko'; d.querySelector('.gkd').hidden = l === 'en';
-      const c = chapters[ch - 1], bt = d.querySelector('.glink');
-      if (c) { bt.textContent = `Chapter ${ch} · ${c.title} →`; bt.onclick = () => showChapter(ch - 1); } else bt.remove();
+      const k = chapters.findIndex(x => x.id === ch), c = chapters[k], bt = d.querySelector('.glink');
+      if (c) { bt.textContent = `Chapter ${k + 1} · ${c.title} →`; bt.onclick = () => showChapter(k); } else bt.remove();
       list.append(d);
     }
     if (!rows.length) list.innerHTML = '<p class="muted">No matching term. · 일치하는 용어가 없습니다.</p>';
@@ -295,18 +315,18 @@ function showChapter(i) {
   const body = $h('hbody'), s = prog()[c.id] || {};
   body.innerHTML = '<div class="hchap"></div>';
   const wrap = body.querySelector('.hchap');
-  wrap.innerHTML = c.body.replace(/\{\{fig:([\w-]+)(?:\|([^}]*))?\}\}/g, (_, id, cap) => `<div class="figslot" data-id="${id}" data-cap="${esc(cap || '')}"></div>`);
+  wrap.innerHTML = c.body.replace(/\{\{ch:([\w-]+)\}\}/g, (_, id) => { const k = chapters.findIndex(x => x.id === id); return k < 0 ? 'the chapter on ' + id : `Chapter ${k + 1}`; }).replace(/\{\{fig:([\w-]+)(?:\|([^}]*))?\}\}/g, (_, id, cap) => `<div class="figslot" data-id="${id}" data-cap="${esc(cap || '')}"></div>`);
   wrap.querySelectorAll('.figslot').forEach(slot => {
     const f = c.figs[slot.dataset.id]; if (!f) { slot.textContent = '(missing example)'; return; }
     slot.replaceWith(figureBox({id: slot.dataset.id, ...f}, slot.dataset.cap));
   });
   const act = document.createElement('div'); act.className = 'hact';
   act.innerHTML = `<h3>Test yourself</h3><p class="muted">Five questions; 4 right completes the chapter.${s.quiz !== undefined ? ` Best so far: ${s.quiz}/5.` : ''}</p><button class="primary" id="hquiz">Start the quiz</button>
-    <h3>Play it</h3><p class="muted">Three short exercises. Play the chords on your piano or on the keys below.${s.played ? ` Completed so far: ${s.played}.` : ''}</p><button class="primary" id="hplay">Start the exercises</button>`;
+    ${c.play && c.play.length ? `<h3>Play it</h3><p class="muted">${c.play.length} short exercise${c.play.length > 1 ? 's' : ''}. Play on your piano or on the keys below.${s.played ? ` Completed so far: ${s.played}.` : ''}</p><button class="primary" id="hplay">Start the exercises</button>` : ''}`;
   wrap.append(act);
   const next = chapters[i + 1];
   if (next) { const n = document.createElement('p'); n.innerHTML = `<button id="hnext">Next chapter: ${esc(next.title)} →</button>`; wrap.append(n); n.firstChild.onclick = () => showChapter(i + 1); }
-  $h('hquiz').onclick = () => startQuiz(i); $h('hplay').onclick = () => startPlay(i);
+  $h('hquiz').onclick = () => startQuiz(i); if ($h('hplay')) $h('hplay').onclick = () => startPlay(i);
   $h('harmony').scrollTop = 0;
 }
 
@@ -383,7 +403,7 @@ function hKey(m) {                                    // a key pressed on the pi
   const ex = z.list[z.n]; if (!ex || ex.step >= ex.steps.length) return;
   const st = ex.steps[ex.step], pc = ((m % 12) + 12) % 12;
   clearTimeout(ex.timer); ex.timer = setTimeout(() => { ex.got = new Map(); }, 2600);
-  if (!st.pcs.includes(pc)) { ex.got = new Map(); flashKey(m, 'bad'); $h('hfeed').textContent = `${NOTE_NAMES[pc]} is not in this chord. Try again.`; return; }
+  if (st.midi !== undefined ? m !== st.midi : !st.pcs.includes(pc)) { ex.got = new Map(); flashKey(m, 'bad'); $h('hfeed').textContent = `${NOTE_NAMES[pc]} is not in this chord. Try again.`; return; }
   flashKey(m, 'on'); ex.got.set(pc, Math.min(ex.got.get(pc) ?? 999, m));
   if (ex.got.size < st.pcs.length) { $h('hfeed').textContent = `${ex.got.size} of ${st.pcs.length} notes…`; return; }
   const low = Math.min(...ex.got.values()) % 12;

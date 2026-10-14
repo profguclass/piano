@@ -3,8 +3,8 @@
 'use strict';
 const A = window.Harmony.api, {parse, nm, pn, above, scale, rn, chordFromRoot, pcsOf, sortN, QNAME} = A;
 const SUP = {6: '⁶', 7: '⁷', 65: '⁶₅', 43: '⁴₃', 42: '⁴₂', 64: '⁶₄'};
-const fmt = s => s.split('/').map(p => p.replace(/M7$/, 'maj⁷').replace(/(65|43|42|64|7|6)$/, f => SUP[f])).join('/');       // V65 -> V⁶₅
-const SUFFIX = {major: '', minor: 'm', dim: '°', aug: '+', dom7: '7', maj7: 'maj7', min7: 'm7', hdim7: 'ø7', dim7: '°7'};
+const fmt = s => s.split('/').map(p => p.replace(/M7$/, 'maj⁷').replace(/(65|43|42|64|7|6)$/, f => SUP[f]).replace(/^b(?=[IViv])/, '♭').replace(/^#(?=[IViv])/, '♯')).join('/');       // V65 -> V⁶₅
+const SUFFIX = {sus2: 'sus2', sus4: 'sus4', major: '', minor: 'm', dim: '°', aug: '+', dom7: '7', maj7: 'maj7', min7: 'm7', hdim7: 'ø7', dim7: '°7'};
 const symOf = c => pn(nm(c.root)) + SUFFIX[c.quality];
 const NUMS = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'];
 const MAJKEYS = ['C', 'G', 'D', 'A', 'F', 'Bb', 'Eb'], MINKEYS = ['A', 'E', 'D', 'G', 'B', 'C'];
@@ -72,9 +72,14 @@ CH.push({id: 'intervals', title: 'Intervals', blurb: 'The distance between two n
 {{fig:ints|Intervals above C. Listen to how the 2nds and 7ths grate and the 3rds and 6ths blend.}}
 <table class="htab"><tr><th>Perfect</th><td>unison, 4th, 5th, octave</td><td>open, stable (4th, 5th: 5 and 7 half steps)</td></tr><tr><th>Major / minor</th><td>2nd, 3rd, 6th, 7th</td><td>minor is one half step smaller than major</td></tr><tr><th>Augmented</th><td>one half step larger than perfect or major</td><td>C–F♯ is an augmented 4th (6 half steps, the tritone)</td></tr><tr><th>Diminished</th><td>one half step smaller than perfect or minor</td><td>C–G♭ is a diminished 5th (also 6)</td></tr></table>
 <p>Intervals are heard as <b>consonant</b> (stable: unisons, octaves, 5ths, 4ths — the “perfect” ones — and 3rds and 6ths, which are “imperfect” consonances) or <b>dissonant</b> (tense, asking to move on: 2nds, 7ths and the tritone). Chords are stacks of intervals, so every harmonic idea in the next chapters comes back to these.</p>
-<p>The spelling matters: C–E♭ is a minor 3rd, but C–D♯ sounds the same on the piano and is an augmented 2nd. The letters tell you the size.</p>`,
-  figs: {ints: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: ints('C', ['minor 2nd', 'major 2nd', 'minor 3rd', 'major 3rd', 'perfect 4th', 'perfect 5th', 'major 6th', 'major 7th']).map(([a, b], i) => ({notes: [a, b], d: 'h', sym: ['m2', 'M2', 'm3', 'M3', 'P4', 'P5', 'M6', 'M7'][i]}))}},
+<p>The spelling matters: C–E♭ is a minor 3rd, but C–D♯ sounds the same on the piano and is an augmented 2nd. The letters tell you the size.</p>
+<h3>Inversion and compound intervals</h3>
+<p>To <b>invert</b> an interval, move its lower note up an octave (or its upper note down). The size of an interval and the size of its inversion always add up to <b>9</b>: a 3rd becomes a 6th, a 2nd becomes a 7th, a 4th becomes a 5th. The <b>quality</b> flips too: major becomes minor and minor becomes major, augmented becomes diminished and diminished becomes augmented, while perfect stays perfect.</p>
+{{fig:invert|A major 3rd (C–E) inverted is a minor 6th (E–C). A perfect 5th (C–G) inverted is a perfect 4th (G–C).}}
+<p>An interval larger than an octave is a <b>compound interval</b>: a 9th is a 2nd plus an octave, a 10th a 3rd plus an octave. In harmony we usually reduce them to the simple interval (a 10th is treated as a 3rd), as the chords in this course do.</p>`,
+  figs: {invert: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: [{notes: ['C4', 'E4'], d: 'h', sym: 'M3'}, {notes: ['E4', 'C5'], d: 'h', sym: 'm6'}, {notes: ['C4', 'G4'], d: 'h', sym: 'P5'}, {notes: ['G4', 'C5'], d: 'h', sym: 'P4'}]}, ints: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: ints('C', ['minor 2nd', 'major 2nd', 'minor 3rd', 'major 3rd', 'perfect 4th', 'perfect 5th', 'major 6th', 'major 7th']).map(([a, b], i) => ({notes: [a, b], d: 'h', sym: ['m2', 'M2', 'm3', 'M3', 'P4', 'P5', 'M6', 'M7'][i]}))}},
   quiz: [
+    () => { const [n, inv] = pick([['minor 2nd', 'major 7th'], ['major 2nd', 'minor 7th'], ['minor 3rd', 'major 6th'], ['major 3rd', 'minor 6th'], ['perfect 4th', 'perfect 5th'], ['perfect 5th', 'perfect 4th'], ['major 6th', 'minor 3rd'], ['minor 7th', 'major 2nd']]); return ask(`What is the inversion of a ${n}?`, inv, ['minor 2nd', 'major 7th', 'major 2nd', 'minor 7th', 'minor 3rd', 'major 6th', 'major 3rd', 'minor 6th', 'perfect 4th', 'perfect 5th'], 'The sizes add up to 9, and major and minor swap.'); },
     () => { const r = pick(['C', 'D', 'E', 'F', 'G', 'A', 'Bb', 'Eb']), [name, d, s] = pick(INTS.filter(x => !['augmented 4th', 'diminished 5th'].includes(x[0])));
       return ask('Name this interval.', name, INTS.map(x => x[0]), `${name}: ${d + 1} letter names and ${s} half steps.`, {fig: {key: 'C', mode: 'major', clef: 'treble', events: [{notes: [R(r), above(R(r), d, s)], d: 'w'}]}}); },
     () => { const [name, d, s] = pick(INTS.slice(0, 4)); return ask(`How many half steps are in a ${name}?`, String(s), ['1', '2', '3', '4', '5'], `A ${name} has ${s} half steps.`); },
@@ -93,9 +98,19 @@ CH.push({id: 'triads', title: 'Triads', blurb: 'Three-note chords: major, minor,
 <p>The kind of triad depends on the two stacked thirds:</p>
 <table class="htab"><tr><th>Major</th><td>major 3rd + minor 3rd</td><td>bright, stable. C–E–G</td></tr><tr><th>Minor</th><td>minor 3rd + major 3rd</td><td>darker, stable. C–E♭–G</td></tr><tr><th>Diminished</th><td>minor 3rd + minor 3rd</td><td>tense, unstable. C–E♭–G♭</td></tr><tr><th>Augmented</th><td>major 3rd + major 3rd</td><td>restless, unresolved. C–E–G♯</td></tr></table>
 {{fig:triads|The four triads on C. From major, lower the third for minor, lower the fifth too for diminished; raise the fifth for augmented.}}
-<p>Name the chord by its root: “C major”, “A minor” (written <b>Am</b>), “B diminished” (<b>B°</b>), “C augmented” (<b>C+</b>). Major and minor triads are <b>consonant</b>; diminished and augmented triads are <b>dissonant</b> and want to move.</p>`,
-  figs: {triads: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: ['major', 'minor', 'dim', 'aug'].map(q => ({notes: chordFromRoot(R('C'), q), d: 'w', sym: 'C' + SUFFIX[q]}))}},
+<p>Name the chord by its root: “C major”, “A minor” (written <b>Am</b>), “B diminished” (<b>B°</b>), “C augmented” (<b>C+</b>). Major and minor triads are <b>consonant</b>; diminished and augmented triads are <b>dissonant</b> and want to move.</p>
+<h3>Lead-sheet symbols and slash chords</h3>
+<p>In popular music and jazz chords are written as <b>lead-sheet symbols</b> instead of notes. The symbol gives the root and the quality, and leaves it to the player to choose the voicing: <b>C</b> (major), <b>Cm</b> (minor), <b>C°</b> (diminished), <b>C+</b> (augmented). If the lowest note (the <b>bass</b>) is not the root, a <b>slash chord</b> names it after the slash: <b>C/E</b> is a C major triad with E in the bass. The first letter is always the root; the letter after the slash is only the bass note. Note the difference between <i>root</i> (the bottom of the stack of thirds) and <i>bass</i> (the lowest sounding note).</p>
+<p>To read a chord from a staff, put the notes in thirds (all on lines or all on spaces) to find the root, measure the two thirds to find the quality, and check the lowest note for inversion.</p>
+<h3>Suspended chords</h3>
+<p>A <b>sus</b> chord (short for suspended) replaces the third of the triad, so it is neither major nor minor. In <b>sus4</b> a perfect 4th takes the place of the third; in <b>sus2</b> a major 2nd does. Both keep the perfect 5th. They sound open and unresolved, and often move to the major or minor chord on the same root.</p>
+{{fig:sus|C, Csus4 and Csus2: the 4th or the 2nd replaces the third.}}
+<table class="htab"><tr><th>Augmented</th><td>4 + 4 half steps</td></tr><tr><th>Major</th><td>4 + 3</td></tr><tr><th>Minor</th><td>3 + 4</td></tr><tr><th>Diminished</th><td>3 + 3</td></tr><tr><th>Sus2</th><td>2 + 5</td></tr><tr><th>Sus4</th><td>5 + 2</td></tr></table>`,
+  figs: {sus: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: ['major', 'sus4', 'sus2'].map(q => ({notes: chordFromRoot(R('C'), q), d: 'w', sym: 'C' + SUFFIX[q]}))}, triads: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: ['major', 'minor', 'dim', 'aug'].map(q => ({notes: chordFromRoot(R('C'), q), d: 'w', sym: 'C' + SUFFIX[q]}))}},
   quiz: [
+    () => { const r = pick(['C', 'D', 'E', 'F', 'G', 'A', 'Bb', 'Eb']), q = pick(['major', 'minor', 'dim', 'aug']), inv = pick([0, 0, 1, 2]), c = chordFromRoot(R(r), q), rot = sortN(c.map((n, i) => i < inv ? A.shiftOct(n, 1) : n)), sym = pn(r) + SUFFIX[q] + (inv ? '/' + nm(c[inv]) : '');
+      const wrongs = [...['major', 'minor', 'dim', 'aug'].filter(x => x !== q).map(x => pn(r) + SUFFIX[x] + (inv ? '/' + nm(c[inv]) : '')), pn(r) + SUFFIX[q] + (inv ? '' : '/' + nm(c[1]))]; return ask('Which lead-sheet symbol names this chord?', sym, wrongs, 'Root and quality first; after a slash, the lowest note if it is not the root.', {fig: {key: 'C', mode: 'major', clef: 'treble', events: [{notes: rot, d: 'w'}]}}); },
+    () => { const r = pick(['C', 'D', 'F', 'G', 'A']), q = pick(['sus2', 'sus4']), c = chordFromRoot(R(r), q); return ask(`Which notes make ${pn(r)}${SUFFIX[q]}?`, c.map(n => nm(n)).join(' – '), [chordFromRoot(R(r), q === 'sus2' ? 'sus4' : 'sus2'), chordFromRoot(R(r), 'major'), chordFromRoot(R(r), 'minor')].map(x => x.map(n => nm(n)).join(' – ')), q === 'sus2' ? 'The 2nd replaces the third; the fifth stays.' : 'The 4th replaces the third; the fifth stays.'); },
     () => { const r = pick(ROOTS), q = pick(['major', 'minor', 'dim', 'aug']); return ask(`Which notes make the ${pn(r)} ${QNAME[q]}?`, trio(r, q), ['major', 'minor', 'dim', 'aug'].map(x => trio(r, x)), `Root, third and fifth: ${trio(r, q)}.`); },
     () => { const r = pick(['C', 'D', 'E', 'F', 'G', 'A', 'Bb', 'Eb']), q = pick(['major', 'minor', 'dim', 'aug']); return ask('What kind of triad is this?', {major: 'Major', minor: 'Minor', dim: 'Diminished', aug: 'Augmented'}[q], ['Major', 'Minor', 'Diminished', 'Augmented'], `${{major: 'A major 3rd and a perfect 5th', minor: 'A minor 3rd and a perfect 5th', dim: 'A minor 3rd and a diminished 5th', aug: 'A major 3rd and an augmented 5th'}[q]}.`, {fig: {key: 'C', mode: 'major', clef: 'treble', events: [{notes: chordFromRoot(R(r), q), d: 'w'}]}}); },
     bank([['A diminished triad is built from…', 'Two minor 3rds', ['Two major 3rds', 'A major then a minor 3rd', 'A minor then a major 3rd'], 'Minor 3rd + minor 3rd gives a diminished 5th.'],
@@ -103,7 +118,7 @@ CH.push({id: 'triads', title: 'Triads', blurb: 'Three-note chords: major, minor,
       ['Which triads are consonant (stable)?', 'Major and minor', ['Diminished and augmented', 'Only major', 'All four'], 'Diminished and augmented triads are dissonant.'],
       ['What is the fifth of the A minor triad?', 'E', ['C', 'A', 'G'], 'A minor is A–C–E.']]),
   ],
-  play: [triadEx, triadEx, triadsEx]});
+  play: [triadEx, triadEx, triadsEx, () => { const r = pick(['C', 'G', 'F', 'D']), a = chordFromRoot(R(r), 'sus4'), b = chordFromRoot(R(r), 'major'), c2 = chordFromRoot(R(r), 'sus2'); return {title: `Suspend and resolve on ${pn(r)}`, help: 'Play the sus4 chord, then the major chord it resolves to, then the sus2 chord.', steps: [[a, 'sus4'], [b, ''], [c2, 'sus2']].map(([c, t]) => ({label: pn(r) + t, pcs: pcsOf(c), names: c.map(n => nm(n))}))}; }]});
 
 /* 4 ---------------------------------------------------------------- */
 CH.push({id: 'triadsinkey', title: 'Triads in a key', blurb: 'Roman numerals, and what each chord does',
@@ -134,7 +149,7 @@ CH.push({id: 'inversions', title: 'Inversions and figured bass', blurb: 'Differe
 {{fig:inv|C major in root position (I), first inversion (I⁶) and second inversion (I⁶₄).}}
 <p>Baroque musicians wrote only the bass line and added numbers under it: <b>figured bass</b>. The numbers give the intervals above the bass note.</p>
 <table class="htab"><tr><th>no figure, or 5/3</th><td>root position</td><td>I</td></tr><tr><th>6 (or 6/3)</th><td>first inversion</td><td>I⁶ (“one six”)</td></tr><tr><th>6/4</th><td>second inversion</td><td>I⁶₄ (“one six-four”)</td></tr></table>
-<p>First inversion is smooth and common: the bass moves by step, so it gives a gentler, less final sound. Second inversion is unstable (the bass note, a fifth above the root, sounds like a leaning dissonance). It is used in particular ways: as a <b>cadential 6/4</b> before V (Chapter 7), as a <b>passing</b> chord between two others, and as a <b>pedal</b> chord over a held bass.</p>
+<p>First inversion is smooth and common: the bass moves by step, so it gives a gentler, less final sound. Second inversion is unstable (the bass note, a fifth above the root, sounds like a leaning dissonance). It is used in particular ways: as a <b>cadential 6/4</b> before V ({{ch:cadences}}), as a <b>passing</b> chord between two others, and as a <b>pedal</b> chord over a held bass.</p>
 <p>The <b>lowest note</b> is what counts, however the other notes are arranged above it.</p>`,
   figs: {inv: block('C', 'major', [['C3 E4 G4 C5', 'I', 'C', 'h'], ['E3 G4 C5 E5', 'I⁶', 'C/E', 'h'], ['G2 C4 E4 G4', 'I⁶₄', 'C/G', 'h']], {d: 'h', bpm: 60})},
   quiz: [
@@ -224,7 +239,7 @@ CH.push({id: 'progressions', title: 'Progressions and the circle of fifths', blu
 {{fig:ivi|I – vi – ii – V – I: a classic.}}
 <h3>A few rules of thumb</h3>
 <ul><li>Chords of the same function can replace each other: vi for I, ii for IV.</li><li>V often follows IV or ii, never the other way round: <b>V → IV</b> sounds backwards in classical style.</li><li>I can go anywhere; V goes to I (or vi); vii° goes to I.</li><li>Popular patterns: <b>I – IV – V – I</b>, <b>I – vi – IV – V</b> (the “fifties” progression), <b>I – V – vi – IV</b>.</li></ul>
-<p>The <b>circle of fifths</b> arranges all twelve keys by fifths: C G D A E B F♯… going up a fifth adds a sharp; going down adds a flat. Neighbouring keys share most of their notes, which is why we can modulate between them smoothly (Chapter 12).</p>`,
+<p>The <b>circle of fifths</b> arranges all twelve keys by fifths: C G D A E B F♯… going up a fifth adds a sharp; going down adds a flat. Neighbouring keys share most of their notes, which is why we can modulate between them smoothly ({{ch:chromatic}}).</p>`,
   figs: {
     circle: prog('C', 'major', ['I', 'IV', 'vii°', 'iii', 'vi', 'ii', 'V', 'I'], {d: 'h', bpm: 60}),
     iivi: satb('C', 'major', [['D3 A3 F4 D5', 'ii'], ['G2 G3 D4 B4', 'V'], ['C3 G3 E4 C5', 'I', 'w']], {bpm: 56, d: 'h'}),
@@ -386,7 +401,7 @@ CH.push({id: 'chromatic', title: 'Chromatic harmony and modulation', blurb: 'Sec
 /* 13 --------------------------------------------------------------- */
 CH.push({id: 'harmonizing', title: 'Harmonizing a melody', blurb: 'Putting it all together: choose the chords for a tune',
   body: `<p>To <b>harmonize</b> a melody, find the chords that fit under it. A method that works:</p>
-<ol><li><b>Find the key</b> (the key signature and the last note) and the <b>cadences</b>: where the phrases end.</li><li>Choose the <b>harmonic rhythm</b>: usually one chord per bar, or per half bar. Chords change on strong beats.</li><li>For each bar, list the melody’s <b>strong-beat notes</b>. Pick a chord that contains them. Notes on weak beats may be non-chord tones (Chapter 10).</li><li>At the cadences use the standard endings (Chapter 7): V – I, or ending on V.</li><li>Link the chords with <b>falling fifths</b> and a good bass line (Chapter 8).</li><li>Check <b>voice leading</b> (Chapter 9).</li></ol>
+<ol><li><b>Find the key</b> (the key signature and the last note) and the <b>cadences</b>: where the phrases end.</li><li>Choose the <b>harmonic rhythm</b>: usually one chord per bar, or per half bar. Chords change on strong beats.</li><li>For each bar, list the melody’s <b>strong-beat notes</b>. Pick a chord that contains them. Notes on weak beats may be non-chord tones ({{ch:nonchord}}).</li><li>At the cadences use the standard endings ({{ch:cadences}}): V – I, or ending on V.</li><li>Link the chords with <b>falling fifths</b> and a good bass line ({{ch:progressions}}).</li><li>Check <b>voice leading</b> ({{ch:voiceleading}}).</li></ol>
 <h3>An example</h3>
 <p>The melody uses these notes: bar 1: C E G (chord tones of C); bar 2: F C A (chord tones of F); bar 3: D then B (a ii chord, then V); bar 4: C. The chords are <b>I – IV – ii V – I</b>, one chord per bar except in bar 3.</p>
 {{fig:tune|Melody with the bass line and chords: I | IV | ii V | I.}}
@@ -423,13 +438,13 @@ const WHITE_UP = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'], WHITE_LO = ['
 const classify = (l1, u1, l2, u2) => { const dl = parse(l2).midi - parse(l1).midi, du = parse(u2).midi - parse(u1).midi; if (!dl || !du) return 'Oblique'; if ((dl > 0) !== (du > 0)) return 'Contrary'; return (parse(u1).midi - parse(l1).midi) === (parse(u2).midi - parse(l2).midi) ? 'Parallel' : 'Similar'; };
 const pairStep = i => { const a = parse(CF[i]), b = parse(S1[i][0]); return {label: `${nm(a)} + ${nm(b)}`, pcs: pcsOf([a, b]), names: [nm(a), nm(b)], bass: ((a.midi % 12) + 12) % 12}; };
 CH.push({id: 'counterpoint', title: 'Counterpoint', blurb: 'Independent melodies sounding together: the five species',
-  body: `<p><b>Counterpoint</b> (from the Latin <i>punctus contra punctum</i>, “note against note”) is the art of combining two or more <b>independent melodies</b> so that they sound well together. Harmony looks at the music <b>vertically</b>: the chords. Counterpoint looks at it <b>horizontally</b>: each line must be a good melody in its own right, and the lines must also fit each other. Chapter 9 (voice leading) was counterpoint in miniature; here the lines have more freedom and the rules are stated more strictly.</p>
+  body: `<p><b>Counterpoint</b> (from the Latin <i>punctus contra punctum</i>, “note against note”) is the art of combining two or more <b>independent melodies</b> so that they sound well together. Harmony looks at the music <b>vertically</b>: the chords. Counterpoint looks at it <b>horizontally</b>: each line must be a good melody in its own right, and the lines must also fit each other. {{ch:voiceleading}} (voice leading) was counterpoint in miniature; here the lines have more freedom and the rules are stated more strictly.</p>
 <p>The classic way to learn it, set down by <b>Johann Joseph Fux</b> in 1725 (<i>Gradus ad Parnassum</i>) and studied by Haydn, Mozart and Beethoven, is in five stages called <b>species</b>. In each you write a <b>counterpoint</b> (here above) against a given melody in long notes, the <b>cantus firmus</b> (“fixed song”, CF).</p>
 {{fig:cf|The cantus firmus used in every example: C D F E G F D C. It starts and ends on the tonic, rises to one high point (G) and ends by step (D to C).}}
 <h3>Intervals between the lines</h3>
 <table class="htab"><tr><th>Perfect consonances</th><td>unison, 5th, octave</td><td>open and stable; use at the start and end</td></tr><tr><th>Imperfect consonances</th><td>3rds and 6ths</td><td>sweet; the backbone of the writing</td></tr><tr><th>Dissonances</th><td>2nds, 7ths, tritone, and the 4th (between two voices)</td><td>tense; only when the rules allow</td></tr></table>
 <h3>Four kinds of motion</h3>
-<p>Two lines can move in four ways. <b>Contrary</b> and <b>oblique</b> motion keep the lines independent; <b>parallel</b> motion by 3rds or 6ths is fine for a short time; parallel 5ths and octaves are forbidden (Chapter 9).</p>
+<p>Two lines can move in four ways. <b>Contrary</b> and <b>oblique</b> motion keep the lines independent; <b>parallel</b> motion by 3rds or 6ths is fine for a short time; parallel 5ths and octaves are forbidden ({{ch:voiceleading}}).</p>
 {{fig:m_par|Parallel: both lines move the same way by the same interval.}}
 {{fig:m_sim|Similar: both move the same way, but the interval changes.}}
 {{fig:m_con|Contrary: the lines move in opposite directions.}}
@@ -446,7 +461,7 @@ CH.push({id: 'counterpoint', title: 'Counterpoint', blurb: 'Independent melodies
 {{fig:s3|Third species: four notes to each note of the cantus firmus.}}
 <h3>Fourth species: syncopation</h3>
 <p>The counterpoint is <b>tied over the bar line</b>, so it is delayed against the cantus firmus. When the new bass note arrives, the tied note often becomes a dissonance, a <b>suspension</b>, and must then <b>resolve down by step</b> to a consonance. In two parts above a bass the usual suspensions are <b>4–3</b> and <b>7–6</b>. The numbers above the staff show them: bars 2 and 4 have 4–3 and bar 6 has 7–6.</p>
-{{fig:s4|Fourth species: the tied notes make the suspensions 4–3, 4–3 and 7–6. Compare with Chapter 10.}}
+{{fig:s4|Fourth species: the tied notes make the suspensions 4–3, 4–3 and 7–6. Compare with {{ch:nonchord}}.}}
 <h3>Fifth species: florid counterpoint</h3>
 <p>All the earlier species combined: notes of different lengths, with suspensions, passing tones and <b>cambiata</b> figures, so the line sounds like real, flowing melody. This is the style of Palestrina and the starting point of Bach’s two-part inventions.</p>
 <h3>Counterpoint in real music</h3>
@@ -481,8 +496,8 @@ CH.push({id: 'counterpoint', title: 'Counterpoint', blurb: 'Independent melodies
   ]});
 
 /* 15 --------------------------------------------------------------- */
-const mel = (list) => list.map(([n, d, sym]) => ({notes: [n], d, sym}));
-const bassLine = (list) => list.map(([n, d, r]) => ({notes: [n], d, rn: r}));
+const mel = (list) => list.map(([n, d, sym]) => n === 'r' ? {rest: true, notes: [], d} : {notes: Array.isArray(n) ? n : [n], d, sym});
+const bassLine = (list) => list.map(([n, d, r]) => n === 'r' ? {rest: true, notes: [], d} : {notes: Array.isArray(n) ? n : [n], d, rn: r});
 const twoLines = (mode, key, m, b, bpm) => ({key, mode, clef: 'grand', bpm: bpm || 100, fs: 10, voices: [{staff: 1, voice: 1, stem: 'up', events: mel(m)}, {staff: 2, voice: 2, stem: 'down', events: bassLine(b)}]});
 const ODE = [['E4', 'q', 'antecedent'], ['E4', 'q'], ['F4', 'q'], ['G4', 'q'], ['G4', 'q'], ['F4', 'q'], ['E4', 'q'], ['D4', 'q'], ['C4', 'q'], ['C4', 'q'], ['D4', 'q'], ['E4', 'q'], ['E4', 'q.'], ['D4', 'e'], ['D4', 'h', 'half cadence'],
   ['E4', 'q', 'consequent'], ['E4', 'q'], ['F4', 'q'], ['G4', 'q'], ['G4', 'q'], ['F4', 'q'], ['E4', 'q'], ['D4', 'q'], ['C4', 'q'], ['C4', 'q'], ['D4', 'q'], ['E4', 'q'], ['D4', 'q.'], ['C4', 'e'], ['C4', 'h', 'perfect authentic cadence']];
@@ -514,7 +529,7 @@ CH.push({id: 'form', title: 'Form and analysis', blurb: 'Motives, phrases, perio
 <tr><th>Sonata form</th><td>The most important form of the Classical period, used for the first movements of sonatas, symphonies and quartets: <b>exposition</b> (first theme in the tonic, a transition, second theme in the dominant, or the relative major in a minor key), <b>development</b> (themes are broken up and modulate through many keys) and <b>recapitulation</b> (both themes return in the tonic), often with a closing <b>coda</b>.</td></tr>
 <tr><th>Minuet and trio</th><td>A dance in ternary form: minuet, contrasting trio, minuet again. The usual third movement of a Classical symphony or quartet.</td></tr></table>
 <h3>How to analyze a piece</h3>
-<ol><li><b>Find the key</b> from the key signature and the last chord. Watch for accidentals that hint at modulation.</li><li><b>Mark the cadences</b>. They divide the music into phrases and show which ones are open (half cadence) and which closed (authentic).</li><li><b>Group the phrases</b> into periods, sentences or larger sections, and label the sections with letters (A, B, A′…).</li><li><b>Label the chords</b> with Roman numerals and inversions, and circle the non-chord tones (Chapter 10).</li><li><b>Look for the plan</b>: what returns, what is new, where the music changes key.</li></ol>
+<ol><li><b>Find the key</b> from the key signature and the last chord. Watch for accidentals that hint at modulation.</li><li><b>Mark the cadences</b>. They divide the music into phrases and show which ones are open (half cadence) and which closed (authentic).</li><li><b>Group the phrases</b> into periods, sentences or larger sections, and label the sections with letters (A, B, A′…).</li><li><b>Label the chords</b> with Roman numerals and inversions, and circle the non-chord tones ({{ch:nonchord}}).</li><li><b>Look for the plan</b>: what returns, what is new, where the music changes key.</li></ol>
 <p>Practise on the pieces you play in the app. Open any lesson or Library piece, play it through, and see where its phrases end.</p>`,
   figs: {
     ode: twoLines('major', 'C', ODE, ODE_BASS, 100),
@@ -540,6 +555,329 @@ CH.push({id: 'form', title: 'Form and analysis', blurb: 'Motives, phrases, perio
     progEx('Play the second phrase: I – V – I – V – I in {key}', ['I', 'V', 'I', 'V', 'I'], () => pick(['C', 'G', 'F']), 'major', 'The same chords, but the last bars end on I: a perfect authentic cadence.'),
     progEx('Play the sentence’s chords: I – ii – V – I in {key}', ['I', 'ii', 'V', 'I'], () => pick(['C', 'G', 'F', 'D']), 'major', 'Idea (I), repetition in sequence (ii), continuation to the cadence (V – I).'),
   ]});
+
+const rline = (ts, durs, labels) => ({key: 'C', mode: 'major', clef: 'treble', ts, bpm: 100, events: durs.map((d, i) => ({notes: ['C5'], d, sym: (labels && labels[i]) || undefined}))});
+const noteLabel = m => ['C', 'C♯', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B'][m % 12] + (Math.floor(m / 12) - 1);
+
+/* ================= Foundations: notation and rhythm ================= */
+const oneNote = (clef, n) => ({key: 'C', mode: 'major', clef, bpm: 70, events: [{notes: [n], d: 'w'}]});
+const lineLabels = (clef, notes, labels, d) => ({key: 'C', mode: 'major', clef, bpm: 90, events: notes.map((n, i) => ({notes: [n], d: d || 'q', sym: labels[i]}))});
+CH.push({id: 'notation', title: 'Notation: staff, clefs, registers, accidentals', blurb: 'Reading the page: lines and spaces, middle C, octave numbers, sharps, flats, enharmonics',
+  body: `<p>Music is written on a <b>staff</b> of five lines and four spaces, read from the bottom up: higher on the staff means higher in pitch. A <b>clef</b> at the start fixes which note each line stands for. The <b>treble clef</b> (the G clef) curls round the second line, which is G above middle C; the <b>bass clef</b> (the F clef) has its two dots around the fourth line, which is F below middle C. Notes beyond the staff sit on short <b>ledger lines</b>.</p>
+{{fig:tlines|Treble clef. Lines from the bottom: E G B D F (“Every Good Boy Does Fine”); spaces: F A C E (“FACE”).}}
+{{fig:blines|Bass clef. Lines: G B D F A (“Good Boys Do Fine Always”); spaces: A C E G (“All Cows Eat Grass”).}}
+<p>Piano music uses both clefs joined by a bracket: the <b>grand staff</b>. The note exactly between them is <b>middle C</b> (C4). It sits on the first ledger line below the treble staff and on the first ledger line above the bass staff, the same key on the keyboard either way.</p>
+{{fig:middlec|Middle C written in both clefs: the same note.}}
+<p>Other clefs exist (the alto and tenor clefs are C clefs that mark where middle C is, used for viola and trombone), but piano players need only the first two.</p>
+<h3>Octave registers</h3>
+<p>The seven note names A B C D E F G repeat up and down the keyboard. Notes eight steps apart share a name and are an <b>octave</b> apart. To name a note exactly we add a <b>register number</b> that changes at each C: B3 is followed by C4. Middle C is C4; the lowest note of an 88-key piano is A0 and the highest is C8.</p>
+{{fig:regs|The Cs of the piano: C2, C3, C4 (middle C), C5 and C6.}}
+<h3>Accidentals</h3>
+<p>Between most white keys there is a black key. An <b>accidental</b> raises or lowers a note: the <b>sharp</b> (♯) raises it a half step, the <b>flat</b> (♭) lowers it a half step, the <b>double sharp</b> raises it a whole step, the <b>double flat</b> lowers it a whole step, and the <b>natural</b> (♮) cancels any earlier accidental in the bar or in the key signature. An accidental lasts until the end of the bar.</p>
+{{fig:acc|F, F♯, F♭, F double sharp and F double flat.}}
+<h3>Enharmonic notes</h3>
+<p>The same key can have two names: C♯ and D♭ are <b>enharmonic</b>. The same is true of every black key, and of some white keys too (E and F♭, B and C♭, C and B♯). Which spelling is right depends on the key and the chord, so spelling matters even when the sound is identical.</p>
+{{fig:enh|Enharmonic pairs: C♯ = D♭, D♯ = E♭, E = F♭, B = C♭.}}`,
+  figs: {
+    tlines: lineLabels('treble', ['E4', 'G4', 'B4', 'D5', 'F5', 'F4', 'A4', 'C5'], ['E', 'G', 'B', 'D', 'F', 'F', 'A', 'C'], 'q'),
+    blines: lineLabels('bass', ['G2', 'B2', 'D3', 'F3', 'A3', 'A2', 'C3', 'E3'], ['G', 'B', 'D', 'F', 'A', 'A', 'C', 'E'], 'q'),
+    middlec: {key: 'C', mode: 'major', clef: 'grand', bpm: 70, voices: [{staff: 1, voice: 1, events: [{notes: ['C4'], d: 'w', sym: 'C4 (treble)'}]}, {staff: 2, voice: 2, events: [{notes: ['C4'], d: 'w', rn: 'C4 (bass)'}]}]},
+    regs: {key: 'C', mode: 'major', clef: 'grand', bpm: 70, events: ['C2', 'C3', 'C4', 'C5', 'C6'].map(n => ({notes: [n], d: 'h', sym: n}))},
+    acc: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: [['F4', 'natural'], ['F#4', 'sharp'], ['Fb4', 'flat'], ['F##4', 'double sharp'], ['Fbb4', 'double flat']].map(([n, l]) => ({notes: [n], d: 'q', sym: l})).concat([{rest: true, notes: [], d: 'q'}, {rest: true, notes: [], d: 'q'}, {rest: true, notes: [], d: 'q'}])},
+    enh: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: ['C#4', 'Db4', 'D#4', 'Eb4', 'E4', 'Fb4', 'B3', 'Cb4'].map(n => ({notes: [n], d: 'q'}))},
+  },
+  quiz: [
+    () => { const clef = pick(['treble', 'bass']), pool = clef === 'treble' ? ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'D5', 'E5', 'F5', 'G5'] : ['E2', 'F2', 'G2', 'A2', 'B2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4'], n = pick(pool); return ask('Name this note and its register.', n, pool, `This is ${n}.`, {fig: oneNote(clef, n)}); },
+    () => { const [a, b] = pick([['F♯', 'G♭'], ['C♯', 'D♭'], ['D♯', 'E♭'], ['G♯', 'A♭'], ['A♯', 'B♭'], ['E', 'F♭'], ['B', 'C♭'], ['C', 'B♯'], ['F', 'E♯']]); return ask(`Which note is enharmonic with ${a}?`, b, ['G♭', 'A♭', 'E♭', 'F♭', 'B♭', 'D♭', 'C♭', 'B♯', 'E♯'].filter(x => x !== a), 'The same key on the piano, spelled differently.'); },
+    bank([['What does a double sharp do?', 'Raises the note by two half steps', ['Raises it by one half step', 'Lowers it by a whole step', 'Cancels a sharp'], 'It raises the pitch by a whole step.'],
+      ['What does a natural sign do?', 'Cancels an earlier sharp or flat', ['Raises the note', 'Lowers the note', 'Makes the note longer'], 'It restores the plain note name.'],
+      ['Which note is middle C?', 'C4', ['C3', 'C5', 'C1'], 'The register number changes at each C.'],
+      ['Where is middle C written in treble clef?', 'On a ledger line below the staff', ['On the bottom line', 'On the top line', 'Above the staff'], 'In bass clef it is on a ledger line above the staff.'],
+      ['Which clef has its dots around the fourth line (F)?', 'The bass clef', ['The treble clef', 'The alto clef', 'The tenor clef'], 'It is the F clef.'],
+      ['A B C D E F G repeat. What do we call two notes eight steps apart?', 'An octave', ['A fifth', 'A unison', 'A second'], 'They share the same note name.'],
+      ['How long does an accidental last?', 'Until the end of the bar', ['For the whole piece', 'For one note only', 'Until the next rest'], 'A new bar cancels it.']]),
+  ],
+  play: [
+    () => ({title: 'Middle C and its neighbours', help: 'Play exactly these keys, one at a time: C4 is middle C.', steps: [60, 62, 64, 65, 67].map(m => ({label: noteLabel(m), pcs: [m % 12], names: [noteLabel(m)], midi: m}))}),
+    () => ({title: 'The Cs of the keyboard', help: 'Play C3, C4, then C5: the same note in three registers.', steps: [48, 60, 72].map(m => ({label: noteLabel(m), pcs: [m % 12], names: [noteLabel(m)], midi: m}))}),
+    () => { const [a, b, ma] = pick([['F♯4', 'G♭4', 66], ['C♯4', 'D♭4', 61], ['A♯4', 'B♭4', 70]]); return {title: `Enharmonic notes: ${a} and ${b}`, help: 'They are the same key. Play it twice, once for each name.', steps: [a, b].map(l => ({label: l, pcs: [ma % 12], names: [l], midi: ma}))}; },
+  ]});
+
+CH.push({id: 'rhythm', title: 'Rhythm and meter', blurb: 'Time signatures, note values, dots and ties, simple and compound meter, tuplets, syncopation',
+  body: `<p><b>Rhythm</b> organises music in time. Underneath it is the <b>beat</b> (or pulse), the steady unit you tap your foot to; its speed is the <b>tempo</b>, measured in beats per minute (60 bpm is one beat a second) or named with Italian words such as Adagio (slow), Andante (walking pace) and Allegro (fast). The beats are grouped into bars (measures) by the <b>meter</b>.</p>
+<h3>Note values</h3>
+<p>Each note value lasts half as long as the one before it: whole note, half note, quarter note, eighth note, sixteenth note… Every value has a matching <b>rest</b> for silence. In 4/4 time a whole note fills a bar, a half note half a bar and a quarter note one beat.</p>
+<p>A <b>dot</b> after a note adds half its value: a dotted half note lasts three beats, a dotted quarter one and a half. A <b>tie</b> joins two notes of the <b>same pitch</b> into one longer sound. A <b>slur</b> looks similar but joins notes of <b>different</b> pitches and only means “play smoothly”.</p>
+<h3>Time signatures and meter</h3>
+<p>The <b>time signature</b> has two numbers. The top says how many; the bottom says of what: 3/4 means three quarter notes in each bar. Meter is described by two words:</p>
+<table class="htab"><tr><th>How the beat divides</th><td><b>Simple</b>: in two parts (top number 2, 3 or 4: 2/4, 3/4, 4/4, 3/8…)<br><b>Compound</b>: in three parts (top number 6, 9 or 12: 6/8, 9/8, 12/8…); the beat is a <b>dotted note</b></td></tr>
+<tr><th>How many beats</th><td><b>Duple</b> (two), <b>triple</b> (three), <b>quadruple</b> (four). In compound meters divide the top number by three: 6/8 has two beats, 9/8 three, 12/8 four.</td></tr></table>
+<p>Say the division first: 3/4 is “simple triple”, 4/4 “simple quadruple”, 6/8 “compound duple”, 12/8 “compound quadruple”.</p>
+{{fig:m34|3/4: three beats in a bar, each divided in two (simple triple).}}
+{{fig:m44|4/4: four beats; beats 1 and 3 are strong (simple quadruple).}}
+{{fig:m68|6/8: two beats, each a dotted quarter divided in three (compound duple).}}
+{{fig:m128|12/8: four dotted-quarter beats (compound quadruple).}}
+<h3>Tuplets</h3>
+<p>A <b>tuplet</b> squeezes a group the beat does not naturally hold. The <b>triplet</b> puts three notes in the time of two: three eighth notes in a quarter-note beat. In simple meter a triplet sounds like compound meter, so music that is triplet all the way is usually written in 6/8, 9/8 or 12/8 instead. The same idea gives quintuplets (5 in the time of 4), sextuplets and, in compound meter, <b>duplets</b> (two in the time of three).</p>
+<h3>Syncopation and beaming</h3>
+<p><b>Syncopation</b> stresses weak beats or weak parts of a beat, and often ties a note over a strong beat. Because it needs to show the beat, notes are <b>beamed</b> in groups that make each beat visible: write the rhythm so that the downbeats can be seen. (The exception is a few common syncopated patterns that are easier to read with a tie than written out.)</p>
+{{fig:sync|Syncopation: the long notes begin on weak parts of the beat.}}
+{{fig:ties|A tie (same pitch) makes one long note: here a half note tied to a quarter lasts three beats, like a dotted half.}}`,
+  figs: {
+    m34: rline([3, 4], ['q', 'q', 'q', 'h', 'q'], ['1', '2', '3', '1', '3']),
+    m44: rline([4, 4], ['q', 'q', 'q', 'q', 'h', 'q', 'q'], ['1', '2', '3', '4', '1', '3', '4']),
+    m68: rline([6, 8], ['q.', 'q.', 'e', 'e', 'e', 'e', 'e', 'e'], ['1', '2', '1', '', '', '2', '', '']),
+    m128: rline([12, 8], ['q.', 'q.', 'q.', 'q.'], ['1', '2', '3', '4']),
+    sync: rline([4, 4], ['e', 'q', 'e', 'q', 'q', 'e', 'q', 'e', 'h'], ['', 'syncopated', '', 'syncopated', '', '', '', '', '']),
+    ties: {key: 'C', mode: 'major', clef: 'treble', bpm: 90, events: [{notes: ['C5~'], d: 'h'}, {notes: ['C5'], d: 'q'}, {notes: ['C5'], d: 'q'}, {notes: ['C5'], d: 'h.', sym: 'dotted half'}, {notes: ['C5'], d: 'q'}]},
+  },
+  quiz: [
+    () => { const [ts, name, why] = pick([['2/4', 'simple duple', 'Two beats, each divided in two.'], ['3/4', 'simple triple', 'Three beats, each divided in two.'], ['4/4', 'simple quadruple', 'Four beats, each divided in two.'], ['2/2', 'simple duple', 'Two half-note beats, each divided in two.'], ['3/8', 'simple triple', 'Three eighth-note beats.'], ['6/8', 'compound duple', 'Two beats, each divided in three.'], ['9/8', 'compound triple', 'Three beats, each divided in three.'], ['12/8', 'compound quadruple', 'Four beats, each divided in three.'], ['6/4', 'compound duple', 'Two dotted-half beats.']]); return ask(`What is the meter of ${ts}?`, name, ['simple duple', 'simple triple', 'simple quadruple', 'compound duple', 'compound triple', 'compound quadruple'], why); },
+    () => { const [ts, n] = pick([['6/8', 'a dotted quarter note'], ['9/8', 'a dotted quarter note'], ['12/8', 'a dotted quarter note'], ['3/4', 'a quarter note'], ['4/4', 'a quarter note'], ['2/2', 'a half note'], ['6/4', 'a dotted half note'], ['3/8', 'an eighth note']]); return ask(`In ${ts}, what note value is the beat?`, n, ['a dotted quarter note', 'a quarter note', 'a half note', 'a dotted half note', 'an eighth note'], 'In compound meters the beat is a dotted note.'); },
+    () => { const [q, a, why] = pick([['How many beats does a dotted half note last in 4/4?', '3', 'A half note (2) plus half of it (1).'], ['How many beats does a dotted quarter note last in 4/4?', '1½', 'A quarter note plus an eighth.'], ['A half note is tied to a quarter note in 4/4. How many beats is the sound?', '3', '2 + 1.'], ['How many eighth notes fit in one 4/4 bar?', '8', 'Two per beat, four beats.'], ['How many sixteenth notes make one quarter note?', '4', 'Each division halves the value.'], ['How many quarter-note beats are in a bar of 3/4?', '3', 'The top number says how many.']]); return ask(q, a, ['1', '1½', '2', '3', '4', '6', '8'], why); },
+    bank([['What does a triplet do?', 'Fits three notes in the time of two', ['Fits two notes in the time of three', 'Makes a note three times longer', 'Adds three beats to a bar'], 'For example three eighths in one quarter-note beat.'],
+      ['What is the difference between a tie and a slur?', 'A tie joins notes of the same pitch; a slur joins different pitches', ['A tie is louder', 'A slur joins notes of the same pitch', 'There is no difference'], 'A tie makes one longer note.'],
+      ['In 6/8, how many beats are in a bar?', 'Two', ['Six', 'Three', 'Four'], 'The beat is a dotted quarter note.'],
+      ['What is syncopation?', 'Emphasis on weak beats or weak parts of the beat', ['A very fast tempo', 'A gradual getting louder', 'A change of key'], 'It often ties a note across a strong beat.'],
+      ['What does “Allegro” mean?', 'Fast', ['Slow', 'Walking pace', 'Very loud'], 'Adagio is slow; Andante is a walking pace.'],
+      ['What does tempo describe?', 'The speed of the beat', ['How loud the music is', 'The number of bars', 'The key'], 'It can be given in beats per minute.'],
+      ['When music is all in triplets, which time signature is usually used?', 'A compound one, such as 6/8 or 12/8', ['2/4', '4/4', '3/4'], 'The beat then naturally divides in three.']]),
+  ]});
+
+/* ================= Popular music: harmony and form ================= */
+const flat = x => x.replace(/b/g, '♭');
+const chordSyms = (list, key, mode) => list.map(s => symOf(rn(s, key, mode))).join(' – ');
+const POP_MAJOR = [['I', 'V', 'vi', 'IV'], ['vi', 'IV', 'I', 'V'], ['IV', 'I', 'V', 'vi'], ['I', 'bVII', 'IV', 'I'], ['I', 'IV', 'V', 'IV']];
+const POP_MINOR = [['i', 'VII', 'VI', 'VII'], ['i', 'VII', 'VI', 'V'], ['VI', 'VII', 'i', 'VII'], ['i', 'VI', 'III', 'VII']];
+CH.push({id: 'popharmony', title: 'Harmony in popular music', blurb: 'Function flowchart, ♭VII, the I–V–vi–IV progression, i–VII–VI–VII and the Andalusian cadence',
+  body: `<p>Rock, pop and folk music use the same chords as classical music, but they favour a few patterns and add some of their own. This chapter shows how the function ideas of {{ch:triadsinkey}} and {{ch:progressions}} work in popular styles.</p>
+<h3>The function flowchart</h3>
+<p>Chords are grouped by <b>function</b>, and the usual order of the groups is <b>tonic → pre-dominant → dominant → tonic</b>:</p>
+<table class="htab"><tr><th>Tonic (T)</th><td>I (home). <b>vi</b>, <b>iii</b> and I⁶ can <i>prolong</i> the tonic: they keep the tonic feeling going.</td></tr>
+<tr><th>Pre-dominant (PD)</th><td><b>ii</b> and <b>IV</b>: they lead away from the tonic towards the dominant. They may be preceded by a tonic or each other (ii after IV is rare).</td></tr>
+<tr><th>Dominant (D)</th><td><b>V</b> and <b>vii°</b>: tension that wants to return to the tonic. They are never followed by a pre-dominant in classical style.</td></tr></table>
+<p>Popular music keeps this plan but treats it more loosely. IV may go straight back to I (the plagal move) and V may be followed by IV or vi.</p>
+<h3>The subtonic chord, ♭VII</h3>
+<p>The chord built on the <b>lowered 7th degree</b> (the <b>subtonic</b>), written <b>♭VII</b>, is everywhere in rock. In C major it is B♭ major. Borrowed from the parallel minor (or the Mixolydian mode), it can stand in for any function except tonic, and it often leads to IV and then I: <b>♭VII – IV – I</b>.</p>
+{{fig:b7|I – ♭VII – IV – I in C: C, B♭, F, C.}}
+<h3>The “best-seller” progression</h3>
+<p>Perhaps the most used progression in recent popular music is <b>I – V – vi – IV</b> (C – G – Am – F in C major). It can be <b>rotated</b>, starting from a different chord: <b>vi – IV – I – V</b> and <b>IV – I – V – vi</b> contain exactly the same four chords in the same cycle. If you take the first chord of vi – IV – I – V as the tonic, the same progression in minor is <b>i – VI – III – VII</b>.</p>
+{{fig:bestseller|I – V – vi – IV in C major.}}
+{{fig:rotated|The same cycle started on vi: vi – IV – I – V.}}
+<h3>i – VII – VI – VII and the Andalusian cadence</h3>
+<p>In minor keys, <b>i – VII – VI – VII</b> (Am – G – F – G) is another favourite. It is close to the descending bass of the <b>Andalusian cadence</b> of flamenco, <b>i – VII – VI – V</b> (Am – G – F – E), which ends on a major V. Like the progression above it can be rotated: VI – VII – i – VII.</p>
+{{fig:andal|The Andalusian cadence in A minor: Am – G – F – E. The bass descends 1 – ♭7 – ♭6 – 5.}}
+<p>When a progression looks strange in the classical rules, look for a <b>sequence</b>: the same step of the circle of fifths repeating, with a fifth up and a step down, or the reverse. It often explains chords that would otherwise break the flowchart.</p>`,
+  figs: {
+    b7: prog('C', 'major', ['I', 'bVII', 'IV', 'I'], {d: 'h', bpm: 70}),
+    bestseller: prog('C', 'major', ['I', 'V', 'vi', 'IV'], {d: 'h', bpm: 70}),
+    rotated: prog('C', 'major', ['vi', 'IV', 'I', 'V'], {d: 'h', bpm: 70}),
+    andal: prog('A', 'minor', ['i', 'VII', 'VI', 'V'], {d: 'h', bpm: 70}),
+  },
+  quiz: [
+    () => { const mj = Math.random() < 0.65, pats = mj ? POP_MAJOR : POP_MINOR, key = pick(mj ? ['C', 'G', 'D', 'F', 'A', 'Bb'] : ['A', 'E', 'D', 'G']), p = pick(pats); return ask(`In ${pn(key)} ${mj ? 'major' : 'minor'}, which Roman numerals match ${chordSyms(p, key, mj ? 'major' : 'minor')}?`, p.map(fmt).join(' – '), pats.map(x => x.map(fmt).join(' – ')), 'Find the scale degree of each root; ♭VII is a major chord a whole step below the tonic.'); },
+    () => { const key = pick(['C', 'G', 'F', 'D']); const c = rn('bVII', key, 'major'); return ask(`In ${pn(key)} major, what chord is ♭VII?`, symOf(c), [symOf(rn('VII', key, 'major')), symOf(rn('vii°', key, 'major')), symOf(rn('IV', key, 'major')), symOf(rn('V', key, 'major'))].filter(x => x !== symOf(c)), 'Lower the 7th degree by a half step and build a major triad on it.'); },
+    bank([['Which progression is called the “best-seller” progression?', 'I – V – vi – IV', ['I – IV – V – I', 'ii – V – I', 'i – iv – V – i'], 'It is used in a huge number of popular songs.'],
+      ['Which of these is a rotation of I – V – vi – IV?', 'vi – IV – I – V', ['I – IV – V – I', 'ii – V – I – vi', 'V – IV – I – ii'], 'The same four chords in the same cycle, starting from another point.'],
+      ['The Andalusian cadence in A minor is…', 'Am – G – F – E', ['Am – Dm – E – Am', 'C – G – Am – F', 'Am – F – C – G'], 'The bass falls 1 – ♭7 – ♭6 – 5.'],
+      ['In classical-style function, which chords are pre-dominant?', 'ii and IV', ['V and vii°', 'I and vi', 'iii and I⁶'], 'They lead towards the dominant.'],
+      ['Which chord can prolong the tonic function?', 'vi', ['V', 'ii', 'IV'], 'It shares two notes with I.'],
+      ['What does ♭VII lead to in rock songs?', 'Often IV and then I', ['Only V', 'Only ii', 'Never I'], '♭VII – IV – I is a common ending.'],
+      ['i – VI – III – VII in minor is the same cycle as which progression in the relative major?', 'vi – IV – I – V', ['I – V – vi – IV', 'ii – V – I', 'I – IV – V – I'], 'Hear the first chord as vi instead of i.']]),
+  ],
+  play: [
+    progEx('Play I – V – vi – IV in {key}', ['I', 'V', 'vi', 'IV'], () => pick(['C', 'G', 'D', 'F']), 'major'),
+    progEx('Play I – ♭VII – IV – I in {key}', ['I', 'bVII', 'IV', 'I'], () => pick(['C', 'G', 'D', 'F']), 'major'),
+    progEx('Play i – VII – VI – V (Andalusian) in {key}', ['i', 'VII', 'VI', 'V'], () => pick(['A', 'E', 'D']), 'minor'),
+  ]});
+
+const BLUES = ['I7', 'I7', 'I7', 'I7', 'IV7', 'IV7', 'I7', 'I7', 'V7', 'IV7', 'I7', 'I7'];
+CH.push({id: 'popforms', title: 'Form in popular music', blurb: 'Verse–chorus, AABA, ABAC, the 12-bar blues, harmonically open and closed sections',
+  body: `<p>Popular songs are usually built from sections of <b>4, 8, 12 or 16 bars</b>. Naming the sections and counting their bars is the first step of analyzing one. (Names can vary: one person’s “pre-chorus” is another’s “verse, part b”.)</p>
+<h3>Verse–chorus form</h3>
+<p>The most common form today. The <b>chorus</b> holds the hook, the memorable refrain; the <b>verse</b> carries the story and has less memorable music, and it returns with new words. Many songs add an <b>introduction</b>, a <b>pre-chorus</b> that builds up to the chorus, a <b>post-chorus</b>, a <b>bridge</b> of contrasting material, and an instrumental <b>solo</b> or <b>interlude</b>. In a <b>simple</b> verse–chorus form, verse and chorus use the same chords; in a <b>contrasting</b> one the chord progressions differ.</p>
+<div class="fbar"><span class="i" style="--w:1">Intro</span><span class="a" style="--w:2">Verse 1</span><span class="a" style="--w:2">Verse 2</span><span class="c" style="--w:2">Chorus</span><span class="a" style="--w:2">Verse 3</span><span class="c" style="--w:2">Chorus</span><span class="b" style="--w:2">Bridge</span><span class="c" style="--w:2">Chorus</span></div>
+<h3>AABA form</h3>
+<p>Typical of Broadway and Tin Pan Alley songs from the 1930s to the 1950s and still alive in the 1960s and later: <b>A – A – B – A</b>, each section usually 8 bars, 32 bars in all. The A sections carry the main tune; the <b>B section</b> (the “bridge” or “middle eight”) contrasts. The whole 32 bars is called the <b>refrain</b> or <b>chorus</b> (and a song may have a <b>verse</b> before it).</p>
+<div class="fbar"><span class="a" style="--w:1">A</span><span class="a" style="--w:1">A</span><span class="b" style="--w:1">B (bridge)</span><span class="a" style="--w:1">A</span></div>
+<h3>ABAC form</h3>
+<p>Another 32-bar plan of the same era: <b>A – B – A – C</b>. The first two sections often begin similarly, and the last (C) gives a new ending. A variant is <b>A – B – A – B′</b>, where B′ starts like B and ends differently.</p>
+<div class="fbar"><span class="a" style="--w:1">A</span><span class="b" style="--w:1">B</span><span class="a" style="--w:1">A</span><span class="c" style="--w:1">C</span></div>
+<h3>The 12-bar blues</h3>
+<p>The <b>12-bar blues</b> is a fixed chord pattern in three four-bar lines. In its basic form all chords are dominant sevenths: <b>I⁷</b> for four bars, <b>IV⁷</b> for two, <b>I⁷</b> for two, then <b>V⁷, IV⁷, I⁷, I⁷</b>. (A V⁷ in the last bar, the <b>turnaround</b>, leads back to the beginning.) It lies behind the blues, early rock ’n’ roll and a lot of jazz.</p>
+{{fig:blues|The 12-bar blues in C, one chord to a bar: C⁷ ×4, F⁷ ×2, C⁷ ×2, G⁷, F⁷, C⁷, C⁷.}}
+<h3>Harmonically closed and open sections</h3>
+<p>A section is <b>harmonically closed</b> if it ends on the tonic (I). It is <b>harmonically open</b> if it ends on another chord, usually V (sometimes IV). In AABA form the A sections are usually closed and the B section is open, ending on V, so the return of A feels like coming home. In verse–chorus form the sections that lead into the chorus (verse, pre-chorus, bridge) are usually open, while the chorus is often closed.</p>`,
+  figs: {blues: {key: 'C', mode: 'major', clef: 'treble', bpm: 80, events: BLUES.map(s => { const c = rn(s, 'C', 'major'); return {notes: c.notes, d: 'w', sym: symOf(c), rn: fmt(s)}; })}},
+  quiz: [
+    () => { const [plan, name] = pick([['A A B A', 'AABA form'], ['A B A C', 'ABAC form'], ['Intro, verse, chorus, verse, chorus, bridge, chorus', 'Verse–chorus form'], ['I⁷ ×4, IV⁷ ×2, I⁷ ×2, V⁷, IV⁷, I⁷ ×2', '12-bar blues']]); return ask(`Which form is this: ${plan}?`, name, ['AABA form', 'ABAC form', 'Verse–chorus form', '12-bar blues'], `${plan} describes ${name}.`); },
+    () => { const key = pick(['C', 'G', 'F', 'D', 'A', 'Bb']), bar = pick([1, 5, 7, 9, 10, 12]), s = BLUES[bar - 1]; return ask(`In a 12-bar blues in ${pn(key)}, what is the chord in bar ${bar}?`, symOf(rn(s, key, 'major')), ['I7', 'IV7', 'V7'].map(x => symOf(rn(x, key, 'major'))), `Bar ${bar} is ${fmt(s)}.`); },
+    bank([['How many bars are in the basic blues form?', '12', ['8', '16', '32'], 'Three lines of four bars.'],
+      ['How many bars does a classic AABA song have?', '32', ['12', '16', '64'], 'Four sections of eight bars.'],
+      ['In AABA form, what is the B section often called?', 'The bridge (or middle eight)', ['The refrain', 'The coda', 'The verse'], 'It contrasts with the A sections.'],
+      ['What is a harmonically open section?', 'One that ends on a chord other than the tonic, usually V', ['One that ends on I', 'One with no chords', 'One in a new key'], 'It makes the listener expect more.'],
+      ['Which section of a verse–chorus song holds the “hook”?', 'The chorus', ['The verse', 'The introduction', 'The bridge'], 'It is the most memorable refrain.'],
+      ['In a simple verse–chorus form…', 'The verse and chorus use the same chord progression', ['The chorus has no chords', 'The verse is in another key', 'There is no bridge'], 'In a contrasting form they differ.'],
+      ['What is the last chord of the blues turnaround usually?', 'V⁷', ['ii', 'vi', 'IV'], 'It leads back to the start.']]),
+  ],
+  play: [
+    progEx('Play the first eight bars of a blues in {key}: I⁷ – IV⁷ – I⁷ – V⁷', ['I7', 'IV7', 'I7', 'V7'], () => pick(['C', 'G', 'F']), 'major'),
+    progEx('Play the 12-bar blues changes in {key}: I⁷ – IV⁷ – I⁷ – V⁷ – IV⁷ – I⁷', ['I7', 'IV7', 'I7', 'V7', 'IV7', 'I7'], () => pick(['C', 'G', 'F', 'Bb']), 'major'),
+    progEx('Play an AABA song’s bridge ending: ii – V – I in {key}', ['ii', 'V', 'I'], () => pick(['C', 'G', 'F']), 'major'),
+  ]});
+
+/* ================= Melody, phrases and texture ================= */
+const SC = scale('C4', 'major', 16);
+const mfig = bars => ({key: 'C', mode: 'major', clef: 'treble', bpm: 90, fs: 10, events: bars.flatMap(b => b.degs.map((d, i) => ({notes: [nm(SC[d], true)], d: b.durs[i], sym: i === 0 ? b.label : undefined})))});
+const MOTIVE_BARS = [
+  {label: 'motive', degs: [2, 4, 3, 2], durs: ['q', 'q', 'q', 'q']},
+  {label: 'sequence', degs: [3, 5, 4, 3], durs: ['q', 'q', 'q', 'q']},
+  {label: 'inversion', degs: [2, 0, 1, 2], durs: ['q', 'q', 'q', 'q']},
+  {label: 'retrograde', degs: [2, 3, 4, 2], durs: ['q', 'q', 'q', 'q']},
+  {label: 'interval change', degs: [2, 5, 3, 2], durs: ['q', 'q', 'q', 'q']},
+  {label: 'rhythm change', degs: [2, 4, 3, 2], durs: ['q.', 'e', 'q', 'q']},
+  {label: 'ornamented', degs: [2, 3, 4, 3, 2], durs: ['q', 'e', 'e', 'q', 'q']},
+  {label: 'extended', degs: [2, 4, 3, 2, 1, 0], durs: ['q', 'q', 'q', 'q', 'h', 'h']},
+];
+const AUG_BARS = [{label: 'motive', degs: [2, 4, 3, 2], durs: ['q', 'q', 'q', 'q']}, {label: 'augmentation (all values doubled)', degs: [2, 4, 3, 2], durs: ['h', 'h', 'h', 'h']}];
+const ODE4 = ODE.slice(0, 15).map(x => [...x]); ODE4[0][2] = 'subphrase a'; ODE4[8][2] = 'subphrase b'; ODE4[14][2] = 'half cadence';
+CH.push({id: 'melody', title: 'Melodic analysis: motives and phrases', blurb: 'Motive, fragment, sequence, inversion, augmentation and the other ways melodies grow',
+  body: `<p>A melody is built from small units. A <b>motive</b> (or motif) is the smallest recognisable melodic idea, usually a few notes with a characteristic rhythm; the opening four notes of Beethoven’s Fifth Symphony are the most famous. A compound motive can be split into <b>fragments</b> (some writers call them <i>germs</i>), each of which can be developed on its own.</p>
+<h3>How motives are changed</h3>
+<p>Composers rarely repeat a motive exactly. Here are the usual ways of altering it; the staff shows each on one simple motive in C major.</p>
+{{fig:mot|The same four-note motive changed in seven ways, bar by bar.}}
+<table class="htab"><tr><th>Sequence</th><td>the whole motive moved to another pitch level (so common that it is not counted as an alteration)</td></tr>
+<tr><th>Inversion</th><td>every interval turned upside down, like a mirror image. <i>Real</i> inversion keeps exact intervals; <i>tonal</i> inversion follows the scale of the key, as here.</td></tr>
+<tr><th>Retrograde</th><td>the notes in reverse order (rare in tonal music)</td></tr>
+<tr><th>Intervallic change</th><td>the rhythm stays; some intervals differ</td></tr>
+<tr><th>Rhythmic change</th><td>some, but not all, rhythmic values differ</td></tr>
+<tr><th>Ornamentation</th><td>passing tones, neighbour tones and other non-chord tones are added</td></tr>
+<tr><th>Extension</th><td>extra notes are added at the end</td></tr>
+<tr><th>Augmentation / diminution</th><td>all rhythmic values doubled / halved</td></tr></table>
+{{fig:aug|Augmentation: every value doubled.}}
+<p>J. S. Bach’s Invention No. 1 in C major is a master class in these techniques. Its opening seven-note motive splits into two overlapping fragments, and Bach develops each by sequence, inversion and augmentation.</p>
+<h3>The phrase</h3>
+<p>A <b>phrase</b> is the smallest musical unit that gives a sense of completion. In classical music a phrase always ends with a <b>cadence</b>; in popular music it may end when a lyric line or a four-bar length is complete. Most phrases are <b>four bars</b> long, though five-, six-, seven- and eight-bar phrases (and, rarely, three-bar ones) occur. A phrase often falls into two <b>subphrases</b> of two bars.</p>
+{{fig:phrase|The first phrase of Ode to Joy: two subphrases of two bars (a and b), ending on a half cadence.}}`,
+  figs: {mot: mfig(MOTIVE_BARS), aug: mfig(AUG_BARS), phrase: twoLines('major', 'C', ODE4, ODE_BASS.slice(0, 5), 100)},
+  quiz: [
+    () => { const [name, desc] = pick([['sequence', 'The motive repeated at another pitch level'], ['inversion', 'Every interval turned upside down'], ['retrograde', 'The notes played in reverse order'], ['augmentation', 'All rhythmic values doubled'], ['diminution', 'All rhythmic values halved'], ['ornamentation', 'Passing tones and neighbour tones added'], ['extension', 'Extra notes added at the end'], ['rhythmic change', 'Some, but not all, rhythmic values changed'], ['intervallic change', 'The rhythm stays but some intervals change']]); return ask(`In melodic analysis, what is ${name}?`, desc, ['The motive repeated at another pitch level', 'Every interval turned upside down', 'The notes played in reverse order', 'All rhythmic values doubled', 'All rhythmic values halved', 'Passing tones and neighbour tones added', 'Extra notes added at the end', 'Some, but not all, rhythmic values changed', 'The rhythm stays but some intervals change'], `${cap(name)}: ${desc.toLowerCase()}.`); },
+    () => { const bars = [['inversion', 2], ['retrograde', 3], ['interval change', 4], ['rhythm change', 5]], [label, i] = pick(bars); return ask('The first bar is the motive. How is the second bar related to it?', {inversion: 'Inversion', retrograde: 'Retrograde', 'interval change': 'Intervallic change', 'rhythm change': 'Rhythmic change'}[label], ['Inversion', 'Retrograde', 'Intervallic change', 'Rhythmic change', 'Sequence'], {inversion: 'The intervals are mirrored: up becomes down.', retrograde: 'The notes are in reverse order.', 'interval change': 'The rhythm is the same but one or two intervals differ.', 'rhythm change': 'The pitches are the same but the rhythm is changed.'}[label], {fig: mfig([MOTIVE_BARS[0], MOTIVE_BARS[i]].map((b, k) => ({...b, label: k ? '?' : 'motive'})))}); },
+    bank([['What is a motive?', 'The smallest recognisable melodic idea', ['A complete musical sentence', 'A cadence', 'A kind of chord'], 'A phrase, by contrast, completes a unit.'],
+      ['How long is the most common phrase?', 'Four bars', ['Two bars', 'Three bars', 'Sixteen bars'], 'But five-, six- and eight-bar phrases also occur.'],
+      ['In classical music, what always ends a phrase?', 'A cadence', ['A rest', 'A double bar line', 'A change of key'], 'Without a cadence it is not a phrase.'],
+      ['What is a subphrase?', 'A part of a phrase, often two bars', ['Two phrases together', 'A kind of cadence', 'A repeated motive'], 'A four-bar phrase often has two subphrases.'],
+      ['What is a fragment (or germ)?', 'A small part of a compound motive', ['A cadence', 'A chord inversion', 'A very long phrase'], 'Each fragment can be developed alone.'],
+      ['What is the difference between real and tonal inversion?', 'Real keeps exact intervals; tonal follows the scale', ['Real is faster', 'Tonal inverts rhythm', 'There is none'], 'In tonal music the inversion usually fits the key.']]),
+  ]});
+
+CH.push({id: 'phrases', title: 'Phrases in combination', blurb: 'Authentic cadences, the sentence, periods of every kind, double periods, phrase groups, elision',
+  body: `<p>Phrases join to make larger units. The shape of the join depends mainly on the <b>cadences</b> and on whether the phrases <b>begin alike</b>.</p>
+<h3>Two kinds of authentic cadence</h3>
+<p>A <b>perfect authentic cadence</b> (PAC) has three requirements: both chords are in <b>root position</b>, the chord before is <b>V</b> (or V⁷), not vii°, and the <b>tonic note is in the top voice</b> of the final chord. If one is missing it is an <b>imperfect authentic cadence</b> (IAC). A <b>conclusive</b> cadence ends on the tonic; an <b>inconclusive</b> one does not. In order of conclusiveness: PAC, then IAC, then (usually) the plagal cadence, then the half and deceptive cadences.</p>
+<h3>The sentence</h3>
+<p>A phrase with a particular design: a <b>basic idea</b> (motive or subphrase <i>a</i>), its <b>repetition</b> (exact, or in sequence, or adapted to the harmony), and a <b>continuation</b>: related or new material that leads to the cadence, often with shorter units and faster harmonic rhythm.</p>
+<h3>The period</h3>
+<p>A <b>period</b> has at least two phrases, the last ending on a more conclusive cadence than the first. The first is the <b>antecedent</b> (the question), the last the <b>consequent</b> (the answer). A period is <b>parallel</b> if both phrases begin with similar melody, <b>contrasting</b> if they begin differently. A phrase that returns with a different cadence is marked with a prime: a, a′, a″.</p>
+<div class="fbar"><span class="a" style="--w:1">a · HC</span><span class="c" style="--w:1">a′ · PAC</span></div>
+<p style="margin-top:-6px"><small>Parallel period</small></p>
+<div class="fbar"><span class="a" style="--w:1">a · HC</span><span class="c" style="--w:1">b · PAC</span></div>
+<p style="margin-top:-6px"><small>Contrasting period</small></p>
+<h3>Larger periods</h3>
+<ul><li>An <b>asymmetrical period</b> has three or five phrases, so the antecedents and consequents are unequal in number.</li>
+<li>A <b>double period</b> has at least four phrases in two groups: an <b>antecedent group</b> (two phrases) ending on an inconclusive cadence, and a <b>consequent group</b> that answers it with a conclusive one. It is <i>parallel</i> if both groups begin with the same melody.</li>
+<li>Four phrases may also be a <b>repeated period</b> (the same period twice), which is not a double period: the cadence after the second phrase gives it away.</li></ul>
+<div class="fbar"><span class="a" style="--w:1">a</span><span class="a" style="--w:1">b · HC</span><span class="c" style="--w:1">a′</span><span class="c" style="--w:1">c · PAC</span></div>
+<p style="margin-top:-6px"><small>Parallel double period: antecedent group, then consequent group</small></p>
+<h3>Not periods: phrase groups and chains</h3>
+<p>When the final cadence is a <b>half cadence</b>, the result is not a period. A <b>phrase group</b> has at least two phrases that begin alike; a <b>phrase chain</b> has at least two phrases with contrasting melodies. Both leave the music open.</p>
+<h3>Elision</h3>
+<p>An <b>elision</b> joins phrases by overlap: the last bar of one phrase is also the first bar of the next, so the cadence is the start of the following music and the flow does not stop.</p>`,
+  figs: {},
+  quiz: [
+    () => { const [d, name] = pick([['a (HC) – a′ (PAC)', 'Parallel period'], ['a (HC) – b (PAC)', 'Contrasting period'], ['a – b (HC) ‖ a′ – c (PAC)', 'Parallel double period'], ['(a – a′) played twice, each time ending HC then PAC', 'Repeated period'], ['a (IAC) – a′ (HC)', 'Phrase group'], ['a (IAC) – b (IAC) – c (HC)', 'Phrase chain']]); return ask(`Which form is this: ${d}?`, name, ['Parallel period', 'Contrasting period', 'Parallel double period', 'Repeated period', 'Phrase group', 'Phrase chain'], 'Look at the final cadence and at whether the phrases begin alike.'); },
+    bank([['What are the three requirements of a perfect authentic cadence?', 'Root-position V and I, with the tonic in the top voice of I', ['V⁶ to I⁶', 'vii° to I with 3 in the top voice', 'IV to I in any position'], 'If one is missing, it is an imperfect authentic cadence.'],
+      ['A V–I cadence in which the tonic chord is inverted is…', 'An imperfect authentic cadence', ['A perfect authentic cadence', 'A half cadence', 'A plagal cadence'], 'All three requirements must be met for a PAC.'],
+      ['In a period, the first phrase is called the…', 'Antecedent', ['Consequent', 'Elision', 'Subphrase'], 'The “question”.'],
+      ['In a parallel period…', 'The two phrases begin with similar melody', ['The two phrases are in different keys', 'Both end with a half cadence', 'There are three phrases'], 'In a contrasting period they begin differently.'],
+      ['What ends a phrase group or phrase chain?', 'A half cadence', ['A perfect authentic cadence', 'A plagal cadence', 'A Picardy third'], 'That is why they are not periods.'],
+      ['What is an elision?', 'The last bar of one phrase is also the first bar of the next', ['A silence between phrases', 'A repeated phrase', 'A kind of cadence'], 'It makes the phrases overlap.'],
+      ['How many phrases does a double period have, at least?', 'Four', ['Two', 'Three', 'Six'], 'An antecedent group and a consequent group.'],
+      ['In a sentence, what comes after the basic idea and its repetition?', 'A continuation leading to the cadence', ['A second sentence', 'A trio', 'A coda'], 'It often uses shorter units.']]),
+  ],
+  play: [
+    progEx('Half cadence in {key}: I – V', ['I', 'V'], () => pick(['C', 'G', 'F']), 'major', 'A phrase ending on V: a half cadence.'),
+    progEx('Perfect authentic cadence in {key}: V – I', ['V', 'I'], () => pick(['C', 'G', 'F']), 'major', 'Both chords in root position.'),
+    progEx('Imperfect authentic cadence in {key}: V⁶ – I', ['V6', 'I'], () => pick(['C', 'G', 'F']), 'major', 'V is in first inversion (the leading tone in the bass), so the cadence is imperfect.'),
+  ]});
+
+const TEX = {
+  chorale: satb('C', 'major', [['C3 G3 E4 C5', 'I'], ['F2 A3 F4 C5', 'IV'], ['G2 G3 D4 B4', 'V'], ['C3 G3 E4 C5', 'I']], {bpm: 70}),
+  alberti: twoLines('major', 'C', [['E5', 'h'], ['G5', 'h'], ['D5', 'h'], ['B4', 'h']], [['C3', 'e'], ['G3', 'e'], ['E3', 'e'], ['G3', 'e'], ['C3', 'e'], ['G3', 'e'], ['E3', 'e'], ['G3', 'e'], ['G2', 'e'], ['D3', 'e'], ['B2', 'e'], ['D3', 'e'], ['G2', 'e'], ['D3', 'e'], ['B2', 'e'], ['D3', 'e']], 90),
+  arpeggio: twoLines('major', 'C', [['G4', 'w'], ['F4', 'w']], [['C3', 'e'], ['E3', 'e'], ['G3', 'e'], ['C4', 'e'], ['E4', 'e'], ['C4', 'e'], ['G3', 'e'], ['E3', 'e'], ['F2', 'e'], ['A2', 'e'], ['C3', 'e'], ['F3', 'e'], ['A3', 'e'], ['F3', 'e'], ['C3', 'e'], ['A2', 'e']], 90),
+  repeated: twoLines('major', 'C', [[['C4', 'E4', 'G4'], 'e'], [['C4', 'E4', 'G4'], 'e'], [['C4', 'E4', 'G4'], 'e'], [['C4', 'E4', 'G4'], 'e'], [['C4', 'E4', 'G4'], 'e'], [['C4', 'E4', 'G4'], 'e'], [['C4', 'E4', 'G4'], 'e'], [['C4', 'E4', 'G4'], 'e']], [['C3', 'h'], ['C3', 'h']], 90),
+  oompah: twoLines('major', 'C', [['r', 'q'], [['C4', 'E4', 'G4'], 'q'], ['r', 'q'], [['C4', 'E4', 'G4'], 'q'], ['r', 'q'], [['B3', 'D4', 'G4'], 'q'], ['r', 'q'], [['C4', 'E4', 'G4'], 'q']], [['C3', 'q'], ['r', 'q'], ['C3', 'q'], ['r', 'q'], ['G2', 'q'], ['r', 'q'], ['C3', 'q'], ['r', 'q']], 100),
+  offbeat: twoLines('major', 'C', [['r', 'e'], [['C4', 'E4', 'G4'], 'e'], ['r', 'e'], [['C4', 'E4', 'G4'], 'e'], ['r', 'e'], [['C4', 'E4', 'G4'], 'e'], ['r', 'e'], [['C4', 'E4', 'G4'], 'e']], [['C3', 'q'], ['C3', 'q'], ['C3', 'q'], ['C3', 'q']], 90),
+  clave: {key: 'C', mode: 'major', clef: 'treble', bpm: 100, events: [{notes: ['C5'], d: 'q.', sym: '3'}, {notes: ['C5'], d: 'q.', sym: '3'}, {notes: ['C5'], d: 'q', sym: '2'}]},
+  riff: {key: 'A', mode: 'minor', clef: 'bass', bpm: 100, events: ['A2', 'C3', 'A2', 'D3', 'A2', 'E3', 'D3', 'C3'].map(n => ({notes: [n], d: 'e'}))},
+};
+const TEX_NAMES = {chorale: 'Chorale texture', alberti: 'Alberti bass', arpeggio: 'Arpeggiated accompaniment', repeated: 'Repeated block chords', oompah: 'Oom-pah (bass and afterbeat chords)', offbeat: 'Offbeat chords'};
+CH.push({id: 'textures', title: 'Accompaniment textures', blurb: 'Chorale, arpeggios, Alberti bass, block chords, afterbeats, offbeats, clave, riffs; contrast between sections',
+  body: `<p><b>Texture</b> is how the layers of a piece fit together. It has a <b>vertical</b> side (how many notes sound at once) and a <b>horizontal</b> side (how busy the rhythm is). The simplest and most common texture is <b>melody with accompaniment</b>, and the same chords can be dressed in many different accompaniment patterns.</p>
+<h3>Chorale texture</h3>
+<p>One chord for every melody note, all voices moving together: <b>homorhythmic</b>, like a hymn. It is the texture of the four-part examples in this course.</p>
+{{fig:chorale|Chorale texture: every voice has the same rhythm.}}
+<h3>Arpeggiated accompaniments</h3>
+<p>The chord is played one note at a time, up, down or both, usually in the left hand under a melody. The <b>Alberti bass</b>, much used in Classical piano music, is a special arpeggio pattern of low – high – middle – high.</p>
+{{fig:arpeggio|Rising and falling arpeggios over C and F chords.}}
+{{fig:alberti|Alberti bass: lowest, highest, middle, highest (C–G–E–G, then G–D–B–D).}}
+<h3>Block chords</h3>
+<p>The chord is struck as a unit, often repeated: <b>repeated eighth notes</b> or quarter notes are standard in rock, pop and in classical accompaniments. Rhythms such as “beat 1, then the ‘and’ after 2” are the fingerprints of many songs.</p>
+{{fig:repeated|Repeated eighth-note chords over a held bass.}}
+<h3>Afterbeats and offbeats</h3>
+<p><b>Afterbeats</b> are chords that come <i>after</i> the main beat: the “oom-pah” of waltzes, marches and polkas puts the bass on the beat and the chord on the afterbeat. <b>Offbeats</b> are chords placed on the upbeats (the “ands”) so that the downbeats are left empty, as in polka and reggae.</p>
+{{fig:oompah|Oom-pah: the bass on beats 1 and 3, the chord on the afterbeats.}}
+{{fig:offbeat|Offbeat chords: the chords sit on the “ands”.}}
+<h3>Clave and cross-rhythm</h3>
+<p>The <b>3–2 son clave</b> of Afro-Cuban music is a pattern of five attacks over two bars (three, then two). Its first bar divides eight eighth notes as <b>3 + 3 + 2</b>, a cross-rhythm that also shapes much rock and pop (the “Bo Diddley beat”).</p>
+{{fig:clave|3 + 3 + 2: a dotted quarter, a dotted quarter and a quarter, eight eighths in all.}}
+<h3>Riffs and ostinato</h3>
+<p>A <b>riff</b> is a short repeated pattern, often in the bass or on guitar; a repeated pattern of any kind is an <b>ostinato</b>. Sometimes a song is recognised by its riff alone.</p>
+{{fig:riff|A bass riff in A minor, built on a pentatonic shape.}}
+<h3>Creating contrast</h3>
+<p>To make a new section sound different, change one or more of the <b>elements of music</b>: melody, harmony (key or chord pattern), rhythm, timbre (instrument or voice), texture, dynamics and articulation (loud or soft, staccato or legato) and tempo. A chorus is often louder and thicker than a verse, a bridge often moves to a new key or a new pattern.</p>`,
+  figs: TEX,
+  quiz: [
+    () => { const k = pick(Object.keys(TEX_NAMES)); return ask('Which accompaniment texture is this?', TEX_NAMES[k], Object.values(TEX_NAMES), {chorale: 'All voices share one rhythm.', alberti: 'Low, high, middle, high: C–G–E–G.', arpeggio: 'The chord is spread out one note at a time.', repeated: 'The chord is struck again and again as a block.', oompah: 'Bass on the beat, chord on the afterbeat.', offbeat: 'Chords on the upbeats.'}[k], {fig: TEX[k]}); },
+    bank([['What does “homorhythmic” mean?', 'All voices move in the same rhythm', ['Only one voice sings', 'The voices imitate each other', 'There is no rhythm'], 'A chorale texture is homorhythmic.'],
+      ['What is an Alberti bass?', 'A broken-chord pattern: low, high, middle, high', ['A bass note held for a whole bar', 'A walking bass line', 'Chords on the offbeat'], 'It was much used by Classical composers.'],
+      ['What is a riff?', 'A short repeated pattern', ['A very slow passage', 'A cadence', 'A key change'], 'An ostinato is a repeated pattern of any kind.'],
+      ['Where do offbeat chords fall?', 'On the upbeats (“ands”)', ['On every downbeat', 'Only on beat 1', 'Only at cadences'], 'Typical of polka and reggae.'],
+      ['How does the 3–2 son clave divide its first bar?', '3 + 3 + 2', ['2 + 2 + 2 + 2', '4 + 4', '3 + 2 + 3'], 'Eight eighth notes in three groups.'],
+      ['What is an oom-pah pattern?', 'Bass on the beat, chord on the afterbeat', ['A very loud chord', 'An ornament', 'A tremolo'], 'Waltzes, marches and polkas use it.'],
+      ['Which of these is NOT an element of music used to create contrast?', 'The composer’s name', ['Texture', 'Timbre', 'Dynamics'], 'The elements are melody, harmony, rhythm, timbre, texture, dynamics, articulation and tempo.']]),
+  ],
+  play: [
+    () => { const r = pick(['C', 'G', 'F']), c = chordFromRoot(R(r), 'major'), seq = [0, 2, 1, 2].map(i => c[i]); return {title: `Alberti bass on ${pn(r)}: low – high – middle – high`, help: `One note at a time: ${seq.map(n => nm(n)).join(' – ')}. Any octave.`, steps: seq.map(n => ({label: nm(n), pcs: [((n.midi % 12) + 12) % 12], names: [nm(n)]}))}; },
+    () => { const r = pick(['C', 'G', 'F']), a = R(r), c = chordFromRoot(a, 'major'); return {title: `Oom-pah on ${pn(r)}`, help: 'First the bass note alone, then the chord above it.', steps: [{label: 'oom', pcs: [((a.midi % 12) + 12) % 12], names: [pn(r)]}, {label: 'pah', pcs: pcsOf(c), names: c.map(n => nm(n))}]}; },
+    () => { const r = pick(['C', 'G', 'F']), c = chordFromRoot(R(r), 'major'), seq = [c[0], c[1], c[2], A.shiftOct(c[0], 1)]; return {title: `Rising arpeggio on ${pn(r)}`, help: 'Play the notes of the chord one after another, going up.', steps: seq.map(n => ({label: nm(n), pcs: [((n.midi % 12) + 12) % 12], names: [nm(n)]}))}; },
+  ]});
+
+/* order and parts of the course */
+const PARTS = [
+  ['Foundations', ['notation', 'rhythm', 'scales', 'intervals']],
+  ['Chords and progressions', ['triads', 'triadsinkey', 'inversions', 'sevenths', 'cadences', 'progressions', 'popharmony']],
+  ['Melody, phrase and texture', ['nonchord', 'melody', 'phrases', 'textures']],
+  ['Four-part writing', ['voiceleading', 'vldetails']],
+  ['Minor keys and chromatic harmony', ['minor', 'chromatic', 'secondary', 'mixture', 'neapolitan', 'modulation']],
+  ['Form and analysis', ['form', 'popforms', 'binaryternary', 'sonatarondo', 'harmonizing']],
+  ['Counterpoint', ['counterpoint', 'fugue']],
+  ['Beyond tonality', ['jazz', 'impressionism', 'settheory', 'serialism', 'minimalism']],
+];
+const ordered = [];
+for (const [part, ids] of PARTS) for (const id of ids) { const c = CH.find(x => x.id === id); if (c) { c.part = part; ordered.push(c); } }
+for (const c of CH) if (!ordered.includes(c)) { c.part = c.part || 'More'; ordered.push(c); }
+CH.length = 0; CH.push(...ordered);
 
 window.Harmony.register(CH);
 })();
