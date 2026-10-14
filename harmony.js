@@ -69,7 +69,7 @@ function rn(sym, key = 'C', mode = 'major', rootOct = 4) {                      
 const pcsOf = notes => [...new Set(notes.map(n => ((n.midi % 12) + 12) % 12))];
 
 /* ---------- figures: a few chords or notes on a staff, drawn by OpenSheetMusicDisplay ---------- */
-const DUR = {w: 8, h: 4, q: 2, e: 1}, TYPE = {w: 'whole', h: 'half', q: 'quarter', e: 'eighth'};   // 2 divisions per quarter note
+const DUR = {w: 8, h: 4, q: 2, e: 1, 'h.': 6, 'q.': 3}, TYPE = {w: 'whole', h: 'half', q: 'quarter', e: 'eighth', 'h.': 'half', 'q.': 'quarter'};   // 'q.' is a dotted quarter   // 2 divisions per quarter note
 const toNotes = e => (e.notes || []).map(x => typeof x === 'string' ? parse(x) : x);
 function figureXml(f) {
   if (f.voices) return voicesXml(f);
@@ -86,8 +86,8 @@ function figureXml(f) {
     : grand ? [{staff: 1, voice: 1}, {staff: 2, voice: 2}] : [{staff: 1, voice: 1}];
   const stf = s => grand ? `<staff>${s}</staff>` : '';
   const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
-  const note = (p, d, st, o = {}) => `<note>${o.chord ? '<chord/>' : ''}<pitch><step>${LET[p.step]}</step>${p.alter ? `<alter>${p.alter}</alter>` : ''}<octave>${p.oct}</octave></pitch><duration>${DUR[d]}</duration>${p.tieStop ? '<tie type="stop"/>' : ''}${p.tie ? '<tie type="start"/>' : ''}<voice>${st.voice}</voice><type>${TYPE[d]}</type>${st.stem ? `<stem>${st.stem}</stem>` : ''}${stf(st.staff)}${p.tie || p.tieStop ? `<notations>${p.tieStop ? '<tied type="stop"/>' : ''}${p.tie ? '<tied type="start"/>' : ''}</notations>` : ''}</note>`;
-  const rest = (d, st) => `<note><rest/><duration>${DUR[d]}</duration><voice>${st.voice}</voice><type>${TYPE[d]}</type>${stf(st.staff)}</note>`;
+  const note = (p, d, st, o = {}) => `<note>${o.chord ? '<chord/>' : ''}<pitch><step>${LET[p.step]}</step>${p.alter ? `<alter>${p.alter}</alter>` : ''}<octave>${p.oct}</octave></pitch><duration>${DUR[d]}</duration>${p.tieStop ? '<tie type="stop"/>' : ''}${p.tie ? '<tie type="start"/>' : ''}<voice>${st.voice}</voice><type>${TYPE[d]}</type>${d.endsWith('.') ? '<dot/>' : ''}${st.stem ? `<stem>${st.stem}</stem>` : ''}${stf(st.staff)}${p.tie || p.tieStop ? `<notations>${p.tieStop ? '<tied type="stop"/>' : ''}${p.tie ? '<tied type="start"/>' : ''}</notations>` : ''}</note>`;
+  const rest = (d, st) => `<note><rest/><duration>${DUR[d]}</duration><voice>${st.voice}</voice><type>${TYPE[d]}</type>${d.endsWith('.') ? '<dot/>' : ''}${stf(st.staff)}</note>`;
   const words = (txt, place, staff) => `<direction placement="${place}"><direction-type><words font-size="${f.fs || 11}">${esc(txt)}</words></direction-type>${staff ? `<staff>${staff}</staff>` : ''}</direction>`;
   const measures = bars.map((bar, bi) => {
     let x = `<measure number="${bi + 1}">`;
@@ -128,7 +128,7 @@ function voicesXml(f) {
   };
   const barsOf = lines.map(v => split(v.evs)), nb = Math.max(...barsOf.map(b => b.length));
   barsOf.forEach(b => { while (b.length < nb) b.push([{rest: true, d: 'w', notes: []}]); });
-  const note = (p, d, v, chord) => `<note>${chord ? '<chord/>' : ''}<pitch><step>${LET[p.step]}</step>${p.alter ? `<alter>${p.alter}</alter>` : ''}<octave>${p.oct}</octave></pitch><duration>${DUR[d]}</duration>${p.tieStop ? '<tie type="stop"/>' : ''}${p.tie ? '<tie type="start"/>' : ''}<voice>${v.voice}</voice><type>${TYPE[d]}</type><stem>${v.stem || (v.staff === 1 ? 'up' : 'down')}</stem><staff>${v.staff}</staff>${p.tie || p.tieStop ? `<notations>${p.tieStop ? '<tied type="stop"/>' : ''}${p.tie ? '<tied type="start"/>' : ''}</notations>` : ''}</note>`;
+  const note = (p, d, v, chord) => `<note>${chord ? '<chord/>' : ''}<pitch><step>${LET[p.step]}</step>${p.alter ? `<alter>${p.alter}</alter>` : ''}<octave>${p.oct}</octave></pitch><duration>${DUR[d]}</duration>${p.tieStop ? '<tie type="stop"/>' : ''}${p.tie ? '<tie type="start"/>' : ''}<voice>${v.voice}</voice><type>${TYPE[d]}</type>${d.endsWith('.') ? '<dot/>' : ''}<stem>${v.stem || (v.staff === 1 ? 'up' : 'down')}</stem><staff>${v.staff}</staff>${p.tie || p.tieStop ? `<notations>${p.tieStop ? '<tied type="stop"/>' : ''}${p.tie ? '<tied type="start"/>' : ''}</notations>` : ''}</note>`;
   const words = (txt, place, staff) => `<direction placement="${place}"><direction-type><words font-size="${f.fs || 10}">${esc(txt)}</words></direction-type><staff>${staff}</staff></direction>`;
   let body = '';
   for (let bi = 0; bi < nb; bi++) {
@@ -139,7 +139,7 @@ function voicesXml(f) {
       for (const e of barsOf[vi][bi]) {
         if (e.sym) body += words(e.sym, 'above', v.staff);
         if (e.rn) body += words(e.rn, 'below', v.staff);
-        if (e.rest || !e.notes.length) body += `<note><rest/><duration>${DUR[e.d]}</duration><voice>${v.voice}</voice><type>${TYPE[e.d]}</type><staff>${v.staff}</staff></note>`;
+        if (e.rest || !e.notes.length) body += `<note><rest/><duration>${DUR[e.d]}</duration><voice>${v.voice}</voice><type>${TYPE[e.d]}</type>${e.d.endsWith('.') ? '<dot/>' : ''}<staff>${v.staff}</staff></note>`;
         else sortN(e.notes).forEach((p, i) => { body += note(p, e.d, v, i > 0); });
       }
     });

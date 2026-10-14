@@ -480,5 +480,66 @@ CH.push({id: 'counterpoint', title: 'Counterpoint', blurb: 'Independent melodies
     () => { const kinds = [['major 3rd', 2, 4], ['perfect 5th', 4, 7], ['major 6th', 5, 9], ['minor 3rd', 2, 3]], bass = ['C', 'D', 'F', 'E', 'G'].sort(() => Math.random() - 0.5).slice(0, 4); return {title: 'Consonances above a cantus firmus', help: 'Play the bass note and the consonance above it, together.', steps: bass.map((b, i) => { const [name, d, sm] = kinds[i % kinds.length], a = R(b), t = above(a, d, sm); return {label: `${pn(b)} + ${name}`, pcs: pcsOf([a, t]), names: [pn(b), nm(t)], bass: ((a.midi % 12) + 12) % 12}; }) }; },
   ]});
 
+/* 15 --------------------------------------------------------------- */
+const mel = (list) => list.map(([n, d, sym]) => ({notes: [n], d, sym}));
+const bassLine = (list) => list.map(([n, d, r]) => ({notes: [n], d, rn: r}));
+const twoLines = (mode, key, m, b, bpm) => ({key, mode, clef: 'grand', bpm: bpm || 100, fs: 10, voices: [{staff: 1, voice: 1, stem: 'up', events: mel(m)}, {staff: 2, voice: 2, stem: 'down', events: bassLine(b)}]});
+const ODE = [['E4', 'q', 'antecedent'], ['E4', 'q'], ['F4', 'q'], ['G4', 'q'], ['G4', 'q'], ['F4', 'q'], ['E4', 'q'], ['D4', 'q'], ['C4', 'q'], ['C4', 'q'], ['D4', 'q'], ['E4', 'q'], ['E4', 'q.'], ['D4', 'e'], ['D4', 'h', 'half cadence'],
+  ['E4', 'q', 'consequent'], ['E4', 'q'], ['F4', 'q'], ['G4', 'q'], ['G4', 'q'], ['F4', 'q'], ['E4', 'q'], ['D4', 'q'], ['C4', 'q'], ['C4', 'q'], ['D4', 'q'], ['E4', 'q'], ['D4', 'q.'], ['C4', 'e'], ['C4', 'h', 'perfect authentic cadence']];
+const ODE_BASS = [['C3', 'w', 'I'], ['G2', 'w', 'V'], ['C3', 'w', 'I'], ['C3', 'h', 'I'], ['G2', 'h', 'V'], ['C3', 'w', 'I'], ['G2', 'w', 'V'], ['C3', 'w', 'I'], ['G2', 'h', 'V'], ['C3', 'h', 'I']];
+const SENT = [['C5', 'q', 'basic idea'], ['D5', 'q'], ['E5', 'h'], ['D5', 'q', 'idea repeated a step higher'], ['E5', 'q'], ['F5', 'h'], ['D5', 'q', 'continuation: shorter, driving to the cadence'], ['B4', 'q'], ['D5', 'q'], ['G4', 'q'], ['C5', 'w', 'cadence']];
+const SENT_BASS = [['C3', 'w', 'I'], ['D3', 'w', 'ii'], ['G2', 'w', 'V'], ['C3', 'w', 'I']];
+const UNLABELLED = [
+  {names: 'I – IV – V – I', key: 'C', mode: 'major', v: ['C3 G3 E4 C5', 'F2 A3 F4 C5', 'G2 G3 D4 B4', 'C3 G3 E4 C5']},
+  {names: 'ii – V – I', key: 'C', mode: 'major', v: ['D3 A3 F4 D5', 'G2 G3 D4 B4', 'C3 G3 E4 C5']},
+  {names: 'I – vi – ii – V – I', key: 'C', mode: 'major', v: ['C3 G3 E4 C5', 'A2 A3 E4 C5', 'D3 A3 F4 D5', 'G2 G3 D4 B4', 'C3 G3 E4 C5']},
+  {names: 'i – iv – V – i', key: 'A', mode: 'minor', v: ['A2 E3 C4 A4', 'D2 F3 D4 A4', 'E2 E3 B3 G#4', 'A2 E3 C4 A4']},
+  {names: 'I – V – I', key: 'C', mode: 'major', v: ['C3 G3 E4 C5', 'G2 G3 D4 B4', 'C3 G3 E4 C5']},
+];
+CH.push({id: 'form', title: 'Form and analysis', blurb: 'Motives, phrases, periods, and the large forms: binary, ternary, rondo, sonata',
+  body: `<p><b>Form</b> is the shape of a piece: how its parts are arranged in time. Harmony gives each part its own colour and, above all, its <b>cadences</b>, the points where the music pauses or ends. <b>Analysis</b> means finding that shape and the harmony inside it, so that you understand what you are playing.</p>
+<h3>From motive to phrase</h3>
+<ul><li>A <b>motive</b> is the smallest meaningful musical idea: a few notes with a recognisable rhythm, like the opening of Beethoven’s Fifth.</li><li>A <b>phrase</b> is a musical sentence that ends with a cadence. In classical music it is most often <b>four bars</b> long.</li><li>Phrases are built by <b>repetition</b>, <b>sequence</b> (the same idea at a different pitch), <b>variation</b> and <b>contrast</b>.</li></ul>
+<h3>The period</h3>
+<p>Two phrases together make a <b>period</b>: an <b>antecedent</b> (a “question”) that ends on a weak cadence, usually a <b>half cadence</b>, and a <b>consequent</b> (the “answer”) that begins the same way and ends on a stronger one, a <b>perfect authentic cadence</b>. Beethoven’s <i>Ode to Joy</i> is a perfect example:</p>
+{{fig:ode|Ode to Joy as a period. Both phrases begin alike; the first ends on V (D over a G bass), the second on I.}}
+<h3>The sentence</h3>
+<p>Another common eight-bar or four-bar design is the <b>sentence</b>: a <b>basic idea</b>, its repetition (often a step higher), and then a <b>continuation</b> that uses shorter units and drives to a cadence. Here is a four-bar version:</p>
+{{fig:sentence|A sentence: idea, repetition in sequence, continuation and cadence, over I – ii – V – I.}}
+<h3>The large forms</h3>
+<table class="htab"><tr><th>Binary (AB)</th><td>Two sections, often both repeated. The first moves away from the tonic (to the dominant, or the relative major in minor); the second returns. Typical of Baroque dances. In <b>rounded binary</b> the opening music comes back at the end of B.</td></tr>
+<tr><th>Ternary (ABA)</th><td>A, a contrasting B, then A again. Minuets with their trios, many slow movements and the “da capo” aria. The return of A gives a sense of coming home.</td></tr>
+<tr><th>Rondo (ABACA…)</th><td>A refrain that keeps returning, with contrasting episodes between: ABACA, or ABACABA.</td></tr>
+<tr><th>Theme and variations</th><td>A theme followed by several changed versions of it (melody, harmony, rhythm or texture). The harmony and phrase lengths usually stay.</td></tr>
+<tr><th>Sonata form</th><td>The most important form of the Classical period, used for the first movements of sonatas, symphonies and quartets: <b>exposition</b> (first theme in the tonic, a transition, second theme in the dominant, or the relative major in a minor key), <b>development</b> (themes are broken up and modulate through many keys) and <b>recapitulation</b> (both themes return in the tonic), often with a closing <b>coda</b>.</td></tr>
+<tr><th>Minuet and trio</th><td>A dance in ternary form: minuet, contrasting trio, minuet again. The usual third movement of a Classical symphony or quartet.</td></tr></table>
+<h3>How to analyze a piece</h3>
+<ol><li><b>Find the key</b> from the key signature and the last chord. Watch for accidentals that hint at modulation.</li><li><b>Mark the cadences</b>. They divide the music into phrases and show which ones are open (half cadence) and which closed (authentic).</li><li><b>Group the phrases</b> into periods, sentences or larger sections, and label the sections with letters (A, B, A′…).</li><li><b>Label the chords</b> with Roman numerals and inversions, and circle the non-chord tones (Chapter 10).</li><li><b>Look for the plan</b>: what returns, what is new, where the music changes key.</li></ol>
+<p>Practise on the pieces you play in the app. Open any lesson or Library piece, play it through, and see where its phrases end.</p>`,
+  figs: {
+    ode: twoLines('major', 'C', ODE, ODE_BASS, 100),
+    sentence: twoLines('major', 'C', SENT, SENT_BASS, 90),
+  },
+  quiz: [
+    () => { const p = pick(UNLABELLED); return ask('Which chord progression is this?', p.names, UNLABELLED.map(x => x.names), 'Name each chord: the bass note gives the root in these examples.', {fig: {key: p.key, mode: p.mode, clef: 'grand', satb: true, bpm: 70, events: p.v.map(v => ({notes: v.split(' '), d: 'h'}))}}); },
+    () => { const [plan, name] = pick([['A B', 'Binary'], ['A B A', 'Ternary'], ['A B A C A', 'Rondo'], ['Theme, variation 1, variation 2, variation 3…', 'Theme and variations'], ['Exposition, development, recapitulation', 'Sonata form'], ['Minuet, trio, minuet', 'Minuet and trio (a ternary form)']]); return ask(`A piece is laid out as “${plan}”. What is its form?`, name, ['Binary', 'Ternary', 'Rondo', 'Theme and variations', 'Sonata form'], `${plan} describes ${name.toLowerCase()}.`); },
+    bank([['In a period, how does the antecedent phrase usually end?', 'On a half cadence', ['On a perfect authentic cadence', 'On a deceptive cadence', 'On a plagal cadence'], 'It asks a question that the consequent answers.'],
+      ['In a period, how does the consequent phrase usually end?', 'On a perfect authentic cadence', ['On a half cadence', 'On the subdominant', 'With a modulation'], 'It is the stronger answer.'],
+      ['How long is a typical classical phrase?', 'Four bars', ['Two bars', 'Sixteen bars', 'One bar'], 'Two phrases make an eight-bar period.'],
+      ['What is a motive?', 'The smallest meaningful musical idea', ['A whole section of a piece', 'A kind of cadence', 'A key change'], 'A few notes with a characteristic rhythm.'],
+      ['What is a sequence?', 'The same idea repeated at a different pitch', ['The same idea repeated exactly', 'A change of tempo', 'A kind of rest'], 'Often a step higher or lower.'],
+      ['In a sentence, what follows the basic idea and its repetition?', 'A continuation leading to a cadence', ['A repeat of the whole', 'A silence', 'A new key signature'], 'The units get shorter as the cadence approaches.'],
+      ['Which form has the plan ABA?', 'Ternary', ['Binary', 'Rondo', 'Sonata'], 'The first section comes back after a contrast.'],
+      ['In a sonata-form exposition in a major key, where is the second theme usually?', 'In the dominant key', ['In the tonic', 'In the subdominant', 'In the relative minor'], 'It returns in the tonic in the recapitulation.'],
+      ['What happens in the development section of a sonata form?', 'Themes are broken up and modulate through various keys', ['The first theme returns exactly', 'The piece ends', 'A new slow melody starts'], 'It is the most unsettled part.'],
+      ['Which form is built on a returning refrain with contrasting episodes?', 'Rondo', ['Binary', 'Fugue', 'Canon'], 'ABACA…'],
+      ['What is the first step in analyzing a piece?', 'Find the key', ['Count the notes', 'Find the loudest bar', 'Name the composer'], 'Then mark the cadences.']]),
+  ],
+  play: [
+    progEx('Play the harmony of Ode to Joy’s first phrase in {key}', ['I', 'V', 'I', 'V'], () => pick(['C', 'G', 'F']), 'major', 'One chord per bar, ending on V: a half cadence. This is the antecedent phrase.'),
+    progEx('Play the second phrase: I – V – I – V – I in {key}', ['I', 'V', 'I', 'V', 'I'], () => pick(['C', 'G', 'F']), 'major', 'The same chords, but the last bars end on I: a perfect authentic cadence.'),
+    progEx('Play the sentence’s chords: I – ii – V – I in {key}', ['I', 'ii', 'V', 'I'], () => pick(['C', 'G', 'F', 'D']), 'major', 'Idea (I), repetition in sequence (ii), continuation to the cadence (V – I).'),
+  ]});
+
 window.Harmony.register(CH);
 })();
