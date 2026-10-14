@@ -75,6 +75,15 @@
       try { const e = g(); out.exercises++; if (!e.steps.length || e.steps.some(s => !s.pcs.length)) out.problems.push(`${c.id}: empty exercise ${e.title}`); } catch (e) { out.problems.push(`${c.id} play: ${e.message}`); break; }
     }
   }
+
+  // pitch-class set theory sanity checks (known textbook results)
+  if (Harmony.api.setTheory) {
+    const T = Harmony.api.setTheory, eq = (a, b) => a.join() === b.join();
+    const checks = [[T.primeForm([0, 4, 7]), [0, 3, 7]], [T.primeForm([0, 3, 7]), [0, 3, 7]], [T.primeForm([7, 11, 2, 5]), [0, 2, 5, 8]], [T.primeForm([0, 3, 6, 10]), [0, 2, 5, 8]], [T.primeForm([3, 11, 2]), [0, 1, 4]], [T.primeForm([0, 1, 2]), [0, 1, 2]],
+      [T.normalForm([2, 3, 8, 9]), [2, 3, 8, 9]], [T.normalForm([11, 2, 3, 7]), [11, 2, 3, 7]], [T.intervalVector([0, 4, 7]), [0, 0, 1, 1, 1, 0]], [T.intervalVector([7, 11, 2, 5]), [0, 1, 2, 1, 1, 1]], [T.intervalVector([0, 2, 4, 6, 8, 10]), [0, 6, 0, 6, 0, 3]], [T.intervalVector([0, 3, 6, 9]), [0, 0, 4, 0, 0, 2]]];
+    checks.forEach(([got, want], i) => { if (!eq(got, want)) out.problems.push(`set theory check ${i}: got ${got} want ${want}`); });
+    for (const kind of ['P', 'I', 'R', 'RI']) for (let n = 0; n < 12; n++) { const r = T.rowForm(kind, n); if (new Set(r).size !== 12) out.problems.push(`row form ${kind}${n} is not twelve distinct notes`); if ((kind === 'P' || kind === 'I') && r[0] !== n) out.problems.push(`${kind}${n} must start on ${n}`); if ((kind === 'R' || kind === 'RI') && r[11] !== n) out.problems.push(`${kind}${n} must end on ${n}`); }
+  }
   // draw every figure for real
   const box = document.createElement('div'); box.style.cssText = 'position:fixed;left:0;top:0;width:800px;opacity:0;pointer-events:none'; document.body.append(box);
   let drawn = 0;

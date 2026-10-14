@@ -25,15 +25,17 @@ const bump = (p, n) => mk(p.step, p.alter + n, p.oct);                          
 const QUAL = {
   major: [[2, 4], [4, 7]], minor: [[2, 3], [4, 7]], dim: [[2, 3], [4, 6]], aug: [[2, 4], [4, 8]],
   sus2: [[1, 2], [4, 7]], sus4: [[3, 5], [4, 7]],
+  maj9: [[2, 4], [4, 7], [6, 11], [8, 14]], dom9: [[2, 4], [4, 7], [6, 10], [8, 14]], min9: [[2, 3], [4, 7], [6, 10], [8, 14]], dom7b9: [[2, 4], [4, 7], [6, 10], [8, 13]], dom7s9: [[2, 4], [4, 7], [6, 10], [8, 15]],
   dom7: [[2, 4], [4, 7], [6, 10]], maj7: [[2, 4], [4, 7], [6, 11]], min7: [[2, 3], [4, 7], [6, 10]], hdim7: [[2, 3], [4, 6], [6, 10]], dim7: [[2, 3], [4, 6], [6, 9]],
 };
-const QNAME = {sus2: 'suspended 2nd chord', sus4: 'suspended 4th chord', major: 'major triad', minor: 'minor triad', dim: 'diminished triad', aug: 'augmented triad', dom7: 'dominant seventh', maj7: 'major seventh', min7: 'minor seventh', hdim7: 'half-diminished seventh', dim7: 'fully diminished seventh'};
+const QNAME = {maj9: 'major ninth', dom9: 'dominant ninth', min9: 'minor ninth', dom7b9: 'dominant seventh flat nine', dom7s9: 'dominant seventh sharp nine', sus2: 'suspended 2nd chord', sus4: 'suspended 4th chord', major: 'major triad', minor: 'minor triad', dim: 'diminished triad', aug: 'augmented triad', dom7: 'dominant seventh', maj7: 'major seventh', min7: 'minor seventh', hdim7: 'half-diminished seventh', dim7: 'fully diminished seventh'};
 const chordFromRoot = (root, q) => [root, ...QUAL[q].map(([d, s]) => above(root, d, s))];
 const sortN = a => [...a].sort((x, y) => x.midi - y.midi);
 
 const MAJ = [2, 2, 1, 2, 2, 2, 1], MIN = [2, 1, 2, 2, 1, 2, 2];
+const PATS = {major: MAJ, ionian: MAJ, minor: MIN, aeolian: MIN, dorian: [2, 1, 2, 2, 2, 1, 2], phrygian: [1, 2, 2, 2, 1, 2, 2], lydian: [2, 2, 2, 1, 2, 2, 1], mixolydian: [2, 2, 1, 2, 2, 1, 2], locrian: [1, 2, 2, 1, 2, 2, 2]};
 function scale(tonic, mode = 'major', n = 8, harm = false) {                                 // spelled scale notes from a tonic such as 'C4'
-  const t = typeof tonic === 'string' ? parse(tonic) : tonic, pat = mode === 'minor' ? MIN : MAJ, midis = [t.midi];
+  const t = typeof tonic === 'string' ? parse(tonic) : tonic, pat = PATS[mode] || MAJ, midis = [t.midi];
   for (let i = 1; i < n; i++) midis.push(midis[i - 1] + pat[(i - 1) % 7]);
   return midis.map((mid, i) => {
     const abs = t.step + i, step = abs % 7, oct = t.oct + Math.floor(abs / 7);
@@ -265,7 +267,7 @@ function showList() {
   $h('hback').hidden = true; $h('htitle').textContent = 'Harmony';
   const p = prog(), done = chapters.filter(c => (p[c.id] || {}).done).length;
   const body = $h('hbody');
-  body.innerHTML = `<p class="muted">A short course in classical harmony: how chords are built, how they follow one another and how they are joined in four parts. Each chapter has examples to <b>hear</b>, a quiz and exercises to <b>play</b> on your piano (or the keys on screen). A chapter is done when you get 4 of 5 in its quiz. <b>${done} of ${chapters.length} done.</b></p><div class="hlist"></div>`;
+  body.innerHTML = `<p class="muted">A short course in classical harmony: how chords are built, how they follow one another and how they are joined in four parts. Each chapter has examples to <b>hear</b>, a quiz and exercises to <b>play</b> on your piano (or the keys on screen). A chapter is done when you get 4 of 5 in its quiz. <b>${done} of ${chapters.length} done.</b></p><div class="hlist"></div><p class="muted" style="font-size:13px;margin-top:18px">Many topics follow the outline of <i>Music Theory for the 21st-Century Classroom</i> by Robert Hutchinson (University of Puget Sound; free under the GNU Free Documentation License, musictheory.pugetsound.edu). The explanations, examples, questions and Korean terms here are our own.</p>`;
   const list = body.querySelector('.hlist');
   const g = document.createElement('button'); g.className = 'hcard gloss'; g.innerHTML = `<span class="n">Aa</span><span class="t"><b>Glossary · 용어집</b><small>Key terms in English and Korean · 영어와 한국어 핵심 용어</small></span><span class="st">${glossary.length}</span>`; g.onclick = showGlossary; list.append(g);
   let lastPart = null;
