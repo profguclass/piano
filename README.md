@@ -61,6 +61,9 @@ Lesson scores are in [`lessons/`](lessons/) and are built by [`tools/make_lesson
 - **Back up / Restore** (⋯ menu): saves progress, settings and **My scores** in one file; restoring replaces what is on the device.
 - **Theme** (⋯ menu): Auto (follows the device), Light or Dark. The score always stays on light paper.
 
+## Harmony tutorial
+Tap **Harmony** for a short course in classical harmony, in 13 chapters: scales and keys, intervals, triads, triads in a key (Roman numerals and function), inversions and figured bass, seventh chords, cadences, progressions and the circle of fifths, voice leading (four parts), non-chord tones, minor keys, chromatic harmony and modulation, and harmonizing a melody. Each chapter has staff examples you can **hear**, a five-question quiz (random questions; 4 right completes the chapter) and three **Play it** exercises, answered on your piano or on the keys on screen. Progress is kept on the device. The code is in [`harmony.js`](harmony.js) (theory engine, figures, quiz, exercises) and [`harmony-chapters.js`](harmony-chapters.js) (the text and questions), loaded only when you open the tutorial. `tools/test_harmony.js` checks every four-part example (chord tones, spacing, parallel fifths and octaves) and every question and exercise generator.
+
 ## Library: practise a piece as a whole
 Tap **Library** to practise any piece from the first bar to the last, outside the lesson steps. It lists every piece in the course (searchable by title or composer, grouped by level) and a **My scores** shelf: use **Add a score** (or **Open score**) to open your own MusicXML file (`.musicxml`, `.xml`, `.mxl`) and it stays on the device in the browser's own storage (IndexedDB), ready for next time. Listen, Play along, Wait for me, the hands, the tempo, Repeat bars and Progress all work as usual; the app returns to the piece you were practising when you reopen it.
 
