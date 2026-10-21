@@ -253,13 +253,28 @@ CH.push({id: 'progressions', title: 'Progressions and the circle of fifths', blu
 {{fig:ivi|I – vi – ii – V – I: a classic.}}
 <h3>A few rules of thumb</h3>
 <ul><li>Chords of the same function can replace each other: vi for I, ii for IV.</li><li>V often follows IV or ii, never the other way round: <b>V → IV</b> sounds backwards in classical style.</li><li>I can go anywhere; V goes to I (or vi); vii° goes to I.</li><li>Popular patterns: <b>I – IV – V – I</b>, <b>I – vi – IV – V</b> (the “fifties” progression), <b>I – V – vi – IV</b>.</li></ul>
-<p>The <b>circle of fifths</b> arranges all twelve keys by fifths: C G D A E B F♯… going up a fifth adds a sharp; going down adds a flat. Neighbouring keys share most of their notes, which is why we can modulate between them smoothly ({{ch:chromatic}}).</p>`,
+<p>The <b>circle of fifths</b> arranges all twelve keys by fifths: C G D A E B F♯… going up a fifth adds a sharp; going down adds a flat. Neighbouring keys share most of their notes, which is why we can modulate between them smoothly ({{ch:chromatic}}).</p>
+<h3>Harmonic sequences</h3>
+<p>A <b>harmonic sequence</b> repeats a short pattern of chords at a new pitch level, so the roots move by the same interval again and again. The pattern matters more than the usual rules of function, so a sequence can contain progressions that would sound odd on their own (for example vii° followed by iii).</p>
+<ul><li><b>Descending fifths</b> (the circle of fifths): I – IV – vii° – iii – vi – ii – V – I. Every root falls a fifth (or rises a fourth); the only diminished chord is vii°, which stands in for a perfect fifth.</li>
+<li><b>Descending thirds</b>: I – vi – IV – ii – V – I. Each root falls a third; it is the reverse of the “step up by thirds” idea and is common in the Baroque.</li>
+<li><b>Pachelbel</b> (descending 5–6 pattern): I – V – vi – iii – IV – I – IV – V. It has been the backbone of countless pieces and pop songs.</li></ul>
+{{fig:seq3|A descending-thirds sequence in C major: I – vi – IV – ii – V – I.}}
+{{fig:pach|The Pachelbel sequence in C major: I – V – vi – iii – IV – I – IV – V.}}
+<p>To spot a sequence, look for the <b>same interval between roots</b> repeating at least twice. Label the chords with Roman numerals anyway, then add a bracket to show the repeating pattern.</p>`,
   figs: {
+    seq3: prog('C', 'major', ['I', 'vi', 'IV', 'ii', 'V', 'I'], {d: 'h', bpm: 60}),
+    pach: prog('C', 'major', ['I', 'V', 'vi', 'iii', 'IV', 'I', 'IV', 'V'], {d: 'h', bpm: 60}),
     circle: prog('C', 'major', ['I', 'IV', 'vii°', 'iii', 'vi', 'ii', 'V', 'I'], {d: 'h', bpm: 60}),
     iivi: satb('C', 'major', [['D3 A3 F4 D5', 'ii'], ['G2 G3 D4 B4', 'V'], ['C3 G3 E4 C5', 'I', 'w']], {bpm: 56, d: 'h'}),
     ivi: satb('C', 'major', [['C3 G3 E4 C5', 'I'], ['A2 A3 E4 C5', 'vi'], ['D3 A3 F4 D5', 'ii'], ['G2 G3 D4 B4', 'V'], ['C3 G3 E4 C5', 'I', 'w']], {bpm: 56, d: 'h'}),
   },
   quiz: [
+    bank([['What is a harmonic sequence?', 'A chord pattern repeated at a new pitch level', ['A cadence', 'A chord with a seventh', 'A change of key'], 'The roots move by the same interval each time.'],
+      ['In a descending-fifths sequence in C major, which chord follows IV?', 'vii°', ['V', 'ii', 'iii'], 'I – IV – vii° – iii – vi – ii – V – I.'],
+      ['Which sequence goes I – vi – IV – ii – V – I?', 'Descending thirds', ['Descending fifths', 'Ascending seconds', 'Chromatic mediants'], 'Each root is a third lower than the one before.'],
+      ['Which progression is the Pachelbel sequence in C major?', 'I – V – vi – iii – IV – I – IV – V', ['I – IV – V – I', 'I – vi – ii – V', 'ii – V – I – vi'], 'It is the “Canon in D” pattern.'],
+      ['Why can a sequence break the usual rules of progression?', 'The repeating pattern outweighs the normal function of each chord', ['Because it is always in a minor key', 'Because the bass stays still', 'Because it has no tonic'], 'It sounds logical because of the repetition.']]),
     () => { const p = pick([['ii', 'V', 'I'], ['I', 'IV', 'V', 'I'], ['I', 'vi', 'ii', 'V'], ['I', 'vi', 'IV', 'V']]), right = p[p.length - 1], shown = p.slice(0, -1).concat('?').join(' – '); return ask(`Which chord completes the progression ${shown}?`, right, ['I', 'ii', 'IV', 'V', 'vi', 'iii'], `${p.join(' – ')} is a standard progression.`); },
     bank([['What is the strongest root movement?', 'Down a fifth', ['Up a second', 'Down a third', 'Up a sixth'], 'G → C, D → G… the chain of falling fifths.'],
       ['Which chord normally follows ii in a cadential progression?', 'V', ['IV', 'iii', 'vii°'], 'ii – V – I.'],
@@ -267,7 +282,9 @@ CH.push({id: 'progressions', title: 'Progressions and the circle of fifths', blu
       ['Which chord can replace I as a tonic substitute?', 'vi', ['V', 'ii', 'IV'], 'It shares two notes with I.'],
       ['Going up a fifth on the circle of fifths adds…', 'A sharp (or removes a flat)', ['A flat', 'A natural', 'Nothing'], 'C → G adds F♯.']]),
   ],
-  play: [progEx('Play ii – V – I in {key}', ['ii', 'V', 'I'], () => pick(['C', 'G', 'F', 'Bb', 'D']), 'major'), progEx('Play I – vi – ii – V – I in {key}', ['I', 'vi', 'ii', 'V', 'I'], () => pick(['C', 'G', 'F']), 'major'), progEx('Play I – IV – vii° – iii – vi – ii – V – I in {key}', ['I', 'IV', 'vii°', 'iii', 'vi', 'ii', 'V', 'I'], 'C', 'major', 'The whole chain of falling fifths. Take your time.')]});
+  play: [
+    progEx('Play the descending-thirds sequence in {key}: I – vi – IV – ii – V – I', ['I', 'vi', 'IV', 'ii', 'V', 'I'], () => pick(['C', 'G', 'F', 'D']), 'major'),
+    progEx('Play the Pachelbel sequence in {key}', ['I', 'V', 'vi', 'iii', 'IV', 'I', 'IV', 'V'], () => pick(['C', 'G', 'D']), 'major'),progEx('Play ii – V – I in {key}', ['ii', 'V', 'I'], () => pick(['C', 'G', 'F', 'Bb', 'D']), 'major'), progEx('Play I – vi – ii – V – I in {key}', ['I', 'vi', 'ii', 'V', 'I'], () => pick(['C', 'G', 'F']), 'major'), progEx('Play I – IV – vii° – iii – vi – ii – V – I in {key}', ['I', 'IV', 'vii°', 'iii', 'vi', 'ii', 'V', 'I'], 'C', 'major', 'The whole chain of falling fifths. Take your time.')]});
 
 /* 9 ---------------------------------------------------------------- */
 CH.push({id: 'voiceleading', title: 'Voice leading', blurb: 'Four-part writing: how each voice moves from chord to chord',
@@ -665,7 +682,14 @@ CH.push({id: 'rhythm', title: 'Rhythm and meter', blurb: 'Time signatures, note 
 <h3>Syncopation and beaming</h3>
 <p><b>Syncopation</b> stresses weak beats or weak parts of a beat, and often ties a note over a strong beat. Because it needs to show the beat, notes are <b>beamed</b> in groups that make each beat visible: write the rhythm so that the downbeats can be seen. (The exception is a few common syncopated patterns that are easier to read with a tie than written out.)</p>
 {{fig:sync|Syncopation: the long notes begin on weak parts of the beat.}}
-{{fig:ties|A tie (same pitch) makes one long note: here a half note tied to a quarter lasts three beats, like a dotted half.}}`,
+{{fig:ties|A tie (same pitch) makes one long note: here a half note tied to a quarter lasts three beats, like a dotted half.}}
+<h3>Common errors in rhythmic notation</h3>
+<p>Rhythm is written to be <b>read at a glance</b>, so the page should show where the beats fall. Avoid these mistakes:</p>
+<ul><li><b>Hiding the middle of a 4/4 bar.</b> A single long note that starts on beat 2 and lasts through beat 3 hides the half-bar. Write it as two notes joined by a tie, unless the syncopation is the point.</li>
+<li><b>Beaming across the beat in the wrong place.</b> In 4/4 group eighth notes by beat (or by half bar) and not across the middle of the bar; in 6/8 beam in two groups of three, not three groups of two.</li>
+<li><b>Using a dot where a tie is clearer.</b> A dot lengthens a note by half its value, but a dotted note must not make beat 2 or 3 disappear. Across a barline you must use a tie.</li>
+<li><b>Untidy rests.</b> Use the rest that matches the length of silence and shows the beat. A whole rest fills <i>any</i> empty bar (in 3/4 as well as 4/4).</li>
+<li><b>Bars that do not add up.</b> Check the sum of every bar against the time signature; only the first bar of a piece (a pickup, or <i>anacrusis</i>) and the last may be short.</li></ul>`,
   figs: {
     m34: rline([3, 4], ['q', 'q', 'q', 'h', 'q'], ['1', '2', '3', '1', '3']),
     m44: rline([4, 4], ['q', 'q', 'q', 'q', 'h', 'q', 'q'], ['1', '2', '3', '4', '1', '3', '4']),
@@ -675,6 +699,10 @@ CH.push({id: 'rhythm', title: 'Rhythm and meter', blurb: 'Time signatures, note 
     ties: {key: 'C', mode: 'major', clef: 'treble', bpm: 90, events: [{notes: ['C5~'], d: 'h'}, {notes: ['C5'], d: 'q'}, {notes: ['C5'], d: 'q'}, {notes: ['C5'], d: 'h.', sym: 'dotted half'}, {notes: ['C5'], d: 'q'}]},
   },
   quiz: [
+    bank([['In 4/4, what is wrong with a half note starting on beat 2?', 'It hides the middle of the bar; use two tied quarter notes', ['It is always too loud', 'A half note can only start on beat 1', 'It makes the bar too long'], 'Show the half-bar unless syncopation is intended.'],
+      ['How should eighth notes in 6/8 normally be beamed?', 'In two groups of three', ['In three groups of two', 'In one group of six', 'They are never beamed'], 'Each group is one dotted-quarter beat.'],
+      ['Which rest fills an empty bar in 3/4?', 'A whole rest', ['A dotted half rest', 'Three quarter rests', 'A half rest'], 'The whole rest means “a full bar of silence” in any meter.'],
+      ['When must you use a tie and not a dot?', 'When the note continues across a barline', ['When the note is short', 'When the music is fast', 'Never'], 'A dot only extends a note inside the bar.']]),
     () => { const [ts, name, why] = pick([['2/4', 'simple duple', 'Two beats, each divided in two.'], ['3/4', 'simple triple', 'Three beats, each divided in two.'], ['4/4', 'simple quadruple', 'Four beats, each divided in two.'], ['2/2', 'simple duple', 'Two half-note beats, each divided in two.'], ['3/8', 'simple triple', 'Three eighth-note beats.'], ['6/8', 'compound duple', 'Two beats, each divided in three.'], ['9/8', 'compound triple', 'Three beats, each divided in three.'], ['12/8', 'compound quadruple', 'Four beats, each divided in three.'], ['6/4', 'compound duple', 'Two dotted-half beats.']]); return ask(`What is the meter of ${ts}?`, name, ['simple duple', 'simple triple', 'simple quadruple', 'compound duple', 'compound triple', 'compound quadruple'], why); },
     () => { const [ts, n] = pick([['6/8', 'a dotted quarter note'], ['9/8', 'a dotted quarter note'], ['12/8', 'a dotted quarter note'], ['3/4', 'a quarter note'], ['4/4', 'a quarter note'], ['2/2', 'a half note'], ['6/4', 'a dotted half note'], ['3/8', 'an eighth note']]); return ask(`In ${ts}, what note value is the beat?`, n, ['a dotted quarter note', 'a quarter note', 'a half note', 'a dotted half note', 'an eighth note'], 'In compound meters the beat is a dotted note.'); },
     () => { const [q, a, why] = pick([['How many beats does a dotted half note last in 4/4?', '3', 'A half note (2) plus half of it (1).'], ['How many beats does a dotted quarter note last in 4/4?', '1½', 'A quarter note plus an eighth.'], ['A half note is tied to a quarter note in 4/4. How many beats is the sound?', '3', '2 + 1.'], ['How many eighth notes fit in one 4/4 bar?', '8', 'Two per beat, four beats.'], ['How many sixteenth notes make one quarter note?', '4', 'Each division halves the value.'], ['How many quarter-note beats are in a bar of 3/4?', '3', 'The top number says how many.']]); return ask(q, a, ['1', '1½', '2', '3', '4', '6', '8'], why); },
@@ -1028,13 +1056,29 @@ CH.push({id: 'neapolitan', title: 'Neapolitan and augmented sixth chords', blurb
 {{fig:ger|Ger⁺⁶ – i⁶₄ – V – i: the A♭ falls to G, the F♯ rises to G, the C and E♭ stay.}}
 <p>In lead-sheet notation an augmented sixth chord is written as a dominant seventh on ♭6 (a “misspelled” seventh chord): It⁺⁶ is the same as a seventh chord with its fifth omitted.</p>
 <h3>Descending chromatic bass lines</h3>
-<p>A famous pattern is the bass falling by half steps from the tonic to the dominant: <b>1 – ♮7 – ♭7 – 6 – ♭6 – 5</b>. Composers harmonize it with all the chords of this and earlier chapters: secondary chords, borrowed chords, augmented sixths and sometimes unusual diatonic chords. The chromatic pre-dominants (N⁶, It⁺⁶, Fr⁺⁶, Ger⁺⁶, borrowed iv and iiø⁷) are all alternative ways of harmonizing the ♭6 before the dominant.</p>`,
+<p>A famous pattern is the bass falling by half steps from the tonic to the dominant: <b>1 – ♮7 – ♭7 – 6 – ♭6 – 5</b>. Composers harmonize it with all the chords of this and earlier chapters: secondary chords, borrowed chords, augmented sixths and sometimes unusual diatonic chords. The chromatic pre-dominants (N⁶, It⁺⁶, Fr⁺⁶, Ger⁺⁶, borrowed iv and iiø⁷) are all alternative ways of harmonizing the ♭6 before the dominant.</p>
+<h3>The lament bass</h3>
+<p>The most famous descending bass is the <b>lament bass</b>, a fall from tonic to dominant: in A minor, A – G – F – E, usually harmonized i – v⁶ – iv⁶ – V. It is called the lament because of Baroque laments (such as Purcell’s <i>Dido’s Lament</i>), and it is still heard in pop. When the steps are filled with half steps, A – G♯ – G – F♯ – F – E, it becomes the <b>chromatic bass line</b> described above, with a new chord on almost every note.</p>
+{{fig:lament|The lament bass in A minor: A – G – F – E under i – v⁶ – iv⁶ – V.}}
+<h3>Which chromatic chord is it?</h3>
+<p>Several chords lead to V with a chromatic note. Look at the bass and at the raised or lowered notes:</p>
+<table class="htab"><tr><th>Major triad with ♭2 and 4 in the bass</th><td>Neapolitan sixth (N⁶).</td></tr>
+<tr><th>♭6 in the bass and ♯4 above it</th><td>An augmented sixth chord (It⁺⁶, Fr⁺⁶ or Ger⁺⁶): the two notes spread outward to 5.</td></tr>
+<tr><th>♯4 and the bass on 2, or the chord is a dominant of V</th><td>A secondary chord, V/V or vii°/V: it resolves to V as well, but it contains no ♭6.</td></tr>
+<tr><th>♭6 in a major chord on ♭6, with no ♯4</th><td>A borrowed ♭VI (mode mixture).</td></tr>
+<tr><th>iv, ii° or ii⁶ without chromatic notes</th><td>Ordinary pre-dominants; borrowed iv in a major key is the milder cousin of N⁶.</td></tr></table>
+<p>All of these are <b>chromatic pre-dominants</b>: different colours for the same job of preparing V. The stronger the chromatic note (a ♯4 or ♭2), the more urgent the approach to the dominant.</p>`,
   figs: {
+    lament: block('A', 'minor', [['A2 C4 E4 A4', 'i'], ['G2 B3 E4 G4', 'v⁶'], ['F2 A3 D4 F4', 'iv⁶'], ['E2 B3 E4 G#4', 'V']], {bpm: 56, d: 'q'}),
     neap: block('C', 'minor', [['C3 Eb4 G4 C5', 'i'], ['F3 Ab4 Db5 F5', 'N⁶'], ['G2 D4 G4 B4', 'V'], ['C3 Eb4 G4 C5', 'i']], {bpm: 60}),
     aug6: block('C', 'minor', [['Ab2 C4 F#4 C5', 'It⁺⁶'], ['G2 D4 G4 B4', 'V'], ['Ab2 C4 D4 F#4', 'Fr⁺⁶'], ['G2 D4 G4 B4', 'V']], {bpm: 60}),
     ger: block('C', 'minor', [['Ab2 C4 Eb4 F#4', 'Ger⁺⁶'], ['G2 C4 Eb4 G4', 'i⁶₄'], ['G2 D4 G4 B4', 'V'], ['C3 Eb4 G4 C5', 'i']], {bpm: 60}),
   },
   quiz: [
+    bank([['What is the lament bass in A minor?', 'A – G – F – E', ['A – B – C – D', 'A – E – A – E', 'A – C – E – A'], 'It falls from the tonic to the dominant, usually under i – v⁶ – iv⁶ – V.'],
+      ['The bass is ♭6 and there is a ♯4 above it. Which chord is it?', 'An augmented sixth chord', ['A Neapolitan', 'A borrowed iv', 'A deceptive cadence'], 'The two notes a sixth apart expand to 5.'],
+      ['Which chord is a major triad on ♭2 in first inversion?', 'Neapolitan sixth', ['German sixth', 'Italian sixth', 'Picardy third'], 'N⁶ has 4 in the bass.'],
+      ['What do N⁶, augmented sixths, borrowed iv and ii° have in common?', 'They are all pre-dominant chords', ['They are all tonic chords', 'They are all cadences', 'They all contain a seventh'], 'Each prepares V.']]),
     () => { const k = pick(['A', 'C', 'D', 'G', 'E']), kind = pick(['It', 'Fr', 'Ger']), notes = sixth(k, kind); const names = x => x.map(n => nm(n)).join(' – ');
       return ask(`In ${pn(k)} minor, which notes make the ${kind}⁺⁶ chord?`, names(notes), ['It', 'Fr', 'Ger'].filter(x => x !== kind).map(x => names(sixth(k, x))).concat([names([bump(notes[0], 1), ...notes.slice(1)])]), 'All contain ♭6 and ♯4; add 1 (Italian), 1 and 2 (French) or 1 and ♭3 (German).'); },
     () => { const k = pick(['A', 'E', 'D', 'G', 'C']), s = scale(k + '4', 'minor', 8), root = bump(s[1], -1), c = chordFromRoot(root, 'major'); return ask(`In ${pn(k)} minor, which notes make the Neapolitan chord?`, c.map(n => nm(n)).join(' – '), [chordFromRoot(s[1], 'dim'), chordFromRoot(s[3], 'minor'), chordFromRoot(s[4], 'major')].map(x => x.map(n => nm(n)).join(' – ')), 'A major triad on the lowered 2nd degree.'); },
@@ -1283,14 +1327,26 @@ CH.push({id: 'impressionism', title: 'Impressionism and extended tonality', blur
 {{fig:stack|On C: tertian (thirds), quartal (fourths), quintal (fifths) and secundal (seconds) chords.}}
 <h3>Polychords</h3>
 <p>A <b>polychord</b> is two (or more) chords sounding together, usually two triads: for example D major under C major. In writing, the chords are separated by a horizontal line (not a slash, which means a bass note). The best-known polychord is the “Rite of Spring” chord, an E♭ seventh chord over an F♭ major triad.</p>
-{{fig:poly|A polychord: D major below C major.}}`,
+{{fig:poly|A polychord: D major below C major.}}
+<h3>Whole-tone and octatonic scales</h3>
+<p>Two symmetrical scales were favoured by Debussy and later composers.</p>
+<ul><li>The <b>whole-tone scale</b> has six notes, every one a whole step from the next: C D E F♯ G♯ B♭. With no half steps and no perfect fifths above the tonic, it has no leading tone and no pull toward a tonic: it floats. Only <b>two</b> different whole-tone scales exist.</li>
+<li>The <b>octatonic scale</b> (also called the diminished scale) has eight notes alternating whole and half steps (or half and whole): C D E♭ F F♯ G♯ A B. It contains many minor thirds and tritones, which is why it fits fully diminished seventh chords and was popular with Stravinsky, Bartók and in jazz. Only <b>three</b> different octatonic collections exist.</li></ul>
+{{fig:wt|The whole-tone scale on C.}}
+{{fig:oct|The octatonic (whole–half) scale on C.}}`,
   figs: {
+    wt: line('C', 'major', ['C4', 'D4', 'E4', 'F#4', 'G#4', 'Bb4', 'C5'], {bpm: 100}),
+    oct: line('C', 'major', ['C4', 'D4', 'Eb4', 'F4', 'F#4', 'G#4', 'A4', 'B4', 'C5'], {bpm: 100}),
     dor: modeLine('D', 'dorian'), phr: modeLine('E', 'phrygian'), lyd: modeLine('F', 'lydian'), mix: modeLine('G', 'mixolydian'),
     plane: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: planing.map((c, i) => ({notes: c, d: 'h', sym: symOf({root: c[0], quality: 'major'})}))},
     stack: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: [[['C4', 'E4', 'G4', 'B4'], 'thirds'], [['C4', 'F4', 'Bb4', 'Eb5'], 'fourths'], [['C4', 'G4', 'D5', 'A5'], 'fifths'], [['C4', 'D4', 'E4', 'F4'], 'seconds']].map(([n, l]) => ({notes: n, d: 'w', sym: l}))},
     poly: block('C', 'major', [['D3 F#3 A3 C4 E4 G4', 'D below C', 'C over D', 'w']], {bpm: 56}),
   },
   quiz: [
+    bank([['How many different notes are there in a whole-tone scale (before the octave)?', 'Six', ['Five', 'Seven', 'Eight'], 'Every note is a whole step from the next.'],
+      ['Why does a whole-tone scale sound without a clear tonic?', 'It has no half steps and so no leading tone', ['It has too many sharps', 'It is always very quiet', 'It uses only minor chords'], 'There is nothing that pulls to a tonic.'],
+      ['What pattern does the octatonic scale follow?', 'Alternating whole steps and half steps', ['Only whole steps', 'Only half steps', 'Three whole steps then a half step'], 'It has eight different notes.'],
+      ['How many different whole-tone scales exist?', 'Two', ['Six', 'Twelve', 'One'], 'C–D–E–F♯–G♯–B♭ and C♯–D♯–F–G–A–B.']]),
     () => { const [r, m, name] = pick(MODES); return ask(`What mode is the white-key scale that begins on ${r}?`, name, MODES.map(x => x[2]), `${name} starts on ${r} when played on the white keys.`); },
     () => { const [q, a, w] = pick([['Which mode is a major scale with a raised 4th?', 'Lydian', ['Dorian', 'Phrygian', 'Mixolydian']], ['Which mode is a major scale with a lowered 7th?', 'Mixolydian', ['Lydian', 'Dorian', 'Ionian']], ['Which mode is a minor scale with a raised 6th?', 'Dorian', ['Phrygian', 'Aeolian', 'Locrian']], ['Which mode is a minor scale with a lowered 2nd?', 'Phrygian', ['Dorian', 'Aeolian', 'Lydian']], ['Which mode equals the natural minor scale?', 'Aeolian', ['Dorian', 'Phrygian', 'Locrian']], ['Which mode equals the major scale?', 'Ionian', ['Lydian', 'Mixolydian', 'Dorian']]]); return ask(q, a, w, 'Compare the notes with the major scale.'); },
     () => { const r = pick(['C', 'D', 'E', 'F', 'G', 'A']), kind = pick([['quartal', [3, 5]], ['quintal', [4, 7]]]), st = kind[1], stack = n => { const x = [R(r)]; for (let i = 0; i < 2; i++) x.push(above(x[i], n[0], n[1])); return x; }, names = x => x.map(n => nm(n)).join(' – ');
@@ -1304,6 +1360,7 @@ CH.push({id: 'impressionism', title: 'Impressionism and extended tonality', blur
       ['Which composers are most associated with musical impressionism?', 'Debussy and Ravel', ['Bach and Handel', 'Haydn and Mozart', 'Verdi and Puccini'], 'They used modes, extended chords and parallelism.']]),
   ],
   play: [
+    noteSteps('Play the whole-tone scale on C', 'Six notes a whole step apart: C D E F♯ G♯ B♭.', ['C', 'D', 'E', 'F#', 'G#', 'Bb']),
     () => { const [r, m, name] = pick(MODES.slice(0, 5)), s = scale(r + '4', m, 8); return {title: `Play the ${name} mode on ${r}`, help: 'The white keys from the starting note up to the octave.', steps: s.map(n => ({label: nm(n), pcs: [((n.midi % 12) + 12) % 12], names: [nm(n)]}))}; },
     () => { const r = pick(['C', 'D', 'E', 'G']), roots = [0, 1, 2, 3].map(k => above(R(r), k, 2 * k)), cs = roots.map(x => chordFromRoot(x, 'major')); return {title: `Planing: the ${pn(r)} major triad moving up by whole steps`, help: 'Keep the same hand shape and slide it.', steps: cs.map((c, i) => ({label: pn(nm(roots[i])), pcs: pcsOf(c), names: c.map(n => nm(n))}))}; },
     () => { const r = pick(['C', 'D', 'G']), a = R(r), notes = [a, above(a, 3, 5), above(above(a, 3, 5), 3, 5)]; return {title: `A quartal chord on ${pn(r)}`, help: 'Three notes, each a perfect fourth above the one before.', steps: [{label: pn(r) + ' quartal', pcs: pcsOf(notes), names: notes.map(n => nm(n)), bass: ((a.midi % 12) + 12) % 12}]}; },
@@ -1427,11 +1484,48 @@ CH.push({id: 'minimalism', title: 'Minimalism', blurb: 'Additive process and pha
     () => { const k = pick([2, 3]), a = PAT5.slice(0, k + 1); return {title: `Additive process: build the pattern up to ${k + 1} notes`, help: 'Play the notes in order.', steps: a.map(n => ({label: nm(parse(n)), pcs: [parse(n).midi % 12], names: [nm(parse(n))]}))}; },
   ]});
 
+
+/* ================= Creating contrast between sections ================= */
+CH.push({id: 'contrast', title: 'Creating contrast between sections', blurb: 'The elements of music and how composers make verse and chorus, A and B, different',
+  body: `<p>Songs and pieces are made of <b>sections</b>, and sections need to feel different. The difference is called <b>contrast</b>, and a composer creates it by changing one or more of the <b>elements of music</b>.</p>
+<h3>The elements of music</h3>
+<table class="htab"><tr><th>Melody</th><td>Higher or lower <b>register</b>, wider or narrower <b>range</b>, stepwise or leaping, new motives.</td></tr>
+<tr><th>Harmony</th><td>New chords or a new key; a faster or slower <b>harmonic rhythm</b>; a change from major to minor.</td></tr>
+<tr><th>Rhythm</th><td>A busier or sparser rhythm, a new pattern, syncopation or a change of meter or tempo.</td></tr>
+<tr><th>Texture and timbre</th><td>More or fewer instruments or voices; doubling in octaves; a change from block chords to arpeggios ({{ch:textures}}); a new instrumental colour.</td></tr>
+<tr><th>Dynamics</th><td>Quiet to loud (or the reverse), crescendos and decrescendos.</td></tr></table>
+<h3>Contrast in practice</h3>
+<p>In popular music the chorus is usually the most intense section. Compared with the verse it is often <b>higher</b>, <b>louder</b>, <b>thicker</b> (more instruments and doubled lines) and has a <b>stronger harmonic rhythm</b> and a more memorable melody. A <b>bridge</b> (or B section) normally contrasts in harmony: it avoids the home tonic, or starts on a different chord, to build tension before the return.</p>
+{{fig:verse|Verse: the chords I – V – vi – IV in a low, thin texture.}}
+{{fig:chorus|Chorus: the same chords, higher and thicker. Nothing in the harmony has changed, yet the section sounds bigger.}}
+<p>Contrast does not need a new tune: changing only the <b>register</b>, the <b>dynamics</b> and the <b>texture</b> is enough. Classical composers also use contrast for form: the B section of a ternary piece ({{ch:binaryternary}}) is often in a new key and has new material, and the development of a sonata ({{ch:sonatarondo}}) contrasts with the exposition in key and tension.</p>
+<h3>How to analyze it</h3>
+<ol><li>Divide the song into sections and name them (verse, chorus, bridge…).</li>
+<li>For each section note: register and range, dynamics, instruments, texture, harmonic rhythm, and rhythm of the melody.</li>
+<li>Compare neighbouring sections and say <b>which elements changed</b> and in which direction.</li></ol>`,
+  figs: {
+    verse: block('C', 'major', [['C3 G3 E4', 'I'], ['G2 D3 B3', 'V'], ['A2 E3 C4', 'vi'], ['F2 C3 A3', 'IV']], {bpm: 60, d: 'h'}),
+    chorus: block('C', 'major', [['C3 C4 E4 G4 C5', 'I'], ['G2 G3 B3 D4 G4', 'V'], ['A2 A3 C4 E4 A4', 'vi'], ['F2 F3 A3 C4 F4', 'IV']], {bpm: 60, d: 'h'}),
+  },
+  quiz: [
+    () => { const [d, a] = pick([['the chorus is louder', 'Dynamics'], ['the chorus is higher in pitch', 'Melody (register)'], ['the chorus has more instruments', 'Texture and timbre'], ['the chorus has faster chord changes', 'Harmony (harmonic rhythm)'], ['the chorus has a busier rhythm', 'Rhythm']]); return ask(`Which element of music creates the contrast when ${d}?`, a, ['Dynamics', 'Melody (register)', 'Texture and timbre', 'Harmony (harmonic rhythm)', 'Rhythm'].filter(x => x !== a).slice(0, 4), 'Name what changed between the two sections.'); },
+    bank([['What is contrast?', 'A difference between two sections made by changing elements of music', ['The repetition of a section', 'A very loud ending', 'A change of notation'], 'Composers can change melody, harmony, rhythm, texture or dynamics.'],
+      ['Which is usually the most intense section of a pop song?', 'The chorus', ['The verse', 'The intro', 'The pickup'], 'It is higher, louder and thicker.'],
+      ['How does a bridge usually contrast with the verse and chorus?', 'Through new harmony, often avoiding the home tonic', ['By using only one chord', 'By stopping the beat', 'By going to the next octave only'], 'It builds tension before the return.'],
+      ['Can two sections contrast with the same chords?', 'Yes, by changing register, texture and dynamics', ['No, the chords must change', 'Only in minor keys', 'Only with a key change'], 'The verse and chorus figures above use the same four chords.'],
+      ['What is harmonic rhythm?', 'How often the chords change', ['The beat of the drums', 'The rhythm of the melody', 'The speed of the tempo'], 'A faster harmonic rhythm often raises the energy.'],
+      ['Which is a change of texture?', 'Block chords change to arpeggios', ['A louder dynamic', 'A new key', 'A faster tempo'], 'Texture is how the layers are arranged.']]),
+  ],
+  play: [
+    progEx('Play the verse chords in {key}: I – V – vi – IV', ['I', 'V', 'vi', 'IV'], () => pick(['C', 'G', 'F', 'D']), 'major', 'Play low and softly, as in a verse.'),
+    progEx('Play the chorus chords in {key} an octave higher: I – V – vi – IV', ['I', 'V', 'vi', 'IV'], () => pick(['C', 'G', 'F', 'D']), 'major', 'Play higher and fuller: double the notes in octaves.'),
+  ]});
+
 /* order and parts of the course */
 const PARTS = [
   ['Foundations', ['notation', 'rhythm', 'scales', 'intervals']],
   ['Chords and progressions', ['triads', 'triadsinkey', 'inversions', 'sevenths', 'cadences', 'progressions', 'popharmony']],
-  ['Melody, phrase and texture', ['nonchord', 'melody', 'phrases', 'textures']],
+  ['Melody, phrase and texture', ['nonchord', 'melody', 'phrases', 'textures', 'contrast']],
   ['Four-part writing', ['voiceleading', 'vldetails']],
   ['Minor keys and chromatic harmony', ['minor', 'chromatic', 'secondary', 'mixture', 'neapolitan', 'modulation']],
   ['Form and analysis', ['form', 'popforms', 'binaryternary', 'sonatarondo', 'harmonizing']],

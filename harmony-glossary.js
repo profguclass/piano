@@ -333,6 +333,18 @@ const G = [
   ['additive process', '첨가 기법 (가산 과정)', 'A repeated pattern that grows by one note each time.', '반복할 때마다 한 음씩 늘어나는 패턴.', 'minimalism'],
   ['phase shifting', '위상 이동 (페이징)', 'Two copies of a pattern drifting out of step and back.', '같은 패턴 두 개가 서서히 어긋났다가 다시 맞아 가는 것.', 'minimalism'],
   ['rotation', '순환 이동', 'Moving the first note of a pattern to the end.', '패턴의 첫 음을 끝으로 옮기는 것.', 'minimalism'],
+  // additions: textbook gap check
+  ['harmonic sequence', '화성 시퀀스 (화성 진행의 반복)', 'A chord pattern repeated at a new pitch level.', '화성 패턴을 다른 음높이에서 되풀이하는 것.', 'progressions'],
+  ['descending fifths sequence', '5도 하행 시퀀스', 'Roots fall by a fifth each time: I – IV – vii° – iii – vi – ii – V – I.', '근음이 매번 5도씩 내려가는 진행.', 'progressions'],
+  ['Pachelbel sequence', '파헬벨 진행', 'I – V – vi – iii – IV – I – IV – V.', 'I – V – vi – iii – IV – I – IV – V 진행.', 'progressions'],
+  ['anacrusis (pickup)', '못갖춘마디 (아우프탁트)', 'One or more notes before the first full bar.', '첫 온전한 마디 앞에 오는 한두 개의 음.', 'rhythm'],
+  ['whole-tone scale', '온음음계', 'Six notes, each a whole step from the next; it has no leading tone.', '인접한 음이 모두 온음인 6음 음계; 이끎음이 없다.', 'impressionism'],
+  ['octatonic scale', '8음 음계 (옥타토닉)', 'Eight notes alternating whole and half steps; also called the diminished scale.', '온음과 반음이 번갈아 나오는 8음 음계 (감음계라고도 함).', 'impressionism'],
+  ['lament bass', '탄식의 베이스 (라멘토 베이스)', 'A bass that falls from tonic to dominant, such as A – G – F – E in A minor.', '으뜸음에서 딸림음으로 내려가는 베이스 (가단조의 라–솔–파–미).', 'neapolitan'],
+  ['chromatic pre-dominant', '반음계적 하속화음 전 화음', 'A chromatic chord that prepares V: Neapolitan, augmented sixth, borrowed iv…', 'V를 준비하는 반음계적 화음: 나폴리 6화음, 증6화음, 빌려온 iv 등.', 'neapolitan'],
+  ['contrast', '대비', 'A difference between sections, made by changing elements of music.', '음악의 요소를 바꾸어 만드는 악절·부분 사이의 차이.', 'contrast'],
+  ['elements of music', '음악의 요소', 'Melody, harmony, rhythm, texture and timbre, dynamics.', '선율, 화성, 리듬, 질감과 음색, 셈여림.', 'contrast'],
+  ['bridge', '브리지 (중간부)', 'A contrasting section, usually harmonically unstable, that leads back to the return.', '대비되는 부분; 보통 화성이 불안정하며 되돌아오는 부분으로 이끈다.', 'contrast'],
 ];
 const OLD = ['scales', 'intervals', 'triads', 'triadsinkey', 'inversions', 'sevenths', 'cadences', 'progressions', 'voiceleading', 'nonchord', 'minor', 'chromatic', 'harmonizing', 'counterpoint', 'form'];
 window.Harmony.registerGlossary(G.map(g => [...g.slice(0, 4), typeof g[4] === 'number' ? OLD[g[4] - 1] : g[4]]));
