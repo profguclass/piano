@@ -337,7 +337,8 @@ async function showLibrary() {
     <label class="muted"><input type="checkbox" id="lgood"> Only figures that passed the check · 검증된 악보만</label>
     <p class="muted" id="lcount"></p><div id="llist"></div>`;
   const list = $h('llist'), q = $h('lsearch'), sel = $h('lchap'), good = $h('lgood');
-  const paint = () => {
+  const paint = () => { try { paint0(); } catch (e) { console.error(e); list.innerHTML = ''; const m = document.createElement('p'); m.textContent = 'The list could not be drawn (' + (e && e.message || e) + '). Please tell the developer. · 목록을 그리지 못했습니다.'; list.append(m); } };
+  const paint0 = () => {
     const t = q.value.trim().toLowerCase(), ch = sel.value;
     const rows = bookIndex.filter(b => (!ch || b.ch === ch) && (!good.checked || !b.bad) && (!t || `${b.id} ${b.cap}`.toLowerCase().includes(t)));
     $h('lcount').textContent = `${rows.length} of ${bookIndex.length} figures · ${rows.length}개 / 전체 ${bookIndex.length}개`;
