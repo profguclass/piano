@@ -356,6 +356,11 @@ const G = [
   ['cadential formula', '종지 공식', 'Pre-dominant – V – I (often with a cadential six-four) that establishes a key.', '조를 확정하는 하속화음 – V – I 공식 (종지 6/4 화음 포함).', 'modulation'],
   ['keyboard (piano) style', '건반 스타일', 'Voice leading with the three upper parts on the treble staff and the bass in the left hand.', '세 개의 윗 성부를 높은음자리표 오선에, 베이스를 왼손에 쓰는 성부 진행 방식.', 'voiceleading'],
   ['objectionable parallels', '금지 병행', 'Parallel fifths, octaves, twelfths and unisons between two voices.', '두 성부 사이의 병행 5도, 8도, 12도, 동도.', 'voiceleading'],
+  ['spread voicing', '넓은 배치 (스프레드 보이싱)', 'A jazz voicing with root, 3rd and 7th lowest and other notes spread above.', '근음·3음·7음을 아래에 두고 나머지 음을 넓게 쌓는 재즈 화음 배치.', 'jazz'],
+  ['close voicing', '밀집 배치 (클로즈 보이싱)', 'A jazz voicing with four notes close together above a bass note.', '베이스 위에 네 음을 가깝게 쌓는 재즈 화음 배치.', 'jazz'],
+  ['minor–major seventh chord', '단-장7화음', 'A minor triad with a major seventh, written m(maj7).', '단3화음에 장7도를 더한 화음 (m(maj7)).', 'jazz'],
+  ['compound ternary', '복합 3부 형식', 'A ternary form in which the A or B section is itself a binary or ternary form.', 'A 또는 B 부분이 그 자체로 2부 또는 3부 형식인 3부 형식.', 'binaryternary'],
+  ['binary principle', '2부 형식의 원리', 'The first section modulates to a new key and the second section modulates back.', '앞부분은 새 조로 전조하고 뒷부분은 원래 조로 돌아오는 원리.', 'binaryternary'],
 ];
 const OLD = ['scales', 'intervals', 'triads', 'triadsinkey', 'inversions', 'sevenths', 'cadences', 'progressions', 'voiceleading', 'nonchord', 'minor', 'chromatic', 'harmonizing', 'counterpoint', 'form'];
 window.Harmony.registerGlossary(G.map(g => [...g.slice(0, 4), typeof g[4] === 'number' ? OLD[g[4] - 1] : g[4]]));
