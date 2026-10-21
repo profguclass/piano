@@ -152,7 +152,6 @@ const G = [
   ['sequence', '반복 진행 (시퀀스)', 'The same melodic or harmonic idea repeated at a different pitch.', '같은 선율이나 화성 진행을 다른 음높이에서 되풀이하는 것.', 15],
   ['repetition', '반복', 'Saying the same musical idea again.', '같은 악상을 다시 연주하는 것.', 15],
   ['variation', '변주', 'A changed version of a theme.', '주제를 변형한 것.', 15],
-  ['contrast', '대비', 'A section or idea that differs from what came before.', '앞의 것과 다른 성격의 악상이나 부분.', 15],
   ['binary form (AB)', '두도막 형식 (2부 형식)', 'A piece in two sections.', '두 부분으로 이루어진 형식.', 15],
   ['ternary form (ABA)', '세도막 형식 (3부 형식)', 'A piece in three sections, the third repeating the first.', '세 부분으로 이루어지며 마지막이 처음을 되풀이하는 형식.', 15],
   ['rondo', '론도 형식', 'A returning refrain with contrasting episodes (ABACA…).', '주제(A)가 여러 번 돌아오고 그 사이에 다른 부분이 끼어드는 형식.', 15],
@@ -344,7 +343,11 @@ const G = [
   ['chromatic pre-dominant', '반음계적 하속화음 전 화음', 'A chromatic chord that prepares V: Neapolitan, augmented sixth, borrowed iv…', 'V를 준비하는 반음계적 화음: 나폴리 6화음, 증6화음, 빌려온 iv 등.', 'neapolitan'],
   ['contrast', '대비', 'A difference between sections, made by changing elements of music.', '음악의 요소를 바꾸어 만드는 악절·부분 사이의 차이.', 'contrast'],
   ['elements of music', '음악의 요소', 'Melody, harmony, rhythm, texture and timbre, dynamics.', '선율, 화성, 리듬, 질감과 음색, 셈여림.', 'contrast'],
-  ['bridge', '브리지 (중간부)', 'A contrasting section, usually harmonically unstable, that leads back to the return.', '대비되는 부분; 보통 화성이 불안정하며 되돌아오는 부분으로 이끈다.', 'contrast'],
+  ['tetrachord', '테트라코드 (4음렬)', 'A four-note scale segment; the major scale is two tetrachords W W H joined by a whole step.', '4음으로 이루어진 음계의 일부; 장음계는 온-온-반 테트라코드 두 개를 온음으로 잇은 것.', 'scales'],
+  ['enharmonic keys', '이명 동음 조', 'Two keys that sound the same but are spelled differently, such as B major and C♭ major.', '소리는 같고 표기만 다른 두 조 (예: 나장조와 내림다장조).', 'scales'],
+  ['subtonic', '아래으뜸음 (서브토닉)', 'The lowered 7th degree, a whole step below the tonic; the triad on it is VII.', '으뜸음의 온음 아래인 낮춘 7음; 그 위의 3화음이 VII.', 'minor'],
+  ['Nashville number system', '내슈빌 넘버 시스템', 'Writing chords as Arabic numbers for the scale degree of the root (1, 4, 5, 6m…).', '코드를 근음의 음계 단계를 나타내는 아라비아 숫자로 적는 방법 (1, 4, 5, 6m…).', 'triadsinkey'],
+  ['power chord', '파워 코드', 'A chord of only the root and fifth, written with a 5 (B5).', '근음과 5음만으로 이루어진 코드 (B5처럼 5를 붙여 적음).', 'cadences'],
 ];
 const OLD = ['scales', 'intervals', 'triads', 'triadsinkey', 'inversions', 'sevenths', 'cadences', 'progressions', 'voiceleading', 'nonchord', 'minor', 'chromatic', 'harmonizing', 'counterpoint', 'form'];
 window.Harmony.registerGlossary(G.map(g => [...g.slice(0, 4), typeof g[4] === 'number' ? OLD[g[4] - 1] : g[4]]));

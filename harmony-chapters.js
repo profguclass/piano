@@ -49,12 +49,37 @@ CH.push({id: 'scales', title: 'Scales, keys and scale degrees', blurb: 'The majo
 <table class="htab"><tr><th>1</th><td>Tonic</td><td>home; where the music rests</td></tr><tr><th>2</th><td>Supertonic</td><td>just above the tonic</td></tr><tr><th>3</th><td>Mediant</td><td>halfway to the dominant; decides major or minor</td></tr><tr><th>4</th><td>Subdominant</td><td>a fifth below the tonic</td></tr><tr><th>5</th><td>Dominant</td><td>a fifth above the tonic; the strongest pull towards home</td></tr><tr><th>6</th><td>Submediant</td><td>halfway between tonic and subdominant (below)</td></tr><tr><th>7</th><td>Leading tone</td><td>a half step below the tonic; it “leads” up to it</td></tr></table>
 <p>The <b>key signature</b> lists the sharps or flats a key needs to keep that W W H W W W H pattern. Moving up a fifth adds a sharp (order F C G D A E B). Moving down a fifth adds a flat (order B E A D G C F). G major has one sharp, F♯, because only F♯ puts the half step between degrees 7 and 8.</p>
 {{fig:gmaj|G major: one sharp, F♯, in the key signature.}}
-<p>Every major key has a <b>relative minor</b> with the same key signature. It starts on the sixth degree, a minor third below the tonic: A minor goes with C major, E minor with G major.</p>`,
+<p>Every major key has a <b>relative minor</b> with the same key signature. It starts on the sixth degree, a minor third below the tonic: A minor goes with C major, E minor with G major.</p>
+<h3>The scale as two tetrachords</h3>
+<p>A <b>tetrachord</b> is a four-note segment of a scale. The major scale is two identical tetrachords, each <b>W W H</b>, joined by one whole step: <b>W W H – W – W W H</b>. In C major the lower tetrachord is C D E F, the upper G A B C. This is a useful way to build the scale from any note.</p>
+<p>A major scale uses the <b>musical alphabet in order</b>, every letter once: D major is D E F♯ G A B C♯, never D E G♭ G (which skips F and uses G twice).</p>
+<h3>Key signatures: the 15 major keys</h3>
+<p>A <b>key signature</b> is written at the start of each line, after the clef, so that the sharps or flats the key always needs do not have to be written before every note. There are <b>15</b> major key signatures: C major with none, and seven with sharps and seven with flats.</p>
+<table class="htab"><tr><th>Sharps</th><td>G (1) · D (2) · A (3) · E (4) · B (5) · F♯ (6) · C♯ (7)</td></tr>
+<tr><th>Flats</th><td>F (1) · B♭ (2) · E♭ (3) · A♭ (4) · D♭ (5) · G♭ (6) · C♭ (7)</td></tr></table>
+<p>The sharps always appear in the order <b>F C G D A E B</b>; the flats in the reverse order, <b>B E A D G C F</b> (think of the word BEAD, then G C F). Mnemonics help: <i>Father Charles Goes Down And Ends Battle</i> for the sharps, and backwards for the flats. Because three keys can be written two ways (B = C♭, F♯ = G♭, C♯ = D♭), they are called <b>enharmonic keys</b>: the notes sound the same but are spelled differently.</p>
+<h3>The circle of fifths</h3>
+<p>Arrange the keys in a circle by perfect fifths and the key signatures grow by one: going <b>clockwise</b> (up a fifth: C, G, D, A…) each key has one more sharp; going <b>counter-clockwise</b> (up a fourth: C, F, B♭, E♭…) each has one more flat. At the bottom of the circle, the keys with six to seven sharps or flats overlap.</p>
+<h3>Reading a key signature</h3>
+<ul><li><b>Sharps:</b> the key is a <b>half step above the last sharp</b>. Sharps F♯ C♯ G♯: the last is G♯, a half step above is A, so the key is A major.</li>
+<li><b>Flats:</b> the key is the <b>second-to-last flat</b>. Flats B♭ E♭ A♭: the second-to-last is E♭, so the key is E♭ major. (One flat, B♭, is F major: memorize this one.)</li></ul>
+<p>Practise both directions: given a key, write its signature in the correct order; given a signature, name the key.</p>`,
   figs: {
     cmaj: line('C', 'major', ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'], {sym: ['', 'W', 'W', 'H', 'W', 'W', 'W', 'H'], rn: ['1', '2', '3', '4', '5', '6', '7', '8'], bpm: 100}),
     gmaj: line('G', 'major', ['G4', 'A4', 'B4', 'C5', 'D5', 'E5', 'F#5', 'G5'], {sym: ['', 'W', 'W', 'H', 'W', 'W', 'W', 'H'], rn: ['1', '2', '3', '4', '5', '6', '7', '8'], bpm: 100}),
   },
   quiz: [
+    () => { const k = pick(['G', 'D', 'A', 'E', 'B', 'F#']), n = A.FIFTHS.major[k], last = ['F', 'C', 'G', 'D', 'A', 'E', 'B'][n - 1];
+      return ask(`A key signature has ${n} sharp${n > 1 ? 's' : ''}, and the last one is ${last}♯. Which major key is it?`, pn(k) + ' major', ['G', 'D', 'A', 'E', 'B', 'F#'].filter(x => x !== k).slice(0, 4).map(x => pn(x) + ' major'), `A half step above ${last}♯ is the key note: ${pn(k)}.`); },
+    () => { const k = pick(['Bb', 'Eb', 'Ab', 'Db', 'Gb']), n = -A.FIFTHS.major[k], fl = ['B', 'E', 'A', 'D', 'G', 'C', 'F'].slice(0, n);
+      return ask(`A key signature has the flats ${fl.map(x => x + '♭').join(', ')}. Which major key is it?`, pn(k) + ' major', ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'F'].filter(x => x !== k).slice(0, 4).map(x => pn(x) + ' major'), `The second-to-last flat names the key: ${pn(k)}.`); },
+    bank([['What is a tetrachord?', 'A four-note scale segment', ['A four-note chord', 'A chord with four flats', 'A scale of four keys'], 'The major scale is two W W H tetrachords joined by a whole step.'],
+      ['In what order do sharps appear in a key signature?', 'F C G D A E B', ['C G D A E B F', 'B E A D G C F', 'A B C D E F G'], 'The flats come in the reverse order.'],
+      ['In what order do flats appear in a key signature?', 'B E A D G C F', ['F C G D A E B', 'C D E F G A B', 'F B E A D G C'], 'Remember the word BEAD, then G C F.'],
+      ['How many major key signatures are there?', '15', ['7', '12', '24'], 'C with none, seven with sharps and seven with flats.'],
+      ['Which major key has one flat?', 'F major', ['B♭ major', 'G major', 'E♭ major'], 'Its flat is B♭.'],
+      ['Which keys are enharmonic with C♯ major?', 'D♭ major', ['C major', 'B♭ major', 'A major'], 'Same sounds, different spelling.'],
+      ['Going clockwise round the circle of fifths, each key adds…', 'One sharp (or loses one flat)', ['One flat', 'A natural', 'A double sharp'], 'Up a fifth adds a sharp.']]),
     () => { const [n, d] = pick([['tonic', '1st'], ['supertonic', '2nd'], ['mediant', '3rd'], ['subdominant', '4th'], ['dominant', '5th'], ['submediant', '6th'], ['leading tone', '7th']]); return ask(`Which scale degree is called the ${n}?`, d, ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th'], `The ${n} is the ${d} degree.`); },
     () => { const k = pick(MAJKEYS), s = scale(k + '4', 'major', 8).map(n => nm(n)); return ask(`What is the dominant of ${pn(k)} major?`, s[4], s.slice(0, 7).filter((_, i) => i !== 4), `The dominant is the 5th degree: ${s.join(' ')}.`); },
     () => { const k = pick(['G', 'D', 'A', 'F', 'Bb', 'Eb']), n = A.FIFTHS.major[k], d = n > 0 ? `${n} sharp${n > 1 ? 's' : ''}` : `${-n} flat${n < -1 ? 's' : ''}`; return ask(`Which major key has ${d}?`, pn(k) + ' major', ['G', 'D', 'A', 'F', 'Bb', 'Eb', 'C'].map(x => pn(x) + ' major'), 'Each fifth up adds a sharp, each fifth down adds a flat.'); },
@@ -62,7 +87,8 @@ CH.push({id: 'scales', title: 'Scales, keys and scale degrees', blurb: 'The majo
       ['Which degree is the leading tone?', 'The 7th', ['The 4th', 'The 5th', 'The 2nd'], 'It lies a half step below the tonic and leads up to it.'],
       ['What is the relative minor of C major?', 'A minor', ['E minor', 'D minor', 'C minor'], 'It starts on the 6th degree and shares the key signature.']]),
   ],
-  play: [scaleEx, scaleEx, noteSteps('Tonic, dominant, tonic in C', 'The strongest two notes of the key: C, then G, then C.', ['C', 'G', 'C'])]});
+  play: [
+    noteSteps('Play the order of sharps', 'F, C, G, D, A, E, B: a new sharp is added each time you go up a fifth.', ['F', 'C', 'G', 'D', 'A', 'E', 'B']),scaleEx, scaleEx, noteSteps('Tonic, dominant, tonic in C', 'The strongest two notes of the key: C, then G, then C.', ['C', 'G', 'C'])]});
 
 /* 2 ---------------------------------------------------------------- */
 const INTS = [['minor 2nd', 1, 1], ['major 2nd', 1, 2], ['minor 3rd', 2, 3], ['major 3rd', 2, 4], ['perfect 4th', 3, 5], ['augmented 4th', 3, 6], ['diminished 5th', 4, 6], ['perfect 5th', 4, 7], ['minor 6th', 5, 8], ['major 6th', 5, 9], ['minor 7th', 6, 10], ['major 7th', 6, 11]];
@@ -130,9 +156,28 @@ CH.push({id: 'triadsinkey', title: 'Triads in a key', blurb: 'Roman numerals, an
 <table class="htab"><tr><th>Tonic (T)</th><td>I, vi (and iii)</td><td>home, rest</td></tr><tr><th>Subdominant (S)</th><td>IV, ii</td><td>moving away; preparing</td></tr><tr><th>Dominant (D)</th><td>V, vii°</td><td>tension; wants to return to I</td></tr></table>
 <p>The basic harmonic journey is <b>T → S → D → T</b>. Here it is in four parts: <b>I – IV – V – I</b>.</p>
 {{fig:tsdt|I – IV – V – I in C major, in four voices. The V chord pulls strongly back to I.}}
-<p>V is the key chord of tension because its third is the <b>leading tone</b>, which falls just below the tonic and wants to rise to it.</p>`,
+<p>V is the key chord of tension because its third is the <b>leading tone</b>, which falls just below the tonic and wants to rise to it.</p>
+<h3>Reading and writing Roman numerals</h3>
+<p>Roman numerals show chords as <b>patterns</b> instead of note names, which makes it easy to see that two pieces use the same progression and to <b>transpose</b> (move a progression to another key). The rules:</p>
+<ul><li><b>Capital</b> numerals are major triads (I, IV, V); <b>lower case</b> are minor (ii, iii, vi).</li>
+<li>A <b>+</b> marks an augmented triad (III⁺); a <b>°</b> a diminished triad (vii°).</li>
+<li>The numeral names the <b>scale degree of the root</b>, in the key you have named: <i>C: V</i> is G major.</li>
+<li>For an inversion, write the chord figure (see {{ch:inversions}}). Until then you can write a slash: I/3 means I with its third in the bass.</li></ul>
+<p>In major, the qualities always follow the pattern <b>M – m – m – M – M – m – dim</b> (I ii iii IV V vi vii°). In minor, which has three scale forms, there are more possibilities ({{ch:minor}}).</p>
+<h3>Diatonic and chromatic</h3>
+<p><b>Diatonic</b> means “using only the notes of the key signature”. The seven triads above are all diatonic. A chord with a note outside the key is <b>chromatic</b> (secondary dominants, borrowed chords and so on come later).</p>
+<h3>The Nashville number system</h3>
+<p>Studio musicians often write chords with <b>Arabic numbers</b> instead of Roman numerals: in C major, 1 = C, 2m = Dm, 3m = Em, 4 = F, 5 = G, 6m = Am, 7° = B°. The idea is the same: numbers state the chord’s place in the key, so a chart works in any key.</p>
+<table class="htab"><tr><th>Roman</th><td>I</td><td>ii</td><td>iii</td><td>IV</td><td>V</td><td>vi</td><td>vii°</td></tr><tr><th>Nashville</th><td>1</td><td>2m</td><td>3m</td><td>4</td><td>5</td><td>6m</td><td>7°</td></tr><tr><th>In G major</th><td>G</td><td>Am</td><td>Bm</td><td>C</td><td>D</td><td>Em</td><td>F♯°</td></tr></table>`,
   figs: {triads7: prog('C', 'major', ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'], {d: 'h', bpm: 60}), tsdt: satb('C', 'major', [['C3 G3 E4 C5', 'I'], ['F2 A3 F4 C5', 'IV'], ['G2 G3 D4 B4', 'V'], ['C3 G3 E4 C5', 'I']], {bpm: 60})},
   quiz: [
+    () => { const k = pick(MAJKEYS), n = 1 + Math.floor(Math.random() * 7), s = scale(k + '4', 'major', 8), Q = ['', 'm', 'm', '', '', 'm', '°'], nums = ['1', '2m', '3m', '4', '5', '6m', '7°'], sym = i => pn(nm(s[i])) + Q[i];
+      return ask(`In ${pn(k)} major, which chord is the Nashville number ${nums[n - 1]}?`, sym(n - 1), [0, 1, 2, 3, 4, 5, 6].filter(i => i !== n - 1).map(sym), `Count ${n} notes up the ${pn(k)} major scale and add the quality of that degree.`); },
+    bank([['What does a lower-case Roman numeral stand for?', 'A minor triad', ['A major triad', 'A diminished triad', 'An augmented triad'], 'Capitals are major; ° marks diminished.'],
+      ['What pattern of triad qualities does a major key follow?', 'Major, minor, minor, major, major, minor, diminished', ['Major, major, minor, minor, major, major, diminished', 'Minor, major, major, minor, minor, major, diminished', 'All major'], 'I ii iii IV V vi vii°.'],
+      ['What does “diatonic” mean?', 'Using only notes of the key signature', ['Using all twelve notes', 'Using only the tonic chord', 'Played in two parts'], 'The opposite is chromatic.'],
+      ['Why use Roman numerals instead of chord names?', 'The pattern is the same in every key, so you can compare and transpose', ['They are easier to play', 'They show the tempo', 'They show the inversion only'], 'V is G in C and D in G.'],
+      ['What is the Nashville number system?', 'Chords written as Arabic numbers for the scale degree of the root', ['A kind of tuning', 'A cadence in country music', 'A way of notating tempo'], '1, 4, 5 are the I, IV and V chords.']]),
     () => { const k = pick(['C', 'G', 'D', 'F', 'A', 'Bb']), i = pick([1, 2, 3, 4, 5, 6]), c = rn(NUMS[i], k, 'major'); return ask(`In ${pn(k)} major, which Roman numeral stands for the ${symOf(c)} chord?`, NUMS[i], NUMS, `It is built on degree ${i + 1} of the scale.`); },
     () => { const k = pick(['C', 'G', 'D', 'F']), i = pick([0, 1, 2, 3, 4, 5]), c = rn(NUMS[i], k, 'major'); return ask(`In ${pn(k)} major, what is the ${NUMS[i]} chord?`, symOf(c), [0, 1, 2, 3, 4, 5, 6].map(j => symOf(rn(NUMS[j], k, 'major'))), `Build a triad on degree ${i + 1}.`); },
     bank([['In a major key, which triads are minor?', 'ii, iii and vi', ['I, IV and V', 'ii, IV and vi', 'iii, V and vii°'], 'I, IV and V are the major ones; vii° is diminished.'],
@@ -188,14 +233,33 @@ CH.push({id: 'sevenths', title: 'Seventh chords', blurb: 'Adding a fourth note: 
 {{fig:v7|V7 resolving to I. F falls to E, B rises to C. The tonic chord has no fifth (G), which is normal here.}}
 <h3>Inversions</h3>
 <p>A seventh chord has four inversions, named by the figures above the bass: root position <b>V⁷</b>, first inversion <b>V⁶₅</b> (third in the bass), second <b>V⁴₃</b> (fifth in the bass) and third <b>V⁴₂</b> (seventh in the bass).</p>
-{{fig:v7inv|V7 in root position, then V⁶₅, V⁴₃ and V⁴₂.}}`,
+{{fig:v7inv|V7 in root position, then V⁶₅, V⁴₃ and V⁴₂.}}
+<h3>Building them by thirds</h3>
+<p>Chords are built in thirds, so their members have odd numbers: root, third, fifth, <b>seventh</b>, and later <b>ninth, eleventh and thirteenth</b> (the fifteenth would be the double octave, so chords stop at the thirteenth). The five kinds of seventh chord differ in how the three stacked thirds are made:</p>
+<table class="htab"><tr><th>Major 7th (maj7, Δ7)</th><td>M3 + m3 + M3</td><td>C E G B</td></tr>
+<tr><th>Dominant 7th (7)</th><td>M3 + m3 + m3</td><td>C E G B♭</td></tr>
+<tr><th>Minor 7th (m7, −7)</th><td>m3 + M3 + m3</td><td>C E♭ G B♭</td></tr>
+<tr><th>Half-diminished (ø7, m7♭5)</th><td>m3 + m3 + M3</td><td>C E♭ G♭ B♭</td></tr>
+<tr><th>Fully diminished (°7, dim7)</th><td>m3 + m3 + m3</td><td>C E♭ G♭ B♭♭</td></tr></table>
+<p>Other labels exist: Δ7 or MM7 for major seventh, Mm7 or “dom7” for the dominant seventh, m7♭5 for half-diminished. In Roman numerals, <b>V7</b> means a major triad with a minor seventh, <b>vi7</b> a minor triad with a minor seventh, <b>IM7</b> (or Imaj7) a major triad with a major seventh, <b>viiø7</b> a half-diminished seventh and <b>vii°7</b> a fully diminished one.</p>
+<h3>The sevenths of a minor key</h3>
+{{fig:min7|The seventh chords of A minor: i7, iiø7, IIIM7, iv7, V7, VIM7 and vii°7. V7 and vii°7 use the raised 7th (G♯).}}
+<p>In major the qualities are IM7, ii7, iii7, IVM7, <b>V7</b>, vi7 and viiø7. In minor (harmonic form) they are i7, iiø7, IIIM7, iv7, <b>V7</b>, VIM7 and vii°7. Only V7 is a dominant seventh in either mode.</p>
+<h3>A V7 substitute: IV over 5</h3>
+<p>In pop, a triad on IV over the dominant in the bass (<b>IV/5</b>, F/G in C major) is a popular stand-in for V7: its notes G, F, A, C include the seventh F and sound and act like V7. It is heard in “O-o-h Child” and at the opening of “The Long and Winding Road” (A♭/B♭ in E♭).</p>`,
   figs: {
+    min7: block('A', 'minor', [['A2 E3 G3 C4', 'i7'], ['B2 F3 A3 D4', 'iiø7'], ['C3 G3 B3 E4', 'IIIM7'], ['D3 A3 C4 F4', 'iv7'], ['E3 B3 D4 G#4', 'V7'], ['F3 C4 E4 A4', 'VIM7'], ['G#3 D4 F4 B4', 'vii°7']], {bpm: 70, d: 'h'}),
     sevenths: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: ['maj7', 'dom7', 'min7', 'hdim7', 'dim7'].map(q => ({notes: chordFromRoot(R('C'), q), d: 'w', sym: 'C' + SUFFIX[q]}))},
     dia7: prog('C', 'major', ['IM7', 'ii7', 'iii7', 'IVM7', 'V7', 'vi7', 'viiø7'], {d: 'h', bpm: 60}),
     v7: {...satb('C', 'major', [['G2 B3 F4 D5', 'V⁷'], ['C3 C4 E4 C5', 'I']], {bpm: 56}), incomplete: true},
     v7inv: block('C', 'major', [['G2 D4 F4 B4', 'V⁷'], ['B2 D4 F4 G4', 'V⁶₅'], ['D3 F4 G4 B4', 'V⁴₃'], ['F3 G4 B4 D5', 'V⁴₂']], {d: 'h', bpm: 60}),
   },
   quiz: [
+    () => { const [d, a] = pick([[1, 'major seventh'], [2, 'minor seventh'], [3, 'minor seventh'], [4, 'major seventh'], [5, 'dominant seventh'], [6, 'minor seventh'], [7, 'half-diminished seventh']]), o = ['', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th'][d]; return ask(`In a major key, what kind of seventh chord is built on the ${o} degree?`, a, ['major seventh', 'minor seventh', 'dominant seventh', 'half-diminished seventh', 'fully diminished seventh'].filter(x => x !== a).slice(0, 4), 'Only V gives a dominant seventh; vii gives a half-diminished seventh.'); },
+    () => { const [t, a] = pick([['M3 + m3 + M3', 'Major seventh'], ['M3 + m3 + m3', 'Dominant seventh'], ['m3 + M3 + m3', 'Minor seventh'], ['m3 + m3 + M3', 'Half-diminished seventh'], ['m3 + m3 + m3', 'Fully diminished seventh']]); return ask(`Which seventh chord is built from the thirds ${t}?`, a, ['Major seventh', 'Dominant seventh', 'Minor seventh', 'Half-diminished seventh', 'Fully diminished seventh'].filter(x => x !== a).slice(0, 4), 'Check how each third is made, from the bottom.'); },
+    bank([['What do the numbers 9, 11 and 13 stand for in chords?', 'Extensions stacked above the seventh', ['The key signature', 'The tempo', 'Inversions'], 'The 15th would repeat the root two octaves up.'],
+      ['What is the Roman numeral for the seventh chord on the 7th degree of a minor key (harmonic minor)?', 'vii°7', ['viiø7', 'VII7', 'vii7'], 'It is fully diminished: the raised 7th and a diminished seventh.'],
+      ['Which other chord often substitutes for V7 in pop?', 'IV with 5 in the bass (F/G)', ['ii with 5 in the bass', 'vi with 1 in the bass', 'I with 3 in the bass'], 'It contains the seventh, F, above G.']]),
     () => { const r = pick(['C', 'D', 'F', 'G', 'A', 'Bb', 'E']), q = pick(['dom7', 'maj7', 'min7', 'hdim7', 'dim7']); return ask('What kind of seventh chord is this?', cap(QNAME[q]), Object.values({dom7: 'Dominant seventh', maj7: 'Major seventh', min7: 'Minor seventh', hdim7: 'Half-diminished seventh', dim7: 'Fully diminished seventh'}), {dom7: 'A major triad with a minor 7th.', maj7: 'A major triad with a major 7th.', min7: 'A minor triad with a minor 7th.', hdim7: 'A diminished triad with a minor 7th.', dim7: 'A diminished triad with a diminished 7th.'}[q], {fig: {key: 'C', mode: 'major', clef: 'treble', events: [{notes: chordFromRoot(R(r), q), d: 'w'}]}}); },
     () => { const k = pick(['C', 'G', 'F', 'D']), c = rn('V7', k, 'major'); return ask(`Which notes make V7 in ${pn(k)} major?`, c.notes.map(n => nm(n)).join(' – '), ['V7', 'ii7', 'IM7', 'vi7'].map(s => rn(s, k, 'major').notes.map(n => nm(n)).join(' – ')), 'Build a dominant seventh on the 5th degree.'); },
     bank([['In V7 → I, what usually happens to the seventh of the chord?', 'It falls by step', ['It rises by step', 'It stays on the same note', 'It leaps up a fourth'], 'F falls to E in G7 → C.'],
@@ -224,8 +288,21 @@ CH.push({id: 'cadences', title: 'Cadences', blurb: 'Musical punctuation: authent
 {{fig:dec|Deceptive cadence: V → vi.}}
 <h3>The cadential 6/4</h3>
 <p>Before a final V, composers often put a <b>I⁶₄</b> chord: the tonic chord in second inversion. It is really V with two “suspended” notes (C over E and G): the C falls to B and the E to D as V arrives. It is the most common way to prepare a PAC in classical music.</p>
-{{fig:c64|I⁶₄ – V – I: the 6th and the 4th above the bass fall to the 5th and the 3rd.}}`,
+{{fig:c64|I⁶₄ – V – I: the 6th and the 4th above the bass fall to the 5th and the 3rd.}}
+<h3>What a cadence is</h3>
+<p>A <b>cadence</b> is a harmonic arrival point: a short moment of rest at the end of a phrase, like a comma or a full stop in a sentence. The ear gets time to take in what it has heard, then the music goes on. Four basic types are met first: the <b>authentic</b> (V – I), <b>plagal</b> (IV – I), <b>deceptive</b> (V – vi) and <b>half</b> (ending on V) cadences. Each has a different strength of stop.</p>
+<h3>Hearing them in real music</h3>
+<ul><li><b>Authentic</b> cadences end countless national anthems and Beatles-era songs, from “The Star-Spangled Banner” to “I Want to Hold Your Hand”.</li>
+<li><b>Plagal</b> cadences are the “Amen” of hymns (“Amazing Grace”) and appear in pop (Pink’s “Just Give Me a Reason”).</li>
+<li><b>Deceptive</b> cadences are heard in Mozart’s “Voi che sapete”, in “True Colors” and at the famous opening of Wagner’s <i>Tristan und Isolde</i>.</li>
+<li><b>Half</b> cadences end the first phrase of many Classical themes (the opening of Mozart’s <i>Eine kleine Nachtmusik</i>) and pop choruses (Ed Sheeran’s “Thinking Out Loud”).</li></ul>
+<h3>“V to not-I”</h3>
+<p>Strictly, a deceptive cadence means that V <i>did not go to I</i>. V – vi is the most common choice, but V can go to other chords too: in Mozart’s <i>Ave verum corpus</i> V goes to IV⁶ (IV with its third, the 6th degree, in the bass). The effect is the same: the expected tonic is replaced with a surprise.</p>
+{{fig:dc6|A deceptive cadence to IV⁶ in C major: V goes not to I but to F major with A in the bass.}}
+<h3>Chords with no third</h3>
+<p>Rock and pop often use <b>power chords</b>: only the root and the fifth, written with a “5” (B5, G5). Chords with some notes left out are called <b>incomplete chords</b>. They sound open and powerful, and they can fill any chord’s function. Label them with the root and “5”, then analyze them like ordinary chords.</p>`,
   figs: {
+    dc6: block('C', 'major', [['G2 B3 D4 G4', 'V'], ['A2 C4 F4 A4', 'IV⁶']], {bpm: 56}),
     pac: satb('C', 'major', [['G2 G3 D4 B4', 'V'], ['C3 G3 E4 C5', 'I']], {bpm: 56}),
     iac: satb('C', 'major', [['G2 B3 D4 G4', 'V'], ['C3 C4 E4 G4', 'I']], {bpm: 56}),
     hc: satb('C', 'major', [['C3 G3 E4 C5', 'I'], ['G2 G3 D4 B4', 'V']], {bpm: 56}),
@@ -234,6 +311,11 @@ CH.push({id: 'cadences', title: 'Cadences', blurb: 'Musical punctuation: authent
     c64: satb('C', 'major', [['G2 E4 G4 C5', 'I⁶₄', 'h'], ['G2 D4 G4 B4', 'V', 'q'], ['C3 E4 G4 C5', 'I', 'q']], {bpm: 56}),
   },
   quiz: [
+    bank([['What is a cadence?', 'A harmonic arrival point at the end of a phrase', ['A fast scale', 'A change of tempo', 'A kind of rest'], 'Like a comma or full stop in a sentence.'],
+      ['Which cadence is the “Amen” of a hymn?', 'Plagal (IV – I)', ['Authentic (V – I)', 'Half (ending on V)', 'Deceptive (V – vi)'], 'It sounds softer than V – I.'],
+      ['What is a more accurate description of a deceptive cadence?', 'V to something other than I', ['IV to I', 'I to V', 'A cadence on vi'], 'V – vi is the most common choice, but not the only one.'],
+      ['What is a power chord?', 'A chord with only a root and fifth', ['A chord with a seventh', 'A chord with four fifths', 'A very loud tonic'], 'Written with a 5, such as B5.'],
+      ['Which cadence is a phrase ending on V?', 'The half cadence', ['The authentic cadence', 'The plagal cadence', 'The deceptive cadence'], 'It feels like a comma: the music must go on.']]),
     () => { const [a, b, n] = pick([['V', 'I', 'Authentic'], ['IV', 'I', 'Plagal'], ['V', 'vi', 'Deceptive'], ['I', 'V', 'Half'], ['ii', 'V', 'Half']]); return ask(`What kind of cadence is ${a} → ${b}?`, n, ['Authentic', 'Plagal', 'Deceptive', 'Half'], {Authentic: 'V → I is the full stop.', Plagal: 'IV → I is the “Amen”.', Deceptive: 'It goes to vi instead of I.', Half: 'It stops on V.'}[n]); },
     bank([['Which cadence ends on V and sounds unfinished, like a comma?', 'Half cadence', ['Plagal cadence', 'Perfect authentic cadence', 'Deceptive cadence'], 'The phrase is left open.'],
       ['What makes a perfect authentic cadence “perfect”?', 'Both chords in root position and the tonic in the soprano', ['It uses the subdominant', 'It ends on vi', 'It has a seventh in the bass'], 'Otherwise it is imperfect.'],
@@ -390,8 +472,20 @@ CH.push({id: 'minor', title: 'Harmony in minor keys', blurb: 'Natural, harmonic 
 <p>The chords come from the harmonic minor scale: <b>i</b>, <b>ii°</b>, <b>III</b>, <b>iv</b>, <b>V</b>, <b>VI</b>, <b>vii°</b>. The important difference from major is that <b>V is major</b> (and vii° diminished) in minor too, because of the raised leading tone.</p>
 {{fig:iiv|i – iv – V – i in A minor. The G♯ in the V chord is the leading tone.}}
 <p>Minor pieces often end on a major tonic chord: the <b>Picardy third</b>.</p>
-{{fig:picardy|i – iv – V – I with a Picardy third: C♯ instead of C.}}`,
+{{fig:picardy|i – iv – V – I with a Picardy third: C♯ instead of C.}}
+<h3>Minor key signatures: parallel and relative</h3>
+<p>A minor key signature agrees with the <b>natural minor</b> scale. Compared with the major scale on the same tonic, natural minor lowers the <b>3rd, 6th and 7th</b> degrees, so C minor has three flats (B♭, E♭, A♭). To find a minor key signature, <b>add three flats</b> (or subtract three sharps) from the signature of the <b>parallel major</b>, the major key with the same tonic: E major has four sharps, so E minor has one.</p>
+<p>The <b>relative</b> key, by contrast, has the same signature but a different tonic. The relative minor lies a minor third (three half steps) below its major: E♭ major and C minor both have three flats; the relative major of C minor is E♭ major. In writing, small capitals or lower case mark minor (c), capitals major (C).</p>
+<table class="htab"><tr><th>Parallel</th><td>same tonic, different signature (C major / C minor)</td></tr><tr><th>Relative</th><td>same signature, different tonic (C major / A minor)</td></tr></table>
+<h3>Which minor scale?</h3>
+<p>Real music does not stick to one scale: the three forms are tidy summaries of what composers do. In a minor key written with its signature, you must <b>raise scale degrees by accidentals</b>: the harmonic form raises only the 7th; the ascending melodic form raises the 6th and 7th. A melody that leads up to the tonic usually raises both (to avoid the awkward augmented second), and coming down it usually keeps the natural 7th and 6th, as in a Bach invention or the opening of Mozart’s Symphony No. 40.</p>
+<h3>Triads in minor: more than seven</h3>
+<p>Because scale degrees 6 and 7 can each take two forms, there are <b>13 possible diatonic triads</b> in minor. In practice these are the common ones (here in A minor):</p>
+<table class="htab"><tr><th>i</th><td>A C E</td><td>tonic</td></tr><tr><th>ii°</th><td>B D F</td><td>pre-dominant</td></tr><tr><th>III</th><td>C E G</td><td>the relative major triad</td></tr><tr><th>iv</th><td>D F A</td><td>pre-dominant</td></tr><tr><th>V</th><td>E G♯ B</td><td>dominant (raised 7)</td></tr><tr><th>VI</th><td>F A C</td><td>tonic substitute or pre-dominant</td></tr><tr><th>VII</th><td>G B D</td><td>subtonic triad (natural 7)</td></tr><tr><th>vii°</th><td>G♯ B D</td><td>leading-tone triad (raised 7)</td></tr></table>
+<p>Do not confuse <b>VII</b> and <b>vii°</b>. The <b>subtonic triad VII</b> is built on the lowered 7th, a whole step below the tonic, and needs no accidental in a minor key: it is found in circle-of-fifths progressions and in rock and pop. The <b>leading-tone triad vii°</b> is built on the raised 7th, a half step below the tonic, and usually works as a passing chord or as a substitute for V.</p>
+{{fig:subt|A minor: the subtonic triad VII (G–B–D) and the leading-tone triad vii° (G♯–B–D) differ by one note.}}`,
   figs: {
+    subt: block('A', 'minor', [['G3 B3 D4 G4', 'VII', 'G', 'h'], ['G#3 B3 D4 G#4', 'vii°', 'G♯°', 'h']], {bpm: 56}),
     nat: line('A', 'minor', ['A4', 'B4', 'C5', 'D5', 'E5', 'F5', 'G5', 'A5'], {sym: ['', 'W', 'H', 'W', 'W', 'H', 'W', 'W'], bpm: 100}),
     harm: line('A', 'minor', ['A4', 'B4', 'C5', 'D5', 'E5', 'F5', 'G#5', 'A5'], {sym: ['', 'W', 'H', 'W', 'W', 'H', '1½', 'H'], bpm: 100}),
     mel: line('A', 'minor', ['A4', 'B4', 'C5', 'D5', 'E5', 'F#5', 'G#5', 'A5'], {sym: ['', 'W', 'H', 'W', 'W', 'W', 'W', 'H'], bpm: 100}),
@@ -399,6 +493,14 @@ CH.push({id: 'minor', title: 'Harmony in minor keys', blurb: 'Natural, harmonic 
     picardy: satb('A', 'minor', [['A2 E3 C4 A4', 'i'], ['D2 F3 D4 A4', 'iv'], ['E2 E3 B3 G#4', 'V'], ['A2 E3 C#4 A4', 'I']], {bpm: 56}),
   },
   quiz: [
+    () => { const k = pick(MAJKEYS), s = scale(k + '4', 'major', 8), mn = pn(nm(s[5])), others = [s[1], s[2], s[3], s[4]].map(n => pn(nm(n))); return ask(`What is the relative minor of ${pn(k)} major?`, mn + ' minor', others.map(x => x + ' minor'), `It begins on the 6th degree of ${pn(k)} major.`); },
+    () => { const k = pick(['A', 'E', 'B', 'D', 'G', 'C']), n = A.FIFTHS.minor ? A.FIFTHS.minor[k] : null; const fm = A.FIFTHS.major[k] - 3, d = x => x === 0 ? 'no sharps or flats' : x > 0 ? `${x} sharp${x > 1 ? 's' : ''}` : `${-x} flat${x < -1 ? 's' : ''}`;
+      return ask(`How many sharps or flats does ${pn(k)} minor have?`, d(fm), [d(fm + 1), d(fm - 1), d(fm + 3), d(fm - 3)].filter(x => x !== d(fm)), `Take the parallel major (${pn(k)} major has ${d(A.FIFTHS.major[k])}) and add three flats.`); },
+    bank([['Which scale degrees are lowered in natural minor, compared with the parallel major?', 'The 3rd, 6th and 7th', ['The 2nd, 5th and 7th', 'Only the 7th', 'The 4th and 6th'], 'That is why C minor has three flats.'],
+      ['What is the parallel minor of E major?', 'E minor', ['C♯ minor', 'A minor', 'B minor'], 'Same tonic, different signature.'],
+      ['How many possible diatonic triads does minor have?', '13', ['7', '9', '12'], 'Degrees 6 and 7 each have two forms.'],
+      ['What is the difference between VII and vii° in A minor?', 'VII is G–B–D (natural 7th); vii° is G♯–B–D (raised 7th)', ['They are the same chord', 'VII is minor; vii° is major', 'VII is on the 6th degree'], 'The subtonic is a whole step below the tonic; the leading tone a half step.'],
+      ['Which minor chords are most often used?', 'i, ii°, III, iv, V, VI, VII and vii°', ['Only i, iv and V', 'Only the harmonic minor chords', 'Seven major chords'], 'Both natural-minor and harmonic-minor chords appear.']]),
     () => { const k = pick(['A', 'E', 'D', 'G', 'B']), s = scale(k + '4', 'minor', 8, true), lt = nm(s[6]); return ask(`What is the leading tone in ${pn(k)} minor?`, lt, [nm(scale(k + '4', 'minor', 8)[6]), nm(s[5]), nm(s[4]), nm(s[0])], 'The 7th degree, raised a half step in harmonic minor.'); },
     () => { const k = pick(['A', 'E', 'D', 'G']), c = rn('V', k, 'minor'); return ask(`Which chord is V in ${pn(k)} minor?`, symOf(c), [symOf(rn('v', k, 'minor')), symOf(rn('iv', k, 'minor')), symOf(rn('i', k, 'minor')), symOf(rn('III', k, 'minor'))], 'The raised leading tone makes V a major chord.'); },
     bank([['Which note is raised in the harmonic minor scale?', 'The 7th', ['The 3rd', 'The 5th', 'The 2nd'], 'It makes a leading tone.'],
