@@ -335,7 +335,7 @@ async function showLibrary() {
   body.innerHTML = `<p class="muted">All ${bookIndex.length} musical figures from <i>Music Theory for the 21st-Century Classroom</i> (Hutchinson, GNU Free Documentation License). Open one, press <b>Hear</b>, and practise: play it on your piano, name the chords and intervals, and check your answer against the chapter. Figures marked “check against the book” were read by computer and may contain small errors. / 교재의 악보 ${bookIndex.length}개를 모두 모았습니다. 열어서 들어 보고 직접 연주하며 연습하세요.</p>
     <div class="gtools"><input id="lsearch" type="search" placeholder="Figure number or words · 번호나 단어" aria-label="Search the figures"><select id="lchap" aria-label="Chapter"><option value="">All chapters · 모든 장</option>${opts}</select></div>
     <label class="muted"><input type="checkbox" id="lgood"> Only figures that passed the check · 검증된 악보만</label>
-    <p class="muted" id="lcount"></p><div id="llist"></div>`;
+    <p class="muted" id="lcount"></p><p class="muted" id="ldiag" style="font-size:12px;font-family:monospace"></p><div id="llist"></div>`;
   const list = $h('llist'), q = $h('lsearch'), sel = $h('lchap'), good = $h('lgood');
   const paint = () => { try { paint0(); } catch (e) { console.error(e); list.innerHTML = ''; const m = document.createElement('p'); m.textContent = 'The list could not be drawn (' + (e && e.message || e) + '). Please tell the developer. · 목록을 그리지 못했습니다.'; list.append(m); } };
   const paint0 = () => {
@@ -355,7 +355,11 @@ async function showLibrary() {
     if (rows.length > 150) { const m = document.createElement('p'); m.className = 'muted'; m.textContent = `Showing the first 150 — narrow the search or pick a chapter to see the rest. · 처음 150개만 표시합니다.`; list.append(m); }
     if (!rows.length) list.innerHTML = '<p class="muted">No matching figure. · 일치하는 악보가 없습니다.</p>';
   };
-  q.oninput = paint; sel.onchange = paint; good.onchange = paint; paint();
+  const diag = () => {
+    const sm = list.querySelector('summary'), r = list.getBoundingClientRect(), sr = sm && sm.getBoundingClientRect();
+    $h('ldiag').textContent = ['diag v55', 'items ' + list.children.length, 'list h ' + Math.round(r.height), 'summary ' + (sm ? Math.round(sr.width) + 'x' + Math.round(sr.height) + ' ' + getComputedStyle(sm).color + ' ' + getComputedStyle(sm).display + ' vis ' + getComputedStyle(sm).visibility : 'none'), 'win ' + innerWidth + 'x' + innerHeight, 'sw ' + (navigator.serviceWorker && navigator.serviceWorker.controller ? 'on' : 'off')].join(' · ');
+  };
+  q.oninput = () => { paint(); diag(); }; sel.onchange = () => { paint(); diag(); }; good.onchange = () => { paint(); diag(); }; paint(); diag();
 }
 
 let glossary = [];
