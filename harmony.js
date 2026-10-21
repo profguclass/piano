@@ -306,6 +306,7 @@ function showList() {
   body.innerHTML = `<p class="muted">A short course in classical harmony: how chords are built, how they follow one another and how they are joined in four parts. Each chapter has examples to <b>hear</b>, a quiz and exercises to <b>play</b> on your piano (or the keys on screen). A chapter is done when you get 4 of 5 in its quiz. <b>${done} of ${chapters.length} done.</b></p><div class="hlist"></div><p class="muted" style="font-size:13px;margin-top:18px">Many topics follow the outline of <i>Music Theory for the 21st-Century Classroom</i> by Robert Hutchinson (University of Puget Sound; free under the GNU Free Documentation License, musictheory.pugetsound.edu). The explanations, examples, questions and Korean terms here are our own.</p>`;
   const list = body.querySelector('.hlist');
   const g = document.createElement('button'); g.className = 'hcard gloss'; g.innerHTML = `<span class="n">Aa</span><span class="t"><b>Glossary · 용어집</b><small>Key terms in English and Korean · 영어와 한국어 핵심 용어</small></span><span class="st">${glossary.length}</span>`; g.onclick = showGlossary; list.append(g);
+  const lb = document.createElement('button'); lb.className = 'hcard gloss'; lb.innerHTML = `<span class="n">♪</span><span class="t"><b>Textbook library · 교재 악보</b><small>Play and practise with all the textbook’s figures · 교재의 모든 악보로 연습</small></span><span class="st">${(bookIndex || []).length || 443}</span>`; lb.onclick = showLibrary; list.append(lb);
   let lastPart = null;
   chapters.forEach((c, i) => {
     if (c.part && c.part !== lastPart) { lastPart = c.part; const h = document.createElement('h3'); h.className = 'hpart'; h.textContent = c.part; list.append(h); }
@@ -313,6 +314,40 @@ function showList() {
     b.innerHTML = `<span class="n">${i + 1}</span><span class="t"><b>${esc(c.title)}</b><small>${esc(c.blurb)}</small></span><span class="st">${s.done ? '✓' : s.quiz !== undefined ? `${s.quiz}/5` : ''}</span>`;
     b.onclick = () => showChapter(i); list.append(b);
   });
+}
+
+
+async function showLibrary() {
+  stopHearing(); state.view = 'library'; state.ex = null; state.quiz = null;
+  $h('hback').hidden = false; $h('htitle').textContent = 'Textbook library · 교재 악보';
+  const body = $h('hbody');
+  body.innerHTML = '<p class="muted">Loading…</p>';
+  if (!bookIndex) { try { bookIndex = await (await fetch('harmony-book/index.json')).json(); } catch { bookIndex = []; } }
+  if (state.view !== 'library') return;
+  const opts = chapters.filter(c => bookIndex.some(b => b.ch === c.id)).map(c => `<option value="${c.id}">${esc(c.title)}</option>`).join('');
+  body.innerHTML = `<p class="muted">All ${bookIndex.length} musical figures from <i>Music Theory for the 21st-Century Classroom</i> (Hutchinson, GNU Free Documentation License). Open one, press <b>Hear</b>, and practise: play it on your piano, name the chords and intervals, and check your answer against the chapter. Figures marked “check against the book” were read by computer and may contain small errors. / 교재의 악보 ${bookIndex.length}개를 모두 모았습니다. 열어서 들어 보고 직접 연주하며 연습하세요.</p>
+    <div class="gtools"><input id="lsearch" type="search" placeholder="Figure number or words · 번호나 단어" aria-label="Search the figures"><select id="lchap" aria-label="Chapter"><option value="">All chapters · 모든 장</option>${opts}</select></div>
+    <label class="muted"><input type="checkbox" id="lgood"> Only figures that passed the check · 검증된 악보만</label>
+    <p class="muted" id="lcount"></p><div id="llist"></div>`;
+  const list = $h('llist'), q = $h('lsearch'), sel = $h('lchap'), good = $h('lgood');
+  const paint = () => {
+    const t = q.value.trim().toLowerCase(), ch = sel.value;
+    const rows = bookIndex.filter(b => (!ch || b.ch === ch) && (!good.checked || !b.bad) && (!t || `${b.id} ${b.cap}`.toLowerCase().includes(t)));
+    $h('lcount').textContent = `${rows.length} of ${bookIndex.length} figures · ${rows.length}개 / 전체 ${bookIndex.length}개`;
+    list.innerHTML = '';
+    let last = null;
+    for (const b of rows.slice(0, 150)) {
+      if (b.ch !== last) { last = b.ch; const c = chapters.find(x => x.id === b.ch); const h = document.createElement('h3'); h.textContent = c ? c.title : b.ch; list.append(h); }
+      const d = document.createElement('details'); d.className = 'bkex';
+      const sm = document.createElement('summary'); sm.textContent = `Figure ${b.id}${b.cap ? ' · ' + b.cap : ''}${b.bad ? ' (check against the book)' : ''}`; d.append(sm);
+      const slot = document.createElement('div'); d.append(slot);
+      d.addEventListener('toggle', () => { if (d.open && !slot.firstChild) slot.append(figureBox({id: 'bk' + b.id, xmlUrl: 'harmony-book/' + b.f, bpm: 80, zoom: 0.8}, '')); });
+      list.append(d);
+    }
+    if (rows.length > 150) { const m = document.createElement('p'); m.className = 'muted'; m.textContent = `Showing the first 150 — narrow the search or pick a chapter to see the rest. · 처음 150개만 표시합니다.`; list.append(m); }
+    if (!rows.length) list.innerHTML = '<p class="muted">No matching figure. · 일치하는 악보가 없습니다.</p>';
+  };
+  q.oninput = paint; sel.onchange = paint; good.onchange = paint; paint();
 }
 
 let glossary = [];
