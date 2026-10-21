@@ -63,7 +63,12 @@ CH.push({id: 'scales', title: 'Scales, keys and scale degrees', blurb: 'The majo
 <h3>Reading a key signature</h3>
 <ul><li><b>Sharps:</b> the key is a <b>half step above the last sharp</b>. Sharps F♯ C♯ G♯: the last is G♯, a half step above is A, so the key is A major.</li>
 <li><b>Flats:</b> the key is the <b>second-to-last flat</b>. Flats B♭ E♭ A♭: the second-to-last is E♭, so the key is E♭ major. (One flat, B♭, is F major: memorize this one.)</li></ul>
-<p>Practise both directions: given a key, write its signature in the correct order; given a signature, name the key.</p>`,
+<p>Practise both directions: given a key, write its signature in the correct order; given a signature, name the key.</p>
+<div class="worked"><h3>Worked example: naming a key from its signature</h3>
+<p><b>1. Sharps: F♯ C♯ G♯.</b> The last sharp is G♯. A half step above G♯ is A, so the key is <b>A major</b>.</p>
+<p><b>2. Flats: B♭ E♭ A♭ D♭.</b> The second-to-last flat is A♭, so the key is <b>A♭ major</b>.</p>
+<p><b>3. Writing D major.</b> Use W W H W W W H from D: D – E (W) – F♯ (W) – G (H) – A (W) – B (W) – C♯ (W) – D (H). The letters run in order with no letter skipped, so the key signature is F♯ and C♯ (two sharps).</p>
+</div>`,
   figs: {
     cmaj: line('C', 'major', ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'], {sym: ['', 'W', 'W', 'H', 'W', 'W', 'W', 'H'], rn: ['1', '2', '3', '4', '5', '6', '7', '8'], bpm: 100}),
     gmaj: line('G', 'major', ['G4', 'A4', 'B4', 'C5', 'D5', 'E5', 'F#5', 'G5'], {sym: ['', 'W', 'W', 'H', 'W', 'W', 'W', 'H'], rn: ['1', '2', '3', '4', '5', '6', '7', '8'], bpm: 100}),
@@ -119,7 +124,12 @@ CH.push({id: 'intervals', title: 'Intervals', blurb: 'The distance between two n
 <h3>Writing an interval</h3>
 <ul><li><b>Above a note:</b> use the major scale (a minor 6th above A: A major has F♯, a major 6th, so F♮ is a minor 6th), or count half steps (8 half steps from A is F).</li>
 <li><b>Below a note:</b> small intervals (up to a perfect 4th) can be built from whole and half steps. For larger ones, <b>invert</b> the interval, find the note above, and put it below the given note.</li></ul>
-<p>Augmented and diminished sixths and sevenths are saved for the chapters on seventh chords and augmented sixth chords.</p>`,
+<p>Augmented and diminished sixths and sevenths are saved for the chapters on seventh chords and augmented sixth chords.</p>
+<div class="worked"><h3>Worked example: naming and writing intervals</h3>
+<p><b>1. Name F up to E♭.</b> Count letters F–G–A–B–C–D–E: a 7th. Take F as the tonic: the 7th degree of F major is E♮ (a major 7th). E♭ is a half step lower, so F–E♭ is a <b>minor 7th</b> (10 half steps).</p>
+<p><b>2. Write a minor 6th above A.</b> In A major the 6th degree is F♯, a major 6th. A minor 6th is a half step smaller: <b>F♮</b>. Check: A to F is 8 half steps.</p>
+<p><b>3. Invert it.</b> A–F (m6) inverts to F–A, a <b>M3</b>: 6 + 3 = 9 and minor becomes major.</p>
+</div>`,
   figs: {invert: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: [{notes: ['C4', 'E4'], d: 'h', sym: 'M3'}, {notes: ['E4', 'C5'], d: 'h', sym: 'm6'}, {notes: ['C4', 'G4'], d: 'h', sym: 'P5'}, {notes: ['G4', 'C5'], d: 'h', sym: 'P4'}]}, ints: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: ints('C', ['minor 2nd', 'major 2nd', 'minor 3rd', 'major 3rd', 'perfect 4th', 'perfect 5th', 'major 6th', 'major 7th']).map(([a, b], i) => ({notes: [a, b], d: 'h', sym: ['m2', 'M2', 'm3', 'M3', 'P4', 'P5', 'M6', 'M7'][i]}))}},
   quiz: [
     bank([['What is a harmonic interval?', 'Two notes sounding at the same time', ['Two notes one after another', 'A very consonant interval', 'An interval in the bass'], 'A melodic interval is measured horizontally.'],
@@ -155,8 +165,14 @@ CH.push({id: 'triads', title: 'Triads', blurb: 'Three-note chords: major, minor,
 <h3>Suspended chords</h3>
 <p>A <b>sus</b> chord (short for suspended) replaces the third of the triad, so it is neither major nor minor. In <b>sus4</b> a perfect 4th takes the place of the third; in <b>sus2</b> a major 2nd does. Both keep the perfect 5th. They sound open and unresolved, and often move to the major or minor chord on the same root.</p>
 {{fig:sus|C, Csus4 and Csus2: the 4th or the 2nd replaces the third.}}
-<table class="htab"><tr><th>Augmented</th><td>4 + 4 half steps</td></tr><tr><th>Major</th><td>4 + 3</td></tr><tr><th>Minor</th><td>3 + 4</td></tr><tr><th>Diminished</th><td>3 + 3</td></tr><tr><th>Sus2</th><td>2 + 5</td></tr><tr><th>Sus4</th><td>5 + 2</td></tr></table>`,
-  figs: {sus: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: ['major', 'sus4', 'sus2'].map(q => ({notes: chordFromRoot(R('C'), q), d: 'w', sym: 'C' + SUFFIX[q]}))}, triads: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: ['major', 'minor', 'dim', 'aug'].map(q => ({notes: chordFromRoot(R('C'), q), d: 'w', sym: 'C' + SUFFIX[q]}))}},
+<table class="htab"><tr><th>Augmented</th><td>4 + 4 half steps</td></tr><tr><th>Major</th><td>4 + 3</td></tr><tr><th>Minor</th><td>3 + 4</td></tr><tr><th>Diminished</th><td>3 + 3</td></tr><tr><th>Sus2</th><td>2 + 5</td></tr><tr><th>Sus4</th><td>5 + 2</td></tr></table>
+<div class="worked"><h3>Worked example: analyzing a chord from a score</h3>
+<p><b>1. D – F – A, with D lowest.</b> <i>Root:</i> D (the bottom of the stack of thirds). <i>Quality:</i> D to F is a minor third (3 half steps), F to A a major third (4): a <b>minor</b> triad. <i>Bass:</i> D is the root, so the chord is in root position: <b>Dm</b>.</p>
+<p><b>2. E – G – B♭, with G lowest.</b> <i>Root:</i> E. <i>Quality:</i> E–G is a minor third and G–B♭ is a minor third: <b>diminished</b>. <i>Bass:</i> G is the lowest note, not the root, so it is inverted: <b>E°/G</b>.</p>
+{{fig:wktri|The two chords of the worked example: Dm and E°/G.}}
+</div>`,
+  figs: {
+    wktri: block('C', 'major', [['D3 F3 A3 D4', 'Dm'], ['G2 Bb3 E4 G4', 'E°/G']], {bpm: 56, d: 'h'}),sus: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: ['major', 'sus4', 'sus2'].map(q => ({notes: chordFromRoot(R('C'), q), d: 'w', sym: 'C' + SUFFIX[q]}))}, triads: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: ['major', 'minor', 'dim', 'aug'].map(q => ({notes: chordFromRoot(R('C'), q), d: 'w', sym: 'C' + SUFFIX[q]}))}},
   quiz: [
     () => { const r = pick(['C', 'D', 'E', 'F', 'G', 'A', 'Bb', 'Eb']), q = pick(['major', 'minor', 'dim', 'aug']), inv = pick([0, 0, 1, 2]), c = chordFromRoot(R(r), q), rot = sortN(c.map((n, i) => i < inv ? A.shiftOct(n, 1) : n)), sym = pn(r) + SUFFIX[q] + (inv ? '/' + nm(c[inv]) : '');
       const wrongs = [...['major', 'minor', 'dim', 'aug'].filter(x => x !== q).map(x => pn(r) + SUFFIX[x] + (inv ? '/' + nm(c[inv]) : '')), pn(r) + SUFFIX[q] + (inv ? '' : '/' + nm(c[1]))]; return ask('Which lead-sheet symbol names this chord?', sym, wrongs, 'Root and quality first; after a slash, the lowest note if it is not the root.', {fig: {key: 'C', mode: 'major', clef: 'treble', events: [{notes: rot, d: 'w'}]}}); },
@@ -397,8 +413,16 @@ CH.push({id: 'progressions', title: 'Progressions and the circle of fifths', blu
 <li><b>Tonic – prolongation – pre-dominant – dominant</b>: I – vi – IV – V (the 1950s doo-wop progression: “Heart and Soul”, “Earth Angel”, “I Will Always Love You”, “All of Me”) or, in classical music, I – vi – ii⁶ – V, where the bass starts with descending thirds. Rotated, it becomes IV – V – I – vi.</li></ul>
 {{fig:ivi26|I – vi – ii⁶ – V in C: the bass falls by thirds (C – A – F) and then to G.}}
 <h3>Exceptions explained by sequences</h3>
-<p>When a progression breaks the function rules, a sequence may explain it. In a falling-fifths or other sequence the pattern is repeated whatever each chord “wants” to do, so you may meet iii – vi – ii or a chord whose normal move is ignored. Always look for the repeated idea before you decide that a progression is irregular.</p>`,
+<p>When a progression breaks the function rules, a sequence may explain it. In a falling-fifths or other sequence the pattern is repeated whatever each chord “wants” to do, so you may meet iii – vi – ii or a chord whose normal move is ignored. Always look for the repeated idea before you decide that a progression is irregular.</p>
+<div class="worked"><h3>Worked example: two Baroque circles of fifths, reduced to chords</h3>
+<p>The book shows two famous patterns. <b>1. Handel’s Passacaglia in G minor</b> uses the circle with inversions: <b>i – iv⁶ – VII – III – VI – ii°⁶ – V – i</b>. In the bass you do not hear the roots in order, but the roots G, C, F, B♭, E♭, A, D, G each fall a fifth.</p>
+{{fig:wkhandel|The Handel chord scheme in G minor.}}
+<p><b>2. Vivaldi’s Concerto for Two Violins and Cello in D minor</b> runs through the circle with seventh chords: <b>Dm – Gm7 – C7 – Fmaj7 – B♭maj7 – Eø7 – Am7 – Dm7</b>, that is i – iv7 – VII7 – IIIM7 – VIM7 – iiø7 – v7 – i7. When you voice root-position sevenths in four parts, alternate complete and incomplete chords (leave out the fifth in every other chord).</p>
+{{fig:wkvivaldi|The Vivaldi chord scheme in D minor, in root position.}}
+</div>`,
   figs: {
+    wkhandel: prog('G', 'minor', ['i', 'iv6', 'VII', 'III', 'VI', 'ii°6', 'V', 'i'], {d: 'h', bpm: 60}),
+    wkvivaldi: block('D', 'minor', [['D3 A3 D4 F4', 'i'], ['G2 F3 Bb3 D4', 'iv7'], ['C3 G3 Bb3 E4', 'VII7'], ['F2 A3 C4 E4', 'IIIM7'], ['Bb2 F3 A3 D4', 'VIM7'], ['E3 G3 Bb3 D4', 'iiø7'], ['A2 E3 G3 C4', 'v7'], ['D3 A3 C4 F4', 'i7']], {bpm: 70, d: 'h'}),
     circmin: prog('A', 'minor', ['i', 'iv', 'VII', 'III', 'VI', 'ii°', 'V', 'i'], {d: 'h', bpm: 60}),
     iiivi: prog('C', 'major', ['iii', 'vi', 'ii', 'V'], {d: 'h', bpm: 60}),
     turn: prog('C', 'major', ['ii', 'V', 'I', 'vi'], {d: 'h', bpm: 60}),
@@ -576,7 +600,12 @@ CH.push({id: 'minor', title: 'Harmony in minor keys', blurb: 'Natural, harmonic 
 <p>Because scale degrees 6 and 7 can each take two forms, there are <b>13 possible diatonic triads</b> in minor. In practice these are the common ones (here in A minor):</p>
 <table class="htab"><tr><th>i</th><td>A C E</td><td>tonic</td></tr><tr><th>ii°</th><td>B D F</td><td>pre-dominant</td></tr><tr><th>III</th><td>C E G</td><td>the relative major triad</td></tr><tr><th>iv</th><td>D F A</td><td>pre-dominant</td></tr><tr><th>V</th><td>E G♯ B</td><td>dominant (raised 7)</td></tr><tr><th>VI</th><td>F A C</td><td>tonic substitute or pre-dominant</td></tr><tr><th>VII</th><td>G B D</td><td>subtonic triad (natural 7)</td></tr><tr><th>vii°</th><td>G♯ B D</td><td>leading-tone triad (raised 7)</td></tr></table>
 <p>Do not confuse <b>VII</b> and <b>vii°</b>. The <b>subtonic triad VII</b> is built on the lowered 7th, a whole step below the tonic, and needs no accidental in a minor key: it is found in circle-of-fifths progressions and in rock and pop. The <b>leading-tone triad vii°</b> is built on the raised 7th, a half step below the tonic, and usually works as a passing chord or as a substitute for V.</p>
-{{fig:subt|A minor: the subtonic triad VII (G–B–D) and the leading-tone triad vii° (G♯–B–D) differ by one note.}}`,
+{{fig:subt|A minor: the subtonic triad VII (G–B–D) and the leading-tone triad vii° (G♯–B–D) differ by one note.}}
+<div class="worked"><h3>Worked example: minor key signatures</h3>
+<p><b>1. E minor.</b> The parallel major, E major, has four sharps (F♯ C♯ G♯ D♯). Subtract three sharps: one sharp, <b>F♯</b>.</p>
+<p><b>2. C minor.</b> C major has no sharps or flats; add three flats: <b>B♭ E♭ A♭</b>.</p>
+<p><b>3. Relative keys.</b> The relative minor of E♭ major is C minor (both have three flats). The relative major of C minor is three half steps above C: E♭.</p>
+</div>`,
   figs: {
     subt: block('A', 'minor', [['G3 B3 D4 G4', 'VII', 'G', 'h'], ['G#3 B3 D4 G#4', 'vii°', 'G♯°', 'h']], {bpm: 56}),
     nat: line('A', 'minor', ['A4', 'B4', 'C5', 'D5', 'E5', 'F5', 'G5', 'A5'], {sym: ['', 'W', 'H', 'W', 'W', 'H', 'W', 'W'], bpm: 100}),
@@ -1307,8 +1336,16 @@ CH.push({id: 'secondary', title: 'Secondary dominants and diminished chords', bl
 <li>In minor, vii°/III is not listed because it is ii°: the chord iiø⁷ has the same notes as viiø⁷/III but a different function (iiø⁷ goes to V; viiø⁷/III goes to III).</li>
 <li>To analyze: stack in thirds; if the quality is diminished or half-/fully-diminished seventh, find the note a <b>minor second above</b> its root; if that is the root of a diatonic chord, you have found the tonicized chord. G♯ up a minor second is A, which is 5 in D major, so G♯° is vii°/V in D.</li>
 <li>To write: find the root of the target, go a minor second below for the root of the vii°⁷, and build the chord. For vii°⁷/iv in C minor: iv is F, a minor second below is E, so build E–G–B♭–D♭.</li></ul>
-<p>Examples: Bach’s “Jesu, Joy of Man’s Desiring”, the “Trepak” in Tchaikovsky’s Nutcracker, Billy Joel’s “Just the Way You Are” and Queen’s “We Are the Champions”.</p>`,
+<p>Examples: Bach’s “Jesu, Joy of Man’s Desiring”, the “Trepak” in Tchaikovsky’s Nutcracker, Billy Joel’s “Just the Way You Are” and Queen’s “We Are the Champions”.</p>
+<div class="worked"><h3>Worked example: analyzing and writing secondary chords</h3>
+<p><b>1. Analyze.</b> An F♯ major triad in first inversion appears in E major. <i>Step 1:</i> stack it in thirds: F♯–A♯–C♯, a major triad. <i>Step 2:</i> a perfect fifth below F♯ is B; in E major B is the 5th degree, the root of V. So the F♯ chord is the dominant of V: <b>V⁶/V</b>.</p>
+<p><b>2. Write V⁴₃/IV in C major.</b> The chord being tonicized is IV, F. The V⁷ in the key of F is C⁷: C–E–G–B♭. The figure ⁴₃ means the fifth (G) is in the bass: G – B♭ – C – E.</p>
+<p><b>3. Analyze a secondary diminished chord.</b> A G♯ diminished triad in D major. A minor second above G♯ is A, which is the root of V in D major: <b>vii°/V</b>.</p>
+<p><b>4. Write vii°⁴₂/iv in C minor.</b> iv is F; a minor second below F is E. Build a fully diminished seventh on E: E–G–B♭–D♭. The figure ⁴₂ means the seventh (D♭) is in the bass: D♭ – E – G – B♭.</p>
+{{fig:wksec|V⁴₃/IV – IV in C major, and vii°⁴₂/iv – iv in C minor (shown in two parts).}}
+</div>`,
   figs: {
+    wksec: block('C', 'major', [['G2 Bb3 C4 E4', 'V⁴₃/IV'], ['F2 A3 C4 F4', 'IV'], ['Db3 G3 Bb3 E4', 'vii°⁴₂/iv'], ['F3 Ab3 C4 F4', 'iv']], {bpm: 56, d: 'h'}),
     secmin: block('A', 'minor', [['A2 C#4 E4 G4', 'V⁷/iv'], ['B2 D#4 F#4 A4', 'V⁷/V'], ['C3 E4 G4 Bb4', 'V⁷/VI'], ['D3 F#4 A4 C5', 'V⁷/VII'], ['G2 B3 D4 F4', 'V⁷/III']], {bpm: 70, d: 'h'}),
     secd: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: SECD.map(s => { const c = rn(s, 'C', 'major'); return {notes: c.notes, d: 'h', rn: fmt(s), sym: symOf(c)}; })},
     secdim: prog('C', 'major', ['vii°7/V', 'V', 'vii°7/vi', 'vi', 'viiø7/V', 'V', 'vii°7/ii', 'ii'], {d: 'h', bpm: 70}),
@@ -1361,8 +1398,14 @@ CH.push({id: 'mixture', title: 'Mode mixture and borrowed chords', blurb: 'Borro
 <h3>The “epic” ending</h3>
 <p>The deceptive V – ♭VI with ♭VI – ♭VII – I is the ending of many arrangements of “The Star-Spangled Banner” (as sung at the Super Bowl and presidential inaugurations) and of the animated film <i>Beauty and the Beast</i>: it sounds dramatic, if somewhat clichéd.</p>
 <h3>Borrowing from major in a minor key</h3>
-<p>This is rare: a major tonic in the middle of a minor passage usually acts as V/iv, and a raised 6th or 7th is just melodic minor. The one regular place is the final chord: the Picardy third, as in the Sarabande of Bach’s French Suite No. 1 in D minor.</p>`,
+<p>This is rare: a major tonic in the middle of a minor passage usually acts as V/iv, and a raised 6th or 7th is just melodic minor. The one regular place is the final chord: the Picardy third, as in the Sarabande of Bach’s French Suite No. 1 in D minor.</p>
+<div class="worked"><h3>Worked example: analyzing and writing borrowed chords</h3>
+<p><b>1. Analyze</b> the chord A – C – E♭ – G in G major, with C in the bass. <i>Root:</i> stacking in thirds gives A, which is the 2nd degree of G major. <i>Quality:</i> the thirds are m3 – m3 – M3: a half-diminished seventh, so <b>iiø⁷</b> (it is borrowed because E♭ is not in G major). <i>Inversion:</i> the third of the chord (C) is in the bass: <b>iiø⁶₅</b>.</p>
+<p><b>2. Write ♭VI in A major.</b> The 6th degree of A major is F♯, so ♭6 is F♮. Stack M3 + m3 above it: F – A – C♮. (The flat in front of VI means “a half step lower than the scale degree”, not that the root has a flat.)</p>
+{{fig:wkmix|iiø⁶₅ in G major (C in the bass) and ♭VI in A major.}}
+</div>`,
   figs: {
+    wkmix: block('G', 'major', [['C3 Eb4 G4 A4', 'iiø⁶₅'], ['F3 A3 C4 F4', '♭VI (in A major)']], {bpm: 56, d: 'h'}),
     b6: block('C', 'major', [['Ab2 C4 Eb4 Ab4', '♭VI'], ['F3 Ab3 C4 F4', 'iv'], ['D3 F3 Ab3 D4', 'ii°'], ['D3 F3 Ab3 C4', 'iiø⁷'], ['B2 D4 F4 Ab4', 'vii°⁷'], ['Bb2 D4 F4 Ab4', '♭VII⁷']], {bpm: 70, d: 'h'}),
     borr: prog('C', 'major', ['iv', 'bVI', 'bVII', 'bIII', 'ii°', 'iiø7'], {d: 'h', bpm: 70}),
     epic: prog('C', 'major', ['V', 'bVI', 'bVII', 'I'], {d: 'h', bpm: 70}),
@@ -1513,8 +1556,14 @@ CH.push({id: 'modulation', title: 'Modulation', blurb: 'Changing key: pivot chor
 <li>Dominant sevenths of secondary dominants (V⁷/V and so on) can also be reinterpreted as German sixths, and vice versa. Examples: Tchaikovsky’s “Waltz of the Flowers” (D⁷ = Ger⁺⁶ in F♯ minor), Beethoven’s Fifth Symphony, second movement (V⁷ in A♭ = Ger⁺⁶ in C), and Les Misérables (Ger⁺⁶ in E minor = V⁷ in F).</li>
 <li>Each <b>diminished seventh</b> chord points to <b>four</b> keys, since each of its four notes can be 7 and resolve up a half step. G♯°⁷ (G♯–B–D–F) resolves to A (minor or major), C, E♭ and G♭. Each note can also be heard as the 7th of a dominant seventh chord and fall a half step to the root of V⁷.</li>
 <li>In Beethoven’s <i>Pathétique</i> Sonata the same diminished chord is reinterpreted several times, and in the second movement of Beethoven’s Fifth the E°⁷ of C major leads to a German sixth in A♭ major (spelled unusually, E–A♭–C♭–D). In Schubert’s “Der Atlas” a G♯°⁷ in G minor is reinterpreted as E♯°⁷ in B minor: because it never resolves in G minor, you cannot be sure which resolution was intended.</li></ul>
-{{fig:dimfour|The same fully diminished seventh chord (G♯°⁷, respelled as needed) resolving to four tonics: A minor, C minor, E♭ minor and G♭ major.}}`,
+{{fig:dimfour|The same fully diminished seventh chord (G♯°⁷, respelled as needed) resolving to four tonics: A minor, C minor, E♭ minor and G♭ major.}}
+<div class="worked"><h3>Worked example: a pivot chord from G major to D major</h3>
+<p>Take the progression <b>G: I – vi – V⁷</b> that ends on a cadence in D. The vi chord is Em. In D major, Em is <b>ii</b>, a pre-dominant. So the chord is a pivot: it is vi in G and ii in D, and it leads naturally to the new V⁷ (A⁷) and I (D).</p>
+{{fig:wkpivot|G major to D major: Em is vi in G and ii in D (the pivot), then A⁷ – D.}}
+<p><b>Recognizing the key after a modulation.</b> In the Sarabande of Bach’s English Suite No. 4 in F major, an E♭ appears (a lowered note, which acts as 4 of the key of B♭ or as a tonicization), but an E♮ cancels it, so it was only a tonicization. A B♮ then occurs three times and is not cancelled: it is the leading tone of C, and a cadential formula in C confirms the modulation.</p>
+</div>`,
   figs: {
+    wkpivot: block('G', 'major', [['G2 D4 G4 B4', 'G: I'], ['E3 E4 G4 B4', 'vi = ii'], ['A2 E4 G4 C#5', 'D: V⁷'], ['D3 D4 F#4 A4', 'I']], {bpm: 56, d: 'h'}),
     med: block('C', 'major', [['C3 E4 G4 C5', 'C'], ['E3 E4 G#4 B4', 'E'], ['Ab2 Eb4 Ab4 C5', 'A♭'], ['A2 E4 A4 C#5', 'A'], ['Eb3 Eb4 G4 Bb4', 'E♭']], {bpm: 56, d: 'h'}),
     dimfour: block('A', 'minor', [['G#3 B3 D4 F4', 'vii°⁷'], ['A3 C4 E4 A4', 'a'], ['G#3 B3 D4 F4', 'vii°⁷'], ['C3 G3 C4 Eb4', 'c'], ['G#3 B3 D4 F4', 'vii°⁷'], ['Eb3 Bb3 Eb4 Gb4', 'e♭'], ['G#3 B3 D4 F4', 'vii°⁷'], ['Gb3 Db4 Gb4 Bb4', 'G♭']], {bpm: 56, d: 'h'}),
     pivot: block('C', 'major', [['C3 E4 G4 C5', 'C: I', '', 'q'], ['A2 E4 A4 C5', 'vi = ii', '', 'q'], ['D3 F#4 A4 C5', 'G: V⁷', '', 'q'], ['G2 D4 G4 B4', 'I', '', 'q']], {bpm: 60}),
@@ -1756,7 +1805,11 @@ CH.push({id: 'jazz', title: 'Introduction to jazz harmony', blurb: 'Seventh, nin
 <table class="htab"><tr><th>maj7</th><td>Ionian (major) or Lydian</td></tr><tr><th>m7</th><td>Dorian or Aeolian (natural minor)</td></tr><tr><th>ø7 (m7♭5)</th><td>Locrian, or Locrian with ♮2</td></tr><tr><th>7</th><td>Mixolydian, or Lydian-dominant (♯4)</td></tr><tr><th>7alt (♭9/♯9, ♭5/♯5)</th><td>Altered scale or the diminished (half–whole) scale</td></tr><tr><th>m(maj7)</th><td>Melodic minor (ascending)</td></tr></table>
 <p>Always check the chord against the key of the tune: in Kern’s “All the Things You Are”, the opening Fm7 is vi7 in A♭ major, so F Aeolian (not Dorian) is correct: the D natural of F Dorian would clash with the D♭ of the key.</p>
 <h3>Harmonizing the bebop scale</h3>
-<p>Mark Levine’s method harmonizes the eight-note bebop scale (1 2 3 4 5 ♯5 6 7 8) in four parts. Every chord except the tonic is a vii°⁷ in some inversion: the scale is “passing” through diminished chords between tonic chords. Count Basie’s band used a similar idea when harmonizing a simple scale without the diminished sevenths.</p>`,
+<p>Mark Levine’s method harmonizes the eight-note bebop scale (1 2 3 4 5 ♯5 6 7 8) in four parts. Every chord except the tonic is a vii°⁷ in some inversion: the scale is “passing” through diminished chords between tonic chords. Count Basie’s band used a similar idea when harmonizing a simple scale without the diminished sevenths.</p>
+<div class="worked"><h3>Worked example: writing Dm△11</h3>
+<p>First list the major-scale notes from D up to the 11th: D E F♯ G A B C♯ D E F♯ G (root 1, 3 = F♯, 5 = A, 7 = C♯, 9 = E, 11 = G). Now apply the symbol: <b>m</b> lowers the third (F♯ → F); <b>△</b> says the <i>7th</i> is major (C♯ stays); the <b>11</b> means the 9th (E) and the 11th (G) are present, unaltered. The chord is <b>D – F – A – C♯ – E – G</b>.</p>
+<p><b>C9(13)</b> in the same way: C – E – G – B♭ – D – A (the 13th A is added, the 11th F is left out).</p>
+</div>`,
   figs: {
     iivimin: block('C', 'minor', [['D3 C4 F4 Ab4', 'Dø7'], ['G2 F3 B3 Ab4', 'G7♭9'], ['C3 Eb4 G4 A4', 'Cm6']], {bpm: 60, d: 'h'}),
     iivi: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: [['D', 'min9', 'Dm9'], ['G', 'dom7b9', 'G7♭9'], ['C', 'maj9', 'Cmaj9']].map(([r, q, l]) => ({notes: chordFromRoot(R(r), q), d: 'w', sym: l}))},
@@ -1902,7 +1955,13 @@ CH.push({id: 'settheory', title: 'Pitch-class set theory', blurb: 'Pitch classes
 <h3>Forte numbers and set classes</h3>
 <p>Forte catalogued every set class of 3 to 9 notes and gave each a label such as <b>3–1</b> or <b>4–Z29</b>: the first number counts the notes and the second is its place in the list. A <b>Z</b> (“zygotic”, twinned) marks sets with <b>different prime forms but the same interval vector</b>: 4–Z29 and 4–Z15 both have 111111. A set and its <b>complement</b> (the other notes of the chromatic scale) are listed together. Of the 208 set classes, only 6 differ in prime form between the Forte and Rahn methods; this course uses Rahn’s.</p>
 <h3>Worked inversion</h3>
-<p>To apply T₇I to [2, 4, 5] (D, E, F): invert around C (T₀I): 2 → 10, 4 → 8, 5 → 7, giving [7, 8, 10] in ascending order; then transpose up 7: [2, 3, 5] (D, E♭, F). The sets [2, 4, 5] and [2, 3, 5] are related by T₇I. In Straus’s notation T<sub>n</sub>I is just I<sub>n</sub>.</p>`,
+<p>To apply T₇I to [2, 4, 5] (D, E, F): invert around C (T₀I): 2 → 10, 4 → 8, 5 → 7, giving [7, 8, 10] in ascending order; then transpose up 7: [2, 3, 5] (D, E♭, F). The sets [2, 4, 5] and [2, 3, 5] are related by T₇I. In Straus’s notation T<sub>n</sub>I is just I<sub>n</sub>.</p>
+<div class="worked"><h3>Worked example: normal form, prime form, transposition and inversion</h3>
+<p><b>1. Normal and prime form of B–D–E♭ (11, 2, 3).</b> Orderings: [11, 2, 3] spans 4; [2, 3, 11] spans 9; [3, 11, 2] spans 11. The smallest span wins: <b>normal form [11, 2, 3]</b>. Transpose to 0: [0, 3, 4]. The inversion of that is [0, 1, 4] (more compact), so the <b>prime form is (014)</b>.</p>
+<p><b>2. A four-note set: B–D–E♭–G (11, 2, 3, 7).</b> Orderings: [11, 2, 3, 7] spans 8 and [7, 11, 2, 3] also spans 8 (the others span more). Tie: first to second-to-last: 11→3 is 4, 7→2 is 7: choose <b>[11, 2, 3, 7]</b>. Transposed: [0, 3, 4, 8]. Inverted: {0, 4, 8, 9}: its most compact ordering is [8, 9, 0, 4], transposed to 0: [0, 1, 4, 8]. Comparing [0, 3, 4, 8] and [0, 1, 4, 8], the second is more compact: prime form <b>(0148)</b>.</p>
+<p><b>3. Transposition.</b> [1, 2, 4, 6] at T₄ is [5, 6, 8, 10]. [6, 8, 10, 11] at T₉ is [15, 17, 19, 20], and subtracting 12: <b>[3, 5, 7, 8]</b>.</p>
+<p><b>4. Inversion.</b> T₇I of [2, 4, 5]: invert around C to [10, 8, 7], reorder to [7, 8, 10], then add 7: <b>[2, 3, 5]</b>. To find n for two inversionally related sets, add the first note of one set to the last note of the other: 2 + 5 = 7.</p>
+</div>`,
   figs: {
     s014: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: [[['B3', 'D4', 'Eb4'], '[11, 2, 3]'], [['G#3', 'A3', 'C4'], '[8, 9, 0]'], [['C4', 'C#4', 'E4'], '(014)']].map(([n, l]) => ({notes: n, d: 'h', sym: l}))},},
   quiz: [
@@ -1962,7 +2021,13 @@ ${matrixHtml()}
 <li><b>Melody and accompaniment:</b> one row form carries the melody (P0) while another (R0) accompanies.</li></ul>
 <p>When you analyze, first look for a clear, plain statement of the row somewhere in the piece, then use it to analyze the harmonies.</p>
 <h3>Serialism that is not twelve-tone</h3>
-<p>Stravinsky’s Septet (1953) uses a 16-note series, not a twelve-tone row, with inversion, retrograde and retrograde inversion. Eight pitch classes occur in it: B, A, G, F♯ and G♯ are repeated (A, G and G♯ three times each), and the set in normal form could even suggest E or A as a tonal centre. So the piece is serial without being strictly twelve-tone.</p>`,
+<p>Stravinsky’s Septet (1953) uses a 16-note series, not a twelve-tone row, with inversion, retrograde and retrograde inversion. Eight pitch classes occur in it: B, A, G, F♯ and G♯ are repeated (A, G and G♯ three times each), and the set in normal form could even suggest E or A as a tonal centre. So the piece is serial without being strictly twelve-tone.</p>
+<div class="worked"><h3>Worked example: writing and recognizing row forms</h3>
+<p>With this chapter’s row P0 = <b>${rowNames(ROW)}</b>:</p>
+<p><b>Write I9.</b> Take I0 = ${rowNames(rowI(0))} and transpose it up 9 semitones so it <i>begins</i> on A: <b>I9 = ${rowNames(rowI(9))}</b>.</p>
+<p><b>Write RI5.</b> Take RI0 = ${rowNames(rowRI(0))} and transpose it up 5 semitones so it <i>ends</i> on F: <b>RI5 = ${rowNames(rowRI(5))}</b> (its last note is ${rowNames(rowRI(5).slice(-1))}).</p>
+<p><b>Recognize a form.</b> A passage runs ${rowNames(rowR(8))}. The first interval is a falling whole step (${rowNames(rowR(8).slice(0, 2))}). In this row P starts with a rising major third, I with a falling major third, R with a falling whole step and RI with a rising whole step, so it is a retrograde. Its last note is ${rowNames(rowR(8).slice(-1))} (8), so it is <b>R8</b>.</p>
+</div>`,
   figs: {},
   quiz: [
     bank([['Which note labels an R or RI row form?', 'Its last note', ['Its first note', 'Its middle note', 'The tonic'], 'R1 ends on C♯; RI7 ends on G.'],
