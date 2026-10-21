@@ -102,9 +102,33 @@ CH.push({id: 'intervals', title: 'Intervals', blurb: 'The distance between two n
 <h3>Inversion and compound intervals</h3>
 <p>To <b>invert</b> an interval, move its lower note up an octave (or its upper note down). The size of an interval and the size of its inversion always add up to <b>9</b>: a 3rd becomes a 6th, a 2nd becomes a 7th, a 4th becomes a 5th. The <b>quality</b> flips too: major becomes minor and minor becomes major, augmented becomes diminished and diminished becomes augmented, while perfect stays perfect.</p>
 {{fig:invert|A major 3rd (C–E) inverted is a minor 6th (E–C). A perfect 5th (C–G) inverted is a perfect 4th (G–C).}}
-<p>An interval larger than an octave is a <b>compound interval</b>: a 9th is a 2nd plus an octave, a 10th a 3rd plus an octave. In harmony we usually reduce them to the simple interval (a 10th is treated as a 3rd), as the chords in this course do.</p>`,
+<p>An interval larger than an octave is a <b>compound interval</b>: a 9th is a 2nd plus an octave, a 10th a 3rd plus an octave. In harmony we usually reduce them to the simple interval (a 10th is treated as a 3rd), as the chords in this course do.</p>
+<h3>Melodic and harmonic intervals</h3>
+<p>Intervals measure the distance between two pitches. If the notes sound one after the other (horizontally) it is a <b>melodic</b> interval; if they sound together (vertically) it is a <b>harmonic</b> interval.</p>
+<h3>Finding the number</h3>
+<p>Count letter names, both ends included. A quick check on the staff: <b>odd</b> numbers (unison, 3rd, 5th, 7th) go from a line to a line or a space to a space; <b>even</b> numbers (2nd, 4th, 6th, octave) go from a line to a space or a space to a line.</p>
+<h3>Which qualities go with which numbers</h3>
+<p>Unisons, 4ths, 5ths and octaves are <b>perfect</b> and are never major or minor; 2nds, 3rds, 6ths and 7ths are <b>major or minor</b> and are never perfect. Any size can be <b>augmented</b> (a half step larger than perfect or major) or <b>diminished</b> (a half step smaller than perfect or minor). Perfect intervals are usually natural-to-natural, sharp-to-sharp or flat-to-flat; the exceptions are the 4ths and 5ths between B and F (B to F♯ and F to B♭).</p>
+<h3>Two ways to identify an interval</h3>
+<ol><li><b>With the major scale.</b> Treat the lower note as tonic. If the upper note is in the major scale of the lower note, the interval is perfect or major. If it is a half step lower than a major interval, it is minor. (E♭ is not in F major, so F–E♭ is not a major 7th; it is a minor 7th.) If the lower note has an accidental, cover it, find the interval, then restore the accidental.</li>
+<li><b>By counting half steps.</b> Memorize the table below.</li></ol>
+<table class="htab"><tr><th>m2</th><td>1</td><th>M2</th><td>2</td><th>m3</th><td>3</td><th>M3</th><td>4</td></tr>
+<tr><th>P4</th><td>5</td><th>TT (+4 / °5)</th><td>6</td><th>P5</th><td>7</td><th>m6</th><td>8</td></tr>
+<tr><th>M6</th><td>9</td><th>m7</th><td>10</td><th>M7</th><td>11</td><th>P8</th><td>12</td></tr></table>
+<p>A <b>tritone</b> is the generic name for an augmented 4th or diminished 5th (six half steps); the two are enharmonic.</p>
+<h3>Writing an interval</h3>
+<ul><li><b>Above a note:</b> use the major scale (a minor 6th above A: A major has F♯, a major 6th, so F♮ is a minor 6th), or count half steps (8 half steps from A is F).</li>
+<li><b>Below a note:</b> small intervals (up to a perfect 4th) can be built from whole and half steps. For larger ones, <b>invert</b> the interval, find the note above, and put it below the given note.</li></ul>
+<p>Augmented and diminished sixths and sevenths are saved for the chapters on seventh chords and augmented sixth chords.</p>`,
   figs: {invert: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: [{notes: ['C4', 'E4'], d: 'h', sym: 'M3'}, {notes: ['E4', 'C5'], d: 'h', sym: 'm6'}, {notes: ['C4', 'G4'], d: 'h', sym: 'P5'}, {notes: ['G4', 'C5'], d: 'h', sym: 'P4'}]}, ints: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: ints('C', ['minor 2nd', 'major 2nd', 'minor 3rd', 'major 3rd', 'perfect 4th', 'perfect 5th', 'major 6th', 'major 7th']).map(([a, b], i) => ({notes: [a, b], d: 'h', sym: ['m2', 'M2', 'm3', 'M3', 'P4', 'P5', 'M6', 'M7'][i]}))}},
   quiz: [
+    bank([['What is a harmonic interval?', 'Two notes sounding at the same time', ['Two notes one after another', 'A very consonant interval', 'An interval in the bass'], 'A melodic interval is measured horizontally.'],
+      ['How many half steps are in a perfect fifth?', '7', ['6', '8', '5'], 'A perfect fourth has 5 and a tritone 6.'],
+      ['How many half steps are in a major sixth?', '9', ['8', '10', '7'], 'A minor sixth has 8.'],
+      ['Which intervals can be perfect?', 'Unison, 4th, 5th and octave', ['2nd, 3rd, 6th and 7th', 'Only the octave', 'All of them'], 'The others are major or minor.'],
+      ['On the staff, an interval of a 5th goes from…', 'A line to a line or a space to a space', ['A line to a space', 'Always a line to a line', 'A space to a ledger line'], 'Odd numbers keep the same kind of position.'],
+      ['What is the tritone?', 'An augmented 4th or diminished 5th', ['A major third', 'A perfect fifth', 'An octave'], 'Six half steps.'],
+      ['How do you write a large interval below a given note?', 'Invert it, find the note above, then place it below', ['Write it above instead', 'Use only whole steps', 'Count in thirds'], 'Inversion makes it small.']]),
     () => { const [n, inv] = pick([['minor 2nd', 'major 7th'], ['major 2nd', 'minor 7th'], ['minor 3rd', 'major 6th'], ['major 3rd', 'minor 6th'], ['perfect 4th', 'perfect 5th'], ['perfect 5th', 'perfect 4th'], ['major 6th', 'minor 3rd'], ['minor 7th', 'major 2nd']]); return ask(`What is the inversion of a ${n}?`, inv, ['minor 2nd', 'major 7th', 'major 2nd', 'minor 7th', 'minor 3rd', 'major 6th', 'major 3rd', 'minor 6th', 'perfect 4th', 'perfect 5th'], 'The sizes add up to 9, and major and minor swap.'); },
     () => { const r = pick(['C', 'D', 'E', 'F', 'G', 'A', 'Bb', 'Eb']), [name, d, s] = pick(INTS.filter(x => !['augmented 4th', 'diminished 5th'].includes(x[0])));
       return ask('Name this interval.', name, INTS.map(x => x[0]), `${name}: ${d + 1} letter names and ${s} half steps.`, {fig: {key: 'C', mode: 'major', clef: 'treble', events: [{notes: [R(r), above(R(r), d, s)], d: 'w'}]}}); },
@@ -1059,9 +1083,28 @@ CH.push({id: 'phrases', title: 'Phrases in combination', blurb: 'Authentic caden
 <h3>Not periods: phrase groups and chains</h3>
 <p>When the final cadence is a <b>half cadence</b>, the result is not a period. A <b>phrase group</b> has at least two phrases that begin alike; a <b>phrase chain</b> has at least two phrases with contrasting melodies. Both leave the music open.</p>
 <h3>Elision</h3>
-<p>An <b>elision</b> joins phrases by overlap: the last bar of one phrase is also the first bar of the next, so the cadence is the start of the following music and the flow does not stop.</p>`,
+<p>An <b>elision</b> joins phrases by overlap: the last bar of one phrase is also the first bar of the next, so the cadence is the start of the following music and the flow does not stop.</p>
+<h3>Real examples</h3>
+<ul><li><b>Sentence:</b> in the opening of Mozart’s Piano Sonata K. 331 the first motive is sequenced down a step in bar 2, bar 3 has related material and bar 4 reaches the cadence. In Beethoven’s Op. 2 No. 1 the intervals of subphrase a change in bars 3–4 to fit the dominant harmony, motive 2 is taken from a and a′ in bars 5–6, and bars 7–8 lead to a half cadence. In K. 333 unrelated material follows subphrase a and its repetition.</li>
+<li><b>Period with HC then PAC (parallel):</b> the opening of Mozart’s K. 331 is both: its two phrases are sentences. <b>IAC then PAC (parallel):</b> Haydn’s Piano Sonata Hob. XVI:9 (finale), Beethoven’s “Für Elise” and Bill Withers’s “Lean on Me”.</li>
+<li><b>Contrasting period:</b> the second movement of Beethoven’s <i>Pathétique</i> Sonata and Schumann’s “Little Morning Wanderer”.</li>
+<li><b>Asymmetrical period:</b> Chopin’s Prelude Op. 28 No. 20 has one antecedent phrase and two consequent phrases. <b>Double period:</b> Beethoven’s Op. 10 No. 1, second movement (parallel, with an a b a b′ plan). <b>Repeated period (not double):</b> Beethoven’s Op. 53, first movement, where each phrase is ornamented the second time.</li>
+<li><b>Phrase group:</b> Couperin’s “Le Petit-Rien”. <b>Phrase chain:</b> the rondo of Beethoven’s Sonatina in F, Anh. 5 No. 2.</li>
+<li><b>Elision:</b> the opening of Mozart’s <i>Eine kleine Nachtmusik</i>: the last bar of one phrase is also the first of the next.</li></ul>
+<h3>More about cadences in periods</h3>
+<p>Conclusive cadences end on the tonic; inconclusive ones do not. A PAC is more conclusive than an IAC. A root-position plagal cadence can follow an inverted IAC and count as more conclusive. A period normally has either <b>an HC then an authentic cadence (IAC or PAC)</b> or <b>an IAC then a PAC</b>. In a double period the antecedent group may be an IAC followed by an HC; look at how many phrases there are before labelling the cadence schemes, and not at pairs only.</p>
+<h3>Labelling phrases</h3>
+<p>Use letters for melodic material (a, b, c) and the <b>prime</b> (′) when a phrase returns with the same beginning but a <b>different cadence</b>. In this chapter the prime is only for a different cadence, not for ornamentation or a new accompaniment. If you need more than a″ or a‴, use subscripts (a₁, a₂, a₃). A section that is the same phrase twice is called a <b>repeated phrase</b> (or repeated period if there are four). A complete diagram uses cadence abbreviations (HC, DC, PC, IAC, PAC) with the letters, for example a · HC | a′ · PAC.</p>
+<h3>How to analyze a passage</h3>
+<ol><li>Label the chords at the end of each phrase to find the cadence.</li><li>Name the cadence (PAC, IAC, HC, PC, DC).</li><li>Study the motives: is a phrase a sentence?</li><li>Draw the diagram and name the form: sentence, parallel period, contrasting period, asymmetrical period, parallel double period, repeated phrase, phrase group or phrase chain.</li></ol>`,
   figs: {},
   quiz: [
+    bank([['What is a repeated period?', 'Four phrases that are the same period twice, not a double period', ['A period that repeats the cadence', 'A period in two keys', 'A period of eight phrases'], 'The cadence after the second phrase gives it away.'],
+      ['What does a prime (′) show in this chapter?', 'The phrase begins the same but ends with a different cadence', ['The phrase is ornamented', 'The phrase is transposed', 'The phrase is louder'], 'It is not for ornamentation or a change of texture.'],
+      ['Which pair of cadences normally forms a period?', 'HC then authentic, or IAC then PAC', ['PAC then HC', 'DC then HC', 'PC then PC'], 'The last cadence is more conclusive.'],
+      ['How many phrases does an asymmetrical period have?', 'Three or five', ['Two', 'Four', 'Eight'], 'The antecedents and consequents are unequal in number.'],
+      ['What ends a phrase group or phrase chain?', 'A half cadence', ['A PAC', 'A plagal cadence', 'A deceptive cadence'], 'That is why they are not periods.'],
+      ['What difference is there between a phrase group and a phrase chain?', 'In a group the phrases begin alike; in a chain they contrast', ['Group is in major, chain in minor', 'Group has four phrases, chain has two', 'There is no difference'], 'Both end on a half cadence.']]),
     () => { const [d, name] = pick([['a (HC) – a′ (PAC)', 'Parallel period'], ['a (HC) – b (PAC)', 'Contrasting period'], ['a – b (HC) ‖ a′ – c (PAC)', 'Parallel double period'], ['(a – a′) played twice, each time ending HC then PAC', 'Repeated period'], ['a (IAC) – a′ (HC)', 'Phrase group'], ['a (IAC) – b (IAC) – c (HC)', 'Phrase chain']]); return ask(`Which form is this: ${d}?`, name, ['Parallel period', 'Contrasting period', 'Parallel double period', 'Repeated period', 'Phrase group', 'Phrase chain'], 'Look at the final cadence and at whether the phrases begin alike.'); },
     bank([['What are the three requirements of a perfect authentic cadence?', 'Root-position V and I, with the tonic in the top voice of I', ['V⁶ to I⁶', 'vii° to I with 3 in the top voice', 'IV to I in any position'], 'If one is missing, it is an imperfect authentic cadence.'],
       ['A V–I cadence in which the tonic chord is inverted is…', 'An imperfect authentic cadence', ['A perfect authentic cadence', 'A half cadence', 'A plagal cadence'], 'All three requirements must be met for a PAC.'],
@@ -1369,7 +1412,21 @@ CH.push({id: 'neapolitan', title: 'Neapolitan and augmented sixth chords', blurb
 <tr><th>♯4 and the bass on 2, or the chord is a dominant of V</th><td>A secondary chord, V/V or vii°/V: it resolves to V as well, but it contains no ♭6.</td></tr>
 <tr><th>♭6 in a major chord on ♭6, with no ♯4</th><td>A borrowed ♭VI (mode mixture).</td></tr>
 <tr><th>iv, ii° or ii⁶ without chromatic notes</th><td>Ordinary pre-dominants; borrowed iv in a major key is the milder cousin of N⁶.</td></tr></table>
-<p>All of these are <b>chromatic pre-dominants</b>: different colours for the same job of preparing V. The stronger the chromatic note (a ♯4 or ♭2), the more urgent the approach to the dominant.</p>`,
+<p>All of these are <b>chromatic pre-dominants</b>: different colours for the same job of preparing V. The stronger the chromatic note (a ♯4 or ♭2), the more urgent the approach to the dominant.</p>
+<h3>The Neapolitan in real music</h3>
+<p>In classical music the ♭II chord is simply called <b>N</b> (and N⁶ in first inversion, its most common form). It is a chromatically altered ii, so it has pre-dominant function. Composers often change texture, register or dynamics when it occurs, as in the first movement of Beethoven’s Symphony No. 7. In the first movement of the “Moonlight” Sonata a D major chord with F♯ in the bass (N⁶ in C♯ minor) leads to G♯⁷ and then to the cadence C♯m/G♯ – G♯sus4 – G♯⁷ – C♯m. Try replacing the Neapolitan with iv or ii°⁶ and hear the difference. The same chord darkens film music: John Williams’s “Raiders March”, Michael Giacchino’s <i>Star Trek</i> end credits and the Zimmer–Holkenborg music for <i>Batman v Superman</i>.</p>
+<h3>Recognizing augmented sixths</h3>
+<p>All augmented sixth chords contain ♭6 and ♯4 (in minor ♭6 needs no accidental, since 6 is already lowered). The Italian adds 1, the French adds 1 and 2, and the German adds 1 and ♭3: ♭6 – ♯4 – 1 is the core of all three. The names have no known origin; the 1964 Harvard Dictionary calls them “rather pointlessly… distinguished”. The <b>enharmonic German</b> (EnGer⁺⁶) respells the ♭3 as ♯2, so that the chord resolves only to a major I⁶₄ (♭6 – 1 – ♯2 – ♯4).</p>
+<p>Because none of the chords you have met contains a <b>diminished third</b> when stacked in thirds, the rule is: <b>a chord with a diminished third is an augmented sixth chord</b>. Then find which scale degrees are present to decide which kind it is.</p>
+<h3>Lead-sheet view</h3>
+<p>For lead-sheet symbols, treat an augmented sixth chord as a <b>dominant seventh chord on ♭6 with a misspelled seventh</b>: A♭–C–E♭–F♯ is written A♭7 (A♭–C–E♭–G♭). The classical label shows how the chord resolves (the ♯4 rising), while the lead-sheet label shows the sound. Italian = a dominant seventh with the fifth omitted; German = a complete dominant seventh on ♭6.</p>
+<h3>Examples</h3>
+<ul><li><b>Italian:</b> Beethoven’s Fifth Symphony (first movement) in C minor; Duke Ellington’s “It Don’t Mean a Thing”, spelled as a dominant seventh without a fifth.</li>
+<li><b>French:</b> Schubert’s “Der Wegweiser” (Winterreise) in G minor: i … Fr⁺⁶ – V – i, with the French sixth intensifying the drive to V.</li>
+<li><b>German:</b> the William Tell Overture (Rossini) goes to the dominant-function I⁶₄; Coltrane’s minor blues “Mr. P.C.” has a VI⁷ that is a German sixth going to V; the “Pink Panther” theme; Fiona Apple’s “Criminal” (F7 in A minor) and “Friend Like Me” from <i>Aladdin</i> (Am – F7 – E = i – Ger⁺⁶ – V).</li>
+<li><b>Enharmonic German:</b> Schumann’s <i>Dichterliebe</i>, “Am leuchtenden Sommermorgen”: a G♭⁷ would be G♭–B♭–D♭–F♭, but the F♭ is respelled E♮ and the D♭ as C♯ (a “doubly augmented fourth”), so that they resolve upward.</li></ul>
+<h3>Descending chromatic bass lines</h3>
+<p>The chromatic descent <b>1 – ♮7 – ♭7 – 6 – ♭6 – 5</b> can be harmonized with secondary chords, borrowed chords, augmented sixths and rarely used diatonic chords. Examples across centuries: Purcell’s “Dido’s Lament”, Bach’s <i>Crucifixus</i> (B minor Mass), Beethoven’s 32 Variations in C minor, George Harrison’s “While My Guitar Gently Weeps”, “Stairway to Heaven”, “Dream On”, “Interstate Love Song”, “Jar of Hearts”. The harmonization of 6 can use vi°⁷/vi chords of the melodic minor scale. <b>The chromatic pre-dominants</b> (N⁶, augmented sixths, borrowed iv, ii°) are all ways of harmonizing ♭6 before the dominant.</p>`,
   figs: {
     lament: block('A', 'minor', [['A2 C4 E4 A4', 'i'], ['G2 B3 E4 G4', 'v⁶'], ['F2 A3 D4 F4', 'iv⁶'], ['E2 B3 E4 G#4', 'V']], {bpm: 56, d: 'q'}),
     neap: block('C', 'minor', [['C3 Eb4 G4 C5', 'i'], ['F3 Ab4 Db5 F5', 'N⁶'], ['G2 D4 G4 B4', 'V'], ['C3 Eb4 G4 C5', 'i']], {bpm: 60}),
@@ -1377,6 +1434,11 @@ CH.push({id: 'neapolitan', title: 'Neapolitan and augmented sixth chords', blurb
     ger: block('C', 'minor', [['Ab2 C4 Eb4 F#4', 'Ger⁺⁶'], ['G2 C4 Eb4 G4', 'i⁶₄'], ['G2 D4 G4 B4', 'V'], ['C3 Eb4 G4 C5', 'i']], {bpm: 60}),
   },
   quiz: [
+    bank([['Which rule identifies an augmented sixth chord when stacked in thirds?', 'It contains a diminished third', ['It has a major seventh', 'It is always in root position', 'It has an augmented triad'], 'No earlier chord has one.'],
+      ['How is an augmented sixth labelled in lead-sheet notation?', 'As a dominant seventh on ♭6 with a misspelled seventh', ['As a major triad', 'As a minor seventh', 'As a sus chord'], 'A♭7 = A♭ C E♭ G♭, spelled A♭ C E♭ F♯.'],
+      ['What does the enharmonic German sixth resolve to?', 'Only a major I⁶₄', ['Only a minor i', 'A deceptive cadence', 'The Neapolitan'], 'The ♭3 is respelled as ♯2, which rises.'],
+      ['Which famous piece features a Neapolitan sixth in its first movement?', 'Beethoven’s Moonlight Sonata', ['Pachelbel’s Canon', 'The Star-Spangled Banner', 'Twinkle, Twinkle'], 'Also Beethoven’s Symphony No. 7.'],
+      ['Which bass line is the descending chromatic bass?', '1 – 7 – ♭7 – 6 – ♭6 – 5', ['1 – 2 – 3 – 4', '1 – 5 – 1', '1 – 3 – 5'], 'Dido’s Lament and Stairway to Heaven use versions of it.']]),
     bank([['What is the lament bass in A minor?', 'A – G – F – E', ['A – B – C – D', 'A – E – A – E', 'A – C – E – A'], 'It falls from the tonic to the dominant, usually under i – v⁶ – iv⁶ – V.'],
       ['The bass is ♭6 and there is a ♯4 above it. Which chord is it?', 'An augmented sixth chord', ['A Neapolitan', 'A borrowed iv', 'A deceptive cadence'], 'The two notes a sixth apart expand to 5.'],
       ['Which chord is a major triad on ♭2 in first inversion?', 'Neapolitan sixth', ['German sixth', 'Italian sixth', 'Picardy third'], 'N⁶ has 4 in the bass.'],
