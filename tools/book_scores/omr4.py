@@ -54,18 +54,32 @@ def figure_of(page, S_list):
 
 
 def group_systems(S_list):
-    """consecutive staves whose bar lines coincide form a system"""
+    """consecutive staves whose inner bar lines coincide form a system; bar lines must be seen in (nearly) all of its staves"""
+    def inner(S): return [b for b in S['bars'] if S['st']['x0'] + 12 < b < S['st']['x1'] - 12]
     systems = []
     for S in S_list:
-        bx = [b for b in S['bars']]
         if systems:
             prev = systems[-1][-1]
-            pb = prev['bars']
-            common = len([b for b in bx if any(abs(b - c) < 0.8 for c in pb)])
-            near = (S['st']['top'] - prev['st']['bottom']) < 14 * S['sp']
-            if near and common >= max(1, min(len(bx), len(pb)) * 0.6):
+            gap = S['st']['top'] - prev['st']['bottom']
+            a_, b_ = inner(S), inner(prev)
+            if a_ and b_:
+                match = len([x for x in a_ if any(abs(x - y) < 0.9 for y in b_)])
+                same = match >= 0.6 * min(len(a_), len(b_)) and gap < 30 * S['sp']
+            else:
+                same = gap < 14 * S['sp'] and not (a_ or b_) and abs(S['st']['x0'] - prev['st']['x0']) < 3 and abs(S['st']['x1'] - prev['st']['x1']) < 3
+            if same:
                 systems[-1].append(S); continue
         systems.append([S])
+    for sy in systems:
+        n = len(sy)
+        if n < 2: continue
+        need = n if n <= 3 else n - 1
+        allb = sorted(set(round(b, 1) for S in sy for b in S['bars']))
+        keep = []
+        for b in allb:
+            cnt = sum(1 for S in sy if any(abs(b - c) < 0.9 for c in S['bars']))
+            if cnt >= need: keep.append(b)
+        for S in sy: S['bars'] = keep
     return systems
 
 

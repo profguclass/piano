@@ -121,7 +121,106 @@ def collect_lyrics(page, systems):
     return out
 
 
-def figure_xml(title, systems, page=None, time_default=(4, 4)):
+
+def seg_measure(S, a, b):
+    ch = [c for c in S['chords'] if a <= c['x'] + 0.1 < b]
+    rs = [r for r in S['rests'] if a <= r['x'] + 0.1 < b]
+    accs = [x for x in S['accs'] if a <= x['x'] < b]
+    return dict(a=a, b=b, chords=ch, rests=rs, accs=accs)
+
+
+def seg_ok(S, m, target, allow_short):
+    if not m['chords'] and not m['rests']: return True
+    evs, poly = omr3.build_events(S, m, S['fifths'])
+    voices = collections.defaultdict(list)
+    for e in sorted(evs, key=lambda e: e['x']): voices[e['voice']].append(e)
+    order = sorted(voices, key=lambda v: -sum(e['dur'] or 0 for e in voices[v]))
+    for i, v in enumerate(order):
+        ee = [dict(e) for e in voices[v]]
+        durs, ok = solve_voice(ee, target, allow_short if i == 0 else True, True)
+        if not ok: return False
+        if i and sum(durs) > target + 1e-6: return False
+    return True
+
+
+def repartition(S, target, ms):
+    """choose among all candidate bar lines the subset that makes every measure add up (false bar lines come from boxes, stems and brackets)"""
+    st = S['st']; sp = S['sp']
+    cands = sorted(set(round(b, 1) for b in S['bars'] if S['firstx'] + 2 * sp < b < st['x1'] - 3))
+    if len(cands) < 2: return None
+    start = S['firstx'] - 2; end = st['x1'] + 1
+    edges = [start] + cands + [end]
+    n = len(edges)
+    INF = 10 ** 9
+    best = [INF] * n; prev = [None] * n; best[0] = 0
+    memo = {}
+    def ok(i, j):
+        if (i, j) in memo: return memo[(i, j)]
+        m = seg_measure(S, edges[i], edges[j])
+        r = seg_ok(S, m, target, i == 0 or j == n - 1)
+        memo[(i, j)] = r; return r
+    for j in range(1, n):
+        for i in range(j):
+            if best[i] >= INF: continue
+            if edges[j] - edges[i] < 2.5 * sp: continue
+            if ok(i, j) and best[i] + 1 < best[j] + 0:  # prefer more, smaller steps only when equal feasibility
+                pass
+            if ok(i, j):
+                c = best[i] + (0 if j - i == 1 else 0.001 * (j - i))
+                if c < best[j]: best[j] = c; prev[j] = i
+    if best[n - 1] >= INF: return None
+    cuts = []; j = n - 1
+    while j is not None and j > 0:
+        cuts.append(j); j = prev[j]
+    cuts = sorted(cuts); idx = [0] + cuts
+    out = []
+    for i, j in zip(idx, idx[1:]):
+        m = seg_measure(S, edges[i], edges[j])
+        if m['chords'] or m['rests']: out.append(m)
+    return out
+
+
+def search_voices(evs, target, sp, allow_short, maxv=3, flex=False):
+    """assign events to up to maxv voices (and, with flex, nudge durations) so that every voice adds up to the bar"""
+    evs = sorted(evs, key=lambda e: (e['x'], -(max([n[2] * 7 + 'CDEFGAB'.index(n[0]) for n in e['notes']] or [0]))))
+    n = len(evs)
+    if n > (12 if flex else 16) or n < 2: return None
+    best = [None]; nodes = [0]
+    sums = [0.0] * maxv; lastx = [[] for _ in range(maxv)]
+    assign = [0] * n; chosen = [0.0] * n
+    def opts(e):
+        d = e['dur'] if e['dur'] is not None else target
+        if not flex: return [d]
+        o = [d, d * 1.5, d * 0.5, d * 2, d / 1.5]
+        return [x for x in dict.fromkeys(o) if 0.125 <= x <= target]
+    def rec(i, used, cost):
+        if best[0] is not None and best[0][2] <= cost: return
+        nodes[0] += 1
+        if nodes[0] > 300000: return
+        if i == n:
+            for v in range(used):
+                if abs(sums[v] - target) > 1e-6 and not (allow_short and v == 0 and sums[v] < target): return
+            best[0] = (list(assign), list(chosen), cost); return
+        e = evs[i]
+        for v in range(min(used + 1, maxv)):
+            if any(abs(e['x'] - x) < 1.2 * sp for x in lastx[v]): continue
+            for d in opts(e):
+                if sums[v] + d > target + 1e-6: continue
+                base = e['dur'] if e['dur'] is not None else target
+                c = cost + (0 if abs(d - base) < 1e-6 else 1)
+                sums[v] += d; lastx[v].append(e['x']); assign[i] = v; chosen[i] = d
+                rec(i + 1, max(used, v + 1), c)
+                sums[v] -= d; lastx[v].pop()
+    rec(0, 0, 0)
+    if best[0] is None: return None
+    return [(e, v + 1, d) for e, v, d in zip(evs, best[0][0], best[0][1])]
+
+
+def listing(evs):
+    return sorted(evs, key=lambda e: (e['x'], -(max([n[2] * 7 + 'CDEFGAB'.index(n[0]) for n in e['notes']] or [0]))))
+
+
+def figure_xml(title, systems, page=None, time_default=(4, 4), overrides=None):
     nstaff = max(len(s) for s in systems)
     parts = [[] for _ in range(nstaff)]
     report = dict(measures=0, ok=0, bad=0, notes=0)
@@ -135,6 +234,14 @@ def figure_xml(title, systems, page=None, time_default=(4, 4)):
             if k >= len(sysm): continue
             S = sysm[k]
             ms = omr3.measures_of(S)
+            _t = S['time'] or time
+            if _t:
+                _target = _t[0] * 4 / _t[1]
+                _bad = [mi for mi, m in enumerate(ms) if not seg_ok(S, m, _target, mi == 0 or mi == len(ms) - 1)]
+                if _bad:
+                    alt = repartition(S, _target, ms)
+                    if alt is not None: ms = alt
+            unmetered = not (S['time'] or time)
             tsig = S['time'] or time or time_default
             target = tsig[0] * 4 / tsig[1]
             for mi, m in enumerate(ms):
@@ -144,10 +251,71 @@ def figure_xml(title, systems, page=None, time_default=(4, 4)):
                 first = (si == 0 and mi == 0)
                 last = (mi == len(ms) - 1)
                 okm = True
-                for v, ee in voices.items():
-                    durs, ok = solve_voice(ee, target, first or last, True)
+                _ov = (overrides or {}).get((si, k, mi))
+                if _ov:
+                    _L = listing(evs)
+                    voices = collections.defaultdict(list)
+                    for _v, _items in _ov.items():
+                        _pos = 0.0
+                        for _it in _items:
+                            if _it[0] == 'r':
+                                _e = dict(x=_pos, voice=_v, dur=_it[1], notes=[], rest='q', stem=None)
+                            else:
+                                _e = dict(_L[_it[0]]); _e['voice'] = _v; _e['dur'] = _it[1]
+                            _e['start'] = _pos; _pos += _e['dur']; voices[_v].append(_e)
+                    parts_ov = True
+                else: parts_ov = False
+                if not _ov and not unmetered and not poly and len(voices) == 1:
+                    _only = list(voices.values())[0]
+                    _d, _ok = solve_voice([dict(e) for e in _only], target, first or last, True)
+                    if not _ok:
+                        _r = search_voices(list(_only), target, S['sp'], first or last) or search_voices(list(_only), target, S['sp'], first or last, flex=True)
+                        if _r and len(set(v for _, v, _ in _r)) > 1:
+                            poly = True
+                            voices = collections.defaultdict(list)
+                            for _e, _v, _dd in _r: _e['voice'] = _v; _e['dur'] = _dd; voices[_v].append(_e)
+                            for _v in voices: voices[_v].sort(key=lambda e: e['x'])
+                if not _ov and not unmetered and poly:
+                    _o = sorted(voices, key=lambda v: -sum(e['dur'] or 0 for e in voices[v]))
+                    _bad = False
+                    for _i, _v in enumerate(_o):
+                        _d, _ok = solve_voice([dict(e) for e in voices[_v]], target, (first or last) if _i == 0 else True, True)
+                        if not _ok or (_i and sum(_d) > target + 1e-6): _bad = True
+                    if _bad:
+                        _r = search_voices([e for ee in voices.values() for e in ee], target, S['sp'], first or last) or search_voices([e for ee in voices.values() for e in ee], target, S['sp'], first or last, flex=True)
+                        if _r:
+                            voices = collections.defaultdict(list)
+                            for _e, _v, _d in _r: _e['voice'] = _v; _e['dur'] = _d; voices[_v].append(_e)
+                            for _v in voices: voices[_v].sort(key=lambda e: e['x'])
+                order = sorted(voices, key=lambda v: -sum(e['dur'] or 0 for e in voices[v]))
+                master = order[0] if (order and not _ov) else None
+                for v in ([] if _ov else order):
+                    ee = voices[v]
+                    base_ = [e['dur'] for e in ee]
+                    ismaster = (v == master)
+                    durs, ok = solve_voice(ee, target, (first or last) if ismaster else True, True)
+                    if not ok and not unmetered: report.setdefault('fails', []).append(dict(staff=k, m=mi, v=v, target=target, sum=round(sum(b for b in base_ if b), 3), poly=poly, ev=[(round(e['x']), b, e['stem'], len(e['notes']), e.get('rest')) for e, b in zip(ee, base_)]))
                     for e, dd in zip(ee, durs): e['dur'] = dd
                     okm = okm and ok
+                # start times: the master voice sets the clock, the others are placed by their x position
+                if master is not None:
+                    tm = []; cur = 0.0
+                    for e in sorted(voices[master], key=lambda e: e['x']):
+                        e['start'] = cur; tm.append((e['x'], cur, e['dur'])); cur += e['dur']
+                    for v in order[1:]:
+                        pos = 0.0
+                        for e in sorted(voices[v], key=lambda e: e['x']):
+                            st_ = None
+                            for i2, (x2, t2, d2) in enumerate(tm):
+                                nx = tm[i2 + 1][0] if i2 + 1 < len(tm) else x2 + 40
+                                if x2 - 2 <= e['x'] < nx - 2:
+                                    st_ = t2 + (0 if abs(e['x'] - x2) < 3 else (e['x'] - x2) / max(nx - x2, 1) * d2)
+                                    break
+                            if st_ is None: st_ = pos
+                            st_ = round(st_ * 4) / 4
+                            if st_ < pos - 1e-6: st_ = pos; okm = okm and unmetered
+                            e['start'] = st_; pos = st_ + e['dur']
+                        if pos > target + 1e-6 and not unmetered: okm = False
                 ws = [l for l in labels if l['si'] == si and l['k'] == k and (m['a'] - 1 if mi else 0) <= l['x'] < m['b']]
                 ly = [l for l in lyrics if l['si'] == si and l['k'] == k and (m['a'] - 1 if mi else 0) <= l['x'] < m['b']]
                 v1 = voices.get(1) or (list(voices.values())[0] if voices else [])
@@ -156,7 +324,15 @@ def figure_xml(title, systems, page=None, time_default=(4, 4)):
                 for l in ly:
                     cand = [e for e in v1 if e['notes']]
                     if cand: min(cand, key=lambda e: abs(e['x'] - l['x']))['lyric'] = l
-                parts[k].append(dict(voices=dict(voices), ok=okm, fifths=S['fifths'], tsig=tsig, clef=S['cname']))
+                msig = tsig
+                if unmetered:
+                    okm = True
+                    ln = max([sum(e['dur'] for e in ee if e['dur'] is not None) for ee in voices.values()] or [target])
+                    n8 = max(1, int(round(ln * 2)))
+                    msig = (n8, 8)
+                if not okm:
+                    report.setdefault('badlist', []).append(dict(key=(si, k, mi), target=target, clef=S['cname'], ev=[(i, round(e['x']), ' '.join('%s%s%d' % (n[0], {1: '#', -1: 'b', 0: '', 2: 'x'}.get(n[1], ''), n[2]) for n in e['notes']) or 'rest', e['stem'], e['dur'], e.get('rest')) for i, e in enumerate(listing(evs))]))
+                parts[k].append(dict(voices=dict(voices), ok=okm, fifths=S['fifths'], tsig=msig, clef=S['cname']))
                 report['measures'] += 1
                 report['ok' if okm else 'bad'] += 1
                 report['notes'] += len(evs)
@@ -178,9 +354,17 @@ def figure_xml(title, systems, page=None, time_default=(4, 4)):
             vlist = sorted(pm['voices'])
             for vi, v in enumerate(vlist):
                 ee = pm['voices'][v]
-                if vi > 0: out.append('<backup><duration>%d</duration></backup>' % sum(int(round(e['dur'] * DIV)) for e in pm['voices'][vlist[vi - 1]]))
+                if vi > 0:
+                    pe = pm['voices'][vlist[vi - 1]]
+                    out.append('<backup><duration>%d</duration></backup>' % int(round((pe[-1].get('start', 0) + pe[-1]['dur']) * DIV)) if pe else '')
                 run = 0
+                pos = 0.0
                 for e in ee:
+                    gap = e.get('start', pos) - pos
+                    if gap > 1e-6:
+                        out.append('<note print-object="no"><rest/><duration>%d</duration><voice>%d</voice></note>' % (int(round(gap * DIV)), v))
+                        pos += gap
+                    pos += e['dur']
                     for w in e.get('words', []): out.append(words_xml(w['text'], w['place']))
                     d_ = e['dur']
                     trip = None

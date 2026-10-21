@@ -116,20 +116,25 @@ CLEF = {'&': ('treble', 30), '?': ('bass', 18)}      # diatonic index of the bot
 
 
 def beam_levels(page, stem_x, tip_y, direction, sp):
-    """count beam bars beside a stem near its tip (sampled 0.9 and 1.3 staff spaces to either side)"""
+    """count the beam bars attached to a stem: look beside the stem along its last 2.4 staff spaces; bars are runs at least 0.22 sp thick"""
     d = page.clean
     best = 0
-    for off in (-1.3, -0.9, 0.9, 1.3):
+    minrun = max(2, int(0.22 * sp * Z))
+    for off in (-0.62, -0.85, 0.62, 0.85):
         X = int(round((stem_x + off * sp) * Z))
         if X < 0 or X >= page.W: continue
-        if direction == 'up': ya, yb = int(tip_y * Z - 0.15 * sp * Z), int(tip_y * Z + 2.2 * sp * Z)
-        else: ya, yb = int(tip_y * Z - 2.2 * sp * Z), int(tip_y * Z + 0.15 * sp * Z)
+        if direction == 'up': ya, yb = int(tip_y * Z - 0.15 * sp * Z), int(tip_y * Z + 2.4 * sp * Z)
+        else: ya, yb = int(tip_y * Z - 2.4 * sp * Z), int(tip_y * Z + 0.15 * sp * Z)
         col = d[max(ya, 0):yb, X]
-        runs = 0; prev = False
+        runs = []; cur = 0
         for v in col:
-            if v and not prev: runs += 1
-            prev = bool(v)
-        best = max(best, runs)
+            if v: cur += 1
+            else:
+                if cur: runs.append(cur)
+                cur = 0
+        if cur: runs.append(cur)
+        n = len([r for r in runs if r >= minrun])
+        best = max(best, n)
     return best
 
 

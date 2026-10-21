@@ -4,7 +4,7 @@ import numpy as np, fitz
 from omr import Page, Z, CLEF, stem_info, beam_levels
 
 HEAD = {'œ': 'q', '˙': 'h', 'w': 'w'}
-REST = {'‰': 'q', 'Œ': 'e', 'Ó': 'h', '∑': 'w', '≈': 's'}
+REST = {'Œ': 'q', '‰': 'e', 'Ó': 'h', '∑': 'w', '≈': 's'}
 ACC = {'#': 1, 'b': -1, 'n': 0, '×': 2}
 DUR = {'w': 4.0, 'h': 2.0, 'q': 1.0, 'e': 0.5, 's': 0.25, 't': 0.125}
 STEPS = 'CDEFGAB'
@@ -59,8 +59,9 @@ def parse_staff(page, st, clef, glyphs):
             den = int(''.join(g['c'] for g in sorted(lows, key=lambda g: g['x'])) or 0) if lows else 0
             if num and den: time = (num, den)
     body = [g for g in glyphs if g not in hdr and g['x'] > clef['x'] + 3 and g['c'] not in CLEF]
+    clefchg = sorted([(g['x'], CLEF[g['c']][1]) for g in glyphs if g['c'] in CLEF and g['x'] > clef['x'] + 3 * sp and g['size'] < 15.5 * 1.0 or (g['c'] in CLEF and g['x'] > clef['x'] + 6 * sp)])
     bars = barlines(page, st)
-    return dict(cname=cname, d0=d0, fifths=fifths, time=time, body=body, bars=bars, st=st, pos=pos, sp=sp, firstx=firstx)
+    return dict(clefchg=clefchg, cname=cname, d0=d0, fifths=fifths, time=time, body=body, bars=bars, st=st, pos=pos, sp=sp, firstx=firstx)
 
 
 def chords_of(page, S):

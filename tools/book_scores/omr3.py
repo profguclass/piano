@@ -88,6 +88,17 @@ def measures_of(S):
         if merged and b - merged[-1] < 3 * sp: merged[-1] = b
         else: merged.append(b)
     first_bar_x = S['firstx'] - 2
+    real = [b for b in merged if first_bar_x + 2 * sp < b < st['x1'] - 3]
+    if not real and S['time'] is None and len(S['chords']) + len(S['rests']) > 1:       # an unmetered row of chords: one chord to a measure
+        xs = sorted(set(round(c['x']) for c in S['chords']) | set(round(r['x']) for r in S['rests']))
+        edges = [first_bar_x] + [(a + b) / 2 for a, b in zip(xs, xs[1:])] + [st['x1'] + 1]
+        meas = []
+        for a, b in zip(edges, edges[1:]):
+            ch = [c for c in S['chords'] if a <= c['x'] + 0.1 < b]
+            rs = [r for r in S['rests'] if a <= r['x'] + 0.1 < b]
+            accs = [x for x in S['accs'] if a <= x['x'] < b]
+            if ch or rs: meas.append(dict(a=a, b=b, chords=ch, rests=rs, accs=accs))
+        return meas
     edges = [first_bar_x] + [b for b in merged if b > first_bar_x + 2 * sp]
     if edges[-1] < st['x1'] - 8: edges.append(st['x1'] + 1)
     meas = []
@@ -100,8 +111,12 @@ def measures_of(S):
     return meas
 
 
-def pitch_name(S, y):
-    d = S['d0'] + int(round(S['pos'](y)))
+def pitch_name(S, y, x=None):
+    d0 = S['d0']
+    if x is not None:
+        for cx, cd in S.get('clefchg', []):
+            if cx < x: d0 = cd
+    d = d0 + int(round(S['pos'](y)))
     return d // 7, STEPS[d % 7]
 
 
@@ -115,6 +130,8 @@ def build_events(S, m, fifths):
         for c2 in chords[i + 1:]:
             if abs(c['x'] - c2['x']) < 0.9 * sp and c['stem'] and c2['stem'] and c['stem'] != c2['stem']: poly = True
     mid = (S['st']['top'] + S['st']['bottom']) / 2
+    for r in m['rests']:
+        if any(abs(r['x'] - c['x']) < 1.2 * sp for c in chords): poly = True
     evs = []
     seen = {}
     allh = []
@@ -133,7 +150,7 @@ def build_events(S, m, fifths):
         v = 1 if (not poly or c['stem'] != 'down') else 2
         notes = []
         for it in sorted(c['items'], key=lambda t: -t['y']):
-            octv, step = pitch_name(S, it['y'])
+            octv, step = pitch_name(S, it['y'], it['x'])
             key = (octv, step)
             if id(it) in accmap: seen[key] = accmap[id(it)]
             alter = seen.get(key, kalt.get(step, 0))
@@ -141,7 +158,11 @@ def build_events(S, m, fifths):
         evs.append(dict(x=c['x'], voice=v, dur=c['dur'], notes=notes, stem=c['stem']))
     for r in m['rests']:
         base = REST[r['c']]
-        if poly: v = 1 if r['y'] < mid else 2
+        if poly:
+            over = [c for c in chords if abs(r['x'] - c['x']) < 1.2 * sp]
+            if over and over[0]['stem'] == 'up': v = 2
+            elif over and over[0]['stem'] == 'down': v = 1
+            else: v = 1 if r['y'] < mid else 2
         else: v = 1
         evs.append(dict(x=r['x'], voice=v, dur=None if base == 'w' else DUR[base], notes=[], rest=base, stem=None))
     return evs, poly

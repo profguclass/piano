@@ -1,6 +1,9 @@
 import sys, os, json, re, traceback
 sys.path.insert(0,'.')
 import fitz, omr, omr3, omr4, omr5
+try:
+    import overrides; OV=overrides.OV
+except Exception: OV={}
 d=fitz.open('C:/Users/gcgu/Desktop/Piano/Music Theory/MusicTheory-Sep-2025.pdf')
 a,b=int(sys.argv[1]),int(sys.argv[2])
 os.makedirs('../out/book',exist_ok=True)
@@ -33,7 +36,7 @@ for pno in range(a,b+1):
             key=cap[1] if cap else 'x%d'%pno
             groups.setdefault(key,dict(cap=cap,systems=[]))['systems'].append(sy)
         for key,g in groups.items():
-            xml,rep=omr5.figure_xml(key,g['systems'],p)
+            xml,rep=omr5.figure_xml(key,g['systems'],p,overrides=OV.get(key))
             fn='fig-%s.musicxml'%key if not key.startswith('x') else 'ex-p%d-%d.musicxml'%(pno,len(catalog))
             open('../out/book/'+fn,'w',encoding='utf-8').write(xml)
             catalog.append(dict(file=fn,page=pno,fig=key,caption=g['cap'][2] if g['cap'] else '',systems=len(g['systems']),**rep))
