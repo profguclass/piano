@@ -333,15 +333,15 @@ async function showLibrary() {
   if (state.view !== 'library') return;
   const opts = chapters.filter(c => bookIndex.some(b => b.ch === c.id)).map(c => `<option value="${c.id}">${esc(c.title)}</option>`).join('');
   body.innerHTML = `<p class="muted">All ${bookIndex.length} musical figures from <i>Music Theory for the 21st-Century Classroom</i> (Hutchinson, GNU Free Documentation License). Open one, press <b>Hear</b>, and practise: play it on your piano, name the chords and intervals, and check your answer against the chapter. Figures marked “check against the book” were read by computer and may contain small errors. / 교재의 악보 ${bookIndex.length}개를 모두 모았습니다. 열어서 들어 보고 직접 연주하며 연습하세요.</p>
-    <div class="gtools"><input id="lsearch" type="search" placeholder="Figure number or words · 번호나 단어" aria-label="Search the figures"><select id="lchap" aria-label="Chapter"><option value="">All chapters · 모든 장</option>${opts}</select></div>
-    <label class="muted"><input type="checkbox" id="lgood"> Only figures that passed the check · 검증된 악보만</label>
-    <p class="muted" id="lcount"></p><p class="muted" id="ldiag" style="font-size:12px;font-family:monospace"></p><div id="llist"></div>`;
-  const list = $h('llist'), q = $h('lsearch'), sel = $h('lchap'), good = $h('lgood');
+    <div class="gtools"><input id="hlibQ" type="search" placeholder="Figure number or words · 번호나 단어" aria-label="Search the figures"><select id="hlibChap" aria-label="Chapter"><option value="">All chapters · 모든 장</option>${opts}</select></div>
+    <label class="muted"><input type="checkbox" id="hlibGood"> Only figures that passed the check · 검증된 악보만</label>
+    <p class="muted" id="hlibCount"></p><p class="muted" id="hlibDiag" style="font-size:12px;font-family:monospace"></p><div id="hlibList"></div>`;
+  const list = $h('hlibList'), q = $h('hlibQ'), sel = $h('hlibChap'), good = $h('hlibGood');
   const paint = () => { try { paint0(); } catch (e) { console.error(e); list.innerHTML = ''; const m = document.createElement('p'); m.textContent = 'The list could not be drawn (' + (e && e.message || e) + '). Please tell the developer. · 목록을 그리지 못했습니다.'; list.append(m); } };
   const paint0 = () => {
     const t = q.value.trim().toLowerCase(), ch = sel.value;
     const rows = bookIndex.filter(b => (!ch || b.ch === ch) && (!good.checked || !b.bad) && (!t || `${b.id} ${b.cap}`.toLowerCase().includes(t)));
-    $h('lcount').textContent = `${rows.length} of ${bookIndex.length} figures · ${rows.length}개 / 전체 ${bookIndex.length}개`;
+    $h('hlibCount').textContent = `${rows.length} of ${bookIndex.length} figures · ${rows.length}개 / 전체 ${bookIndex.length}개`;
     list.innerHTML = '';
     let last = null;
     for (const b of rows.slice(0, 150)) {
@@ -357,7 +357,7 @@ async function showLibrary() {
   };
   const diag = () => {
     const sm = list.querySelector('summary'), r = list.getBoundingClientRect(), sr = sm && sm.getBoundingClientRect();
-    $h('ldiag').textContent = ['diag v55', 'items ' + list.children.length, 'list h ' + Math.round(r.height), 'summary ' + (sm ? Math.round(sr.width) + 'x' + Math.round(sr.height) + ' ' + getComputedStyle(sm).color + ' ' + getComputedStyle(sm).display + ' vis ' + getComputedStyle(sm).visibility : 'none'), 'win ' + innerWidth + 'x' + innerHeight, 'sw ' + (navigator.serviceWorker && navigator.serviceWorker.controller ? 'on' : 'off')].join(' · ');
+    $h('hlibDiag').textContent = ['diag v56', 'items ' + list.children.length, 'list h ' + Math.round(r.height), 'summary ' + (sm ? Math.round(sr.width) + 'x' + Math.round(sr.height) + ' ' + getComputedStyle(sm).color + ' ' + getComputedStyle(sm).display + ' vis ' + getComputedStyle(sm).visibility : 'none'), 'win ' + innerWidth + 'x' + innerHeight, 'sw ' + (navigator.serviceWorker && navigator.serviceWorker.controller ? 'on' : 'off')].join(' · ');
   };
   q.oninput = () => { paint(); diag(); }; sel.onchange = () => { paint(); diag(); }; good.onchange = () => { paint(); diag(); }; paint(); diag();
 }
