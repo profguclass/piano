@@ -322,7 +322,14 @@ async function showLibrary() {
   $h('hback').hidden = false; $h('htitle').textContent = 'Textbook library · 교재 악보';
   const body = $h('hbody');
   body.innerHTML = '<p class="muted">Loading…</p>';
-  if (!bookIndex) { try { bookIndex = await (await fetch('harmony-book/index.json')).json(); } catch { bookIndex = []; } }
+  if (!bookIndex) {
+    try { const r = await fetch('harmony-book/index.json'); if (!r.ok) throw new Error('HTTP ' + r.status); bookIndex = await r.json(); }
+    catch (e) {
+      if (state.view !== 'library') return;
+      body.innerHTML = `<p class="muted">The score list could not be loaded (${esc(String(e && e.message || e))}). Check your connection, then try again. · 악보 목록을 불러오지 못했습니다. 연결을 확인한 뒤 다시 시도하세요.</p>`;
+      const rt = document.createElement('button'); rt.textContent = 'Try again · 다시 시도'; rt.onclick = showLibrary; body.append(rt); return;
+    }
+  }
   if (state.view !== 'library') return;
   const opts = chapters.filter(c => bookIndex.some(b => b.ch === c.id)).map(c => `<option value="${c.id}">${esc(c.title)}</option>`).join('');
   body.innerHTML = `<p class="muted">All ${bookIndex.length} musical figures from <i>Music Theory for the 21st-Century Classroom</i> (Hutchinson, GNU Free Documentation License). Open one, press <b>Hear</b>, and practise: play it on your piano, name the chords and intervals, and check your answer against the chapter. Figures marked “check against the book” were read by computer and may contain small errors. / 교재의 악보 ${bookIndex.length}개를 모두 모았습니다. 열어서 들어 보고 직접 연주하며 연습하세요.</p>
@@ -398,7 +405,7 @@ function bookSlot(b, slot) {                                  // a textbook figu
 
 let bookIndex = null;
 async function bookEntries(id) {
-  if (!bookIndex) { try { bookIndex = await (await fetch('harmony-book/index.json')).json(); } catch { bookIndex = []; } }
+  if (!bookIndex) { try { const r = await fetch('harmony-book/index.json'); if (!r.ok) throw 0; bookIndex = await r.json(); } catch { return []; } }
   return bookIndex.filter(b => b.ch === id);
 }
 async function addBookExamples(wrap, id, before) {
