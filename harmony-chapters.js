@@ -427,7 +427,24 @@ CH.push({id: 'voiceleading', title: 'Voice leading', blurb: 'Four-part writing: 
 <p>If two voices move in the same direction by a perfect fifth, then another perfect fifth (or octave to octave), the voices lose their independence and merge. These <b>parallel fifths and octaves</b> are the classic faults of four-part writing.</p>
 {{fig:badfifths|Wrong: the bass and tenor move together in parallel fifths (C–G, then D–A), and so do other voice pairs.}}
 {{fig:badoct|Wrong: the bass and tenor move in parallel octaves (G–G, then A–A).}}
-{{fig:fixed|Better: the same chords with the tenor going down to a different note, so the octaves disappear.}}`,
+{{fig:fixed|Better: the same chords with the tenor going down to a different note, so the octaves disappear.}}
+<h3>Two ways to score four parts</h3>
+<p><b>Voice leading</b> (also called <b>part writing</b>) is the set of rules for how voices move from chord to chord. Its aims are <b>independent parts</b>, good <b>spacing</b> of each chord and an <b>economy of motion</b> that keeps every part singable. In <b>chorale style</b> the soprano and alto are written in the treble clef and the tenor and bass in the bass clef (SATB). In <b>keyboard (piano) style</b> the three upper voices all sit in the right hand on the treble staff, with the bass alone in the left hand. Three-part chords are sometimes scored SAB (soprano, alto, bass).</p>
+<h3>Four types of motion</h3>
+<ul><li><b>Contrary</b>: the two voices move in opposite directions.</li>
+<li><b>Oblique</b>: one voice stays and the other moves.</li>
+<li><b>Similar</b> (also “direct”): both voices move in the same direction, by step or by leap.</li>
+<li><b>Parallel</b>: a special kind of similar motion in which both voices move the <b>same interval</b> (for example both up a step, or both down a third).</li></ul>
+<h3>Objectionable parallels</h3>
+<p>Avoid <b>parallel fifths and octaves</b> between any two voices, along with their octave equivalents (parallel twelfths and unisons). From the Renaissance through the Romantic era these were thought to destroy the independence of the parts. <b>Parallel thirds, fourths and sixths</b> were acceptable (fourths with care); parallel seconds and sevenths were generally not used.</p>
+<h3>Rules of melody</h3>
+<p>Each part is a melody. These rules summarize the style of J. S. Bach’s 371 chorales:</p>
+<ol><li><b>Tendency tones</b> (scale degrees 2, 4, 6 and 7) should resolve: 7 goes up to 8 (1) and, to a lesser extent, 4 goes down to 3; 6 and 2 usually fall by step.</li>
+<li>Avoid <b>augmented</b> intervals.</li>
+<li>A leap larger than a 4th, or any leap of a diminished interval, should change direction afterwards.</li>
+<li>Consecutive leaps should <b>outline a triad</b>; other consecutive leaps are hard to sing.</li></ol>
+<h3>Why the spacing rule?</h3>
+<p>The upper voices are kept close: no more than an octave from soprano to alto and from alto to tenor. This reflects the <b>overtone series</b>: the notes of a chord ring best when the wide intervals are low and the notes are close together at the top. The distance from the bass to the tenor may be larger than an octave.</p>`,
   figs: {
     good: satb('C', 'major', [['C3 G3 E4 C5', 'I'], ['F2 A3 F4 C5', 'IV'], ['G2 G3 D4 B4', 'V'], ['C3 G3 E4 C5', 'I']], {bpm: 56}),
     badfifths: {...satb('C', 'major', [['C3 G3 E4 C5', 'I'], ['D3 A3 F4 D5', 'ii']], {bpm: 56}), bad: true},
@@ -435,6 +452,13 @@ CH.push({id: 'voiceleading', title: 'Voice leading', blurb: 'Four-part writing: 
     fixed: satb('C', 'major', [['G2 G3 D4 B4', 'V'], ['A2 E3 C4 C5', 'vi']], {bpm: 56}),
   },
   quiz: [
+    bank([['What is parallel motion?', 'Both voices move in the same direction by the same interval', ['One voice stays still', 'The voices move in opposite directions', 'The voices cross'], 'It is a special kind of similar motion.'],
+      ['What is oblique motion?', 'One voice stays and the other moves', ['Both voices move up', 'Both voices move in opposite directions', 'Both voices leap'], 'Contrary motion has the voices going opposite ways.'],
+      ['Which parallel intervals are acceptable between two voices?', 'Thirds and sixths', ['Fifths', 'Octaves', 'Sevenths'], 'Parallel fifths, octaves, twelfths and unisons are objectionable.'],
+      ['In keyboard style, where are the three upper voices written?', 'On the treble staff, played by the right hand', ['On the bass staff', 'In three different clefs', 'Only in the alto clef'], 'The bass is alone in the left hand.'],
+      ['Which scale degrees are the tendency tones?', '2, 4, 6 and 7', ['1, 3 and 5', '1 and 5 only', '3 and 6 only'], 'They tend to resolve to the nearest tonic-chord note.'],
+      ['After a leap larger than a 4th, a voice should…', 'Change direction', ['Leap again in the same direction', 'Stay on the same note', 'Move by an augmented second'], 'It helps keep the line singable.'],
+      ['Why is the soprano–alto distance kept within an octave?', 'The chord sounds best when the notes at the top are close together', ['The alto cannot sing high', 'It is a rule of notation', 'To avoid parallel fifths'], 'It follows the spacing of the overtone series.']]),
     () => { const pairs = [['C3 G3 E4 C5', 'F2 A3 F4 C5', 'I', 'IV', false], ['G2 G3 D4 B4', 'C3 G3 E4 C5', 'V', 'I', false], ['G2 G3 D4 B4', 'A2 E3 C4 C5', 'V', 'vi', false], ['C3 G3 E4 C5', 'D3 A3 F4 D5', 'I', 'ii', true], ['G2 G3 D4 B4', 'A2 A3 E4 C5', 'V', 'vi', true]]; const [a, b, x, y, bad] = pick(pairs);
       return ask('Is there a fault in the way the voices move between these two chords?', bad ? 'Yes: parallel fifths or octaves' : 'No: the voice leading is correct', ['Yes: parallel fifths or octaves', 'No: the voice leading is correct', 'Yes: the leading tone is doubled', 'Yes: the voices cross'], bad ? 'Two voices move in the same direction keeping a perfect fifth or octave between them.' : 'No two voices move in parallel perfect intervals.', {fig: {...satb('C', 'major', [[a, x], [b, y]], {bpm: 56}), bad}}); },
     bank([['Which motion between two voices is forbidden?', 'Parallel perfect fifths', ['Parallel thirds', 'Parallel sixths', 'Contrary motion'], 'Parallel 3rds and 6ths are fine; perfect fifths and octaves are not.'],
@@ -1143,12 +1167,52 @@ CH.push({id: 'vldetails', title: 'Voice leading in detail', blurb: 'Rules of mel
 <p>One general rule: <b>the seventh resolves down by step</b>; every other voice moves smoothly to the nearest chord tone. The leading tone rises to the tonic. For <b>V⁷ → I</b> there are two good solutions: a <b>complete V⁷ → incomplete I</b> (no fifth, tripled root), or an <b>incomplete V⁷</b> (no fifth) → <b>complete I</b>. In a circle-of-fifths chain of root-position seventh chords, <b>alternate complete and incomplete chords</b>. The fully and half-diminished seventh chords on the leading tone are made only of tendency tones, so check that resolving them does not create parallel fifths.</p>
 {{fig:v7inc|Incomplete V⁷ (no fifth) resolving to a complete I: the seventh F falls to E, the leading tone B rises to C.}}
 <h3>Adding non-chord tones</h3>
-<p>Decorate a plain chord progression with passing tones, neighbours, suspensions and the rest ({{ch:nonchord}}), but first find the fifths and octaves in the original: a non-chord tone must not turn into a parallel fifth or octave. Avoid decorating two voices on the same beat unless they move in parallel thirds or sixths.</p>`,
+<p>Decorate a plain chord progression with passing tones, neighbours, suspensions and the rest ({{ch:nonchord}}), but first find the fifths and octaves in the original: a non-chord tone must not turn into a parallel fifth or octave. Avoid decorating two voices on the same beat unless they move in parallel thirds or sixths.</p>
+<h3>The deceptive progression</h3>
+<p>When the bass moves by a second in a deceptive progression (V – VI in minor), always move the <b>third of V up by step</b> while the other voices move in contrary motion to the bass. This produces a doubled third in VI. In major, use the same solution if scale degree 7 is in the soprano (because it is a tendency tone); if the leading tone is in an inner voice it may fall instead.</p>
+{{fig:dcmin|V – VI in C minor: the third of V (B) rises to C, the soprano and tenor move down, and the third (C) is doubled in VI.}}
+<h3>When the bass repeats</h3>
+<p>When the bass note stays, either repeat the upper notes, or <b>change the position</b> of the upper notes (arpeggiate them to different chord members) while keeping the correct doubling (root, root, third, fifth).</p>
+<h3>Parallel fifths between roots a second apart</h3>
+<p>When two chords have roots a second apart (even when inverted), revoice each so that the fifth of the chord lies below the root of the chord in the upper voices: then you get parallel <i>fourths</i> (acceptable) rather than parallel fifths, as in ii⁶ – I⁶ and I – vii°⁶.</p>
+<h3>Doubling at a glance</h3>
+<table class="htab"><tr><th>Root position</th><td>double the bass (the root)</td></tr><tr><th>First inversion</th><td>do not double the bass; exceptions: vii°⁶ and ii°⁶ (double the bass), and consecutive first-inversion chords (alternate)</td></tr><tr><th>Second inversion</th><td>double the bass (the fifth)</td></tr></table>
+<p>Bass moves by a <b>3rd or 6th</b>: hold two common tones and move one voice by step. By a <b>4th or 5th</b>: hold one common tone and move two voices by step, or move all upper voices the same direction. By a <b>2nd</b>: move the upper voices contrary to the bass (except in the deceptive progression). Keep track of what each voice doubles.</p>
+<h3>More about seventh chords</h3>
+<ul><li>The one exception to “the seventh falls” is I – V⁴₃ – I⁶, as in the main theme of Mozart’s Piano Sonata K. 331: the seventh rises. The resulting parallel fifths are unequal (one is diminished), which was thought acceptable.</li>
+<li>In a circle of fifths with <b>inverted</b> seventh chords, resolve every seventh down by step: two voices stay on common tones (tied) while two resolve down.</li>
+<li>When V⁴₃ goes to V⁷, watch for parallel fifths if the fifth is above the root; move the upper voices upward to the nearest chord notes or use an incomplete V⁷.</li>
+<li>If ^7 is not in the soprano in V⁷ – I, you may resolve it down a third (to the fifth of I), with a complete I.</li>
+<li>In piano music the seventh sometimes resolves “wrongly” to suit the hand; this is not accepted in voice-leading exercises.</li></ul>
+<h3>Resolving vii°⁷ and viiø⁷</h3>
+<p>These chords consist only of tendency tones (7, 2, 4, 6), and resolving all of them can create parallel fifths. The rule: when the <b>seventh of the chord is voiced above the third</b>, resolve the third (scale degree 2) <b>up</b> by step while 4 → 3, 6 → 5 and 7 → 8. If the seventh is below the third, resolve every voice normally. Revoicing the chord (parallel fourths are fine here) is another solution.</p>
+{{fig:vii7|viiø⁷ – I in C major: the 7th (A) is above the 3rd (D), so D rises to E instead of falling to C.}}
+<h3>When to use seventh chords</h3>
+<p>Use sevenths to add tension as you approach the tonic: they occur most in the dominant chords (V, vii°) and pre-dominants (ii, less often IV). Chords such as iii⁷, vi⁷, IVM7 and IM7 are less common in the classical style.</p>
+<h3>Voice leading chromatic chords</h3>
+<ul><li><b>Secondary chords</b>: resolve the seventh down by step and alternate complete and incomplete chords in successive root-position sevenths. The chromatic third of a secondary dominant falls by half step to the seventh of the next chord, which cancels the chromaticism. A secondary vii°⁷ or viiø⁷ follows the vii°⁷ rule above. Exception: vii°⁷/V – V, where the melody requires the seventh above the third: write parallel (unequal) fifths rather than doubling the leading tone.</li>
+<li><b>Borrowed chords</b>: handle them like the diatonic version (iiø⁷ like ii⁷). When ♭6 is a chord member, <b>resolve it down by step</b>. V – ♭VI is voiced like the deceptive cadence in minor: the third of V rises, the others move contrary to the bass. For ♭III, ♭VII, i and v there are no special rules.</li>
+<li><b>Neapolitan sixth</b>: double the bass (the third) and resolve ♭2 down to the nearest note in the next chord.</li>
+<li><b>Augmented sixths</b>: ♯4 almost always rises to 5, whether the chord goes to V, to the cadential six-four or elsewhere. Exception: if it resolves to V⁷, ♯4 falls to ♮4, the seventh of V⁷. In the “enharmonic German” sixth (♭6, 1, ♯2, ♯4), ♯2 and ♯4 rise to members of a major chord.</li></ul>
+<h3>Adding non-chord tones: recipes</h3>
+<ul><li>A repeated note: add an upper or lower <b>neighbor</b>.</li>
+<li>A falling or rising step: add a <b>suspension</b> (delay the resolution), an <b>escape tone</b> (step in the opposite direction, then leap), a <b>chromatic passing tone</b> or an <b>appoggiatura</b> (leap one step past the note of resolution, put it on the beat and move the resolution after the beat).</li>
+<li>A leap of a third: fill it with a passing tone; a leap of a 4th or more: do not embellish.</li>
+<li>When two voices embellish on the same beat, they should make <b>consonant intervals</b> (3rds, 5ths, 6ths, 8ves); if they cannot, stagger them rhythmically. First mark the 5ths and 8ves of the plain progression and do not let a non-chord tone slide into one of them.</li></ul>`,
   figs: {
+    dcmin: block('C', 'minor', [['G2 D3 B3 G4', 'V'], ['Ab2 C3 C4 Eb4', 'VI']], {bpm: 56, d: 'h'}),
+    vii7: block('C', 'major', [['B2 F3 D4 A4', 'viiø⁷'], ['C3 E3 E4 G4', 'I']], {bpm: 56, d: 'h'}),
     inv: satb('C', 'major', [['C3 G3 E4 C5', 'I'], ['E3 G3 C4 C5', 'I⁶'], ['F3 A3 D4 A4', 'ii⁶'], ['G3 B3 D4 G4', 'V'], ['C3 C4 E4 G4', 'I', 'h']], {d: 'h', bpm: 60}),
     v7inc: satb('C', 'major', [['G2 G3 F4 B4', 'V⁷ (no 5th)'], ['C3 G3 E4 C5', 'I']], {bpm: 60}),
   },
   quiz: [
+    bank([['In the deceptive progression V – VI in minor, which note rises by step?', 'The third of V (the leading tone)', ['The root of V', 'The fifth of V', 'No note rises'], 'The third of VI is doubled as a result.'],
+      ['When may the seventh of a V⁷ chord rise?', 'In the I – V⁴₃ – I⁶ progression, as in Mozart K. 331', ['Never', 'Always in the soprano', 'Only in minor'], 'The resulting parallel fifths are unequal.'],
+      ['In vii°⁷ – I, when the seventh is above the third, which voice rises?', 'The third (scale degree 2)', ['The root', 'The fifth', 'The bass'], 'That avoids parallel fifths.'],
+      ['How do you double the Neapolitan sixth in four parts?', 'Double the bass (the third) and resolve ♭2 down', ['Double the fifth', 'Never double anything', 'Double ♯4'], 'N⁶ is a first-inversion chord.'],
+      ['Which scale degree in an augmented sixth chord usually rises to 5?', '♯4', ['♭6', '1', '3'], 'The exception is a resolution to V⁷, where it falls to ♮4.'],
+      ['What should you do with ♭6 in a borrowed chord?', 'Resolve it down by step', ['Double it', 'Resolve it up', 'Leave it as a pedal'], 'It is a tendency tone.'],
+      ['Two voices both embellish on the same beat. What intervals should they make?', 'Consonant ones: 3rds, 5ths, 6ths or 8ves', ['Seconds and sevenths', 'Tritones', 'Unisons only'], 'Otherwise stagger them rhythmically.']]),
     () => { const r = pick(['C', 'G', 'F', 'D', 'A', 'Bb']), q = pick(['major', 'minor']), c = chordFromRoot(R(r), q), inv = pick([0, 1, 2]), ruleNote = [c[0], c[0], c[2]][inv];
       const where = ['root position', 'first inversion', 'second inversion'][inv], right = inv === 0 ? 'the root' : inv === 1 ? 'the root or the fifth' : 'the fifth (the bass)';
       return ask(`In four-part writing, what is normally doubled in the ${pn(r)} ${q === 'minor' ? 'minor ' : ''}triad in ${where}?`, right, ['the root', 'the root or the fifth', 'the fifth (the bass)', 'the third', 'the leading tone'], inv === 0 ? 'Double the root (the bass).' : inv === 1 ? 'Do not double the bass; the root or the fifth, whichever moves most smoothly.' : 'Double the fifth, which is the bass.'); },
@@ -1350,13 +1414,62 @@ CH.push({id: 'modulation', title: 'Modulation', blurb: 'Changing key: pivot chor
 <p>In an <b>enharmonic modulation</b> the pivot chord is respelled so that it means two different things, like a pun. Two sonorities are used:</p>
 <ul><li>The <b>dominant seventh</b> and the <b>German sixth</b> sound alike. G⁷ (G–B–D–F) is V⁷ in C major; respelled G–B–D–E♯ it is Ger⁺⁶ in B minor, and resolves to F♯.</li>
 <li>The <b>fully diminished seventh</b> chord divides the octave into equal minor thirds, so it can be respelled four ways and resolve to four different keys.</li></ul>
-{{fig:enhm|G⁷ in C major reinterpreted as a German sixth in B minor: the same sounding chord, spelled F or E♯.}}`,
+{{fig:enhm|G⁷ in C major reinterpreted as a German sixth in B minor: the same sounding chord, spelled F or E♯.}}
+<h3>Key change or modulation?</h3>
+<p>In popular music a change of key is called a <b>key change</b> (Beyoncé’s “Love on Top”, “My Heart Will Go On”, Bon Jovi’s “Livin’ on a Prayer” all rise to a new key for the last chorus). Classical theory keeps the word <b>modulation</b> for the slower, subtler change of key found in many classical pieces, but the pop key change is the same as the <b>direct modulation</b> described below.</p>
+<h3>Tonicization or modulation?</h3>
+<p>A tonicization can be as short as two chords (V/V – V) but may last several bars, as in Schubert’s song “Abschied”. A modulation needs a <b>cadence that confirms the new key</b>, usually (not always) a <b>cadential formula</b>: pre-dominant (ii or IV) – V – I, often through a cadential six-four. Douglass Green calls a V – I cadence with a pre-dominant prefix a <i>full cadence</i>. It establishes a key more strongly than a bare V – I, which leaves room for doubt, especially when the harmonic rhythm is fast (Bach’s chorales change chord on every beat).</p>
+<h3>Finding the pivot</h3>
+<ol><li>Listen for the cadence in the new key.</li><li>Work <b>backwards</b> from it: was the new V approached by a pre-dominant (ii or IV) of the new key?</li><li>Analyze from the beginning of the phrase until you reach the new key.</li><li>Look for a logical pivot. If two successive chords could both pivot, bracket two chords on each side.</li></ol>
+<h3>Common chords between two keys</h3>
+<p>For a diatonic pivot you need chords that are diatonic (same root and quality) in both keys. Take G major and D major:</p>
+<table class="htab"><tr><th>G major</th><td>G</td><td>Am</td><td>Bm</td><td>C</td><td>D</td><td>Em</td><td>F♯°</td></tr><tr><th>D major</th><td>G</td><td>A</td><td>Bm</td><td>C♯°</td><td>D</td><td>Em</td><td>F♯m</td></tr></table>
+<p>Aligning the two scales shows that G, Bm, D and Em belong to both. In Roman numerals: G = I in G and IV in D; Bm = iii in G and vi in D; D = V in G and I in D; Em = vi in G and ii in D.</p>
+<h3>Which function should the pivot have?</h3>
+<p>Composers seldom choose a pivot that is already a <b>dominant</b> in the new key: the modulation would sound abrupt. The best pivots have <b>tonic or tonic-prolongation function in the old key and pre-dominant function in the new one</b>: G is I in G major and the pre-dominant IV in D major, so it leads smoothly to the new V. Bach’s chorale “Ermuntre dich” does exactly this (a pivot that is Ton. in G and Pre-Dom. in D). There are also modulations with a pivot that is tonic in the old key and dominant in the new (as in Bach’s “Es ist das Heil uns kommen her”) or tonic in one and tonic-prolongation in the other.</p>
+<h3>Recognizing the new key</h3>
+<ul><li>Look for <b>recurring accidentals</b>, and add them to the key signature in your mind. A new <b>flat</b> usually acts as 4 of the new key; a new <b>sharp</b> usually acts as the leading tone 7 (if several sharps appear, the “sharpest” in the order F C G D A E B is 7).</li>
+<li>An accidental that is <b>cancelled</b> soon afterwards points to a tonicization or a chromatic note; one that is <b>not cancelled</b> and is repeated points to a modulation.</li>
+<li>Check that a cadential formula affirms the new key.</li></ul>
+<h3>Chromatic pivot chords</h3>
+<p>The pivot may be a chromatic chord in one or both keys:</p>
+<ul><li><b>Secondary common chord</b>: the same chord is a secondary chord in both keys (Schubert’s “Abschied”).</li>
+<li><b>Borrowed common chord</b> (mode mixture): the pivot is a borrowed chord in one key. In Beethoven’s Piano Sonata Op. 110 (first movement) a borrowed i⁶ in D♭ major, respelled as C♯ minor, becomes vi⁶ in E major.</li>
+<li><b>Neapolitan common chord</b>: the ♭II chord can bridge two keys that are far apart. In Schubert’s “Frühlingssehnsucht” a Neapolitan in D minor (with a dominant-seventh quality) acts as V⁶₅ in A♭ minor, a tritone away.</li>
+<li><b>Augmented sixth chord</b>: see enharmonic modulation below.</li></ul>
+<h3>Modulation without a pivot chord</h3>
+<ul><li><b>Direct (phrase) modulation</b>: no pivot, no preparation. In Schubert’s “Kriegers Ahnung” the music stops on a half cadence in C minor, and the next phrase starts on A♭ major. It is the most common “modulation” in pop.</li>
+<li><b>Common-tone modulation</b>: one note is shared by two chords of the old and new keys. In Beethoven’s Second Symphony the note C♯ is the hinge between C♯ major (V in F♯ minor) and an A dominant seventh (V⁷ in D major); in a Schubert trio the note A links A major (V in D minor) and F major.</li></ul>
+<h3>Chromatic mediants</h3>
+<p>The two chords of a common-tone modulation are usually <b>chromatic mediants</b>: chords of the <b>same quality</b> (both major or both minor), with roots a <b>third apart</b>, that share <b>only one note</b>. Any major or minor triad has <b>four</b> chromatic mediants. For C major they are E major (shares E), A♭ major (shares C), A major (shares E) and E♭ major (shares G).</p>
+{{fig:med|C major followed by its four chromatic mediants: E, A♭, A and E♭ major.}}
+<p>Chromatic mediants can also be used without modulating, for a sudden shimmering colour: Wagner’s <i>Das Rheingold</i> and the film music of John Williams (<i>Return of the Jedi</i>, <i>The Phantom Menace</i>) use them often.</p>
+<h3>Sequential modulation</h3>
+<p>In a <b>sequential modulation</b> a melody and its harmonies are repeated at a new pitch level until a new key is reached. In the last movement of Beethoven’s Piano Sonata Op. 2 No. 1 the idea is simply repeated in the new key; in Mozart’s Oboe Concerto K. 314 an idea in C major is repeated up a step in D major and again in E minor, reaching F♯° (vii° in G major); in an aria from <i>Don Giovanni</i> an idea in F minor is repeated a whole step lower in E♭ minor, which leads to the home key of E♭ major.</p>
+<h3>More about enharmonic modulation</h3>
+<ul><li>The word “pun” is exact: G⁷ in C major (V⁷) and G⁷ spelled G–B–D–E♯ (a German sixth in B minor) sound the same, but only one spelling is written, and the analyst must imagine the other. Most often the <b>top</b> note of the chord is respelled (B♭ becomes A♯), or the bottom three notes.</li>
+<li>Dominant sevenths of secondary dominants (V⁷/V and so on) can also be reinterpreted as German sixths, and vice versa. Examples: Tchaikovsky’s “Waltz of the Flowers” (D⁷ = Ger⁺⁶ in F♯ minor), Beethoven’s Fifth Symphony, second movement (V⁷ in A♭ = Ger⁺⁶ in C), and Les Misérables (Ger⁺⁶ in E minor = V⁷ in F).</li>
+<li>Each <b>diminished seventh</b> chord points to <b>four</b> keys, since each of its four notes can be 7 and resolve up a half step. G♯°⁷ (G♯–B–D–F) resolves to A (minor or major), C, E♭ and G♭. Each note can also be heard as the 7th of a dominant seventh chord and fall a half step to the root of V⁷.</li>
+<li>In Beethoven’s <i>Pathétique</i> Sonata the same diminished chord is reinterpreted several times, and in the second movement of Beethoven’s Fifth the E°⁷ of C major leads to a German sixth in A♭ major (spelled unusually, E–A♭–C♭–D). In Schubert’s “Der Atlas” a G♯°⁷ in G minor is reinterpreted as E♯°⁷ in B minor: because it never resolves in G minor, you cannot be sure which resolution was intended.</li></ul>
+{{fig:dimfour|The same fully diminished seventh chord (G♯°⁷, respelled as needed) resolving to four tonics: A minor, C minor, E♭ minor and G♭ major.}}`,
   figs: {
+    med: block('C', 'major', [['C3 E4 G4 C5', 'C'], ['E3 E4 G#4 B4', 'E'], ['Ab2 Eb4 Ab4 C5', 'A♭'], ['A2 E4 A4 C#5', 'A'], ['Eb3 Eb4 G4 Bb4', 'E♭']], {bpm: 56, d: 'h'}),
+    dimfour: block('A', 'minor', [['G#3 B3 D4 F4', 'vii°⁷'], ['A3 C4 E4 A4', 'a'], ['G#3 B3 D4 F4', 'vii°⁷'], ['C3 G3 C4 Eb4', 'c'], ['G#3 B3 D4 F4', 'vii°⁷'], ['Eb3 Bb3 Eb4 Gb4', 'e♭'], ['G#3 B3 D4 F4', 'vii°⁷'], ['Gb3 Db4 Gb4 Bb4', 'G♭']], {bpm: 56, d: 'h'}),
     pivot: block('C', 'major', [['C3 E4 G4 C5', 'C: I', '', 'q'], ['A2 E4 A4 C5', 'vi = ii', '', 'q'], ['D3 F#4 A4 C5', 'G: V⁷', '', 'q'], ['G2 D4 G4 B4', 'I', '', 'q']], {bpm: 60}),
     ct: block('C', 'major', [['C3 E4 G4 C5', 'C: I', 'C', 'h'], ['E3 E4 G#4 B4', 'E: I', 'E', 'h']], {bpm: 56}),
     enhm: block('C', 'major', [['G2 B3 D4 F4', 'C: V⁷', 'G⁷', 'q'], ['G2 B3 D4 E#4', 'b: Ger⁺⁶', '', 'q'], ['F#2 C#4 F#4 A#4', 'V', 'F♯', 'q'], ['B2 B3 D4 F#4', 'i', 'Bm', 'q']], {bpm: 56}),
   },
   quiz: [
+    () => { const [k, m] = pick([['C', 'E'], ['C', 'Ab'], ['C', 'A'], ['C', 'Eb'], ['G', 'B'], ['G', 'Eb'], ['F', 'A'], ['F', 'Db']]);
+      const ok = {C: ['E', 'Ab', 'A', 'Eb'], G: ['B', 'Eb', 'Bb', 'E'], F: ['A', 'Db', 'Ab', 'D']}; const lst = ok[k] || [m];
+      return ask(`Which major chord is a chromatic mediant of ${pn(k)} major?`, pn(m) + ' major', ['D', 'F', 'G', 'C', 'A', 'B', 'Bb', 'Gb', 'Ab', 'E'].filter(x => !lst.includes(x) && x !== k).slice(0, 4).map(x => pn(x) + ' major'), 'A chromatic mediant has the same quality, a root a third away and exactly one common note.'); },
+    bank([['What confirms a modulation?', 'A cadence in the new key, often pre-dominant – V – I', ['A change of dynamic', 'A fermata', 'A new time signature'], 'Without it the new key is only tonicized.'],
+      ['Which kind of pivot chord is smoothest?', 'Tonic in the old key and pre-dominant in the new key', ['Dominant in the new key', 'Any diminished chord', 'The same function in both'], 'It leads naturally to the new V.'],
+      ['What does a recurring new sharp usually mean in a modulation?', 'It is the leading tone (7) of the new key', ['It is the tonic of the old key', 'It is the 4th degree', 'It is a passing tone'], 'Look for the “sharpest sharp”.'],
+      ['What does a new flat usually represent?', 'The 4th degree of the new key', ['The leading tone', 'The tonic', 'The mediant'], 'A new flat acts like the last flat of a signature.'],
+      ['How many chromatic mediants does a triad have?', 'Four', ['Two', 'Six', 'One'], 'Two a third above and two a third below, sharing one note each.'],
+      ['What is a direct (phrase) modulation?', 'A sudden change of key with no pivot or preparation', ['A change using a common note', 'A change using a sequence', 'A change using a diminished seventh'], 'It is the pop “key change”.'],
+      ['Which two sonorities are used in enharmonic modulation?', 'The dominant seventh and the fully diminished seventh', ['Major and minor triads', 'Suspensions and appoggiaturas', 'Pedal points'], 'Both can be respelled and given a different meaning.']]),
     () => { const k = pick(['C', 'G', 'D', 'F', 'A', 'Bb', 'Eb']), cl = closeKeys(k), d = Object.keys(A.FIFTHS.major).filter(x => Math.abs(A.FIFTHS.major[x] - A.FIFTHS.major[k]) >= 3); return ask(`Which of these keys is closely related to ${pn(k)} major?`, pn(pick(cl.slice(1))) + ' major', d.slice(0, 5).map(x => pn(x) + ' major'), 'Closely related keys differ by at most one sharp or flat.'); },
     () => { const [k1, k2] = pick([['C', 'G'], ['G', 'D'], ['F', 'C'], ['D', 'A']]), s1 = triadSet(k1, 'major'), s2 = triadSet(k2, 'major'), common = s1.filter(x => s2.includes(x)), other = s1.filter(x => !s2.includes(x));
       const ans = pick(common); return ask(`Which chord could be a pivot between ${pn(k1)} major and ${pn(k2)} major?`, ans, other.concat(s2.filter(x => !s1.includes(x))).slice(0, 4), `${ans} is diatonic in both keys.`); },

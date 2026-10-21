@@ -351,6 +351,11 @@ const G = [
   ['1950s progression', '50년대 진행', 'I – vi – ii – V (or I – vi – IV – V), very common in the 1930s–50s.', '1930~50년대에 매우 흔했던 I – vi – ii – V (또는 I – vi – IV – V) 진행.', 'progressions'],
   ['subphrase prime (a′)', '부악절의 변형 (a′)', 'A subphrase that returns with a small change is labelled a′.', '조금 바뀌어 돌아오는 부악절을 a′로 표시한다.', 'melody'],
   ['real and tonal inversion', '실제 반행 / 조성 반행', 'Real inversion mirrors every interval exactly; tonal inversion follows the scale of the key.', '실제 반행은 모든 음정을 정확히 뒤집고 조성 반행은 조의 음계를 따른다.', 'melody'],
+  ['key change', '조 바꿈 (키 체인지)', 'The pop term for a sudden change of key, the same as a direct modulation.', '대중음악에서 갑자기 조가 바뀌는 것을 이르는 말 (직접 전조와 같다).', 'modulation'],
+  ['full cadence', '완전 종지 (예비 화음 포함)', 'A V – I cadence preceded by a pre-dominant chord, which confirms a new key.', '하속화음이 앞에 붙은 V – I 종지; 새 조를 확인시켜 준다.', 'modulation'],
+  ['cadential formula', '종지 공식', 'Pre-dominant – V – I (often with a cadential six-four) that establishes a key.', '조를 확정하는 하속화음 – V – I 공식 (종지 6/4 화음 포함).', 'modulation'],
+  ['keyboard (piano) style', '건반 스타일', 'Voice leading with the three upper parts on the treble staff and the bass in the left hand.', '세 개의 윗 성부를 높은음자리표 오선에, 베이스를 왼손에 쓰는 성부 진행 방식.', 'voiceleading'],
+  ['objectionable parallels', '금지 병행', 'Parallel fifths, octaves, twelfths and unisons between two voices.', '두 성부 사이의 병행 5도, 8도, 12도, 동도.', 'voiceleading'],
 ];
 const OLD = ['scales', 'intervals', 'triads', 'triadsinkey', 'inversions', 'sevenths', 'cadences', 'progressions', 'voiceleading', 'nonchord', 'minor', 'chromatic', 'harmonizing', 'counterpoint', 'form'];
 window.Harmony.registerGlossary(G.map(g => [...g.slice(0, 4), typeof g[4] === 'number' ? OLD[g[4] - 1] : g[4]]));
