@@ -185,7 +185,43 @@ function playNote(m, dur, vel) {                         // to the piano by MIDI
   tone(m, dur, vel);
 }
 function stopHearing() { heardTimers.forEach(clearTimeout); heardTimers = []; [...held.keys()].forEach(offNote); if (heardStop) { const f = heardStop; heardStop = null; try { f(); } catch {} } }
-function planOf(f) {                              // [{t (in beats), notes: [{midi, beats}]}]: one step for every moment something begins (the highlight follows these)
+function planFromXml(text) {                      // the same steps as planOf, read from a MusicXML score (the textbook examples)
+  const doc = new DOMParser().parseFromString(text, 'application/xml'), steps = new Map();
+  const parts = [...doc.querySelectorAll('part')], meas = parts.map(p => [...p.children].filter(e => e.tagName === 'measure'));
+  const PC = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11}, div = [], open = new Map();
+  let base = 0;
+  const at = t => { const k = Math.round(t * 1000) / 1000; if (!steps.has(k)) steps.set(k, []); return steps.get(k); };
+  const n = Math.max(0, ...meas.map(m => m.length));
+  for (let i = 0; i < n; i++) {
+    let len = 0;
+    parts.forEach((p, pi) => {
+      const m = meas[pi][i]; if (!m) return;
+      let pos = 0, last = 0;
+      for (const el of m.children) {
+        const tag = el.tagName, num = q => { const x = el.querySelector(q); return x ? +x.textContent : 0; };
+        if (tag === 'attributes') { const d = el.querySelector('divisions'); if (d) div[pi] = +d.textContent; }
+        else if (tag === 'backup') pos -= num('duration');
+        else if (tag === 'forward') pos += num('duration');
+        else if (tag === 'note') {
+          const d = num('duration'), chord = !!el.querySelector('chord'), dv = div[pi] || 1, start = chord ? last : pos;
+          if (!chord) { last = pos; pos += d; }
+          const t = base + start / dv, beats = d / dv, list = at(t);
+          if (el.querySelector('rest')) continue;
+          const pit = el.querySelector('pitch'); if (!pit) continue;
+          const midi = (+pit.querySelector('octave').textContent + 1) * 12 + PC[pit.querySelector('step').textContent] + (pit.querySelector('alter') ? +pit.querySelector('alter').textContent : 0);
+          const tieStop = !!el.querySelector('tie[type="stop"]'), tieStart = !!el.querySelector('tie[type="start"]'), key = pi + ':' + midi;
+          if (tieStop && open.has(key)) { open.get(key).beats += beats; if (!tieStart) open.delete(key); continue; }
+          const nt = {midi, beats}; list.push(nt); if (tieStart) open.set(key, nt);
+        }
+        len = Math.max(len, pos / (div[pi] || 1));
+      }
+    });
+    base += len;
+  }
+  return [...steps.entries()].sort((a, b) => a[0] - b[0]).map(([t, notes]) => ({t, notes}));
+}
+function planOf(f) {
+  if (f.xmlText) return planFromXml(f.xmlText);                              // [{t (in beats), notes: [{midi, beats}]}]: one step for every moment something begins (the highlight follows these)
   const lines = f.voices ? f.voices.map(v => v.events) : [f.events], steps = new Map();
   for (const events of lines) {
     const evs = events.map(e => ({e, ns: toNotes(e), beats: DUR[e.d || 'w'] / 2})); let t = 0;
@@ -229,7 +265,7 @@ async function drawFigure(el, f) {
   el.textContent = ''; el.style.width = ''; el.style.height = '';
   const o = new opensheetmusicdisplay.OpenSheetMusicDisplay(el, {autoResize: false, drawTitle: false, drawPartNames: false, drawComposer: false, drawCredits: false, backend: 'svg', autoBeam: true, followCursor: false});
   Object.assign(o.EngravingRules, {PageTopMargin: 0.5, PageBottomMargin: 0.5, PageLeftMargin: 1, PageRightMargin: 1, VoiceSpacingMultiplierVexflow: f.spread || 1.6, VoiceSpacingAddendVexflow: f.add ?? 8, AutoBeamNotes: true});
-  await o.load(figureXml(f)); o.zoom = f.zoom || 0.85; o.render();
+  await o.load(f.xmlText || figureXml(f)); o.zoom = f.zoom || 0.85; o.render();
   const svg = el.querySelector('svg'); if (!svg) return o;               // fit the paper to the music: no long empty staff lines or blank space
   const sr = svg.getBoundingClientRect(); let right = 0, bottom = 0;
   svg.querySelectorAll('path, text, rect, line').forEach(n => {
@@ -258,7 +294,7 @@ function figureBox(f, caption) {
       hear(f, i => { try { if (i) osm?.cursor.next(); } catch {} }, done);
     } catch (err) { console.error(err); done(); box.querySelector('.cap').textContent = 'Could not play this example: ' + (err.message || err); }
   };
-  requestAnimationFrame(() => drawFigure(box.querySelector('.hfig'), f).then(o => { osm = o; }).catch(err => { box.querySelector('.hfig').textContent = 'Could not draw this example.'; console.error(err); }));
+  requestAnimationFrame(async () => { if (f.xmlUrl && !f.xmlText) { try { f.xmlText = await (await fetch(f.xmlUrl)).text(); } catch (e) { box.querySelector('.hfig').textContent = 'Could not load this example.'; return; } } return drawFigure(box.querySelector('.hfig'), f).then(o => { osm = o; }).catch(err => { box.querySelector('.hfig').textContent = 'Could not draw this example.'; console.error(err); }); });
   return box;
 }
 
@@ -311,6 +347,25 @@ function showGlossary() {
   $h('hlang').onclick = e => { const b = e.target.closest('button'); if (!b) return; store.set('harmonyLang', b.dataset.v); paint(); };
   paint(); $h('harmony').scrollTop = 0;
 }
+
+let bookIndex = null;
+async function bookEntries(id) {
+  if (!bookIndex) { try { bookIndex = await (await fetch('harmony-book/index.json')).json(); } catch { bookIndex = []; } }
+  return bookIndex.filter(b => b.ch === id);
+}
+async function addBookExamples(wrap, id, before) {
+  const list = await bookEntries(id); if (!list.length || state.view !== 'chapter' || !wrap.isConnected) return;
+  const sec = document.createElement('div'); sec.className = 'bkset';
+  sec.innerHTML = `<h3>Examples from the textbook</h3><p class="muted">${list.length} figure${list.length > 1 ? 's' : ''} from <i>Music Theory for the 21st-Century Classroom</i> (Hutchinson, GNU Free Documentation License). Open one to see it and press <b>Hear</b>. The notation was read by computer from the book’s PDF, so compare unusual spots with the printed page; the book’s figure numbers are kept.</p>`;
+  for (const b of list) {
+    const d = document.createElement('details'); d.className = 'bkex';
+    const sm = document.createElement('summary'); sm.textContent = `Figure ${b.id}${b.cap ? ' · ' + b.cap : ''}${b.bad ? ' (check against the book)' : ''}`; d.append(sm);
+    const slot = document.createElement('div'); d.append(slot);
+    d.addEventListener('toggle', () => { if (d.open && !slot.firstChild) slot.append(figureBox({id: 'bk' + b.id, xmlUrl: 'harmony-book/' + b.f, bpm: 80, zoom: 0.8}, '')); });
+    sec.append(d);
+  }
+  before.before(sec);
+}
 function showChapter(i) {
   stopHearing(); const c = chapters[i]; state.view = 'chapter'; state.chapter = i; state.ex = null; state.quiz = null;
   $h('hback').hidden = false; $h('htitle').textContent = `${i + 1} · ${c.title}`;
@@ -325,7 +380,7 @@ function showChapter(i) {
   const act = document.createElement('div'); act.className = 'hact';
   act.innerHTML = `<h3>Test yourself</h3><p class="muted">Five questions; 4 right completes the chapter.${s.quiz !== undefined ? ` Best so far: ${s.quiz}/5.` : ''}</p><button class="primary" id="hquiz">Start the quiz</button>
     ${c.play && c.play.length ? `<h3>Play it</h3><p class="muted">${c.play.length} short exercise${c.play.length > 1 ? 's' : ''}. Play on your piano or on the keys below.${s.played ? ` Completed so far: ${s.played}.` : ''}</p><button class="primary" id="hplay">Start the exercises</button>` : ''}`;
-  wrap.append(act);
+  wrap.append(act); addBookExamples(wrap, c.id, act);
   const next = chapters[i + 1];
   if (next) { const n = document.createElement('p'); n.innerHTML = `<button id="hnext">Next chapter: ${esc(next.title)} →</button>`; wrap.append(n); n.firstChild.onclick = () => showChapter(i + 1); }
   $h('hquiz').onclick = () => startQuiz(i); if ($h('hplay')) $h('hplay').onclick = () => startPlay(i);
