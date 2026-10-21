@@ -348,6 +348,9 @@ const G = [
   ['subtonic', '아래으뜸음 (서브토닉)', 'The lowered 7th degree, a whole step below the tonic; the triad on it is VII.', '으뜸음의 온음 아래인 낮춘 7음; 그 위의 3화음이 VII.', 'minor'],
   ['Nashville number system', '내슈빌 넘버 시스템', 'Writing chords as Arabic numbers for the scale degree of the root (1, 4, 5, 6m…).', '코드를 근음의 음계 단계를 나타내는 아라비아 숫자로 적는 방법 (1, 4, 5, 6m…).', 'triadsinkey'],
   ['power chord', '파워 코드', 'A chord of only the root and fifth, written with a 5 (B5).', '근음과 5음만으로 이루어진 코드 (B5처럼 5를 붙여 적음).', 'cadences'],
+  ['1950s progression', '50년대 진행', 'I – vi – ii – V (or I – vi – IV – V), very common in the 1930s–50s.', '1930~50년대에 매우 흔했던 I – vi – ii – V (또는 I – vi – IV – V) 진행.', 'progressions'],
+  ['subphrase prime (a′)', '부악절의 변형 (a′)', 'A subphrase that returns with a small change is labelled a′.', '조금 바뀌어 돌아오는 부악절을 a′로 표시한다.', 'melody'],
+  ['real and tonal inversion', '실제 반행 / 조성 반행', 'Real inversion mirrors every interval exactly; tonal inversion follows the scale of the key.', '실제 반행은 모든 음정을 정확히 뒤집고 조성 반행은 조의 음계를 따른다.', 'melody'],
 ];
 const OLD = ['scales', 'intervals', 'triads', 'triadsinkey', 'inversions', 'sevenths', 'cadences', 'progressions', 'voiceleading', 'nonchord', 'minor', 'chromatic', 'harmonizing', 'counterpoint', 'form'];
 window.Harmony.registerGlossary(G.map(g => [...g.slice(0, 4), typeof g[4] === 'number' ? OLD[g[4] - 1] : g[4]]));

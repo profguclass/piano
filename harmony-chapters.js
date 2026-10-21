@@ -343,8 +343,42 @@ CH.push({id: 'progressions', title: 'Progressions and the circle of fifths', blu
 <li><b>Pachelbel</b> (descending 5–6 pattern): I – V – vi – iii – IV – I – IV – V. It has been the backbone of countless pieces and pop songs.</li></ul>
 {{fig:seq3|A descending-thirds sequence in C major: I – vi – IV – ii – V – I.}}
 {{fig:pach|The Pachelbel sequence in C major: I – V – vi – iii – IV – I – IV – V.}}
-<p>To spot a sequence, look for the <b>same interval between roots</b> repeating at least twice. Label the chords with Roman numerals anyway, then add a bracket to show the repeating pattern.</p>`,
+<p>To spot a sequence, look for the <b>same interval between roots</b> repeating at least twice. Label the chords with Roman numerals anyway, then add a bracket to show the repeating pattern.</p>
+<h3>The circle of fifths progression in minor</h3>
+<p>The chain of descending fifths is a favourite of Baroque composers (Bach, Handel, Vivaldi), especially in minor, where the chord on the lowered 7th, the <b>subtonic VII</b>, fits in: <b>i – iv – VII – III – VI – ii° – V – i</b>. Not every chord needs to be in root position: in Handel’s Passacaglia in G minor the same chain is heard with inversions (i, iv⁶, VII, III, VI, ii°⁶, V, i), and you hear the sequence of <i>roots</i> even where the bass does not show them. Pieces from every era use it: Mozart’s Piano Sonata K. 545 (I – IV – vii°⁶ – iii), Wagner, “Fly Me to the Moon” and “I Will Survive” (all in seventh chords).</p>
+{{fig:circmin|The circle of fifths progression in A minor: Am – Dm – G – C – F – B° – E – Am.}}
+<p>This is the <b>circle of fifths for harmonic progression</b>. It differs from the circle of fifths for key signatures: it contains only the <b>seven diatonic notes</b> of one key, so one of its fifths is a diminished fifth (vii° – iii in major, or ii° – V in minor).</p>
+<h3>Why it feels inevitable: sequence</h3>
+<p>The bass line of the chain is a <b>melodic sequence</b>: an idea repeated at a different pitch (down a fifth then up a fourth, or the equivalent). Listeners feel that the pattern must go on until it reaches the tonic. A sequence can be short (as in the famous four-note motive of Beethoven’s Fifth, repeated a step lower) or long.</p>
+<h3>Harmonic rhythm</h3>
+<p><b>Harmonic rhythm</b> is how long each chord lasts. In “Fly Me to the Moon” each chord lasts four beats (whole-note harmonic rhythm); in Mozart’s K. 545 and in Wagner each lasts two beats, a faster harmonic rhythm. It may stay steady or change: Dan Smith’s “Pompeii” changes from four-beat to two-beat chords. Every progression in this chapter can be played with different harmonic rhythm, and a faster one raises the energy ({{ch:contrast}}).</p>
+<h3>Shorter pieces of the circle</h3>
+<ul><li><b>ii – V – I</b>: the standard in classical and especially jazz (the Great American Songbook of the 1930s–50s is full of it: “Take the ‘A’ Train”, “Tune-Up”, “As Time Goes By”).</li>
+<li><b>vi – ii – V – I</b> contains the last four chords of the circle; <b>iii – vi – ii – V</b> the last four before the resolution.</li>
+<li><b>I – vi – ii – V</b> was so common in the 1930s–50s that it is called the <b>1950s progression</b> (“Blue Moon”, “Why Do Fools Fall in Love”).</li>
+<li><b>ii – V – I – vi</b>: the vi after the cadence links back to ii; such a loop is a <b>turnaround</b> (more in {{ch:jazz}}).</li>
+<li>These patterns can be <b>rotated</b>: <b>ii – V – iii – vi</b> (as in Earth, Wind &amp; Fire’s “September”) is the same circle started in a different place.</li></ul>
+{{fig:iiivi|iii – vi – ii – V: the middle of the circle of fifths, ready to resolve to I.}}
+{{fig:turn|ii – V – I – vi: a turnaround. The vi leads back to ii.}}
+<h3>Harmonic function: four groups</h3>
+<p>Not every progression uses the circle. The idea of <b>harmonic function</b> says that chords have tendencies: to progress to certain chords or to stay at rest. We recognize four functions:</p>
+<table class="htab"><tr><th>Tonic (ton.)</th><td>I: stability and rest; it needs to go nowhere.</td></tr>
+<tr><th>Dominant (dom.)</th><td>V and vii°: they contain the leading tone (7) and the supertonic (2) and tend to go to I. I⁶₄ is a dominant function when it moves to V (as in the cadential six-four).</td></tr>
+<tr><th>Pre-dominant (pre-dom.)</th><td>IV and ii: they contain the subdominant (4) and the submediant (6) and tend to go to a dominant.</td></tr>
+<tr><th>Tonic prolongation (ton. prol.)</th><td>vi and iii: they share two notes with the tonic triad, usually follow I and lead to a pre-dominant.</td></tr></table>
+<p>The usual route is <b>tonic → (prolongation) → pre-dominant → dominant → tonic</b>. Two exceptions: <b>IV → I</b> is the plagal cadence, so IV is labelled tonic prolongation there; and V → vi (deceptive) leaves the dominant for a tonic substitute. In minor the flowchart is the same with one addition, <b>VII</b>, which goes to III.</p>
+<h3>Four ways to travel</h3>
+<ul><li><b>Tonic – dominant – tonic</b>: the most elemental progression, I – V – I (or I – vii°⁶ – I). Mozart, Beethoven, Verdi’s “La donna è mobile” and “Hey Jude” begin this way.</li>
+<li><b>Tonic – pre-dominant – dominant – tonic</b>: I – ii – V – I, I – IV – V – I, I – ii⁶ – V – I or I – IV – V⁷ – I (Bach’s C major Prelude, Chopin’s Waltz in A♭, “I’ll Be There for You”). Progressions with vii° after the pre-dominant are rare because the diminished chord is unstable.</li>
+<li><b>Tonic – prolongation – pre-dominant – dominant</b>: I – vi – IV – V (the 1950s doo-wop progression: “Heart and Soul”, “Earth Angel”, “I Will Always Love You”, “All of Me”) or, in classical music, I – vi – ii⁶ – V, where the bass starts with descending thirds. Rotated, it becomes IV – V – I – vi.</li></ul>
+{{fig:ivi26|I – vi – ii⁶ – V in C: the bass falls by thirds (C – A – F) and then to G.}}
+<h3>Exceptions explained by sequences</h3>
+<p>When a progression breaks the function rules, a sequence may explain it. In a falling-fifths or other sequence the pattern is repeated whatever each chord “wants” to do, so you may meet iii – vi – ii or a chord whose normal move is ignored. Always look for the repeated idea before you decide that a progression is irregular.</p>`,
   figs: {
+    circmin: prog('A', 'minor', ['i', 'iv', 'VII', 'III', 'VI', 'ii°', 'V', 'i'], {d: 'h', bpm: 60}),
+    iiivi: prog('C', 'major', ['iii', 'vi', 'ii', 'V'], {d: 'h', bpm: 60}),
+    turn: prog('C', 'major', ['ii', 'V', 'I', 'vi'], {d: 'h', bpm: 60}),
+    ivi26: block('C', 'major', [['C3 E4 G4 C5', 'I'], ['A2 E4 A4 C5', 'vi'], ['F3 D4 A4 D5', 'ii⁶'], ['G2 D4 G4 B4', 'V']], {bpm: 60, d: 'h'}),
     seq3: prog('C', 'major', ['I', 'vi', 'IV', 'ii', 'V', 'I'], {d: 'h', bpm: 60}),
     pach: prog('C', 'major', ['I', 'V', 'vi', 'iii', 'IV', 'I', 'IV', 'V'], {d: 'h', bpm: 60}),
     circle: prog('C', 'major', ['I', 'IV', 'vii°', 'iii', 'vi', 'ii', 'V', 'I'], {d: 'h', bpm: 60}),
@@ -352,6 +386,14 @@ CH.push({id: 'progressions', title: 'Progressions and the circle of fifths', blu
     ivi: satb('C', 'major', [['C3 G3 E4 C5', 'I'], ['A2 A3 E4 C5', 'vi'], ['D3 A3 F4 D5', 'ii'], ['G2 G3 D4 B4', 'V'], ['C3 G3 E4 C5', 'I', 'w']], {bpm: 56, d: 'h'}),
   },
   quiz: [
+    () => { const [c, f] = pick([['I', 'tonic'], ['vi', 'tonic prolongation'], ['iii', 'tonic prolongation'], ['ii', 'pre-dominant'], ['IV', 'pre-dominant'], ['V', 'dominant'], ['vii°', 'dominant']]); return ask(`In a major key, which harmonic function does the ${c} chord usually have?`, f, ['tonic', 'tonic prolongation', 'pre-dominant', 'dominant'].filter(x => x !== f), `${c} is a ${f} chord in the usual flowchart (I – vi – IV – V…).`); },
+    bank([['What is the circle of fifths progression in A minor?', 'i – iv – VII – III – VI – ii° – V – i', ['i – ii – iii – iv – V – vi – vii', 'i – V – vi – IV', 'i – VII – VI – VII'], 'Each root falls a fifth; the VII is the subtonic chord.'],
+      ['What is the 1950s progression?', 'I – vi – ii – V (and I – vi – IV – V)', ['I – IV – V – I only', 'ii – V – I', 'I – iii – V – I'], 'It was common in the 1930s–50s.'],
+      ['What is harmonic rhythm?', 'How long each chord lasts', ['The rhythm of the melody', 'The tempo', 'The number of voices'], 'Four-beat or two-beat chords, for example.'],
+      ['What is a turnaround?', 'A short progression after a cadence that leads back to the start, such as ii – V – I – vi', ['A key change', 'A kind of cadence', 'A rest between phrases'], 'The vi leads back to the ii.'],
+      ['Which two chords contain the leading tone (7) and so have dominant function?', 'V and vii°', ['IV and vi', 'ii and iii', 'I and IV'], 'They tend to resolve to I.'],
+      ['Which functional exception is IV – I?', 'IV is tonic prolongation in the plagal cadence', ['I is dominant', 'vi is a pre-dominant', 'V is tonic'], 'The plagal cadence is an exception to the flowchart.'],
+      ['Which progression usually follows the pattern tonic – tonic prolongation – pre-dominant – dominant?', 'I – vi – IV – V', ['I – IV – V – I', 'I – V – I', 'ii – V – I'], 'Rotated, it becomes IV – V – I – vi.']]),
     bank([['What is a harmonic sequence?', 'A chord pattern repeated at a new pitch level', ['A cadence', 'A chord with a seventh', 'A change of key'], 'The roots move by the same interval each time.'],
       ['In a descending-fifths sequence in C major, which chord follows IV?', 'vii°', ['V', 'ii', 'iii'], 'I – IV – vii° – iii – vi – ii – V – I.'],
       ['Which sequence goes I – vi – IV – ii – V – I?', 'Descending thirds', ['Descending fifths', 'Ascending seconds', 'Chromatic mediants'], 'Each root is a third lower than the one before.'],
@@ -365,6 +407,9 @@ CH.push({id: 'progressions', title: 'Progressions and the circle of fifths', blu
       ['Going up a fifth on the circle of fifths adds…', 'A sharp (or removes a flat)', ['A flat', 'A natural', 'Nothing'], 'C → G adds F♯.']]),
   ],
   play: [
+    progEx('Play the circle of fifths in {key}: i – iv – VII – III – VI – ii° – V – i', ['i', 'iv', 'VII', 'III', 'VI', 'ii°', 'V', 'i'], () => pick(['A', 'E', 'D', 'G']), 'minor'),
+    progEx('Play the 1950s progression in {key}: I – vi – ii – V', ['I', 'vi', 'ii', 'V'], () => pick(['C', 'G', 'F', 'D']), 'major'),
+    progEx('Play the turnaround in {key}: ii – V – I – vi', ['ii', 'V', 'I', 'vi'], () => pick(['C', 'G', 'F', 'D']), 'major'),
     progEx('Play the descending-thirds sequence in {key}: I – vi – IV – ii – V – I', ['I', 'vi', 'IV', 'ii', 'V', 'I'], () => pick(['C', 'G', 'F', 'D']), 'major'),
     progEx('Play the Pachelbel sequence in {key}', ['I', 'V', 'vi', 'iii', 'IV', 'I', 'IV', 'V'], () => pick(['C', 'G', 'D']), 'major'),progEx('Play ii – V – I in {key}', ['ii', 'V', 'I'], () => pick(['C', 'G', 'F', 'Bb', 'D']), 'major'), progEx('Play I – vi – ii – V – I in {key}', ['I', 'vi', 'ii', 'V', 'I'], () => pick(['C', 'G', 'F']), 'major'), progEx('Play I – IV – vii° – iii – vi – ii – V – I in {key}', ['I', 'IV', 'vii°', 'iii', 'vi', 'ii', 'V', 'I'], 'C', 'major', 'The whole chain of falling fifths. Take your time.')]});
 
@@ -931,9 +976,34 @@ CH.push({id: 'melody', title: 'Melodic analysis: motives and phrases', blurb: 'M
 <p>J. S. Bach’s Invention No. 1 in C major is a master class in these techniques. Its opening seven-note motive splits into two overlapping fragments, and Bach develops each by sequence, inversion and augmentation.</p>
 <h3>The phrase</h3>
 <p>A <b>phrase</b> is the smallest musical unit that gives a sense of completion. In classical music a phrase always ends with a <b>cadence</b>; in popular music it may end when a lyric line or a four-bar length is complete. Most phrases are <b>four bars</b> long, though five-, six-, seven- and eight-bar phrases (and, rarely, three-bar ones) occur. A phrase often falls into two <b>subphrases</b> of two bars.</p>
-{{fig:phrase|The first phrase of Ode to Joy: two subphrases of two bars (a and b), ending on a half cadence.}}`,
-  figs: {mot: mfig(MOTIVE_BARS), aug: mfig(AUG_BARS), phrase: twoLines('major', 'C', ODE4, ODE_BASS.slice(0, 5), 100)},
+{{fig:phrase|The first phrase of Ode to Joy: two subphrases of two bars (a and b), ending on a half cadence.}}
+<h3>More about changing a motive</h3>
+<ul><li><b>Real or tonal inversion.</b> In a <i>real</i> inversion every interval is exactly mirrored (a major third up becomes a major third down). In a <i>tonal</i> inversion the mirror follows the scale of the key, so a third may be major in one place and minor in another. Bach’s Invention No. 1 inverts its first seven notes in bar 3; most inversions in this course are tonal.</li>
+<li><b>Intervallic change</b> is looser than inversion: the rhythm is kept and the motive is clearly recognizable, but one or two intervals are different (as in “The Very Thought of You” and “I’m Not in Love”).</li>
+<li><b>Rhythmic change</b> alters some but not all of the durations. In Beethoven’s <i>Pathétique</i> Sonata the opening motive has dotted rhythms in the slow introduction; in the development section the rhythm is changed and the motive is shortened when it is sequenced up a step.</li>
+<li><b>Ornamentation</b> adds passing and neighbour tones to the motive, like the four-note motive of “Sir Duke”. <b>Extension</b> adds notes at the end when the motive returns.</li>
+<li><b>Retrograde</b> (reversing the notes) is rare in tonal music, but occurs in pop (the hook of “Toxic”).</li>
+<li><b>Transposition</b> is simply a <b>sequence</b>; it is so common that we do not call it an alteration.</li></ul>
+<h3>Motives developed by Beethoven</h3>
+<p>The first four bars of the main theme of Beethoven’s First Symphony contain four motives. Later in the movement he takes each one in turn and develops it by sequence: motive 1 alone, motive 2 alone, motives 2 and 3 together and motive 4. Pulling motives out of a theme and developing them is the usual method of Classical composers.</p>
+<h3>Phrases: length and completion</h3>
+<p>A phrase gives a sense of completion. In classical music this is a <b>cadence</b>: every phrase ends on one of the four cadence types (authentic, half, deceptive or, less often, plagal). Most phrases have <b>four bars</b>, but eight is also common, and phrases of five, six, seven (rare, often involving an elision) and three bars exist. In popular music a phrase is often complete when a lyric line is finished or when a melody reaches four bars, even without a cadence: “My Girl” and “I’m Every Woman” have four-bar phrases that sound complete, and “Irreplaceable” has a five-bar phrase ending on a borrowed minor iv. A six-bar phrase ends the Minuet of Mozart’s Symphony No. 40 on V⁷ – i.</p>
+<h3>Subphrases</h3>
+<p>A <b>subphrase</b> is a unit between a motive and a phrase; most are <b>two bars</b> long. Name subphrases with letters: <b>a</b>, <b>b</b>. If a subphrase returns with a small change, add a <b>prime</b>: <b>a′</b> (“a prime”); a second change gives <b>a″</b> (“a double prime”). A subphrase that is only <b>transposed</b> (a sequence) keeps the same name, <b>a</b>.</p>
+{{fig:subph|Two subphrases: a (bars 1–2) and a′ (bars 3–4), which begins the same way but ends differently.}}
+<p>How do you tell a motive from a subphrase? A motive is short (two to seven notes); a subphrase has six or more notes and fills two bars. Many pieces have ideas at all three levels: in “Don’t Stop Believin’” you can hear motives, subphrases and phrases at once. Sometimes it is more helpful to name the subphrases and skip the motives, if the motives are not extracted and developed.</p>
+<h3>How to analyze a melody</h3>
+<ol><li>Number the <b>motives</b> (1, 2…) and mark where one is altered.</li><li>Letter the <b>subphrases</b> (a, a′, b…).</li><li>Mark the <b>phrases</b> and name each cadence.</li><li>Write the chords, then circle the non-chord tones in the melody.</li></ol>`,
+  figs: {
+    subph: line('C', 'major', ['C4', 'D4', 'E4', 'C4', 'G4', 'E4', 'D4', 'C4', 'C4', 'D4', 'E4', 'C4', 'A4', 'G4', 'F4', 'E4'], {bpm: 90, d: 'q', sym: ['a', '', '', '', '', '', '', '', 'a′', '', '', '', '', '', '', '']}),mot: mfig(MOTIVE_BARS), aug: mfig(AUG_BARS), phrase: twoLines('major', 'C', ODE4, ODE_BASS.slice(0, 5), 100)},
   quiz: [
+    bank([['How long is a typical subphrase?', 'Two bars', ['One bar', 'Four bars', 'Eight bars'], 'Most phrases have four bars, divided into two subphrases.'],
+      ['How do you label a subphrase that returns with a small change?', 'a′ (a prime)', ['b', 'A', 'a with a line over it'], 'A second change gives a″.'],
+      ['What do you call a subphrase that is just transposed (a sequence)?', 'The same letter, a', ['a′', 'b', 'A′'], 'A sequence is not counted as an alteration.'],
+      ['What is the difference between real and tonal inversion?', 'Real keeps exact intervals; tonal follows the scale of the key', ['Real is upside down; tonal is backwards', 'They are the same', 'Tonal changes the rhythm'], 'In tonal inversion a third may be major or minor as the key demands.'],
+      ['Which alteration keeps the rhythm but changes some of the intervals?', 'Intervallic change', ['Rhythmic change', 'Augmentation', 'Retrograde'], 'The motive stays recognisable.'],
+      ['How does a phrase in a classical piece end?', 'With a cadence', ['With a rest', 'With a trill', 'With a change of key signature'], 'In popular music it may end with the lyric line.'],
+      ['Which has more notes: a motive or a subphrase?', 'A subphrase (six or more notes)', ['A motive', 'They are the same size', 'Neither has notes'], 'Motives have two to seven notes.']]),
     () => { const [name, desc] = pick([['sequence', 'The motive repeated at another pitch level'], ['inversion', 'Every interval turned upside down'], ['retrograde', 'The notes played in reverse order'], ['augmentation', 'All rhythmic values doubled'], ['diminution', 'All rhythmic values halved'], ['ornamentation', 'Passing tones and neighbour tones added'], ['extension', 'Extra notes added at the end'], ['rhythmic change', 'Some, but not all, rhythmic values changed'], ['intervallic change', 'The rhythm stays but some intervals change']]); return ask(`In melodic analysis, what is ${name}?`, desc, ['The motive repeated at another pitch level', 'Every interval turned upside down', 'The notes played in reverse order', 'All rhythmic values doubled', 'All rhythmic values halved', 'Passing tones and neighbour tones added', 'Extra notes added at the end', 'Some, but not all, rhythmic values changed', 'The rhythm stays but some intervals change'], `${cap(name)}: ${desc.toLowerCase()}.`); },
     () => { const bars = [['inversion', 2], ['retrograde', 3], ['interval change', 4], ['rhythm change', 5]], [label, i] = pick(bars); return ask('The first bar is the motive. How is the second bar related to it?', {inversion: 'Inversion', retrograde: 'Retrograde', 'interval change': 'Intervallic change', 'rhythm change': 'Rhythmic change'}[label], ['Inversion', 'Retrograde', 'Intervallic change', 'Rhythmic change', 'Sequence'], {inversion: 'The intervals are mirrored: up becomes down.', retrograde: 'The notes are in reverse order.', 'interval change': 'The rhythm is the same but one or two intervals differ.', 'rhythm change': 'The pitches are the same but the rhythm is changed.'}[label], {fig: mfig([MOTIVE_BARS[0], MOTIVE_BARS[i]].map((b, k) => ({...b, label: k ? '?' : 'motive'})))}); },
     bank([['What is a motive?', 'The smallest recognisable melodic idea', ['A complete musical sentence', 'A cadence', 'A kind of chord'], 'A phrase, by contrast, completes a unit.'],
@@ -1018,9 +1088,25 @@ CH.push({id: 'textures', title: 'Accompaniment textures', blurb: 'Chorale, arpeg
 <p>A <b>riff</b> is a short repeated pattern, often in the bass or on guitar; a repeated pattern of any kind is an <b>ostinato</b>. Sometimes a song is recognised by its riff alone.</p>
 {{fig:riff|A bass riff in A minor, built on a pentatonic shape.}}
 <h3>Creating contrast</h3>
-<p>To make a new section sound different, change one or more of the <b>elements of music</b>: melody, harmony (key or chord pattern), rhythm, timbre (instrument or voice), texture, dynamics and articulation (loud or soft, staccato or legato) and tempo. A chorus is often louder and thicker than a verse, a bridge often moves to a new key or a new pattern.</p>`,
+<p>To make a new section sound different, change one or more of the <b>elements of music</b>: melody, harmony (key or chord pattern), rhythm, timbre (instrument or voice), texture, dynamics and articulation (loud or soft, staccato or legato) and tempo. A chorus is often louder and thicker than a verse, a bridge often moves to a new key or a new pattern.</p>
+<h3>Vertical and horizontal texture</h3>
+<p>Texture has two dimensions. The <b>vertical</b> dimension is how many notes (or voices) sound at once: Barber’s <i>Adagio for Strings</i> has a chord of five voices with a sixth, the melody, above it. The <b>horizontal</b> dimension is how busy the rhythm is: in Barber the values are slow; in the finale of Mozart’s String Quartet K. 428 there are only four voices, but sixteenth notes and syncopations make the texture very active. Always ask both questions when you listen: <i>how many layers? how fast do they move?</i></p>
+<h3>Melody with accompaniment: more detail</h3>
+<ul><li><b>Chorale texture</b> may be “nearly” homorhythmic: in Schubert’s <i>Die Nebensonnen</i> the melody sometimes moves in a different rhythm from the chords beneath it, and in pop (“Some Nights”) the chords follow the vocal line almost note for note.</li>
+<li><b>Arpeggiated accompaniments</b> often pair an arpeggio in one part with a bass line in octaves below (Beethoven’s piano sonatas), or a broken chord over a pedal tone.</li>
+<li><b>Block chords</b> can be played as quarter notes, as eighth notes or in a rhythm of your own: the pattern of the accompaniment is often the signature of a song.</li>
+<li><b>Afterbeats</b> (a term from Schoenberg) are repeated chords after the beat, usually in eighth notes; the afterbeats can also be passing-tone figures harmonized in thirds rather than repeated chords, as in some Classical sonatas.</li></ul>
+<h3>Distinctive bass lines and riffs</h3>
+<p>Sometimes a song is known by its <b>bass line</b> or by a <b>guitar riff</b>, a short repeated pattern: the bass lines of “Day Tripper”, “Good Times”, “Another One Bites the Dust”, “Superfreak” and “Under Pressure”, or the guitar riffs of “You Really Got Me”, “Immigrant Song” and “Walk This Way”. A riff is an ostinato that also tells you the harmony, so analyze it by writing the chord that each bass note supports.</p>
+<h3>Listening to texture</h3>
+<p>The goal of this chapter is not a catalog but awareness. When you hear any accompaniment, name (1) the pattern (chorale, arpeggio, block chords, afterbeats…), (2) its rhythm (including cross-rhythms such as 3 + 3 + 2) and (3) what changes when a new section begins.</p>`,
   figs: TEX,
   quiz: [
+    bank([['What does the vertical dimension of texture describe?', 'How many notes or voices sound at once', ['How fast the rhythm is', 'The key of the music', 'The loudness'], 'The horizontal dimension is the activity of the rhythm.'],
+      ['What are afterbeats?', 'Repeated chords played after the beat', ['Notes before the downbeat', 'The last beat of a bar', 'A kind of trill'], 'The term comes from Schoenberg.'],
+      ['What is a riff?', 'A short repeated pattern, often in the bass or on guitar', ['A very long melody', 'A cadence', 'A change of key'], 'It is a kind of ostinato.'],
+      ['Which is a four-voice texture with very busy rhythm?', 'A string quartet with sixteenth notes', ['A slow chorale', 'A single melody', 'A held chord'], 'Voices are few, but the rhythm is active.'],
+      ['What two questions do you ask when listening to texture?', 'How many layers, and how fast do they move?', ['What key and what tempo?', 'Who wrote it and when?', 'How loud and how high?'], 'One question is vertical, one is horizontal.']]),
     () => { const k = pick(Object.keys(TEX_NAMES)); return ask('Which accompaniment texture is this?', TEX_NAMES[k], Object.values(TEX_NAMES), {chorale: 'All voices share one rhythm.', alberti: 'Low, high, middle, high: C–G–E–G.', arpeggio: 'The chord is spread out one note at a time.', repeated: 'The chord is struck again and again as a block.', oompah: 'Bass on the beat, chord on the afterbeat.', offbeat: 'Chords on the upbeats.'}[k], {fig: TEX[k]}); },
     bank([['What does “homorhythmic” mean?', 'All voices move in the same rhythm', ['Only one voice sings', 'The voices imitate each other', 'There is no rhythm'], 'A chorale texture is homorhythmic.'],
       ['What is an Alberti bass?', 'A broken-chord pattern: low, high, middle, high', ['A bass note held for a whole bar', 'A walking bass line', 'Chords on the offbeat'], 'It was much used by Classical composers.'],
@@ -1093,12 +1179,39 @@ CH.push({id: 'secondary', title: 'Secondary dominants and diminished chords', bl
 <p>The leading-tone chord has dominant function, so a <b>vii°</b> (triad, vii°⁷ or viiø⁷) built on the leading tone of any major or minor chord can approach it. Its root is a <b>minor 2nd below</b> the root of the target. Minor chords are tonicized by <b>fully diminished</b> sevenths, major chords usually by <b>half-diminished</b> sevenths (fully diminished ones also work).</p>
 {{fig:secdim|vii°⁷/V – V, vii°⁷/vi – vi, viiø⁷/V – V and vii°⁷/ii – ii in C major.}}
 <h3>Irregular resolutions</h3>
-<p>A secondary chord does not have to resolve to the chord it tonicizes. Common irregular resolutions are the <b>deceptive</b> kind, such as V⁷/vi going to IV instead of vi (the A♭ ... resolving sideways), or a secondary dominant used simply to <b>colour</b> and intensify a pre-dominant or the dominant itself.</p>`,
+<p>A secondary chord does not have to resolve to the chord it tonicizes. Common irregular resolutions are the <b>deceptive</b> kind, such as V⁷/vi going to IV instead of vi (the A♭ ... resolving sideways), or a secondary dominant used simply to <b>colour</b> and intensify a pre-dominant or the dominant itself.</p>
+<h3>Why tonicize?</h3>
+<p>Sing the bass of a chain of secondary dominants (I – V⁶/ii – ii – V⁶/iii – iii – V⁶/IV – IV – V⁶/V – V – V⁶/vi – vi…). Each secondary chord is chromatic and so it <b>intensifies the drive</b> to the next chord, like a tiny dominant. Secondary dominants are common in classical music (Verdi’s “La donna è mobile”, Tchaikovsky’s Nutcracker) and in pop (“Yesterday”, “Don’t Know Why”, “I Want You to Want Me”, “Saturday in the Park”).</p>
+<p>A chord may be labelled with a Roman numeral for its own root (D⁷ in C major is II⁷), but this hides what it does: it leads to G, the dominant. The label <b>V⁷/V</b> says that. Because ii is minor (and in minor ii° is diminished), an uppercase II is itself a chromatic harmony; the correct label is V/V. Diminished chords (vii° and ii°) are not tonicized, because an unstable chord does not sound like a tonic; there is no V/vii°.</p>
+<h3>Secondary dominants in minor</h3>
+<p>The same ideas apply in minor: triads and seventh chords that are major or major–minor tonicize minor or major targets. In A minor: V⁷/iv = A⁷, V⁷/V = B⁷, V⁷/VI = C⁷, V⁷/VII = D⁷ and V⁷/III = G⁷. (V/III is the same chord as VII and V/iv = I with a major third.) The raised notes act as leading tones; in major the only secondary dominant with a <b>lowered</b> note is V⁷/IV, whose B♭ is the 4th degree of F.</p>
+{{fig:secmin|Secondary dominant sevenths in A minor: V⁷/iv, V⁷/V, V⁷/VI, V⁷/VII and V⁷/III.}}
+<p>Be careful with F major in C minor: if it goes to B♭ it is V/VII; if it has pre-dominant function and moves to G (in any inversion) or B°, it is simply IV. The <b>function</b>, not the notes alone, decides. B♭⁷ is correctly labelled V⁷/III or VII⁷, since both lead to III.</p>
+<h3>Irregular resolutions: some real cases</h3>
+<ul><li>V/V resolving to <b>IV</b> in place of V: “Yesterday”, “Forget You” (IV can substitute for V in pop).</li>
+<li>V/V resolving to <b>♭VII</b> in a major key: “I Want You to Want Me”.</li>
+<li>V⁷/IV going to <b>ii</b> in place of IV: the C⁷ in “Baby Love”. Its B♭ falls to A, which becomes the fifth of Dm instead of the third of F.</li>
+<li><b>V/vi going to IV</b>: a very common deceptive move (“(Sittin’ on) the Dock of the Bay”, “Imagine”, a Beethoven sonata). You can hear it as a chromatic version of iii – IV, or as V/vi to VI/vi, a deceptive move within the vi area.</li></ul>
+<p>The conclusion: secondary chords do not always resolve strictly to the chord they appear to tonicize.</p>
+<h3>Secondary diminished chords in detail</h3>
+<p>Because vii° has dominant function, diminished triads and half- or fully diminished sevenths tonicize any chord above a half step. The chords are <b>chromatic</b> in an essential way (unlike chromatic passing notes). A good sequence to hear is I – vii°⁷/ii – ii – vii°⁷/iii – iii – viiø⁷/IV – IV… A few rules:</p>
+<ul><li><b>Minor</b> triads are tonicized by <b>fully diminished</b> sevenths.</li>
+<li><b>Major</b> triads are traditionally tonicized by <b>half-diminished</b> sevenths, but fully diminished ones can be used too.</li>
+<li>In minor, vii°/III is not listed because it is ii°: the chord iiø⁷ has the same notes as viiø⁷/III but a different function (iiø⁷ goes to V; viiø⁷/III goes to III).</li>
+<li>To analyze: stack in thirds; if the quality is diminished or half-/fully-diminished seventh, find the note a <b>minor second above</b> its root; if that is the root of a diatonic chord, you have found the tonicized chord. G♯ up a minor second is A, which is 5 in D major, so G♯° is vii°/V in D.</li>
+<li>To write: find the root of the target, go a minor second below for the root of the vii°⁷, and build the chord. For vii°⁷/iv in C minor: iv is F, a minor second below is E, so build E–G–B♭–D♭.</li></ul>
+<p>Examples: Bach’s “Jesu, Joy of Man’s Desiring”, the “Trepak” in Tchaikovsky’s Nutcracker, Billy Joel’s “Just the Way You Are” and Queen’s “We Are the Champions”.</p>`,
   figs: {
+    secmin: block('A', 'minor', [['A2 C#4 E4 G4', 'V⁷/iv'], ['B2 D#4 F#4 A4', 'V⁷/V'], ['C3 E4 G4 Bb4', 'V⁷/VI'], ['D3 F#4 A4 C5', 'V⁷/VII'], ['G2 B3 D4 F4', 'V⁷/III']], {bpm: 70, d: 'h'}),
     secd: {key: 'C', mode: 'major', clef: 'treble', bpm: 70, events: SECD.map(s => { const c = rn(s, 'C', 'major'); return {notes: c.notes, d: 'h', rn: fmt(s), sym: symOf(c)}; })},
     secdim: prog('C', 'major', ['vii°7/V', 'V', 'vii°7/vi', 'vi', 'viiø7/V', 'V', 'vii°7/ii', 'ii'], {d: 'h', bpm: 70}),
   },
   quiz: [
+    bank([['Why is there no secondary dominant of vii°?', 'A diminished chord is too unstable to sound like a tonic', ['It is too high', 'It has no root', 'It is never used in major'], 'Only major and minor chords are tonicized.'],
+      ['What does V/V resolve to normally, and what can it replace in pop?', 'V; IV can substitute for V', ['I; vi', 'IV; ii', 'vi; iii'], 'Yesterday goes V/V to IV.'],
+      ['Which chords tonicize minor triads (in secondary diminished chords)?', 'Fully diminished sevenths', ['Half-diminished sevenths only', 'Augmented triads', 'Dominant sevenths'], 'Major triads are traditionally tonicized by half-diminished sevenths.'],
+      ['How do you find the tonicized chord of a secondary diminished chord?', 'Go a minor second above its root', ['Go a fifth below the root', 'Go a third above the root', 'Go an octave'], 'The diminished chord resolves up by half step.'],
+      ['What is V/vi going to IV an example of?', 'An irregular (deceptive) resolution of a secondary chord', ['A half cadence', 'A modulation', 'A pedal point'], 'It is common in rock and in Beethoven.']]),
     () => { const k = pick(['C', 'G', 'F', 'D']), t = pick(['ii', 'iii', 'IV', 'V', 'vi']), c = rn('V7/' + t, k, 'major'), tc = rn(t, k, 'major'); return ask(`In ${pn(k)} major, which chord leads to ${symOf(tc)} as its dominant seventh?`, symOf(c), ['ii', 'iii', 'IV', 'V', 'vi'].map(x => symOf(rn('V7/' + x, k, 'major'))), `The V⁷ of ${t}: a perfect fifth above ${pn(nm(tc.root))}.`); },
     () => { const k = pick(['C', 'G', 'F']), t = pick(['ii', 'iii', 'IV', 'V', 'vi']), tc = rn(t, k, 'major'); return ask(`What is the Roman numeral for the secondary dominant seventh that leads to ${symOf(tc)} in ${pn(k)} major?`, `V⁷/${t}`, ['ii', 'iii', 'IV', 'V', 'vi'].map(x => `V⁷/${x}`), 'The numeral after the slash is the chord being tonicized.'); },
     () => { const k = pick(['C', 'G', 'F']), t = pick(['ii', 'V', 'vi']), c = rn('vii°7/' + t, k, 'major'); return ask(`In ${pn(k)} major, which notes make vii°⁷/${t}?`, c.notes.map(n => nm(n)).join(' – '), ['ii', 'V', 'vi', 'IV'].filter(x => x !== t).map(x => rn('vii°7/' + x, k, 'major').notes.map(n => nm(n)).join(' – ')), 'It is a diminished seventh chord on the leading tone of the target.'); },
@@ -1124,12 +1237,35 @@ CH.push({id: 'mixture', title: 'Mode mixture and borrowed chords', blurb: 'Borro
 <p>A deceptive cadence can go V – ♭VI instead of V – vi, followed by ♭VII – I, a dramatic “epic” ending.</p>
 {{fig:epic|V – ♭VI – ♭VII – I in C major.}}
 <h3>Borrowing the other way: the Picardy third</h3>
-<p>Borrowing from the major inside a minor key is rare: a major tonic in the middle of a minor passage usually functions as V/iv, and the raised 6th and 7th belong to melodic minor anyway. The one regular place is the very end: a minor piece may close on a major I, the <b>Picardy third</b>, common in the Baroque.</p>`,
+<p>Borrowing from the major inside a minor key is rare: a major tonic in the middle of a minor passage usually functions as V/iv, and the raised 6th and 7th belong to melodic minor anyway. The one regular place is the very end: a minor piece may close on a major I, the <b>Picardy third</b>, common in the Baroque.</p>
+<h3>Where mixture is heard</h3>
+<p>Mode mixture and “borrowed chords” mean the same thing: chords taken from the parallel minor into a major key. The lowered scale degrees ♭6 (the most common), ♭3 and ♭7 mark the borrowed chords. Famous examples:</p>
+<ul><li>The Beatles’ “Blackbird”: iv (D minor) in A major. The change from major to minor gives a sudden emotional effect.</li>
+<li>Strauss’s <i>Also sprach Zarathustra</i>: the major I goes immediately to the minor i.</li>
+<li>Radiohead’s “Creep”: IV is followed by the borrowed iv; Nirvana’s “Lithium”: ♭VI and ♭VII.</li>
+<li>Brahms’s Symphony No. 3 (third movement): I alternates with a borrowed vii°⁷ over a pedal; Tchaikovsky’s “Waltz of the Flowers” alternates I with vii°⁷/I over a tonic pedal.</li>
+<li>Bass lines that start on 1 and fall through the borrowed ♭7 and ♭6 (“Beautiful”, Hoyt Axton’s “Joy to the World”, “Part of Your World”): the lowered degrees are borrowed notes.</li></ul>
+<h3>Harmonizing a borrowed scale degree</h3>
+<p>♭6 can be harmonized as the <b>root</b> (♭VI), the <b>third</b> (iv), the <b>fifth</b> (ii° or iiø⁷) or the <b>seventh</b> (vii°⁷ or ♭VII⁷) of a chord. ♭3 and ♭7 can be harmonized as root, third or fifth. You do not have to memorize the list; realize that the <b>quality of the diatonic chord changes</b> when a note from the minor mode joins it.</p>
+{{fig:b6|Chords in C major that contain A♭ (♭6): ♭VI, iv, ii°, iiø⁷, vii°⁷ and ♭VII⁷.}}
+<h3>Analyzing and writing borrowed chords</h3>
+<p>Unlike a secondary chord, a borrowed chord is labelled by its <b>root, quality and inversion</b> only. Example: a half-diminished chord with C in the bass built on A in G major (A–C–E♭–G): stack in thirds, A is 2 in G major, and the thirds are m3–m3–M3, so it is iiø⁷, and since the third is in the bass the figure is ⁶₅.</p>
+<p>To <b>write</b> one, read the numeral’s quality carefully. ♭VI is built on the lowered 6th: in A major 6 is F♯, so ♭6 is F♮, and stacking M3 + m3 gives F♮–A–C♮. A flat before a Roman numeral means “a half step below the scale degree”, <b>not</b> that the root has an accidental ♭ in front of it.</p>
+<h3>The “epic” ending</h3>
+<p>The deceptive V – ♭VI with ♭VI – ♭VII – I is the ending of many arrangements of “The Star-Spangled Banner” (as sung at the Super Bowl and presidential inaugurations) and of the animated film <i>Beauty and the Beast</i>: it sounds dramatic, if somewhat clichéd.</p>
+<h3>Borrowing from major in a minor key</h3>
+<p>This is rare: a major tonic in the middle of a minor passage usually acts as V/iv, and a raised 6th or 7th is just melodic minor. The one regular place is the final chord: the Picardy third, as in the Sarabande of Bach’s French Suite No. 1 in D minor.</p>`,
   figs: {
+    b6: block('C', 'major', [['Ab2 C4 Eb4 Ab4', '♭VI'], ['F3 Ab3 C4 F4', 'iv'], ['D3 F3 Ab3 D4', 'ii°'], ['D3 F3 Ab3 C4', 'iiø⁷'], ['B2 D4 F4 Ab4', 'vii°⁷'], ['Bb2 D4 F4 Ab4', '♭VII⁷']], {bpm: 70, d: 'h'}),
     borr: prog('C', 'major', ['iv', 'bVI', 'bVII', 'bIII', 'ii°', 'iiø7'], {d: 'h', bpm: 70}),
     epic: prog('C', 'major', ['V', 'bVI', 'bVII', 'I'], {d: 'h', bpm: 70}),
   },
   quiz: [
+    bank([['Which scale degree is most often lowered in a borrowed chord?', '6 (♭6)', ['♭2', '♭5', '4'], '♭3 and ♭7 also occur.'],
+      ['Which chords in C major contain A♭?', '♭VI, iv, ii°, iiø⁷ and vii°⁷', ['I, IV and V', 'ii, iii and vi', 'Only ♭VI'], 'A♭ is ♭6 of C major.'],
+      ['How is a borrowed chord labelled, compared with a secondary chord?', 'By root, quality and inversion; there is no slash', ['With a slash and the tonicized chord', 'With a plus sign', 'With a figured-bass 5'], 'Secondary chords need the slash.'],
+      ['What does a flat before a Roman numeral (♭VI) mean?', 'The root is a half step below the scale degree', ['The chord has a flat in front of its root', 'The chord is diminished', 'The chord is in the bass'], 'In C major ♭VI is A♭, built on ♭6.'],
+      ['Which lowered scale degrees are borrowed from the parallel minor?', '♭6 (most common), ♭3 and ♭7', ['♭2 and ♭5', 'Only ♯4', '♯1 and ♯5'], 'They are the notes that differ between major and natural minor.']]),
     () => { const k = pick(['C', 'G', 'F', 'D', 'A']), s = pick(['iv', 'bVI', 'bVII', 'bIII']), c = rn(s, k, 'major'); return ask(`In ${pn(k)} major, what chord is ${fmt(s)}?`, symOf(c), ['iv', 'bVI', 'bVII', 'bIII', 'IV'].map(x => symOf(rn(x, k, 'major'))), 'Borrow it from the parallel minor.'); },
     () => { const k = pick(['C', 'G', 'F', 'D']), c = rn('iv', k, 'major'); return ask(`In ${pn(k)} major, which notes make the borrowed iv chord?`, c.notes.map(n => nm(n)).join(' – '), [rn('IV', k, 'major'), rn('ii', k, 'major'), rn('bVI', k, 'major')].map(x => x.notes.map(n => nm(n)).join(' – ')), 'A minor triad on the 4th degree.'); },
     bank([['What is mode mixture?', 'Borrowing chords from the parallel mode', ['Changing key permanently', 'Playing in two keys at once', 'Using only the major scale'], 'A major key borrows from its parallel minor.'],
