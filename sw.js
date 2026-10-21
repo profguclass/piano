@@ -1,5 +1,5 @@
 // Network first so updates show up right away; the cache keeps the app working offline.
-const CACHE = 'piano-reader-v51';
+const CACHE = 'piano-reader-v52';
 const FILES = ['./', './index.html', './opensheetmusicdisplay.min.js', './manifest.webmanifest', './icon-192.png', './icon-512.png', './lessons/lessons.json', './harmony.js', './harmony-chapters.js', './harmony-glossary.js'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(async c => {

@@ -341,7 +341,7 @@ async function showLibrary() {
       const d = document.createElement('details'); d.className = 'bkex';
       const sm = document.createElement('summary'); sm.textContent = `Figure ${b.id}${b.cap ? ' · ' + b.cap : ''}${b.bad ? ' (check against the book)' : ''}`; d.append(sm);
       const slot = document.createElement('div'); d.append(slot);
-      d.addEventListener('toggle', () => { if (d.open && !slot.firstChild) slot.append(figureBox({id: 'bk' + b.id, xmlUrl: 'harmony-book/' + b.f, bpm: 80, zoom: 0.8}, '')); });
+      d.addEventListener('toggle', () => { if (d.open && !slot.firstChild) bookSlot(b, slot); });
       list.append(d);
     }
     if (rows.length > 150) { const m = document.createElement('p'); m.className = 'muted'; m.textContent = `Showing the first 150 — narrow the search or pick a chapter to see the rest. · 처음 150개만 표시합니다.`; list.append(m); }
@@ -383,6 +383,19 @@ function showGlossary() {
   paint(); $h('harmony').scrollTop = 0;
 }
 
+function bookSlot(b, slot) {                                  // a textbook figure, plus a button that opens it in the main player
+  const f = {id: 'bk' + b.id, xmlUrl: 'harmony-book/' + b.f, bpm: 80, zoom: 0.8};
+  slot.append(figureBox(f, ''));
+  const go = document.createElement('button'); go.className = 'bkgo'; go.textContent = 'Practise in the player · 플레이어에서 연습';
+  go.onclick = async () => {
+    go.disabled = true;
+    try { const xml = f.xmlText || await (await fetch(f.xmlUrl)).text(); close(); await window.loadScore(xml, 'Figure ' + b.id); }
+    catch (e) { go.textContent = 'Could not open it · 열 수 없습니다'; }
+    go.disabled = false;
+  };
+  slot.append(go);
+}
+
 let bookIndex = null;
 async function bookEntries(id) {
   if (!bookIndex) { try { bookIndex = await (await fetch('harmony-book/index.json')).json(); } catch { bookIndex = []; } }
@@ -396,7 +409,7 @@ async function addBookExamples(wrap, id, before) {
     const d = document.createElement('details'); d.className = 'bkex';
     const sm = document.createElement('summary'); sm.textContent = `Figure ${b.id}${b.cap ? ' · ' + b.cap : ''}${b.bad ? ' (check against the book)' : ''}`; d.append(sm);
     const slot = document.createElement('div'); d.append(slot);
-    d.addEventListener('toggle', () => { if (d.open && !slot.firstChild) slot.append(figureBox({id: 'bk' + b.id, xmlUrl: 'harmony-book/' + b.f, bpm: 80, zoom: 0.8}, '')); });
+    d.addEventListener('toggle', () => { if (d.open && !slot.firstChild) bookSlot(b, slot); });
     sec.append(d);
   }
   before.before(sec);
