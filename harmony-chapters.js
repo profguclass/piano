@@ -1827,9 +1827,30 @@ CH.push({id: 'settheory', title: 'Pitch-class set theory', blurb: 'Pitch classes
 <p>The <b>interval vector</b> has six digits, counting how many times each interval class 1 to 6 occurs between all pairs of notes. A major or minor triad has <b>001110</b>; a dominant seventh has <b>012111</b>.</p>
 <h3>Transposition and inversion</h3>
 <p><b>T<sub>n</sub></b> transposes every pitch class up by n (mod 12). <b>T<sub>n</sub>I</b> inverts the set around C (each x becomes −x, so E = 4 becomes A♭ = 8) and then transposes by n. To find n for two sets related by inversion, write the second set backwards under the first and add the pairs: each sum is n.</p>
-<p>Try it with the quiz: all the questions are generated from the same rules.</p>`,
-  figs: {},
+<p>Try it with the quiz: all the questions are generated from the same rules.</p>
+<h3>Why use integers?</h3>
+<p>Interval names carry tonal meaning: an augmented fifth and a minor sixth sound the same (eight semitones) but, in tonal music, one leans upward and the other downward. Atonal music has no such tendencies, so Forte replaced note names by <b>integers</b> and interval names by <b>counts of semitones</b>. This assumes enharmonic equivalence (D, C♯♯ and E♭♭ are all 2) and octave equivalence (any C is pitch class 0). We analyze <b>sets of pitch classes</b>.</p>
+<h3>An example from Webern</h3>
+<p>The opening chords of Webern’s Five Movements for String Quartet, No. 3, are E♭–B–D (3, 11, 2) and, similarly, a second chord built the same way. In the first chord the interval from 3 to 11 is 8 semitones and from 11 to 2 is 3 (mod 12). Its <b>normal form</b> is [11, 2, 3] and its <b>prime form</b> is (014). A later chord G♯–C–A (8, 0, 9) looks different (a diminished fourth under a major sixth), but its normal form [8, 9, 0] also reduces to prime form (014): the chords belong to the same <b>set class</b>. Prime form reveals similarities that are not apparent on the surface.</p>
+{{fig:s014|Three sets with prime form (014): [11, 2, 3] (B–D–E♭), [8, 9, 0] (G♯–A–C) and the prime form itself (C–C♯–E).}}
+<h3>Segmentation</h3>
+<p><b>Segmentation</b> means deciding which notes to group. Usually the music tells you (notes sounding as a chord, or notes in one melodic line), but an analyst may try other groupings to find hidden relationships. When Webern’s cello C♯ is added to the first two chords, the sets no longer share a prime form: you only know by trying.</p>
+<h3>Interval vectors in detail</h3>
+<p>To compute the vector: put the set in normal form, measure from the first note to each of the others, then from the second to each higher note, and so on; tally each <b>interval class</b> (1 to 6). The vector always has six digits, with 0 for a missing class. A half-diminished seventh chord has the vector <b>012011</b>: no ic1, one ic2 (the minor seventh), two ic3 (minor thirds), no ic4, one ic5 and one ic6 (tritone). A fully diminished seventh has <b>004002</b>.</p>
+<h3>Forte numbers and set classes</h3>
+<p>Forte catalogued every set class of 3 to 9 notes and gave each a label such as <b>3–1</b> or <b>4–Z29</b>: the first number counts the notes and the second is its place in the list. A <b>Z</b> (“zygotic”, twinned) marks sets with <b>different prime forms but the same interval vector</b>: 4–Z29 and 4–Z15 both have 111111. A set and its <b>complement</b> (the other notes of the chromatic scale) are listed together. Of the 208 set classes, only 6 differ in prime form between the Forte and Rahn methods; this course uses Rahn’s.</p>
+<h3>Worked inversion</h3>
+<p>To apply T₇I to [2, 4, 5] (D, E, F): invert around C (T₀I): 2 → 10, 4 → 8, 5 → 7, giving [7, 8, 10] in ascending order; then transpose up 7: [2, 3, 5] (D, E♭, F). The sets [2, 4, 5] and [2, 3, 5] are related by T₇I. In Straus’s notation T<sub>n</sub>I is just I<sub>n</sub>.</p>`,
+  figs: {
+    s014: {key: 'C', mode: 'major', clef: 'treble', bpm: 56, events: [[['B3', 'D4', 'Eb4'], '[11, 2, 3]'], [['G#3', 'A3', 'C4'], '[8, 9, 0]'], [['C4', 'C#4', 'E4'], '(014)']].map(([n, l]) => ({notes: n, d: 'h', sym: l}))},},
   quiz: [
+    bank([['What is the interval vector of a half-diminished seventh chord?', '012011', ['001110', '004002', '012111'], 'It has two minor thirds (ic3), one ic2, one ic5 and a tritone.'],
+      ['What is the interval vector of a fully diminished seventh chord?', '004002', ['012011', '001110', '111111'], 'Four minor thirds (ic3) and two tritones (ic6).'],
+      ['What does the Z in a Forte number such as 4–Z29 mean?', 'The set has the same interval vector as another with a different prime form', ['The set is zero-based', 'The set is a complement', 'The set has no tritone'], '4–Z29 and 4–Z15 both have 111111.'],
+      ['What is segmentation?', 'Deciding which notes to group together for analysis', ['Splitting a row into four forms', 'Transposing a set', 'Inverting a chord'], 'Usually the music suggests it, but analysts may try others.'],
+      ['How many digits does an interval vector have?', 'Six', ['Twelve', 'Seven', 'Four'], 'One for each interval class from 1 to 6.'],
+      ['Why does atonal analysis use integers instead of note names?', 'To remove the tonal meaning of interval names and spellings', ['Because integers are shorter', 'Because pitch classes are random', 'To avoid octaves'], 'An augmented fifth and a minor sixth are the same 8 semitones.'],
+      ['What is the complement of a set?', 'The remaining notes of the chromatic scale', ['The inversion of the set', 'The same set a fifth higher', 'A set with the same vector'], 'A set and its complement together make all twelve pitch classes.']]),
     () => { const x = rand12(); return ask(`What is the pitch-class integer of ${PCN[x]}?`, String(x === 10 ? 'T (10)' : x === 11 ? 'E (11)' : x), shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'T (10)', 'E (11)'].filter(y => String(y) !== String(x === 10 ? 'T (10)' : x === 11 ? 'E (11)' : x))).map(String), 'C = 0, and each half step adds one.'); },
     () => { const s = randSet(), p = primeForm(s), others = SETS.filter(t => primeForm(t).join() !== p.join()).map(t => showPrime(primeForm(t))); return ask(`What is the prime form of ${showSet(sortedSet(s.map(mod12)))} (${pcSetNote(sortedSet(s))})?`, showPrime(p), others, 'Find the normal form, transpose it to 0, compare with its inversion and pick the more compact.'); },
     () => { const s = randSet(), v = intervalVector(s), others = SETS.filter(t => intervalVector(t).join() !== v.join()).map(t => intervalVector(t).join('')); return ask(`What is the interval vector of the set ${showSet(sortedSet(s.map(mod12)))}?`, v.join(''), others, 'Count the interval classes between all pairs of notes.'); },
@@ -1861,9 +1882,32 @@ CH.push({id: 'serialism', title: 'Serialism and the twelve-tone method', blurb: 
 <p>A <b>matrix</b> shows all 48 forms in a 12 × 12 grid. Write P0 across the top, its inversion down the left, and fill each row with the transposition that starts on the left-hand note. Read the rows left to right for P, right to left for R; read the columns top to bottom for I and bottom to top for RI.</p>
 ${matrixHtml()}
 <h3>Rows in the music</h3>
-<p>Composers do not always state a row plainly: successive rows may <b>overlap</b> (the last note of one is the first of the next), a row may be split into groups of notes (<i>tetrachords</i>) and presented in counterpoint or as chords, or two forms may be stated at once in a melody-with-accompaniment texture. Music that keeps a series in order and uses its inversion and retrograde without being strictly twelve-tone is also called <b>serial</b>: Stravinsky’s late works use shorter series, sometimes with repeated notes.</p>`,
+<p>Composers do not always state a row plainly: successive rows may <b>overlap</b> (the last note of one is the first of the next), a row may be split into groups of notes (<i>tetrachords</i>) and presented in counterpoint or as chords, or two forms may be stated at once in a melody-with-accompaniment texture. Music that keeps a series in order and uses its inversion and retrograde without being strictly twelve-tone is also called <b>serial</b>: Stravinsky’s late works use shorter series, sometimes with repeated notes.</p>
+<h3>The four premises</h3>
+<ol><li>All twelve notes of the chromatic scale must appear in the row.</li>
+<li>No note is repeated until the other eleven have sounded (apart from immediate repetition, trills and tremolos).</li>
+<li>The row can be inverted and retrograded, and the inversion can be retrograded.</li>
+<li>The <b>order</b> of the notes in a row is fixed and is never reshuffled.</li></ol>
+<p>Every note of a twelve-tone piece belongs to the row or one of its forms, which gives the piece unity; the row is also a store of intervals, so twelve-tone technique grows out of the atonal emphasis on interval rather than chord or scale. The retrograde inversion might be better named “inversion retrograded”: it means the inversion played backwards, not the retrograde inverted.</p>
+<h3>Recognizing row forms in a score</h3>
+<p>Look at the first intervals of a passage, find the one row form that begins that way, then check the transposition level: for P and I forms it is the <b>first</b> note, for R and RI forms the <b>last</b> (12th) note. A passage that begins with a rising minor third and a falling major second can only be a retrograde (of the row in the example); if its 12th note is A♭, it is R8. In the same example row, a form beginning with a falling minor second and a falling fourth is an inversion (I11), and one beginning with a rising minor second and a rising fourth is a prime (P1).</p>
+<h3>Writing a row form</h3>
+<ol><li>Write all four forms from the prime: P, R, I, RI (all on 0).</li><li>Transpose the one you want: P and I begin on the pitch integer, R and RI <b>end</b> on it.</li></ol>
+<p>Example, given P0: to write I9, transpose I0 up 9 semitones so that it begins on A. To write RI5, transpose RI0 up 5 semitones so that it ends on F.</p>
+<h3>How a row appears in music</h3>
+<ul><li><b>Overlap:</b> the last note of one row statement is also the first of the next.</li>
+<li><b>Contrapuntal or harmonic presentation:</b> the row is divided into three tetrachords and presented as lines or as chords.</li>
+<li><b>Melody and accompaniment:</b> one row form carries the melody (P0) while another (R0) accompanies.</li></ul>
+<p>When you analyze, first look for a clear, plain statement of the row somewhere in the piece, then use it to analyze the harmonies.</p>
+<h3>Serialism that is not twelve-tone</h3>
+<p>Stravinsky’s Septet (1953) uses a 16-note series, not a twelve-tone row, with inversion, retrograde and retrograde inversion. Eight pitch classes occur in it: B, A, G, F♯ and G♯ are repeated (A, G and G♯ three times each), and the set in normal form could even suggest E or A as a tonal centre. So the piece is serial without being strictly twelve-tone.</p>`,
   figs: {},
   quiz: [
+    bank([['Which note labels an R or RI row form?', 'Its last note', ['Its first note', 'Its middle note', 'The tonic'], 'R1 ends on C♯; RI7 ends on G.'],
+      ['Which note labels a P or I row form?', 'Its first note', ['Its last note', 'Its highest note', 'The tonic'], 'P3 begins on E♭; I2 begins on D.'],
+      ['What is “overlap” in twelve-tone music?', 'The last note of one row is also the first of the next', ['Two rows sound at once', 'The row is played twice', 'A tremolo'], 'It links successive rows.'],
+      ['Is Stravinsky’s Septet strictly twelve-tone?', 'No, it uses a 16-note series with repeated notes', ['Yes', 'It uses no series at all', 'It uses a 24-note row'], 'It is serial but not twelve-tone.'],
+      ['In the retrograde inversion, what is reversed?', 'The inversion, played backwards', ['The prime inverted', 'Only the first six notes', 'Only the rhythm'], 'RI is “inversion retrograded”.']]),
     () => { const kind = pick(['P', 'I', 'R', 'RI']), n = Math.floor(Math.random() * 12), r = rowForm(kind, n); return ask(`The row form ${kind}${n} of the row ${rowNames(ROW)} begins with which notes?`, rowNames(r.slice(0, 4)), [rowNames(rowForm(kind, mod12(n + 1)).slice(0, 4)), rowNames(rowForm(kind === 'P' ? 'I' : 'P', n).slice(0, 4)), rowNames(rowForm(kind === 'R' ? 'RI' : 'R', n).slice(0, 4))], 'Work it out from the prime: P adds n, I subtracts from n, R and RI are read backwards and labelled by their last note.'); },
     () => { const kind = pick(['P', 'I', 'R', 'RI']), n = Math.floor(Math.random() * 12), r = rowForm(kind, n), label = `${kind}${n}`, labels = []; while (labels.length < 4) { const k = pick(['P', 'I', 'R', 'RI']), m = Math.floor(Math.random() * 12), l = `${k}${m}`; if (!labels.includes(l) && l !== label && rowForm(k, m).slice(0, 6).join() !== r.slice(0, 6).join()) labels.push(l); }
       return ask(`Which row form begins ${r.slice(0, 6).map(x => PCN[x]).join(' ')}?`, label, labels, 'Compare the first intervals with the prime: P keeps them, I mirrors them, R and RI start with the end of P or I.'); },
@@ -1893,12 +1937,21 @@ CH.push({id: 'minimalism', title: 'Minimalism', blurb: 'Additive process and pha
 <h3>Phase shifting</h3>
 <p>Steve Reich discovered <b>phase shifting</b> with tape loops of slightly different lengths: the same idea plays on two machines and slowly drifts out of phase, then back into it. In live music, two players repeat the same pattern and one gradually speeds up (as in <i>Piano Phase</i>) or changes to the next <b>rotation</b> at the start of a bar (as in <i>Clapping Music</i>). A <b>rotation</b> moves the pattern one note to the left each time, the first note going to the end.</p>
 {{fig:rotation|Rotations of a five-note pattern: each bar starts one note later.}}
-<p>The same device appears in Stravinsky’s music: rotating a pattern is an old idea, minimalism makes it audible.</p>`,
+<p>The same device appears in Stravinsky’s music: rotating a pattern is an old idea, minimalism makes it audible.</p>
+<h3>More about additive minimalism</h3>
+<p>The four names usually linked with minimalism are La Monte Young, Terry Riley, Steve Reich and Philip Glass; the style rose in the 1960s. Glass’s version of additive process at the start of <i>Two Pages</i> (1969) repeats the pattern and <b>subtracts the final note</b> from the repetition: a pattern A is followed by A + B, then A + B + C, then A + B + C + D, and so on, each step adding to the previous repeat. His <i>Music in Fifths</i> (1969) shows additive process very plainly on its own, though it is only one of dozens of steps in the piece. In <i>Einstein on the Beach</i> (the “Train” scene) each chord of a five-chord cadential progression is gradually lengthened by adding subdivisions to it.</p>
+<h3>More about phase shifting</h3>
+<p>Reich noticed phase shifting in his tape pieces <i>It’s Gonna Rain</i> (1965) and <i>Come Out</i> (1966): two tape loops of the same idea but slightly different lengths drift out of phase, then slowly back into phase. He then made the process live in <i>Piano Phase</i> (1967), <i>Violin Phase</i> (1967) and <i>Clapping Music</i> (1972). The basic pattern of <i>Piano Phase</i> has twelve notes; as one player speeds up slightly, the pattern in the other part “rotates” step by step: the second note begins the pattern on the second line, the third note on the third line, and so on, until the first note begins it again and the process is complete.</p>
+<p>In <i>Clapping Music</i> one player keeps the twelve-beat pattern while the other moves it one beat to the left at regular intervals: after twelve shifts the two parts are together again.</p>`,
   figs: {
     additive: bars58([{label: 'pattern', notes: ['C4', 'D4', 'r', 'r', 'r']}, {label: 'add a note', notes: ['C4', 'D4', 'E4', 'r', 'r']}, {label: 'add a note', notes: ['C4', 'D4', 'E4', 'G4', 'r']}, {label: 'complete', notes: ['C4', 'D4', 'E4', 'G4', 'A4']}]),
     rotation: bars58([0, 1, 2, 3, 4].map(k => ({label: k ? `rotation ${k}` : 'pattern', notes: rotate(PAT5, k)}))),
   },
   quiz: [
+    bank([['What does Glass do in the additive process of Two Pages?', 'Repeats the pattern, adding notes and dropping the last note of the repeat', ['Plays it backwards', 'Doubles every duration', 'Changes the key each time'], 'A, A + B, A + B + C, and so on.'],
+      ['Which Reich pieces were made with tape loops?', 'It’s Gonna Rain and Come Out', ['Piano Phase and Violin Phase', 'Clapping Music', 'Einstein on the Beach'], 'Live phasing came later.'],
+      ['How does a phased pattern come back together?', 'By rotating step by step until the first note starts it again', ['By changing key', 'By stopping the music', 'By speeding up the tempo'], 'This is a rotation of the pattern.'],
+      ['What happens to each chord of the cadence in Einstein on the Beach?', 'It is gradually lengthened by adding subdivisions', ['It is transposed', 'It is inverted', 'It is played softer'], 'It is an additive process.']]),
     () => { const k = 1 + Math.floor(Math.random() * 4), r = rotate(PAT5, k), names = x => x.map(n => nm(parse(n))).join(' '); return ask(`What is rotation ${k} of the pattern ${names(PAT5)}?`, names(r), [1, 2, 3, 4].filter(x => x !== k).map(x => names(rotate(PAT5, x))), 'Move the first note to the end, once for each rotation.'); },
     bank([['What is an additive process?', 'A pattern that grows by one note each repetition', ['A very loud passage', 'A pattern that never changes', 'A chord progression'], 'It can also shrink by removing notes.'],
       ['What is phase shifting?', 'Two copies of a pattern drifting out of step and back', ['Changing key', 'Doubling the tempo', 'A change of instrument'], 'Steve Reich discovered it with tape loops.'],

@@ -361,6 +361,8 @@ const G = [
   ['minor–major seventh chord', '단-장7화음', 'A minor triad with a major seventh, written m(maj7).', '단3화음에 장7도를 더한 화음 (m(maj7)).', 'jazz'],
   ['compound ternary', '복합 3부 형식', 'A ternary form in which the A or B section is itself a binary or ternary form.', 'A 또는 B 부분이 그 자체로 2부 또는 3부 형식인 3부 형식.', 'binaryternary'],
   ['binary principle', '2부 형식의 원리', 'The first section modulates to a new key and the second section modulates back.', '앞부분은 새 조로 전조하고 뒷부분은 원래 조로 돌아오는 원리.', 'binaryternary'],
+  ['complement (set)', '여집합 (보집합)', 'The pitch classes of the chromatic scale not in the set.', '음계의 12개 음 중 그 집합에 속하지 않는 음들.', 'settheory'],
+  ['segmentation', '분절 (세그멘테이션)', 'Deciding which notes to group together for set analysis.', '집합 분석을 위해 어떤 음을 묶을지 정하는 일.', 'settheory'],
 ];
 const OLD = ['scales', 'intervals', 'triads', 'triadsinkey', 'inversions', 'sevenths', 'cadences', 'progressions', 'voiceleading', 'nonchord', 'minor', 'chromatic', 'harmonizing', 'counterpoint', 'form'];
 window.Harmony.registerGlossary(G.map(g => [...g.slice(0, 4), typeof g[4] === 'number' ? OLD[g[4] - 1] : g[4]]));
